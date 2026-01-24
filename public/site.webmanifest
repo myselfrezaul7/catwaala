@@ -1,0 +1,19 @@
+{
+    "name": "Catwaala",
+    "short_name": "Catwaala",
+    "icons": [
+        {
+            "src": "/logo-optimized.webp",
+            "sizes": "192x192",
+            "type": "image/webp"
+        },
+        {
+            "src": "/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#f97316",
+    "background_color": "#0f172a",
+    "display": "standalone"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "CATWAALA",
+  "description": "A web application for the CATWAALA animal welfare organization, featuring cat adoption, animal reporting, and an AI-powered vet assistant to answer your cat-related questions.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

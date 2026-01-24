@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CATWAALA - Cat Welfare Bangladesh</title>
+  <meta name="description"
+    content="Catwaala is a cat welfare platform dedicated to rescuing, rehabilitating, and rehoming stray cats in Bangladesh. Join our 450K+ community to make a difference." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.catwaala.com/" />
+  <meta property="og:title" content="CATWAALA - Cat Welfare Bangladesh" />
+  <meta property="og:description"
+    content="Catwaala is a cat welfare platform dedicated to rescuing, rehabilitating, and rehoming stray cats in Bangladesh. Join our 450K+ community to make a difference." />
+  <meta property="og:image" content="https://www.catwaala.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Catwaala" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.catwaala.com/" />
+  <meta name="twitter:title" content="CATWAALA - Cat Welfare Bangladesh" />
+  <meta name="twitter:description"
+    content="Catwaala is a cat welfare platform dedicated to rescuing, rehabilitating, and rehoming stray cats in Bangladesh. Join our 450K+ community to make a difference." />
+  <meta name="twitter:image" content="https://www.catwaala.com/og-image.jpg" />
+
+  <link rel="icon" type="image/webp" href="/logo-optimized.webp" />
+  <link rel="apple-touch-icon" href="/logo-optimized.webp" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+
+  <!-- Preload critical assets for faster LCP -->
+  <link rel="preload" href="/hero-bg.webp" as="image" type="image/webp" fetchpriority="high" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind CSS to use the 'class' strategy for dark mode
+    // and set the default font to 'Poppins'.
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.7s ease-out forwards',
+            'pop': 'pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pop: {
+              '0%': { transform: 'scale(0.9)' },
+              '50%': { transform: 'scale(1.1)' },
+              '100%': { transform: 'scale(1)' },
+            },
+            heartbeat: {
+              '0%': { transform: 'scale(1)' },
+              '14%': { transform: 'scale(1.1)' },
+              '28%': { transform: 'scale(1)' },
+              '42%': { transform: 'scale(1.1)' },
+              '70%': { transform: 'scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Optimized Background: Moved to a fixed div in body to prevent repaint on scroll */
+    .app-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-color: #f0f4f8;
+      background-image:
+        radial-gradient(at 0% 0%, rgba(255, 228, 230, 0.8) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(224, 242, 254, 0.8) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(254, 243, 199, 0.8) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(237, 233, 254, 0.8) 0px, transparent 50%);
+      pointer-events: none;
+      /* Ensure clicks pass through */
+      will-change: transform;
+      /* Hint for GPU acceleration */
+    }
+
+    .dark .app-background {
+      background-color: #0f172a;
+      background-image:
+        radial-gradient(at 0% 0%, rgba(76, 29, 149, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(30, 64, 175, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(180, 83, 9, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(124, 58, 237, 0.35) 0px, transparent 50%);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(203, 213, 225, 0.5);
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: rgba(51, 65, 85, 0.5);
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: rgba(71, 85, 105, 0.8);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+  <script>
+    // Immediate theme application to prevent flash
+    try {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      console.error('Theme preference could not be loaded', e);
+    }
+  </script>
+</head>
+
+<body
+  class="font-sans text-slate-900 dark:text-slate-100 antialiased selection:bg-orange-500 selection:text-white min-h-screen">
+  <div class="app-background"></div>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
