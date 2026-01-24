@@ -1,0 +1,395 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "adopt": "Adopt",
+    "community": "Community",
+    "report": "Report Rescue",
+    "findVet": "Find a Vet",
+    "aiVet": "AI Vet",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
+  },
+  "header": {
+    "greeting": "Hi, {{name}}",
+    "searchPlaceholder": "Search...",
+    "searchAriaLabel": "Search",
+    "toggleThemeAriaLabel": "Toggle theme",
+    "openMenuAriaLabel": "Open menu",
+    "closeMenuAriaLabel": "Close menu"
+  },
+  "footer": {
+    "ourImpact": "Our Impact",
+    "faq": "FAQ"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "submitApplication": "Submit Application",
+    "cancel": "Cancel",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "home": {
+    "hero": {
+      "title": "A Purrfect Friend Awaits.",
+      "subtitle": "At CATWAALA, we believe every animal deserves a loving home. Join us in our mission to rescue, rehabilitate, and rehome animals in need.",
+      "meetButton": "Meet Our Animals",
+      "shopButton": "Pet Shop"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text": "CATWAALA is dedicated to providing a safe haven for stray, abandoned, and abused animals. We offer medical care, nourishment, and a loving environment, with the ultimate goal of finding them a forever family. We are a community-powered organization, and your support makes all the difference."
+    },
+    "donate": {
+      "title": "Your Support Saves Lives",
+      "text": "Your generous donations help us provide food, shelter, and critical veterinary care to animals in need. Every contribution, big or small, helps us write a new chapter for a deserving animal.",
+      "button": "Donate Now"
+    },
+    "volunteer": {
+      "title": "Become a Volunteer",
+      "text": "Join our passionate team of volunteers and make a direct impact on the lives of animals. From shelter care to event support, there are many ways you can help.",
+      "button": "Learn More & Apply"
+    }
+  },
+  "adopt": {
+    "title": "Find Your New Best Friend",
+    "subtitle": "These wonderful animals are waiting for a loving family to call their own. Click on a pet's profile to learn more about them and to start the adoption process.",
+    "quiz": {
+      "title": "Not sure where to start?",
+      "subtitle": "Take our AI-powered quiz to find your perfect match!",
+      "button": "Find My Match"
+    },
+    "rehome": {
+      "title": "Need to Rehome Your Cat?",
+      "text": "We understand that circumstances change. If you need to find a new, loving home for your cat, we can help. Please email us high-quality, clear photos (no videos, please!) and a detailed description of your pet's personality, needs, and history. Our team will review your submission to be featured on our adoption page.",
+      "button": "Email Us Your Request"
+    }
+  },
+  "animalCard": {
+    "learnMore": "Learn More",
+    "viewDetails": "View Details & Adopt"
+  },
+  "animalDetail": {
+    "applyButton": "Apply to Adopt {{name}}",
+    "notFound": {
+      "title": "Animal not found!",
+      "message": "The animal you are looking for might have been adopted or the link is incorrect.",
+      "button": "Back to Adoption Page"
+    }
+  },
+  "report": {
+    "title": "Report an Animal in Need",
+    "subtitle": "See an animal that needs help? Fill out the form below, and our rescue team will be alerted.",
+    "animalTypeLabel": "Type of Animal",
+    "animalTypes": {
+      "cat": "Cat",
+      "dog": "Dog",
+      "bird": "Bird",
+      "other": "Other"
+    },
+    "conditionLabel": "Description of Condition",
+    "conditionPlaceholder": "e.g., Injured leg, looks lost and scared, etc.",
+    "photoLabel": "Upload a Photo (Optional)",
+    "photoPreviewAlt": "Animal preview",
+    "photoUploadText": "Click to upload or take a photo",
+    "locationLabel": "Location (Address or Coordinates)",
+    "locationPlaceholder": "e.g., Near City Park, 123 Main St",
+    "useMyLocationButton": "Use My Location",
+    "locating": "Locating...",
+    "locationFound": "Location found!",
+    "locationError": "Unable to retrieve your location. Please enter it manually.",
+    "geolocationNotSupported": "Geolocation is not supported by your browser.",
+    "submitButton": "Submit Rescue Report",
+    "submittingButton": "Submitting...",
+    "aiAssessmentTitle": "AI Initial Assessment",
+    "noImageAssessment": "No image was provided, or AI analysis was skipped.",
+    "submissionStatus": {
+      "processingTitle": "Processing...",
+      "processingMessage": "Analyzing image with AI...",
+      "successTitle": "Report Submitted!",
+      "successMessage": "Thank you! Your rescue report has been submitted. Our team will look into it shortly.",
+      "errorTitle": "Submission Failed"
+    }
+  },
+  "aiVet": {
+    "title": "AI Vet",
+    "subtitle": "Ask for preliminary first aid and general cat care advice.",
+    "initialGreeting": "Hello! I'm CATWAALA's AI Vet. Please remember my advice is for first aid guidance only. How can I help you with your cat today?",
+    "inputPlaceholder": "Ask a question about cat care...",
+    "thinking": "Thinking...",
+    "copyAriaLabel": "Copy response",
+    "clearChatAriaLabel": "Clear chat history",
+    "clearChatConfirmation": "Are you sure you want to clear the entire chat history? This action cannot be undone.",
+    "disclaimer": "Disclaimer: I am an AI assistant and not a substitute for professional veterinary advice. Please consult a licensed veterinarian for any health concerns.",
+    "warning": {
+      "title": "Important: For First Aid Guidance Only",
+      "text": "This AI Vet provides immediate, preliminary advice and is not a substitute for professional veterinary care. For any health concerns, <strong class=\"font-bold\">always consult a licensed, in-person veterinarian.</strong>",
+      "dismissAriaLabel": "Dismiss warning"
+    }
+  },
+  "login": {
+    "title": "Welcome Back!",
+    "googleButton": "Login with Google",
+    "orSeparator": "OR",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Login",
+    "loggingInButton": "Logging in...",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign up now",
+    "errorTitle": "Login Failed"
+  },
+  "signup": {
+    "title": "Join Our Community",
+    "googleButton": "Sign Up with Google",
+    "orSeparator": "OR",
+    "nameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "createAccountButton": "Create Account",
+    "creatingAccountButton": "Creating Account...",
+    "hasAccount": "Already have an account?",
+    "loginLink": "Log in",
+    "errorTitle": "Sign Up Failed",
+    "passwordLengthError": "Password must be at least 6 characters long."
+  },
+  "community": {
+    "title": "Community Hub",
+    "subtitle": "Share stories, ask questions, and connect with fellow animal lovers.",
+    "createPostPlaceholder": "What's on your mind, {{name}}?",
+    "addPhotoButton": "Add Photo",
+    "postButton": "Post",
+    "imagePreviewAlt": "Preview",
+    "loginPrompt": {
+      "title": "Want to join the conversation?",
+      "action": "to create your own posts.",
+      "or": "or"
+    }
+  },
+  "findVet": {
+    "title": "Find a Vet in Your District",
+    "subtitle": "Need to find a veterinarian or a clinic near you? Select your district from the list below to find local services in your area.",
+    "selectDistrict": "-- Select Your District --",
+    "noVetsFound": {
+      "title": "No Vets Found",
+      "message": "We don't have any veterinary clinics listed for {{district}} yet. <br/> We are constantly updating our database, so please check back soon."
+    }
+  },
+  "ourImpact": {
+    "title": "Your Support in Action",
+    "subtitle": "See the tangible difference you make. Every donation, adoption, and share contributes to these numbers and helps us save more lives.",
+    "stats": {
+      "rescued": "Animals Rescued This Year",
+      "adoptions": "Successful Adoptions",
+      "meals": "Meals Provided This Month"
+    },
+    "happyTails": {
+      "title": "Read our Happy Tails!",
+      "subtitle": "See the real-life stories of animals who found their forever homes."
+    },
+    "shelter": {
+      "title": "Help Us Build a New Shelter!",
+      "subtitle": "We're raising funds for a larger, modern facility to rescue and care for even more animals.",
+      "raised": "Raised",
+      "goal": "Goal",
+      "button": "Donate to the Shelter Fund"
+    }
+  },
+  "happyTails": {
+    "title": "Happy Tails",
+    "subtitle": "Every adoption is a new beginning. Here are some of our beloved alumni thriving in their forever homes, all thanks to supporters like you.",
+    "adoptedBy": "adopted by"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Have questions? We've got answers. If you can't find what you're looking for, feel free to contact us.",
+    "q1": {
+      "question": "How does the adoption process work?",
+      "answer": "Our adoption process is designed to ensure our animals find the perfect forever home. It starts with you browsing our available animals online. Once you find a potential match, you can fill out an adoption application. Our team will review your application, and if it's a good fit, we'll schedule a meet-and-greet."
+    },
+    "q2": {
+      "question": "What are the adoption fees?",
+      "answer": "Adoption fees help cover the cost of care, including vaccinations, spaying/neutering, microchipping, and any other medical treatment an animal may have needed. Fees vary depending on the animal's age and species. Please see the individual animal's profile for specific fee information."
+    },
+    "q3": {
+      "question": "I found a stray or injured animal. What should I do?",
+      "answer": "If you find a stray or injured animal, your safety and the animal's safety are the top priorities. Please approach with caution. You can use our \"Report Rescue\" feature on the website to alert our team. Provide as much detail as possible, including the location and the animal's condition. If the animal is severely injured and needs immediate medical attention, please contact the nearest emergency vet clinic."
+    },
+    "q4": {
+      "question": "How can I volunteer?",
+      "answer": "We're so glad you're interested in volunteering! We rely on our passionate volunteers to help with everything from animal care and socialization to events and administrative tasks. You can fill out the volunteer application form on our homepage to get started."
+    },
+    "q5": {
+      "question": "What kind of donations do you accept?",
+      "answer": "We gratefully accept both monetary and in-kind donations. Financial contributions help us cover major expenses like vet bills and shelter operations. We also have a wishlist of items we regularly need, such as pet food, litter, blankets, and toys. Thank you for your support!"
+    }
+  },
+  "quiz": {
+    "title": "Find Your Perfect Match",
+    "subtitle": "Answer a few questions to let our AI find the best cat for you.",
+    "noMatchError": "The AI couldn't find a perfect match right now, but feel free to browse all our lovely cats!",
+    "q1": {
+      "question": "How would you describe your household's energy level?",
+      "options": ["Calm & Quiet", "Moderately Active", "Busy & Energetic"]
+    },
+    "q2": {
+      "question": "What's your living situation like?",
+      "options": ["Apartment", "House with outdoor access", "House with no outdoor access"]
+    },
+    "q3": {
+      "question": "Do you have other pets or children?",
+      "options": ["Yes, other pets", "Yes, children", "Both other pets and children", "No, neither"]
+    },
+    "q4": {
+      "question": "What kind of feline personality are you looking for?",
+      "options": ["A cuddly lap cat", "An independent explorer", "A playful companion"]
+    },
+    "loading": {
+      "title": "Finding your match...",
+      "subtitle": "Our AI is analyzing your preferences!"
+    },
+    "error": {
+      "title": "An Error Occurred",
+      "tryAgainButton": "Try Again",
+      "browseAllButton": "Browse All"
+    },
+    "results": {
+      "title": "Here are your perfect matches!",
+      "subtitle": "Based on your answers, our AI thinks you'll get along great with these friends.",
+      "aiRecommendation": "AI Recommendation:",
+      "startOverButton": "Start Over"
+    }
+  },
+  "volunteerForm": {
+    "title": "Volunteer Application",
+    "subtitle": "Join our team and make a difference!",
+    "success": {
+      "title": "Application Received!",
+      "message": "Thank you for your interest in volunteering! We've received your application and will be in touch with you soon."
+    },
+    "yourInfo": {
+      "title": "Your Information",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number (Bangladesh)"
+    },
+    "availability": {
+      "title": "Your Availability & Interests",
+      "label": "Availability",
+      "weekdays": "Weekdays",
+      "weekends": "Weekends",
+      "evenings": "Evenings"
+    },
+    "interests": {
+      "label": "Areas of Interest",
+      "animalCare": "Animal Care",
+      "events": "Events & Outreach",
+      "fundraising": "Fundraising",
+      "admin": "Administrative Tasks"
+    },
+    "motivation": {
+      "title": "Share Your Motivation",
+      "label": "Why would you like to volunteer with CATWAALA?",
+      "placeholder": "Tell us a little about your passion for animal welfare..."
+    }
+  },
+  "donation": {
+    "title": "Make a Donation",
+    "subtitle": "Your support changes lives.",
+    "tabs": {
+      "bank": "Bank",
+      "medicine": "Medicine"
+    },
+    "bkash": {
+      "title": "Donate via bKash",
+      "description": "You can send money to our official bKash merchant number."
+    },
+    "nagad": {
+      "title": "Donate via Nagad",
+      "description": "You can send money to our official Nagad merchant number."
+    },
+    "bank": {
+      "title": "Donate via Bank Transfer",
+      "description": "You can donate directly to our bank account.",
+      "accountNameLabel": "Account Name",
+      "accountName": "CATWAALA Foundation",
+      "accountNumberLabel": "Account Number",
+      "bankNameLabel": "Bank Name",
+      "branchLabel": "Branch",
+      "swiftCodeLabel": "SWIFT Code"
+    },
+    "medicine": {
+      "title": "Donate Medicine & Supplies",
+      "description": "We also accept donations of medicine and medical supplies. <br/>Please contact us at <strong>catwaala@gmail.com</strong> for coordination."
+    }
+  },
+  "adoptionForm": {
+    "title": "Adoption Application",
+    "applyingFor": "You are applying for:",
+    "success": {
+      "title": "Application Submitted!",
+      "message": "Your application has been successfully submitted. Our team will contact you shortly. Thank you for your interest in {{name}}!"
+    },
+    "yourInfo": {
+      "title": "Your Information",
+      "name": "Full Name",
+      "phone": "Phone Number (Bangladesh)",
+      "email": "Email Address",
+      "address": "Current Address",
+      "caregiver": "Who will be the primary caregiver?",
+      "caregiverPlaceholder": "e.g., Myself, my partner, the whole family"
+    },
+    "livingSituation": {
+      "title": "Your Living Situation",
+      "description": "Describe your home and family.",
+      "descriptionPlaceholder": "e.g., We live in an apartment, the house has a cat-friendly balcony, etc.",
+      "ownOrRent": "Do you own or rent your home?",
+      "own": "Own",
+      "rent": "Rent",
+      "landlordPermission": "If you rent, please ensure you have landlord permission for a pet.",
+      "hoursAlone": "How many hours per day will the pet be alone on average?",
+      "hoursAlonePlaceholder": "e.g., 4-5 hours"
+    },
+    "petExperience": {
+      "title": "Pet Experience",
+      "otherPets": "Do you currently have other pets?",
+      "yes": "Yes",
+      "no": "No",
+      "otherPetsDescription": "If yes, please describe their species, age, and temperament.",
+      "otherPetsPlaceholder": "e.g., One 2-year-old friendly dog.",
+      "priorExperience": "What is your prior experience with pets?",
+      "priorExperiencePlaceholder": "Let us know if you've had a cat or other pets before."
+    },
+    "motivation": {
+      "title": "Your Motivation",
+      "reason": "Why are you specifically interested in adopting {{name}}?",
+      "reasonPlaceholder": "Let us know what about their profile caught your eye."
+    },
+    "terms": {
+      "age": "I confirm that I am at least 18 years of age.",
+      "homeVisit": "I agree to a virtual or in-person home visit."
+    }
+  },
+  "cookies": {
+    "bannerText": "We use cookies to improve your experience on our site.",
+    "acceptNecessary": "Accept Necessary",
+    "acceptAll": "Accept All"
+  },
+  "search": {
+    "placeholder": "Search by name or breed...",
+    "noResults": "No results found.",
+    "prompt": "Start typing to search."
+  },
+  "errors": {
+    "ai_assistant_unavailable": "Sorry, the AI assistant is currently unavailable.",
+    "ai_image_analysis_failed": "Sorry, there was a problem analyzing the image.",
+    "ai_match_failed": "Sorry, there was a problem finding your match.",
+    "unknown": "An unknown error occurred.",
+    "tryAgain": "Please try again."
+  }
+}
