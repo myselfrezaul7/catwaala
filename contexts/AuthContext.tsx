@@ -25,6 +25,7 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<void>;
   loginWithEmail: (email: string, password: string) => Promise<void>;
   signupWithEmail: (name: string, email: string, password: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
   updateUserProfile: (displayName?: string, photoURL?: string) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -101,6 +102,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
+  const resetPassword = useCallback(async (email: string): Promise<void> => {
+    try {
+      // Import specifically here to avoid unused import if not used elsewhere, 
+      // or ensure it is imported at top.
+      const { sendPasswordResetEmail } = await import('firebase/auth');
+      await sendPasswordResetEmail(auth, email);
+    } catch (error: any) {
+      console.error('Reset Password Error:', error);
+      if (error.code === 'auth/user-not-found') {
+        throw new Error('No account found with this email address.');
+      } else if (error.code === 'auth/invalid-email') {
+        throw new Error('Please enter a valid email address.');
+      }
+      throw new Error('Failed to send reset email. Please try again.');
+    }
+  }, []);
+
   const updateUserProfile = useCallback(async (displayName?: string, photoURL?: string): Promise<void> => {
     if (!auth.currentUser) {
       throw new Error('No user is signed in');
@@ -141,6 +159,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loginWithGoogle,
     loginWithEmail,
     signupWithEmail,
+    resetPassword,
     updateUserProfile,
     logout,
   };
