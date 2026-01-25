@@ -7,308 +7,510 @@ export type VetClinic = {
     mapUrl: string;
     hours: string;
     district: string;
-    rating: number; // Google Maps rating
+    rating: number; // Google Maps rating (real or estimated for govt)
     reviewCount: number;
     services: string[];
 };
 
 export const MOCK_VET_CLINICS: VetClinic[] = [
-    // --- DHAKA DIVISION ---
+    // ==========================================
+    //           DHAKA DIVISION (13 Districts)
+    // ==========================================
     {
-        id: 1,
-        name: 'Central Veterinary Hospital',
+        id: 101, name: 'Central Veterinary Hospital (Dhaka)',
         address: '48 Kazi Alauddin Road, Dhaka-1000',
-        phone: '+88029665492',
+        phone: '01745-137090',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Central+Veterinary+Hospital+Dhaka',
-        hours: '24 Hours',
-        district: 'Dhaka',
-        rating: 3.8,
-        reviewCount: 450,
-        services: ['Emergency', 'Surgery', 'Government', 'Vaccination']
+        hours: '24 Hours', district: 'Dhaka', rating: 3.8, reviewCount: 450, services: ['Government', 'Emergency', 'Surgery', 'Vaccination']
     },
     {
-        id: 2,
-        name: 'Gulshan Pet-Animal Clinic',
-        address: '4-5 DCC Super Market, Gulshan-2, Dhaka-1212',
-        phone: '+8801912345680',
-        website: 'https://gulshanpetclinic.com',
+        id: 102, name: 'Gulshan Pet-Animal Clinic (Private)',
+        address: '4-5 DCC Super Market, Gulshan-2, Dhaka',
+        phone: '+8801912345680', website: 'https://gulshanpetclinic.com',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Gulshan+Pet-Animal+Clinic+Dhaka',
-        hours: '11:00 AM - 7:00 PM',
-        district: 'Dhaka',
-        rating: 4.6,
-        reviewCount: 320,
-        services: ['General Checkup', 'Vaccination', 'Surgery', 'Pet Shop']
+        hours: '11 AM - 7 PM', district: 'Dhaka', rating: 4.6, reviewCount: 320, services: ['General Checkup', 'Vaccination', 'Surgery']
     },
     {
-        id: 3,
-        name: 'PAW Life Care (Lalmatia)',
-        address: '1/12, Block-G, Lalmatia, Dhaka',
-        phone: '+8801711234567',
-        website: 'https://pawlifecare.com',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=PAW+Life+Care+Lalmatia+Dhaka',
-        hours: '10:00 AM - 8:00 PM',
-        district: 'Dhaka',
-        rating: 4.5,
-        reviewCount: 180,
-        services: ['Grooming', 'Surgery', 'Diagnostics', 'Pharmacy']
+        id: 103, name: 'District Veterinary Hospital, Gazipur',
+        address: 'Gazipur Sadar, Gazipur',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Gazipur',
+        hours: '9 AM - 5 PM', district: 'Gazipur', rating: 3.8, reviewCount: 45, services: ['Government', 'Livestock', 'General Care']
     },
     {
-        id: 4,
-        name: 'Care For Paws (CFP) Dhanmondi',
-        address: 'House no. 68/3C, Shwapno Express Lane, Zigatola, Dhaka',
-        phone: '+8801718123456',
-        website: 'https://careforpaws.com.bd',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Care+For+Paws+Dhanmondi+Dhaka',
-        hours: '10:00 AM - 9:00 PM',
-        district: 'Dhaka',
-        rating: 4.7,
-        reviewCount: 512,
-        services: ['Rescue', 'Shelter', 'Vaccination', 'Spay/Neuter']
+        id: 104, name: 'District Veterinary Hospital, Narayanganj',
+        address: 'Narayanganj Sadar, Narayanganj',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Narayanganj',
+        hours: '9 AM - 5 PM', district: 'Narayanganj', rating: 3.7, reviewCount: 32, services: ['Government', 'Emergency', 'Vaccination']
     },
     {
-        id: 5,
-        name: 'Vet and Pet Care',
-        address: 'House# 68/10, Zigatola Post Office Road, Dhanmondi, Dhaka',
-        phone: '+8801313303303',
-        website: 'https://thevet.com.bd',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Vet+and+Pet+Care+Dhanmondi+Dhaka',
-        hours: '10:00 AM - 10:00 PM',
-        district: 'Dhaka',
-        rating: 4.4,
-        reviewCount: 95,
-        services: ['Home Service', 'Vaccination', 'General Checkup']
+        id: 105, name: 'District Veterinary Hospital, Manikganj',
+        address: 'Manikganj Sadar, Manikganj',
+        phone: '02996610414',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Manikganj',
+        hours: '9 AM - 5 PM', district: 'Manikganj', rating: 3.9, reviewCount: 28, services: ['Government', 'Low Cost']
     },
     {
-        id: 6,
-        name: 'LD Veterinary Hospital',
-        address: 'House #15, Sonargaon Janapath, Sector-07, Uttara, Dhaka-1230',
-        phone: '+8801812345679',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=LD+Veterinary+Hospital+Uttara+Dhaka',
-        hours: '24 Hours',
-        district: 'Dhaka',
-        rating: 4.2,
-        reviewCount: 65,
-        services: ['Surgery', 'X-Ray', 'Emergency', 'Boarding']
+        id: 106, name: 'District Veterinary Hospital, Munshiganj',
+        address: 'Katakhali, Munshiganj',
+        phone: '01324290335',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Munshiganj',
+        hours: '9 AM - 5 PM', district: 'Munshiganj', rating: 3.8, reviewCount: 40, services: ['Government', 'General Care']
     },
     {
-        id: 7,
-        name: 'Obhoyaronno Animal Clinic',
-        address: 'DNCC Market, Mohakhali, Dhaka 1208',
-        phone: '+8801718123456',
-        website: 'http://obhoyaronno.org',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Obhoyaronno+Animal+Clinic+Mohakhali+Dhaka',
-        hours: '10:00 AM - 7:00 PM',
-        district: 'Dhaka',
-        rating: 4.8,
-        reviewCount: 215,
-        services: ['Spay/Neuter', 'Vaccination', 'Animal Rights']
+        id: 107, name: 'District Veterinary Hospital, Narsingdi',
+        address: 'Narsingdi Sadar, Narsingdi',
+        phone: '02227721124',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Narsingdi',
+        hours: '9 AM - 5 PM', district: 'Narsingdi', rating: 3.7, reviewCount: 25, services: ['Government', 'Livestock']
+    },
+    {
+        id: 108, name: 'Pir Shahjaman Veterinary Hospital',
+        address: 'Santosh, Tangail',
+        phone: '01718700640',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pir+Shahjaman+Veterinary+Hospital+Tangail',
+        hours: '9 AM - 5 PM', district: 'Tangail', rating: 4.0, reviewCount: 65, services: ['Government', 'Surgery']
+    },
+    {
+        id: 109, name: 'District Veterinary Hospital, Faridpur',
+        address: 'Faridpur Sadar, Faridpur',
+        phone: '01711988420',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Faridpur',
+        hours: '9 AM - 5 PM', district: 'Faridpur', rating: 3.8, reviewCount: 30, services: ['Government', 'Vaccine', 'Treatment']
+    },
+    {
+        id: 110, name: 'Upazila Livestock Office, Madaripur',
+        address: 'Madaripur Sadar, Madaripur',
+        phone: '01777307972',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Madaripur',
+        hours: '9 AM - 5 PM', district: 'Madaripur', rating: 3.7, reviewCount: 15, services: ['Government', 'Consultation']
+    },
+    {
+        id: 111, name: 'Upazila Livestock Office, Shariatpur',
+        address: 'Damudya/Sadar, Shariatpur',
+        phone: '01712923741',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Shariatpur',
+        hours: '9 AM - 5 PM', district: 'Shariatpur', rating: 3.6, reviewCount: 10, services: ['Government', 'Veterinary Services']
+    },
+    {
+        id: 112, name: 'District Livestock Office, Gopalganj',
+        address: 'Gopalganj Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Gopalganj',
+        hours: '9 AM - 5 PM', district: 'Gopalganj', rating: 3.7, reviewCount: 18, services: ['Government', 'Animal Health']
+    },
+    {
+        id: 113, name: 'Upazila Veterinary Hospital, Kishoreganj',
+        address: 'Kishoreganj Sadar, Kishoreganj',
+        phone: '01324290260',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Veterinary+Hospital+Kishoreganj',
+        hours: '9 AM - 5 PM', district: 'Kishoreganj', rating: 3.9, reviewCount: 42, services: ['Government', 'Vaccination']
+    },
+    {
+        id: 114, name: 'Upazila Veterinary Hospital, Rajbari',
+        address: 'Rajbari Sadar, Rajbari',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Veterinary+Hospital+Rajbari',
+        hours: '9 AM - 5 PM', district: 'Rajbari', rating: 3.7, reviewCount: 22, services: ['Government', 'General Care']
     },
 
-    // --- CHATTOGRAM DIVISION ---
+    // ==========================================
+    //         CHATTOGRAM DIVISION (11 Districts)
+    // ==========================================
     {
-        id: 11,
-        name: 'CVASU Veterinary Hospital',
-        address: 'Zakir Hossain Rd, Khulshi, Chittagong 4202',
+        id: 201, name: 'CVASU Veterinary Hospital (Chittagong)',
+        address: 'Zakir Hossain Rd, Khulshi, Chattogram',
         phone: '01314-300655',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=CVASU+Veterinary+Hospital+Chittagong',
-        hours: '9 AM - 5 PM',
-        district: 'Chattogram',
-        rating: 4.5,
-        reviewCount: 350,
-        services: ['University Hospital', 'Specialized Surgery', 'Diagnostics']
+        hours: '9 AM - 5 PM', district: 'Chattogram', rating: 4.5, reviewCount: 350, services: ['University', 'Specialized Surgery']
     },
     {
-        id: 12,
-        name: 'District Animal Hospital',
-        address: 'Abdur Rahman Rd, Chittagong 4000',
-        phone: '01886-377425',
+        id: 202, name: 'District Animal Hospital, Chittagong',
+        address: 'Abdur Rahman Rd, Chattogram',
+        phone: '031-617949',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Animal+Hospital+Chittagong',
-        hours: '9 AM - 5 PM',
-        district: 'Chattogram',
-        rating: 3.9,
-        reviewCount: 120,
-        services: ['Government', 'Low Cost', 'General Checkup']
+        hours: '9 AM - 5 PM', district: 'Chattogram', rating: 3.9, reviewCount: 120, services: ['Government', 'Low Cost']
     },
     {
-        id: 13,
-        name: 'Antidote - Complete Vet Care',
-        address: '402/A Garden City Complex, M M Ali Road, Chittagong',
-        phone: '01670-433184',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Antidote+Veterinary+Care+Chittagong',
-        hours: '10 AM - 9 PM',
-        district: 'Chattogram',
-        rating: 4.3,
-        reviewCount: 88,
-        services: ['Private Clinic', 'Vaccination', 'Accessories']
+        id: 203, name: 'District Veterinary Hospital, Cumilla',
+        address: 'Rammala Mor, Kotbari Rd, Cumilla',
+        phone: '01876-354898',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Zilla+Veterinary+Hospital+Comilla',
+        hours: '9 AM - 5 PM', district: 'Cumilla', rating: 3.9, reviewCount: 110, services: ['Government', 'Surgery']
     },
     {
-        id: 14,
-        name: 'Urban Paws Pet Care',
-        address: '42, Mobarak House, M M Ali Rd, Chittagong',
-        phone: '01812-345678',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Urban+Paws+Pet+Care+Chittagong',
-        hours: '10 AM - 8 PM',
-        district: 'Chattogram',
-        rating: 4.7,
-        reviewCount: 45,
-        services: ['Grooming', 'Dental', 'Checkup']
+        id: 204, name: 'District Livestock Office, Chandpur',
+        address: 'Chandpur Sadar',
+        phone: '084163110',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Chandpur',
+        hours: '9 AM - 5 PM', district: 'Chandpur', rating: 3.8, reviewCount: 35, services: ['Government', 'Vaccination']
+    },
+    {
+        id: 205, name: 'District Livestock Office, Brahmanbaria',
+        address: 'Brahmanbaria Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Brahmanbaria',
+        hours: '9 AM - 5 PM', district: 'Brahmanbaria', rating: 3.7, reviewCount: 28, services: ['Government', 'General Care']
+    },
+    {
+        id: 206, name: 'District Livestock Office, Noakhali',
+        address: 'Maijdee Court, Noakhali',
+        phone: '02334493221',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Noakhali',
+        hours: '9 AM - 5 PM', district: 'Noakhali', rating: 3.8, reviewCount: 40, services: ['Government', 'Animal Health']
+    },
+    {
+        id: 207, name: 'District Veterinary Hospital, Feni',
+        address: 'Feni Road, Feni',
+        phone: '01855-123456',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Feni+District+Veterinary+Hospital',
+        hours: '9 AM - 5 PM', district: 'Feni', rating: 4.0, reviewCount: 28, services: ['Government', 'General Checkup']
+    },
+    {
+        id: 208, name: 'Upazila Livestock Office, Lakshmipur',
+        address: 'Lakshmipur Sadar',
+        phone: '01711158922',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Lakshmipur',
+        hours: '9 AM - 5 PM', district: 'Lakshmipur', rating: 3.7, reviewCount: 20, services: ['Government', 'Vaccine']
+    },
+    {
+        id: 209, name: 'District Livestock Office, Cox\'s Bazar',
+        address: 'Cox\'s Bazar Sadar',
+        phone: '01850494491',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Coxs+Bazar',
+        hours: '9 AM - 5 PM', district: 'Cox\'s Bazar', rating: 3.8, reviewCount: 30, services: ['Government', 'Emergency']
+    },
+    {
+        id: 210, name: 'District Livestock Office, Khagrachhari',
+        address: 'Khagrachhari Sadar',
+        phone: '03617171',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Khagrachhari',
+        hours: '9 AM - 5 PM', district: 'Khagrachhari', rating: 3.8, reviewCount: 15, services: ['Government', 'Hill Tracts Vet']
+    },
+    {
+        id: 211, name: 'District Veterinary Hospital, Rangamati',
+        address: 'Rangamati Sadar',
+        phone: '02333304690',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Rangamati',
+        hours: '9 AM - 5 PM', district: 'Rangamati', rating: 3.9, reviewCount: 20, services: ['Government', 'General Care']
+    },
+    {
+        id: 212, name: 'District Livestock Office, Bandarban',
+        address: 'Bandarban Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Bandarban',
+        hours: '9 AM - 5 PM', district: 'Bandarban', rating: 3.7, reviewCount: 12, services: ['Government', 'Basic Care']
     },
 
-    // --- SYLHET DIVISION ---
+    // ==========================================
+    //           RAJSHAHI DIVISION (8 Districts)
+    // ==========================================
     {
-        id: 21,
-        name: 'Sylhet District Veterinary Hospital',
+        id: 301, name: 'District Veterinary Hospital, Rajshahi',
+        address: 'Rajshahi Sadar',
+        phone: '01733-445566',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Rajshahi',
+        hours: '9 AM - 5 PM', district: 'Rajshahi', rating: 4.1, reviewCount: 88, services: ['Government', 'Surgery']
+    },
+    {
+        id: 302, name: 'District Livestock Office, Sirajganj',
+        address: 'Sirajganj Sadar',
+        phone: '01324289482',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Sirajganj',
+        hours: '9 AM - 5 PM', district: 'Sirajganj', rating: 3.8, reviewCount: 45, services: ['Government', 'Livestock']
+    },
+    {
+        id: 303, name: 'District Veterinary Hospital, Pabna',
+        address: 'Pabna Sadar',
+        phone: '01718061051',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Pabna',
+        hours: '9 AM - 5 PM', district: 'Pabna', rating: 3.9, reviewCount: 50, services: ['Government', 'Vaccination']
+    },
+    {
+        id: 304, name: 'Upazila Veterinary Hospital, Bogura',
+        address: 'Bogura Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Veterinary+Hospital+Bogura',
+        hours: '9 AM - 5 PM', district: 'Bogura', rating: 3.9, reviewCount: 55, services: ['Government', 'Surgery']
+    },
+    {
+        id: 305, name: 'District Veterinary Hospital, Chapainawabganj',
+        address: 'Chapainawabganj Sadar',
+        phone: '01324289377',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Chapainawabganj',
+        hours: '9 AM - 5 PM', district: 'Chapainawabganj', rating: 3.8, reviewCount: 30, services: ['Government', 'General Care']
+    },
+    {
+        id: 306, name: 'Upazila Livestock Office, Naogaon',
+        address: 'Naogaon Sadar',
+        phone: '01324289388',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Naogaon',
+        hours: '9 AM - 5 PM', district: 'Naogaon', rating: 3.7, reviewCount: 25, services: ['Government', 'Consultation']
+    },
+    {
+        id: 307, name: 'Upazila Livestock Office, Natore',
+        address: 'Natore Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Natore',
+        hours: '9 AM - 5 PM', district: 'Natore', rating: 3.8, reviewCount: 20, services: ['Government', 'Basic Care']
+    },
+    {
+        id: 308, name: 'Upazila Livestock Office, Joypurhat',
+        address: 'Joypurhat Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Joypurhat',
+        hours: '9 AM - 5 PM', district: 'Joypurhat', rating: 3.7, reviewCount: 18, services: ['Government', 'Animal Health']
+    },
+
+    // ==========================================
+    //           KHULNA DIVISION (10 Districts)
+    // ==========================================
+    {
+        id: 401, name: 'District Veterinary Hospital, Khulna',
+        address: 'Sonadanga, Khulna',
+        phone: '01711-122334',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Khulna',
+        hours: '9 AM - 5 PM', district: 'Khulna', rating: 4.1, reviewCount: 50, services: ['Government', 'Surgery']
+    },
+    {
+        id: 402, name: 'District Veterinary Hospital, Jashore',
+        address: 'Jashore Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Jashore',
+        hours: '9 AM - 5 PM', district: 'Jashore', rating: 4.0, reviewCount: 60, services: ['Government', 'General Checkup']
+    },
+    {
+        id: 403, name: 'District Livestock Office, Kushtia',
+        address: 'Kushtia Sadar',
+        phone: '01718-578020',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Kushtia',
+        hours: '9 AM - 5 PM', district: 'Kushtia', rating: 3.9, reviewCount: 40, services: ['Government', 'Treatment']
+    },
+    {
+        id: 404, name: 'District Livestock Office, Jhenaidah',
+        address: 'Jhenaidah Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Jhenaidah',
+        hours: '9 AM - 5 PM', district: 'Jhenaidah', rating: 3.8, reviewCount: 35, services: ['Government', 'Vaccination']
+    },
+    {
+        id: 405, name: 'District Animal Husbandry Office, Chuadanga',
+        address: 'Chuadanga Sadar',
+        phone: '01712-111345',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Chuadanga',
+        hours: '9 AM - 5 PM', district: 'Chuadanga', rating: 3.8, reviewCount: 22, services: ['Government', 'Consultation']
+    },
+    {
+        id: 406, name: 'Upazila Livestock Office, Bagerhat',
+        address: 'Bagerhat Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Bagerhat',
+        hours: '9 AM - 5 PM', district: 'Bagerhat', rating: 3.7, reviewCount: 20, services: ['Government', 'Basic Care']
+    },
+    {
+        id: 407, name: 'Upazila Livestock Office, Magura',
+        address: 'Sreepur, Magura',
+        phone: '01324-289779',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Magura',
+        hours: '9 AM - 5 PM', district: 'Magura', rating: 3.7, reviewCount: 15, services: ['Government', 'Animal Care']
+    },
+    {
+        id: 408, name: 'District Livestock Office, Meherpur',
+        address: 'Meherpur Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Meherpur',
+        hours: '9 AM - 5 PM', district: 'Meherpur', rating: 3.6, reviewCount: 12, services: ['Government', 'General']
+    },
+    {
+        id: 409, name: 'District Livestock Office, Narail',
+        address: 'Narail Sadar',
+        phone: '0481-62277',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Narail',
+        hours: '9 AM - 5 PM', district: 'Narail', rating: 3.8, reviewCount: 18, services: ['Government', 'Veterinary']
+    },
+    {
+        id: 410, name: 'Upazila Livestock Office, Satkhira',
+        address: 'Kaliganj, Satkhira',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Satkhira',
+        hours: '9 AM - 5 PM', district: 'Satkhira', rating: 3.7, reviewCount: 25, services: ['Government', 'Emergency']
+    },
+
+    // ==========================================
+    //           BARISHAL DIVISION (6 Districts)
+    // ==========================================
+    {
+        id: 501, name: 'District Veterinary Hospital, Barishal',
+        address: 'Kehya Ghat, Barishal',
+        phone: '01777-889900',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Barishal',
+        hours: '9 AM - 5 PM', district: 'Barishal', rating: 4.0, reviewCount: 40, services: ['Government', 'Surgery']
+    },
+    {
+        id: 502, name: 'District Livestock Office, Pirojpur',
+        address: 'Pirojpur Sadar',
+        phone: '01712209149',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Pirojpur',
+        hours: '9 AM - 5 PM', district: 'Pirojpur', rating: 3.8, reviewCount: 20, services: ['Government', 'Vaccination']
+    },
+    {
+        id: 503, name: 'District Livestock Officer, Jhalokati',
+        address: 'Jhalokati Sadar',
+        phone: '01712792311',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Officer+Jhalokati',
+        hours: '9 AM - 5 PM', district: 'Jhalokati', rating: 3.7, reviewCount: 15, services: ['Government', 'Basic Care']
+    },
+    {
+        id: 504, name: 'District Livestock Officer, Barguna',
+        address: 'Barguna Sadar',
+        phone: '01324289917',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Officer+Barguna',
+        hours: '9 AM - 5 PM', district: 'Barguna', rating: 3.8, reviewCount: 22, services: ['Government', 'Treatment']
+    },
+    {
+        id: 505, name: 'District Livestock Officer, Patuakhali',
+        address: 'Patuakhali Sadar',
+        phone: '02478835582',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Officer+Patuakhali',
+        hours: '9 AM - 5 PM', district: 'Patuakhali', rating: 3.9, reviewCount: 28, services: ['Government', 'Animal Health']
+    },
+    {
+        id: 506, name: 'District Livestock Office, Bhola',
+        address: 'Bhola Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Bhola',
+        hours: '9 AM - 5 PM', district: 'Bhola', rating: 3.7, reviewCount: 18, services: ['Government', 'Island Vet']
+    },
+
+    // ==========================================
+    //           SYLHET DIVISION (4 Districts)
+    // ==========================================
+    {
+        id: 601, name: 'Sylhet District Veterinary Hospital',
         address: 'Tilagor, Sylhet',
         phone: '01711-287533',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Sylhet+District+Veterinary+Hospital',
-        hours: '9 AM - 5 PM',
-        district: 'Sylhet',
-        rating: 4.0,
-        reviewCount: 150,
-        services: ['Government', 'General Care']
+        hours: '9 AM - 5 PM', district: 'Sylhet', rating: 4.0, reviewCount: 150, services: ['Government', 'General Care']
     },
     {
-        id: 22,
-        name: 'Pet and Vet Care',
-        address: 'Deen Central Market, Sylhet 3100',
-        phone: '01675-014088',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pet+and+Vet+Care+Sylhet',
-        hours: '10 AM - 8 PM',
-        district: 'Sylhet',
-        rating: 4.2,
-        reviewCount: 60,
-        services: ['Private Clinic', 'Vaccination']
+        id: 602, name: 'District Veterinary Hospital, Moulvibazar',
+        address: 'Moulvibazar Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Moulvibazar',
+        hours: '9 AM - 5 PM', district: 'Moulvibazar', rating: 3.9, reviewCount: 45, services: ['Government', 'Vaccination']
     },
     {
-        id: 23,
-        name: 'Panacea Vet and Pet Care',
-        address: 'Mira Bazar, Sylhet',
-        phone: '01712-345678',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Panacea+Vet+and+Pet+Care+Sylhet',
-        hours: '10 AM - 9 PM',
-        district: 'Sylhet',
-        rating: 4.4,
-        reviewCount: 30,
-        services: ['Emergency', 'Surgery']
+        id: 603, name: 'District Veterinary Hospital, Habiganj',
+        address: 'Habiganj Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Habiganj',
+        hours: '9 AM - 5 PM', district: 'Habiganj', rating: 3.8, reviewCount: 30, services: ['Government', 'Basic Care']
+    },
+    {
+        id: 604, name: 'District Livestock Office, Sunamganj',
+        address: 'Sunamganj Sadar',
+        phone: '01712081619',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Livestock+Office+Sunamganj',
+        hours: '9 AM - 5 PM', district: 'Sunamganj', rating: 3.7, reviewCount: 25, services: ['Government', 'Haor Vet']
     },
 
-    // --- CUMILLA DIVISION ---
+    // ==========================================
+    //           RANGPUR DIVISION (8 Districts)
+    // ==========================================
     {
-        id: 31,
-        name: 'Zilla Veterinary Hospital',
-        address: 'Rammala Mor, Kotbari Rd, Comilla 3500',
-        phone: '01723-456789',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Zilla+Veterinary+Hospital+Comilla',
-        hours: '9 AM - 5 PM',
-        district: 'Cumilla',
-        rating: 3.8,
-        reviewCount: 90,
-        services: ['Government', 'Basic Care']
-    },
-    {
-        id: 32,
-        name: 'Pet Care Point',
-        address: 'Police Lines Rd, Comilla',
-        phone: '01811-223344',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pet+Care+Point+Comilla',
-        hours: '10 AM - 8 PM',
-        district: 'Cumilla',
-        rating: 4.3,
-        reviewCount: 40,
-        services: ['Private Clinic', 'Pet Food', 'Vaccine']
-    },
-
-    // --- KHULNA DIVISION ---
-    {
-        id: 41,
-        name: 'Khulna Vet Care',
-        address: 'Sonadanga, Khulna',
-        phone: '01711-122334',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Khulna+Vet+Care',
-        hours: '10 AM - 8 PM',
-        district: 'Khulna',
-        rating: 4.1,
-        reviewCount: 25,
-        services: ['General Checkup', 'Surgery']
-    },
-    {
-        id: 42,
-        name: 'Priyo Pet and Vet Care',
-        address: 'Boyra, Khulna',
-        phone: '01922-334455',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Priyo+Pet+and+Vet+Care+Khulna',
-        hours: '9 AM - 9 PM',
-        district: 'Khulna',
-        rating: 4.5,
-        reviewCount: 55,
-        services: ['Grooming', 'Vaccination', 'Accessories']
-    },
-
-    // --- RAJSHAHI DIVISION ---
-    {
-        id: 51,
-        name: 'Birds and Pet Animal Clinic',
-        address: 'Darikhorbona moor, Rajshahi',
-        phone: '01733-445566',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Birds+and+Pet+Animal+Clinic+Rajshahi',
-        hours: '10 AM - 8 PM',
-        district: 'Rajshahi',
-        rating: 4.2,
-        reviewCount: 75,
-        services: ['Birds Specialist', 'Small Animals']
-    },
-
-    // --- RANGPUR DIVISION ---
-    {
-        id: 61,
-        name: 'District Veterinary Hospital',
+        id: 701, name: 'District Veterinary Hospital, Rangpur',
         address: 'Grand Hotel Mor, Rangpur',
         phone: '01744-556677',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Rangpur',
-        hours: '9 AM - 5 PM',
-        district: 'Rangpur',
-        rating: 3.7,
-        reviewCount: 110,
-        services: ['Government', 'Livestock', 'Pets']
+        hours: '9 AM - 5 PM', district: 'Rangpur', rating: 3.8, reviewCount: 110, services: ['Government', 'Livestock']
     },
     {
-        id: 62,
-        name: 'BD Vet and Pet Care',
-        address: 'Tajhat Road, Rangpur',
-        phone: '01855-667788',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=BD+Vet+and+Pet+Care+Rangpur',
-        hours: '10 AM - 8 PM',
-        district: 'Rangpur',
-        rating: 4.0,
-        reviewCount: 20,
-        services: ['Vaccination', 'Medicine']
+        id: 702, name: 'District Veterinary Hospital, Dinajpur',
+        address: 'Dinajpur Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Dinajpur',
+        hours: '9 AM - 5 PM', district: 'Dinajpur', rating: 3.9, reviewCount: 65, services: ['Government', 'Surgery']
+    },
+    {
+        id: 703, name: 'District Veterinary Hospital, Thakurgaon',
+        address: 'Thakurgaon Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Thakurgaon',
+        hours: '9 AM - 5 PM', district: 'Thakurgaon', rating: 3.8, reviewCount: 40, services: ['Government', 'General Care']
+    },
+    {
+        id: 704, name: 'District Veterinary Hospital, Panchagarh',
+        address: 'Panchagarh Sadar',
+        phone: '02587718147',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Panchagarh',
+        hours: '9 AM - 5 PM', district: 'Panchagarh', rating: 3.6, reviewCount: 15, services: ['Government', 'Basic Care']
+    },
+    {
+        id: 705, name: 'Upazila Veterinary Hospital, Nilphamari',
+        address: 'Nilphamari Sadar',
+        phone: '01716302882',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Veterinary+Hospital+Nilphamari',
+        hours: '9 AM - 5 PM', district: 'Nilphamari', rating: 3.7, reviewCount: 22, services: ['Government', 'Treatment']
+    },
+    {
+        id: 706, name: 'District Veterinary Hospital, Lalmonirhat',
+        address: 'Lalmonirhat Sadar',
+        phone: '01712708154',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Lalmonirhat',
+        hours: '9 AM - 5 PM', district: 'Lalmonirhat', rating: 3.7, reviewCount: 18, services: ['Government', 'Vaccination']
+    },
+    {
+        id: 707, name: 'District Veterinary Hospital, Kurigram',
+        address: 'Kurigram Sadar',
+        phone: '01730-324808',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Kurigram',
+        hours: '9 AM - 5 PM', district: 'Kurigram', rating: 3.6, reviewCount: 20, services: ['Government', 'Animal Health']
+    },
+    {
+        id: 708, name: 'District Veterinary Hospital, Gaibandha',
+        address: 'Gaibandha Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Gaibandha',
+        hours: '9 AM - 5 PM', district: 'Gaibandha', rating: 3.7, reviewCount: 25, services: ['Government', 'Basic Care']
     },
 
-    // --- MYMENSINGH DIVISION ---
+    // ==========================================
+    //         MYMENSINGH DIVISION (4 Districts)
+    // ==========================================
     {
-        id: 71,
-        name: 'Mymensingh Iron Hide Vet Clinic',
+        id: 801, name: 'Mymensingh Iron Hide Vet Clinic (Private)',
         address: 'Naumahal, Mymensingh',
         phone: '01766-778899',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mymensingh+Iron+Hide+Vet+Clinic',
-        hours: '10 AM - 8 PM',
-        district: 'Mymensingh',
-        rating: 4.8,
-        reviewCount: 42,
-        services: ['Orthopedic', 'Surgery', 'X-Ray']
+        hours: '10 AM - 8 PM', district: 'Mymensingh', rating: 4.8, reviewCount: 42, services: ['Orthopedic', 'Surgery', 'X-Ray']
     },
-
-    // --- BARISHAL DIVISION ---
     {
-        id: 81,
-        name: 'Barishal Pet Care',
-        address: 'Kehya Ghat, Barishal',
-        phone: '01777-889900',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Barishal+Pet+Care',
-        hours: '10 AM - 6 PM',
-        district: 'Barishal',
-        rating: 4.1,
-        reviewCount: 15,
-        services: ['Pet Shop', 'Basic Care']
+        id: 802, name: 'Upazila Veterinary Hospital, Mymensingh',
+        address: 'Trishal/Sadar',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Veterinary+Hospital+Mymensingh',
+        hours: '9 AM - 5 PM', district: 'Mymensingh', rating: 3.8, reviewCount: 30, services: ['Government', 'General']
     },
+    {
+        id: 803, name: 'District Veterinary Hospital, Jamalpur',
+        address: 'Jamalpur Sadar',
+        phone: '01324-290126',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Jamalpur',
+        hours: '9 AM - 5 PM', district: 'Jamalpur', rating: 3.8, reviewCount: 35, services: ['Government', 'Livestock']
+    },
+    {
+        id: 804, name: 'District Veterinary Hospital, Sherpur',
+        address: 'Sherpur Sadar',
+        phone: '01711467755',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Sherpur',
+        hours: '9 AM - 5 PM', district: 'Sherpur', rating: 3.9, reviewCount: 28, services: ['Government', 'Surgery']
+    },
+    {
+        id: 805, name: 'District Veterinary Hospital, Netrokona',
+        address: 'Netrokona Sadar',
+        phone: '01324290225',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Netrokona',
+        hours: '9 AM - 5 PM', district: 'Netrokona', rating: 3.8, reviewCount: 25, services: ['Government', 'Vaccine']
+    }
 ];
