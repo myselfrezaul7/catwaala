@@ -21,41 +21,58 @@ const HomePage: React.FC = () => {
       />
       <div className="w-full overflow-hidden">
         {/* Hero Section */}
+        {/* Hero Section */}
         <section
-          className="relative min-h-[90vh] flex items-center justify-center overflow-hidden mb-8"
+          className="relative min-h-[90vh] flex items-center justify-center overflow-hidden mb-8 bg-brand-100 dark:bg-slate-900 transition-colors duration-500"
         >
-          {/* Background Image with Parallax-like fixed attachment */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-fixed transform scale-105"
-            style={{ backgroundImage: "url('/hero-bg.webp')" }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-white/90 dark:to-[#0f172a]/90 backdrop-blur-[2px]"></div>
+          {/* Decorative blobs/circles for cartoon vibe */}
+          <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-accent-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-[20%] right-[20%] w-72 h-72 bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float" style={{ animationDelay: '4s' }}></div>
 
-          <div className="relative text-center z-10 px-4 max-w-5xl mx-auto animate-fade-in-up">
-            <div className="inline-block px-6 py-2 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-white text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-lg">
-              Rescue &middot; Rehabilitate &middot; Rehome
-            </div>
-            <h1 className="text-5xl sm:text-7xl md:text-9xl font-extrabold text-white tracking-tight drop-shadow-2xl mb-8">
-              {t('homePage.hero.title')}
-            </h1>
-            <p className="text-lg md:text-2xl text-slate-100 max-w-3xl mx-auto mb-12 leading-relaxed font-light drop-shadow-md">
-              {t('homePage.hero.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-              <Link
-                to="/adopt"
-                className="w-full sm:w-auto bg-white/90 text-slate-900 font-bold py-4 px-10 rounded-2xl text-lg hover:bg-white transition-all transform hover:scale-105 duration-300 shadow-xl"
-              >
-                {t('homePage.hero.meetButton')}
-              </Link>
-              <a
-                href="https://www.petbhai.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-black/30 text-white border border-white/30 font-bold py-4 px-10 rounded-2xl text-lg hover:bg-black/50 transition-all transform hover:scale-105 duration-300 backdrop-blur-md"
-              >
-                {t('homePage.hero.shopButton')}
-              </a>
+          <div className="container mx-auto px-4 z-10 relative">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+
+              {/* Text Content */}
+              <div className="w-full md:w-1/2 text-center md:text-left animate-fade-in-up">
+                <div className="inline-block px-4 py-1 rounded-full bg-brand-200 border border-brand-300 text-brand-800 text-xs font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
+                  Rescue &middot; Rehabilitate &middot; Rehome
+                </div>
+                <h1 className="text-5xl sm:text-7xl font-extrabold text-brand-900 dark:text-brand-100 tracking-tight mb-6">
+                  {t('homePage.hero.title')}
+                </h1>
+                <p className="text-lg md:text-xl text-brand-800 dark:text-brand-50 mb-8 leading-relaxed font-medium">
+                  {t('homePage.hero.subtitle')}
+                </p>
+                <div className="flex flex-col sm:flex-row items-center md:justify-start justify-center gap-4">
+                  <Link
+                    to="/adopt"
+                    className="w-full sm:w-auto bg-brand-600 text-white font-bold py-4 px-8 rounded-2xl text-lg hover:bg-brand-700 transition-all transform hover:scale-105 duration-300 shadow-lg hover:shadow-brand-500/30"
+                  >
+                    {t('homePage.hero.meetButton')}
+                  </Link>
+                  <a
+                    href="https://www.petbhai.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto bg-white text-brand-800 border-2 border-brand-200 font-bold py-4 px-8 rounded-2xl text-lg hover:bg-brand-50 transition-all transform hover:scale-105 duration-300"
+                  >
+                    {t('homePage.hero.shopButton')}
+                  </a>
+                </div>
+              </div>
+
+              {/* Hero Image / Brand Illustration */}
+              <div className="w-full md:w-1/2 flex justify-center md:justify-end animate-fade-in" style={{ animationDelay: '0.3s' }}>
+                <div className="relative w-full max-w-md md:max-w-lg aspect-square">
+                  <img
+                    src="/logo.png"
+                    alt="Catwaala Hero Illustration"
+                    className="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
