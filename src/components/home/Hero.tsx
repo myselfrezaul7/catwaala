@@ -55,9 +55,11 @@ export function Hero() {
                 >
                     <div className="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[200px] overflow-hidden border-8 border-white/50 dark:border-white/10 shadow-2xl bg-rose-100 flex items-center justify-center">
                         {/* This would be a real image */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-rose-200 to-indigo-100 flex items-center justify-center">
-                            <PawPrint className="w-40 h-40 text-white opacity-50 rotate-12" />
-                        </div>
+                        <img
+                            src="/hero-community.png"
+                            alt="Community caring for cats"
+                            className="w-full h-full object-cover"
+                        />
 
                         {/* Floating badge */}
                         <motion.div
