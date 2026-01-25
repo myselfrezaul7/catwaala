@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import { MOCK_MEMORIALS, Memorial } from "@/data/memorials";
-import { Button } from "@/components/ui/button";
-import { Heart, Plus } from "lucide-react";
+import { Heart } from "lucide-react";
+import { MemorialModal } from "@/components/memorial/MemorialModal";
 
 export default function MemorialPage() {
     const [memorials, setMemorials] = useState<Memorial[]>(MOCK_MEMORIALS);
 
-    // Mock adding form state (simplified)
-    const handleAddMock = () => {
-        alert("In a real app, this would open a form to verify and upload your tribute.");
+    const handleAddTribute = (newMemorial: Memorial) => {
+        setMemorials([newMemorial, ...memorials]);
     };
 
     return (
@@ -23,9 +22,7 @@ export default function MemorialPage() {
                     A sanctuary to honor the beloved feline companions who have crossed the rainbow bridge. Gone but never forgotten.
                 </p>
                 <div className="mt-8">
-                    <Button onClick={handleAddMock} className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm h-12 px-8">
-                        <Plus className="w-4 h-4 mr-2" /> Add a Tribute
-                    </Button>
+                    <MemorialModal onAddTribute={handleAddTribute} />
                 </div>
             </div>
 

@@ -5,17 +5,26 @@ import { useForm } from "react-hook-form";
 import { MapPin, Camera, AlertTriangle, CheckCircle, PawPrint } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
+import dynamic from "next/dynamic";
+
+// Dynamically import LocationPicker to avoid SSR issues with Leaflet
+const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
+    ssr: false,
+    loading: () => <div className="h-[300px] w-full bg-slate-100 dark:bg-zinc-800 animate-pulse rounded-xl flex items-center justify-center text-slate-400">Loading Map...</div>
+});
 
 type ReportForm = {
     type: "Lost" | "Found" | "Injured";
-    location: string;
+    locationDetails: string;
+    latitude?: number;
+    longitude?: number;
     description: string;
     contact: string;
     image: FileList;
 };
 
 export default function ReportPage() {
-    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ReportForm>();
+    const { register, handleSubmit, setValue, formState: { errors, isSubmitting }, reset } = useForm<ReportForm>();
     const [submitted, setSubmitted] = useState(false);
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -23,6 +32,11 @@ export default function ReportPage() {
     const onSubmit = async (data: ReportForm) => {
         if (!captchaValue) {
             alert("Please verify you are not a robot (or a very smart cat).");
+            return;
+        }
+
+        if (!data.latitude || !data.longitude) {
+            alert("Please pin the location on the map.");
             return;
         }
 
@@ -87,14 +101,20 @@ export default function ReportPage() {
 
                         <div className="space-y-2">
                             <label className="text-sm font-medium flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-rose-500" /> Location
+                                <MapPin className="w-4 h-4 text-rose-500" /> Pin Location
                             </label>
-                            <input
-                                {...register("location", { required: "Location is required" })}
-                                className="w-full p-3 rounded-lg border bg-background focus:ring-2 focus:ring-rose-500 outline-none"
-                                placeholder="e.g. Near Dhanmondi Lake, Bridge 2"
+                            <LocationPicker
+                                onLocationSelect={(lat, lng) => {
+                                    setValue("latitude", lat);
+                                    setValue("longitude", lng);
+                                }}
                             />
-                            {errors.location && <p className="text-xs text-red-500">{errors.location.message}</p>}
+                            <input
+                                {...register("locationDetails", { required: "Please provide location details" })}
+                                className="w-full p-3 rounded-lg border bg-background focus:ring-2 focus:ring-rose-500 outline-none mt-2"
+                                placeholder="Details (e.g. Near Dhanmondi Lake, Bridge 2)"
+                            />
+                            {errors.locationDetails && <p className="text-xs text-red-500">{errors.locationDetails.message}</p>}
                         </div>
 
                         <div className="space-y-2">

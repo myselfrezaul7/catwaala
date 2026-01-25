@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { MOCK_VET_CLINICS } from "@/data/vets";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Clock, ExternalLink, Search } from "lucide-react";
+import { MapPin, Phone, Clock, ExternalLink, Search, Star } from "lucide-react";
 
 export default function FindVetPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -60,13 +60,20 @@ export default function FindVetPage() {
                     {filteredClinics.map(clinic => (
                         <div key={clinic.id} className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-rose-100 dark:border-zinc-800 hover:shadow-md transition-shadow">
                             <div className="flex justify-between items-start mb-4">
-                                <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{clinic.name}</h3>
-                                <span className="text-xs font-bold px-2 py-1 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 rounded-md">
+                                <div>
+                                    <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100">{clinic.name}</h3>
+                                    <div className="flex items-center gap-1 mt-1">
+                                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                                        <span className="text-sm font-bold text-slate-700 dark:text-slate-200">{clinic.rating}</span>
+                                        <span className="text-xs text-slate-500">({clinic.reviewCount})</span>
+                                    </div>
+                                </div>
+                                <span className="text-xs font-bold px-2 py-1 bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 rounded-md whitespace-nowrap">
                                     {clinic.district}
                                 </span>
                             </div>
 
-                            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400 mb-4">
                                 <p className="flex items-start gap-2">
                                     <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                                     {clinic.address}
@@ -81,7 +88,20 @@ export default function FindVetPage() {
                                 </p>
                             </div>
 
-                            <div className="mt-6 flex gap-3">
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {clinic.services.slice(0, 3).map((service, idx) => (
+                                    <span key={idx} className="text-[10px] font-medium px-2 py-0.5 bg-slate-100 dark:bg-zinc-800 text-slate-500 rounded-full border border-slate-200 dark:border-zinc-700">
+                                        {service}
+                                    </span>
+                                ))}
+                                {clinic.services.length > 3 && (
+                                    <span className="text-[10px] font-medium px-2 py-0.5 bg-slate-50 text-slate-400 rounded-full">
+                                        +{clinic.services.length - 3}
+                                    </span>
+                                )}
+                            </div>
+
+                            <div className="flex gap-3 mt-auto">
                                 <a href={clinic.mapUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
                                     <Button variant="outline" className="w-full gap-2 border-rose-200 text-rose-600 hover:text-white hover:bg-rose-600">
                                         <MapPin className="w-4 h-4" /> Directions

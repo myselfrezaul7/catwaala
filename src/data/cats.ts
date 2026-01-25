@@ -90,3 +90,18 @@ export const cats = [
         goodWithKids: true,
     },
 ] as const;
+
+export type AgeCategory = 'Kitten' | 'Adult' | 'Senior';
+
+export function getAgeCategory(age: string): AgeCategory {
+    const lowerAge = age.toLowerCase();
+    if (lowerAge.includes('month') || (lowerAge.includes('year') && parseInt(age) < 1)) {
+        return 'Kitten';
+    }
+    const years = parseInt(age);
+    if (!isNaN(years)) {
+        if (years >= 7) return 'Senior';
+        return 'Adult';
+    }
+    return 'Adult'; // Default
+}

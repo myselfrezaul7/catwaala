@@ -4,19 +4,44 @@ import { useState } from "react";
 import { PetCard } from "@/components/shared/PetCard";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, X } from "lucide-react";
-import { cats } from "@/data/cats";
+import { cats, getAgeCategory, type AgeCategory } from "@/data/cats";
 
 export default function AdoptPage() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [filterType, setFilterType] = useState<string | null>(null);
+    const [selectedGender, setSelectedGender] = useState<string>("All");
+    const [selectedAge, setSelectedAge] = useState<AgeCategory | "All">("All");
+    const [attributes, setAttributes] = useState({
+        vaccinated: false,
+        neutered: false,
+        goodWithKids: false,
+    });
 
     const filteredCats = cats.filter(cat => {
-        const matchesSearch = cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        // Text Search
+        const matchesSearch = searchQuery === "" ||
+            cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             cat.breed.toLowerCase().includes(searchQuery.toLowerCase()) ||
             cat.location.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesFilter = filterType ? cat.tag === filterType : true;
-        return matchesSearch && matchesFilter;
+
+        // Category Filters
+        const matchesGender = selectedGender === "All" || cat.gender === selectedGender;
+        const matchesAge = selectedAge === "All" || getAgeCategory(cat.age) === selectedAge;
+
+        // Attribute Filters (AND logic)
+        const matchesAttributes =
+            (!attributes.vaccinated || cat.vaccinated) &&
+            (!attributes.neutered || cat.neutered) &&
+            (!attributes.goodWithKids || cat.goodWithKids);
+
+        return matchesSearch && matchesGender && matchesAge && matchesAttributes;
     });
+
+    const resetFilters = () => {
+        setSearchQuery("");
+        setSelectedGender("All");
+        setSelectedAge("All");
+        setAttributes({ vaccinated: false, neutered: false, goodWithKids: false });
+    };
 
     return (
         <div className="min-h-screen bg-white dark:bg-zinc-950 pb-24">
@@ -32,9 +57,9 @@ export default function AdoptPage() {
             </div>
 
             <div className="container mx-auto px-4 -mt-8 relative z-20">
-                {/* Search & Filter Bar */}
-                <div className="bg-white dark:bg-zinc-900 p-4 rounded-xl shadow-lg border border-slate-100 dark:border-zinc-800 flex flex-col md:flex-row gap-4 items-center">
-                    <div className="relative flex-grow w-full">
+                <div className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-zinc-800 space-y-6">
+                    {/* Search Bar */}
+                    <div className="relative w-full">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
                         <input
                             type="text"
@@ -45,33 +70,81 @@ export default function AdoptPage() {
                         />
                     </div>
 
-                    <div className="flex gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
-                        <Button
-                            variant={filterType === null ? "default" : "outline"}
-                            onClick={() => setFilterType(null)}
-                            className={`whitespace-nowrap rounded-lg border-2 ${filterType === null ? 'bg-rose-600 border-rose-600' : 'border-slate-200'}`}
-                        >
-                            All
-                        </Button>
-                        <Button
-                            variant={filterType === "Urgent" ? "default" : "outline"}
-                            onClick={() => setFilterType("Urgent")}
-                            className={`whitespace-nowrap rounded-lg border-2 ${filterType === "Urgent" ? 'bg-rose-500 border-rose-500' : 'text-rose-600 border-rose-100'}`}
-                        >
-                            Urgent
-                        </Button>
-                        <Button
-                            variant={filterType === "New" ? "default" : "outline"}
-                            onClick={() => setFilterType("New")}
-                            className={`whitespace-nowrap rounded-lg border-2 ${filterType === "New" ? 'bg-indigo-500 border-indigo-500' : 'text-indigo-600 border-indigo-100'}`}
-                        >
-                            New Arrivals
-                        </Button>
+                    {/* Filter Controls */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+                        {/* Gender */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Gender</label>
+                            <select
+                                className="w-full p-2.5 rounded-lg border border-slate-200 dark:border-zinc-700 bg-transparent outline-none focus:ring-2 focus:ring-rose-500"
+                                value={selectedGender}
+                                onChange={(e) => setSelectedGender(e.target.value)}
+                            >
+                                <option value="All">Any Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        {/* Age */}
+                        <div className="space-y-2">
+                            <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Age</label>
+                            <select
+                                className="w-full p-2.5 rounded-lg border border-slate-200 dark:border-zinc-700 bg-transparent outline-none focus:ring-2 focus:ring-rose-500"
+                                value={selectedAge}
+                                onChange={(e) => setSelectedAge(e.target.value as AgeCategory | "All")}
+                            >
+                                <option value="All">Any Age</option>
+                                <option value="Kitten">Kitten (&lt; 1 year)</option>
+                                <option value="Adult">Adult (1-7 years)</option>
+                                <option value="Senior">Senior (7+ years)</option>
+                            </select>
+                        </div>
+
+                        {/* Attributes Checklist */}
+                        <div className="col-span-1 md:col-span-2 flex flex-wrap gap-4 pt-2">
+                            <label className="flex items-center gap-2 cursor-pointer bg-slate-50 dark:bg-zinc-800 px-3 py-2 rounded-lg border border-transparent hover:border-rose-200 transition-colors">
+                                <input
+                                    type="checkbox"
+                                    checked={attributes.goodWithKids}
+                                    onChange={(e) => setAttributes(prev => ({ ...prev, goodWithKids: e.target.checked }))}
+                                    className="w-4 h-4 text-rose-600 rounded focus:ring-rose-500"
+                                />
+                                <span className="text-sm font-medium">Good with Kids</span>
+                            </label>
+                            <label className="flex items-center gap-2 cursor-pointer bg-slate-50 dark:bg-zinc-800 px-3 py-2 rounded-lg border border-transparent hover:border-rose-200 transition-colors">
+                                <input
+                                    type="checkbox"
+                                    checked={attributes.vaccinated}
+                                    onChange={(e) => setAttributes(prev => ({ ...prev, vaccinated: e.target.checked }))}
+                                    className="w-4 h-4 text-rose-600 rounded focus:ring-rose-500"
+                                />
+                                <span className="text-sm font-medium">Vaccinated</span>
+                            </label>
+                            <label className="flex items-center gap-2 cursor-pointer bg-slate-50 dark:bg-zinc-800 px-3 py-2 rounded-lg border border-transparent hover:border-rose-200 transition-colors">
+                                <input
+                                    type="checkbox"
+                                    checked={attributes.neutered}
+                                    onChange={(e) => setAttributes(prev => ({ ...prev, neutered: e.target.checked }))}
+                                    className="w-4 h-4 text-rose-600 rounded focus:ring-rose-500"
+                                />
+                                <span className="text-sm font-medium">Neutered</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
-                {/* Results */}
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Results & Stats */}
+                <div className="mt-8 flex justify-between items-center text-slate-500 mb-6">
+                    <p className="font-medium">Showing {filteredCats.length} cats</p>
+                    {(searchQuery || selectedGender !== "All" || selectedAge !== "All" || Object.values(attributes).some(Boolean)) && (
+                        <Button variant="ghost" onClick={resetFilters} className="text-rose-600 hover:text-rose-700 h-auto p-0 hover:bg-transparent">
+                            <X className="w-4 h-4 mr-1" /> Clear Filters
+                        </Button>
+                    )}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredCats.length > 0 ? (
                         filteredCats.map(cat => (
                             // @ts-ignore
@@ -82,9 +155,9 @@ export default function AdoptPage() {
                             <div className="w-24 h-24 bg-rose-50 dark:bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
                                 😿
                             </div>
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">No cats found</h3>
-                            <p className="text-slate-500">Maybe they are hiding? Try adjusting your search.</p>
-                            <Button variant="link" onClick={() => { setSearchQuery(""); setFilterType(null); }} className="text-rose-600">Clear all filters</Button>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">No cats matched your filters</h3>
+                            <p className="text-slate-500">Maybe try broadening your search? Our cats are picky, but you shouldn't have to be!</p>
+                            <Button variant="link" onClick={resetFilters} className="text-rose-600">Clear all filters</Button>
                         </div>
                     )}
                 </div>
