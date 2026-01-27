@@ -6,7 +6,7 @@ export const cats = [
         age: '2 years',
         gender: 'Female',
         location: "Dhanmondi, Dhaka",
-        description: 'Mimi is the queen of her neighborhood. She was found charming locals for fish at a tea stall. She has that classic Desi cat intelligence—she knows exactly how to look adorable when she wants treats.',
+        description: 'Mimi is the queen of her neighborhood. She was found charming locals for fish at a tea stall. She has that classic Desi cat intelligence; she knows exactly how to look adorable when she wants treats.',
         imageUrl: '/assets/cat1.jpg', // Placeholder, in real app would use ported assets
         tag: 'Urgent',
         temperamentTags: ['Smart', 'Affectionate', 'Street-Smart', 'Good Hunter'],
@@ -51,7 +51,7 @@ export const cats = [
         age: '8 months',
         gender: 'Female',
         location: "Mirpur, Dhaka",
-        description: 'Mishti has a lot of opinions and she will tell you all of them. A classic Desi stray cat—independent, sassy, but melts into a puddle of purrs once she trusts you. Excellent bug hunter.',
+        description: 'Mishti has a lot of opinions and she will tell you all of them. A classic Desi stray cat: independent, sassy, but melts into a puddle of purrs once she trusts you. Excellent bug hunter.',
         imageUrl: '/assets/cat1.jpg',
         tag: 'Adopted',
         temperamentTags: ['Chatty', 'Sassy', 'Bug Hunter', 'Apartment Friendly'],
