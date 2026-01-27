@@ -48,7 +48,7 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-slate-100 dark:border-zinc-800 pt-8 text-center text-sm text-slate-500">
-                    <p>&copy; {new Date().getFullYear()} Catwaala. Made with ❤️ and lots of tuna.</p>
+                    <p>&copy; 2025 Catwaala. All rights reserved. Made with ❤️ and lots of tuna.</p>
                 </div>
             </div>
         </footer>
