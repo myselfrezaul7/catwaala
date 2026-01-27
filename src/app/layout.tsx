@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
@@ -7,8 +7,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
-const poppins = Poppins({
-    variable: "--font-poppins",
+const ibmPlexSans = IBM_Plex_Sans({
+    variable: "--font-ibm-plex-sans",
     subsets: ["latin"],
     weight: ["300", "400", "500", "600", "700"],
 });
@@ -26,7 +26,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${poppins.variable} antialiased`}
+                className={`${ibmPlexSans.variable} antialiased`}
             >
                 <ThemeProvider
                     attribute="class"
