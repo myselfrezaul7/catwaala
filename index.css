@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optimized Background: Fixed to prevent repaint on scroll */
+.app-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: #f0f4f8;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(255, 228, 230, 0.8) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(224, 242, 254, 0.8) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(254, 243, 199, 0.8) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(237, 233, 254, 0.8) 0px, transparent 50%);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.dark .app-background {
+    background-color: #0f172a;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(76, 29, 149, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(30, 64, 175, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(180, 83, 9, 0.3) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(124, 58, 237, 0.35) 0px, transparent 50%);
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(203, 213, 225, 0.5);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(51, 65, 85, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(71, 85, 105, 0.8);
+}
