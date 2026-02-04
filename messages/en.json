@@ -1,8 +1,32 @@
 {
+    "Hero": {
+        "title": "Every Cat Deserves a",
+        "titleAccent": "Soft Landing.",
+        "description": "We bridge the gap between street cats and loving homes. Adopt, foster, or support the feline welfare movement in Bangladesh.",
+        "adoptButton": "Adopt a Cat",
+        "volunteerButton": "Become a Volunteer",
+        "rescuedCount": "1,200+ Rescued",
+        "since": "Since 2023"
+    },
     "HomePage": {
-        "title": "Welcome to Catwaala",
-        "description": "Premium cat care services in Bangladesh.",
-        "findVet": "Find a Vet",
-        "donate": "Donate"
+        "starsTitle": "Meet the",
+        "starsAccent": "Stars",
+        "starsDescription": "These purr-fect companions are vaccinated, health-checked, and ready to take over your sofa.",
+        "viewAll": "View All Cats",
+        "missionTitle": "More Than Just Adoption",
+        "missionDescription": "We run a comprehensive Trap-Neuter-Return (TNR) program to manage the stray population humanely. Every adoption fee supports the sterilization of street cats in Dhaka.",
+        "tnrCount": "500+",
+        "tnrLabel": "TNR Surgeries",
+        "adoptionCount": "350+",
+        "adoptionLabel": "Adoptions",
+        "volunteerCount": "50+",
+        "volunteerLabel": "Volunteers"
+    },
+    "Navigation": {
+        "home": "Home",
+        "adopt": "Adopt",
+        "volunteer": "Volunteer",
+        "community": "Community",
+        "vets": "Find a Vet"
     }
 }
