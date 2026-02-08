@@ -4,12 +4,33 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Heart, Truck, Camera, Calendar, CheckCircle } from "lucide-react";
 
+import { submitToWeb3Forms } from "@/lib/web3forms";
+
 export default function VolunteerPage() {
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSubmitted(true);
+        setIsSubmitting(true);
+
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        const result = await submitToWeb3Forms({
+            form_name: "Volunteer Application",
+            ...data
+        });
+
+        setIsSubmitting(false);
+
+        if (result.success) {
+            setSubmitted(true);
+            form.reset();
+        } else {
+            alert(result.message || "Failed to submit. Please try again.");
+        }
     };
 
     if (submitted) {

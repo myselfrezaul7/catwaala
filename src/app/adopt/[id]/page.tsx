@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cats } from "@/data/cats";
 import { Button } from "@/components/ui/button";
 import { MapPin, Info, CheckCircle, ArrowLeft, Share2, Heart } from "lucide-react";
+import { AdoptionForm } from "@/components/adopt/AdoptionForm";
 
 type Props = {
     params: Promise<{ id: string }>;
@@ -108,32 +109,7 @@ export default async function CatDetailPage({ params }: Props) {
 
                     <div className="pt-6 border-t border-rose-100 dark:border-zinc-800">
                         <h3 className="text-2xl font-bold mb-6 font-heading text-slate-900 dark:text-white">Adopt {cat.name}</h3>
-                        <form className="space-y-4 bg-rose-50/50 dark:bg-zinc-900/50 p-6 rounded-2xl border border-rose-100 dark:border-zinc-800">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Name</label>
-                                    <input required type="text" className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Your Name" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Phone</label>
-                                    <input required type="tel" className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none" placeholder="017..." />
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Email (Optional)</label>
-                                <input type="email" className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none" placeholder="you@example.com" />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Why do you want to adopt {cat.name}?</label>
-                                <textarea required className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none min-h-[100px]" placeholder="Tell us about your home and experience with cats..." />
-                            </div>
-                            <Button size="lg" className="w-full text-lg h-14 shadow-xl shadow-rose-500/20 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl">
-                                Submit Adoption Application
-                            </Button>
-                            <p className="text-center text-xs text-slate-400 mt-2">
-                                We will review your application and contact you within 24 hours.
-                            </p>
-                        </form>
+                        <AdoptionForm catName={cat.name} />
                     </div>
                 </div>
             </div>

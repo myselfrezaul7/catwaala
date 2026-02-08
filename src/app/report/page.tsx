@@ -6,6 +6,7 @@ import { MapPin, Camera, AlertTriangle, CheckCircle, PawPrint } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 // Dynamically import LocationPicker to avoid SSR issues with Leaflet
 const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
@@ -29,6 +30,8 @@ export default function ReportPage() {
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const recaptchaRef = useRef<ReCAPTCHA>(null);
 
+
+    // ... inside component
     const onSubmit = async (data: ReportForm) => {
         if (!captchaValue) {
             alert("Please verify you are not a robot (or a very smart cat).");
@@ -40,14 +43,26 @@ export default function ReportPage() {
             return;
         }
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log("Form Data:", data, "Captcha:", captchaValue);
+        const formData = {
+            form_name: "Report Issue",
+            ...data,
+            // Convert numbers/files to string or handle appropriately for email
+            latitude: data.latitude.toString(),
+            longitude: data.longitude.toString(),
+            // Note: File upload needs special handling (base64 or link) for basic Web3Forms free tier, 
+            // skipping binary file for now or user can upgrade. sending basic text data.
+        };
 
-        setSubmitted(true);
-        reset();
-        setCaptchaValue(null);
-        recaptchaRef.current?.reset();
+        const result = await submitToWeb3Forms(formData);
+
+        if (result.success) {
+            setSubmitted(true);
+            reset();
+            setCaptchaValue(null);
+            recaptchaRef.current?.reset();
+        } else {
+            alert(result.message || "Something went wrong.");
+        }
     };
 
     if (submitted) {
