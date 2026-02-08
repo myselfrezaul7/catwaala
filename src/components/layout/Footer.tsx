@@ -83,23 +83,27 @@ export function Footer() {
                                 <h4 className="font-bold mb-5 text-slate-900 dark:text-white text-sm uppercase tracking-wider">Connect</h4>
                                 <div className="flex gap-3 mb-5">
                                     <a
-                                        href="#"
-                                        className="p-3 glass-card rounded-xl text-rose-500 hover:text-white hover:bg-rose-500 transition-all duration-300"
+                                        href="https://www.facebook.com/groups/catwaala/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="p-3 glass-card rounded-xl text-rose-500 hover:text-white hover:bg-[#1877F2] transition-all duration-300"
                                     >
                                         <Facebook className="w-5 h-5" />
                                     </a>
                                     <a
-                                        href="#"
+                                        href="https://www.instagram.com/catwaala/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="p-3 glass-card rounded-xl text-rose-500 hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-all duration-300"
                                     >
                                         <Instagram className="w-5 h-5" />
                                     </a>
                                 </div>
                                 <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-                                    <p className="flex items-center gap-3">
+                                    <a href="mailto:meow@catwaala.com" className="flex items-center gap-3 hover:text-rose-500 transition-colors">
                                         <Mail className="w-4 h-4 text-rose-500" />
                                         meow@catwaala.com
-                                    </p>
+                                    </a>
                                     <p className="flex items-center gap-3">
                                         <Phone className="w-4 h-4 text-rose-500" />
                                         +880 1234 567890
