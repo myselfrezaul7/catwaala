@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Heart, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 import { useFavorites } from "@/contexts/FavoritesContext";
+import { motion } from "framer-motion";
 
 interface CatProps {
     id: string;
@@ -22,62 +22,80 @@ export function PetCard({ cat }: { cat: CatProps }) {
     const favorite = isFavorite(cat.id);
 
     return (
-        <div className="group bg-white dark:bg-zinc-800 rounded-3xl overflow-hidden shadow-sm border border-rose-100 dark:border-zinc-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div className="relative aspect-[4/5] overflow-hidden bg-rose-50">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="group glass-card rounded-[28px] overflow-hidden transition-all duration-500"
+        >
+            <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
                     src={cat.imageUrl}
                     alt={cat.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                {/* Sophisticated gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
+                {/* Favorite button with glass effect */}
                 <button
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         toggleFavorite(cat.id);
                     }}
-                    className={`absolute top-3 right-3 p-2 backdrop-blur-md rounded-full transition-all ${favorite
-                            ? "bg-rose-500 text-white"
-                            : "bg-white/20 text-white hover:bg-rose-500"
+                    className={`absolute top-4 right-4 p-3 rounded-full backdrop-blur-xl transition-all duration-300 ${favorite
+                            ? "bg-rose-500/90 text-white shadow-lg shadow-rose-500/30"
+                            : "bg-white/20 text-white hover:bg-rose-500/80 hover:shadow-lg hover:shadow-rose-500/20"
                         }`}
                 >
-                    <Heart className={`w-5 h-5 ${favorite ? "fill-current" : ""}`} />
+                    <Heart className={`w-5 h-5 transition-transform duration-300 ${favorite ? "fill-current scale-110" : "group-hover:scale-110"}`} />
                 </button>
 
+                {/* Tag badge with glass effect */}
                 {cat.tag && (
-                    <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm ${cat.tag === 'Urgent' ? 'bg-rose-500 text-white' :
-                        cat.tag === 'New' ? 'bg-indigo-500 text-white' : 'bg-green-500 text-white'
+                    <span className={`absolute top-4 left-4 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-xl shadow-lg ${cat.tag === 'Urgent'
+                            ? 'bg-rose-500/90 text-white shadow-rose-500/30'
+                            : cat.tag === 'New'
+                                ? 'bg-indigo-500/90 text-white shadow-indigo-500/30'
+                                : 'bg-emerald-500/90 text-white shadow-emerald-500/30'
                         }`}>
                         {cat.tag}
                     </span>
                 )}
 
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <h3 className="text-2xl font-bold mb-1">{cat.name}</h3>
-                    <div className="flex items-center gap-2 text-sm opacity-90">
-                        <MapPin className="w-3 h-3" /> {cat.location}
+                {/* Cat info overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                        {cat.name}
+                    </h3>
+                    <div className="flex items-center gap-2 text-white/90 text-sm">
+                        <MapPin className="w-4 h-4" />
+                        <span className="font-medium">{cat.location}</span>
                     </div>
                 </div>
             </div>
 
-            <div className="p-5">
+            {/* Card content with glass effect */}
+            <div className="p-5 bg-white/50 dark:bg-white/5 backdrop-blur-sm">
                 <div className="flex justify-between items-center mb-4">
-                    <span className="text-sm font-medium text-rose-600 bg-rose-50 px-3 py-1 rounded-lg">
+                    <span className="text-sm font-semibold text-rose-600 dark:text-rose-400 bg-rose-100/80 dark:bg-rose-500/20 px-4 py-1.5 rounded-full backdrop-blur-sm">
                         {cat.breed}
                     </span>
-                    <span className="text-sm text-slate-500 font-medium">
+                    <span className="text-sm text-slate-600 dark:text-slate-300 font-medium">
                         {cat.age}
                     </span>
                 </div>
 
                 <Link href={`/adopt/${cat.id}`}>
-                    <Button className="w-full rounded-xl bg-slate-900 text-white hover:bg-rose-600 transition-colors h-12">
-                        Meet {cat.name} <Sparkles className="w-4 h-4 ml-2" />
+                    <Button className="w-full h-12 rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-all duration-300">
+                        <span>Meet {cat.name}</span>
+                        <Sparkles className="w-4 h-4 ml-2" />
                     </Button>
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 }
