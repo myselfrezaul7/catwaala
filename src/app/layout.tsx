@@ -14,8 +14,29 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Catwaala | Cat Adoption & Welfare",
-    description: "Improving lives of street cats in Bangladesh. Adopt, rescue, and support our feline friends.",
+    title: {
+        default: "Catwaala | Save a Stray, Gain a Friend",
+        template: "%s | Catwaala",
+    },
+    description: "Bangladesh's first dedicated platform for stray cat rescue, adoption, and care. Join our mission to give every street cat a home.",
+    keywords: ["cat adoption bangladesh", "stray cat rescue dhaka", "veterinary clinics dhaka", "catwaala", "animal welfare bangladesh"],
+    authors: [{ name: "Catwaala Team" }],
+    creator: "Catwaala",
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: "https://catwaala.com",
+        title: "Catwaala | Save a Stray, Gain a Friend",
+        description: "Connect with rescued cats, find vets, and report strays in Bangladesh.",
+        siteName: "Catwaala",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Catwaala | Save a Stray, Gain a Friend",
+        description: "Helping street cats in Bangladesh find loving homes.",
+        creator: "@catwaala",
+    },
+    metadataBase: new URL("https://catwaala.com"),
 };
 
 export default function RootLayout({

@@ -6,6 +6,13 @@ import {
 } from "@/components/ui/accordion";
 import { HelpCircle, Cat, Syringe, Home, Utensils, Heart } from "lucide-react";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Cat Care FAQ",
+    description: "Answers to common questions about cat adoption, diet, health, and apartment living in Bangladesh Context.",
+};
+
 export default function FAQPage() {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 pb-24">
