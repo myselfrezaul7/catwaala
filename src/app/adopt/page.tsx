@@ -49,9 +49,22 @@ export default function AdoptPage() {
             <div className="bg-rose-500 text-white py-16 text-center px-4 relative overflow-hidden">
                 <div className="relative z-10">
                     <h1 className="text-4xl font-bold mb-4 font-heading">Find Your Feline Soulmate</h1>
-                    <p className="text-rose-100 max-w-xl mx-auto">
+                    <p className="text-rose-100 max-w-xl mx-auto mb-6">
                         Browse through our list of rescued cats. From kittens to snoozy seniors, they are all waiting for love.
                     </p>
+                    <div className="flex flex-col items-center gap-4">
+                        <p className="text-sm font-bold bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 inline-block">
+                            🚫 We promotes &quot;Adopt Don&apos;t Shop&quot;. No buying/selling.
+                        </p>
+                        <a
+                            href="https://www.kuttawaala.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white hover:text-orange-200 underline underline-offset-4 decoration-orange-300 decoration-2 font-bold transition-all hover:scale-105"
+                        >
+                            🐕 Looking for a dog instead? Visit KuttaWaala
+                        </a>
+                    </div>
                 </div>
                 <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_80%,_rgba(255,255,255,0.2)_0%,_transparent_50%)] pointer-events-none" />
             </div>

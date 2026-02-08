@@ -26,9 +26,6 @@ export function Footer() {
                                 <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                                     Giving every street cat a chance at a warm lap and a full bowl. Join our mission to care for the purring population.
                                 </p>
-                                <p className="text-xs text-slate-500 dark:text-slate-500 italic border-l-2 border-rose-300 dark:border-rose-500/50 pl-3">
-                                    We explicitly promote &quot;Adopt Don&apos;t Shop&quot;. We do not support buying, selling, or breeding.
-                                </p>
                             </div>
 
                             {/* Quick Links */}
@@ -65,8 +62,6 @@ export function Footer() {
                                 <h4 className="font-bold mb-5 text-slate-900 dark:text-white text-sm uppercase tracking-wider">Care Resources</h4>
                                 <ul className="space-y-3">
                                     {[
-                                        { href: "/blog", label: "Cat Care 101" },
-                                        { href: "/tnr", label: "TNR Program" },
                                         { href: "/faq", label: "FAQ" },
                                     ].map((link) => (
                                         <li key={link.href}>
@@ -104,10 +99,6 @@ export function Footer() {
                                         <Mail className="w-4 h-4 text-rose-500" />
                                         catwaala@gmail.com
                                     </a>
-                                    <p className="flex items-center gap-3">
-                                        <Phone className="w-4 h-4 text-rose-500" />
-                                        +880 1234 567890
-                                    </p>
                                 </div>
                             </div>
                         </div>

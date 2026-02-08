@@ -151,6 +151,7 @@ export default function ReportPage() {
                                 <PawPrint className="w-8 h-8 mx-auto text-rose-300 mb-2 group-hover:scale-110 transition-transform" />
                                 <p className="text-sm text-slate-500">Tap to upload a photo</p>
                             </div>
+                            <p className="text-xs text-slate-400 text-center">Supported formats: JPG, PNG, MP4. Max size: 10MB.</p>
                         </div>
 
                         <div className="space-y-2">
