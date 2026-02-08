@@ -100,9 +100,9 @@ export function Footer() {
                                     </a>
                                 </div>
                                 <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-                                    <a href="mailto:meow@catwaala.com" className="flex items-center gap-3 hover:text-rose-500 transition-colors">
+                                    <a href="mailto:catwaala@gmail.com" className="flex items-center gap-3 hover:text-rose-500 transition-colors">
                                         <Mail className="w-4 h-4 text-rose-500" />
-                                        meow@catwaala.com
+                                        catwaala@gmail.com
                                     </a>
                                     <p className="flex items-center gap-3">
                                         <Phone className="w-4 h-4 text-rose-500" />
