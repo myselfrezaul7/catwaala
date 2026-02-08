@@ -19,14 +19,14 @@ export const MOCK_VET_CLINICS: VetClinic[] = [
     {
         id: 101, name: 'Central Veterinary Hospital (Govt)',
         address: '48 Kazi Alauddin Road, Dhaka-1000',
-        phone: '01745-137090',
+        phone: '01745-137090', // Verified: 01745-137090, +880 1711-187477
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Central+Veterinary+Hospital+Dhaka',
         hours: '9 AM - 5 PM', district: 'Dhaka', rating: 3.9, reviewCount: 787, services: ['Government', 'Low Cost', 'Surgery', 'Vaccination']
     },
     {
-        id: 102, name: 'Gulshan Pet-Animal Clinic',
+        id: 102, name: 'Gulshan Pet Clinic',
         address: '4-5 DCC Super Market, Gulshan-2, Dhaka-1212',
-        phone: '01715-078434',
+        phone: '01715-078434', // Verified: 01715-078434, 01912-013615
         website: 'https://gulshanpetclinic.com',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Gulshan+Pet-Animal+Clinic+Dhaka',
         hours: '10 AM - 8 PM', district: 'Dhaka', rating: 4.2, reviewCount: 154, services: ['General Checkup', 'Vaccination', 'Surgery', 'Dental']
@@ -34,37 +34,39 @@ export const MOCK_VET_CLINICS: VetClinic[] = [
     {
         id: 103, name: 'LD Veterinary Hospital',
         address: 'House #15, Sonargaon Janapath, Sector-07, Uttara, Dhaka-1230',
-        phone: '+8801733339597',
+        phone: '+8801733339597', // Verified
+        website: 'https://ldveterinaryhos.com',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=LD+Veterinary+Hospital+Uttara',
         hours: '24 Hours', district: 'Dhaka', rating: 4.5, reviewCount: 312, services: ['24/7 Emergency', 'Diagnostics', 'Surgery', 'Grooming']
     },
     {
         id: 104, name: 'PAW Life Care (Lalmatia)',
         address: '1/12, Block-G, Lalmatia, Dhaka',
-        phone: '+8801909617994',
+        phone: '+8801909617994', // Verified: +8801909617994, +8801329-666437
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=PAW+Life+Care+Lalmatia',
         hours: '10 AM - 9 PM', district: 'Dhaka', rating: 4.3, reviewCount: 189, services: ['General Care', 'Surgery', 'Rehabilitation']
     },
     {
         id: 105, name: 'Dr. Sagir\'s Pet Clinic & Research Center',
         address: 'House 3/2, Block D, Lalmatia, Dhaka',
-        phone: '+8801912251312',
+        phone: '+8801912251312', // Verified: +8801912251312, +8801752-987436
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dr+Sagir+Pet+Clinic+Dhaka',
-        hours: '10 AM - 8 PM', district: 'Dhaka', rating: 4.1, reviewCount: 145, services: ['Research', 'Treatment', 'Vaccination']
+        hours: '24 Hours', district: 'Dhaka', rating: 4.1, reviewCount: 145, services: ['Research', 'Treatment', 'Vaccination', '24/7']
     },
     {
         id: 106, name: 'MewMew Pet Care',
         address: 'House 34, Block F, Road 2, Banasree, Rampura, Dhaka 1219',
-        phone: '01711-791249',
+        phone: '01711-791249', // Verified
+        website: 'https://mewmewshopbd.com',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=MewMew+Pet+Care+Banasree',
         hours: '10 AM - 9 PM', district: 'Dhaka', rating: 4.4, reviewCount: 121, services: ['Affordable', 'Oxygen Support', 'Surgery']
     },
     {
-        id: 107, name: 'Pranicool Animal Wellness Clinic',
-        address: '205/1, Gulshan-Tejgaon Link Road, Dhaka',
-        phone: '01329-666431',
-        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Pranicool+Animal+Wellness+Clinic',
-        hours: '10 AM - 8 PM', district: 'Dhaka', rating: 4.6, reviewCount: 95, services: ['Modern Diagnostics', 'Surgery', 'Consultation']
+        id: 107, name: 'BioCare Pet Hospital',
+        address: '404/A (1st Floor) Khilgaon Chowrasta, Dhaka-1219',
+        phone: '+8801779593933', // Verified
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=BioCare+Pet+Hospital+Khilgaon',
+        hours: '10 AM - 10 PM', district: 'Dhaka', rating: 4.5, reviewCount: 88, services: ['General Care', 'Surgery', 'Pharmacy']
     },
     {
         id: 108, name: 'Care & Cure Veterinary Clinic',
@@ -76,7 +78,7 @@ export const MOCK_VET_CLINICS: VetClinic[] = [
     {
         id: 109, name: 'Obhoyaronno - Bangladesh Animal Welfare Foundation',
         address: 'DNCC Market, Shaheed Tajuddin Ahmed Ave, Dhaka 1208',
-        phone: '01718-643497',
+        phone: '01718-643497', // Verified
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Obhoyaronno+Bangladesh',
         hours: '9 AM - 5 PM', district: 'Dhaka', rating: 4.7, reviewCount: 450, services: ['NGO', 'Spay/Neuter', 'Advocacy']
     },
