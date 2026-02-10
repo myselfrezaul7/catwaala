@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { type Memorial, MOCK_MEMORIALS } from "@/data/memorials";
-import { Heart, Cloud, Starr, Star } from "lucide-react";
+import { Heart, Cloud, Star } from "lucide-react";
 import { MemorialModal } from "@/components/memorial/MemorialModal";
 import Image from "next/image";
 
