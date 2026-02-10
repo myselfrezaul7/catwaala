@@ -23,12 +23,25 @@ type UiCat = {
     goodWithKids: boolean;
 };
 
+import { useSearchParams } from "next/navigation";
+
+// ... (UiCat definition)
+
 export function AdoptPageContent() {
+    const searchParams = useSearchParams();
     const [cats, setCats] = useState<UiCat[]>([]);
     const [loading, setLoading] = useState(true);
 
     // Filters
     const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        const query = searchParams.get("query");
+        if (query) {
+            setSearchQuery(query);
+        }
+    }, [searchParams]);
+
     const [selectedGender, setSelectedGender] = useState<string>("All");
     const [selectedAge, setSelectedAge] = useState<AgeCategory | "All">("All");
     const [attributes, setAttributes] = useState({
@@ -110,7 +123,7 @@ export function AdoptPageContent() {
                             🚫 We promotes &quot;Adopt Don&apos;t Shop&quot;. No buying/selling.
                         </p>
                         <a
-                            href="https://www.kuttawaala.com"
+                            href="https://www.kuttawaala.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-white hover:text-orange-200 underline underline-offset-4 decoration-orange-300 decoration-2 font-bold transition-all hover:scale-105"

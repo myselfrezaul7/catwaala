@@ -62,16 +62,7 @@ export function Footer() {
                                             </Link>
                                         </li>
                                     ))}
-                                    <li>
-                                        <Link
-                                            href="https://www.kuttawaala.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors inline-flex items-center gap-1"
-                                        >
-                                            Visit Kuttawaala (Dogs) 🐕
-                                        </Link>
-                                    </li>
+
                                 </ul>
                             </div>
 

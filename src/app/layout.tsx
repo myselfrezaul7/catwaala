@@ -6,6 +6,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const ibmPlexSans = IBM_Plex_Sans({
     variable: "--font-ibm-plex-sans",
@@ -29,6 +31,11 @@ export const metadata: Metadata = {
     keywords: ["cat adoption bangladesh", "stray cat rescue dhaka", "veterinary clinics dhaka", "catwaala", "animal welfare bangladesh"],
     authors: [{ name: "Catwaala Team" }],
     creator: "Catwaala",
+    icons: {
+        icon: "/logo.png",
+        shortcut: "/logo.png",
+        apple: "/logo.png",
+    },
     manifest: "/manifest.json",
     appleWebApp: {
         capable: true,
@@ -65,14 +72,23 @@ export default function RootLayout({
             <body className={`${ibmPlexSans.variable} antialiased`}>
                 <AuthProvider>
                     <FavoritesProvider>
-                        <div className="flex flex-col min-h-screen">
-                            <Header />
-                            <main className="flex-grow pt-20">
-                                {children}
-                            </main>
-                            <Footer />
-                        </div>
-                        <Toaster position="top-center" richColors />
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            <LanguageProvider>
+                                <div className="flex flex-col min-h-screen">
+                                    <Header />
+                                    <main className="flex-grow pt-20">
+                                        {children}
+                                    </main>
+                                    <Footer />
+                                </div>
+                                <Toaster position="top-center" richColors />
+                            </LanguageProvider>
+                        </ThemeProvider>
                     </FavoritesProvider>
                 </AuthProvider>
             </body>

@@ -5,14 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Heart, User, LogIn, Cat, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/theme/mode-toggle";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+import { useRouter } from "next/navigation";
 
 export function Header() {
+    const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [scrolled, setScrolled] = useState(false);
     const { user, loading } = useAuth();
+    const { t } = useLanguage();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -21,12 +28,13 @@ export function Header() {
     }, []);
 
     const navLinks = [
-        { name: "Home", href: "/" },
-        { name: "Adopt", href: "/adopt" },
-        { name: "Find Vet", href: "/find-vet" },
-        { name: "Report", href: "/report" },
-        { name: "Dashboard", href: "/dashboard" },
+        { name: t.nav.home, href: "/" },
+        { name: t.nav.adopt, href: "/adopt" },
+        { name: t.nav.findVet, href: "/find-vet" },
+        { name: t.nav.report, href: "/report" },
+        { name: t.nav.dashboard, href: "/dashboard" },
     ];
+
 
     return (
         <>
@@ -66,6 +74,8 @@ export function Header() {
 
                     {/* Actions */}
                     <div className="hidden md:flex items-center gap-2">
+                        <LanguageToggle />
+                        <ModeToggle />
                         <Link href="/dashboard">
                             <button className="p-2.5 text-stone-500 hover:text-rose-500 hover:bg-rose-50/60 rounded-xl transition-all duration-200">
                                 <Heart className="w-5 h-5" />
@@ -145,44 +155,54 @@ export function Header() {
                                     My Profile
                                 </Button>
                             </Link>
+
                         )}
+                        <div className="flex items-center justify-between px-3 py-2 mt-2 border-t border-amber-100/50">
+                            <span className="text-stone-500 font-medium">{t.nav.theme}</span>
+                            <div className="flex items-center gap-2">
+                                <LanguageToggle />
+                                <ModeToggle />
+                            </div>
+                        </div>
                     </div>
                 )}
-            </header>
+            </header >
 
             {/* Full Screen Search Overlay */}
-            {isSearchOpen && (
-                <div className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-start pt-32 animate-fade-in-up">
-                    <button
-                        onClick={() => setIsSearchOpen(false)}
-                        className="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-rose-50/60 transition-colors"
-                    >
-                        <X className="w-7 h-7 text-stone-400" />
-                    </button>
+            {
+                isSearchOpen && (
+                    <div className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-start pt-32 animate-fade-in-up">
+                        <button
+                            onClick={() => setIsSearchOpen(false)}
+                            className="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-rose-50/60 transition-colors"
+                        >
+                            <X className="w-7 h-7 text-stone-400" />
+                        </button>
 
-                    <div className="w-full max-w-2xl px-4 text-center space-y-8">
-                        <h2 className="text-3xl font-bold text-stone-800">What are you looking for?</h2>
-                        <div className="relative">
-                            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-stone-400 w-6 h-6" />
-                            <input
-                                type="text"
-                                placeholder="Search for cats, vets, or volunteer..."
-                                autoFocus
-                                className="w-full pl-16 pr-6 py-6 text-xl rounded-2xl bg-amber-50/50 border-2 border-amber-100 focus:border-rose-400 focus:ring-0 outline-none transition-all shadow-xl text-stone-700 placeholder:text-stone-400"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                        </div>
+                        <div className="w-full max-w-2xl px-4 text-center space-y-8">
+                            <h2 className="text-3xl font-bold text-stone-800">What are you looking for?</h2>
+                            <div className="relative">
+                                <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-stone-400 w-6 h-6" />
+                                <input
+                                    type="text"
+                                    placeholder="Search for cats, vets, or volunteer..."
+                                    autoFocus
+                                    className="w-full pl-16 pr-6 py-6 text-xl rounded-2xl bg-amber-50/50 border-2 border-amber-100 focus:border-rose-400 focus:ring-0 outline-none transition-all shadow-xl text-stone-700 placeholder:text-stone-400"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                            </div>
 
-                        <div className="flex flex-wrap justify-center gap-3 text-sm text-stone-500">
-                            <span>Try searching for:</span>
-                            <button className="text-rose-500 hover:underline font-medium">Urgent Adoptions</button>
-                            <button className="text-rose-500 hover:underline font-medium">Vet in Dhaka</button>
-                            <button className="text-rose-500 hover:underline font-medium">Volunteer</button>
+                            <div className="flex flex-wrap justify-center gap-3 text-sm text-stone-500">
+                                <span>Try searching for:</span>
+                                <button className="text-rose-500 hover:underline font-medium">Urgent Adoptions</button>
+                                <button className="text-rose-500 hover:underline font-medium">Vet in Dhaka</button>
+                                <button className="text-rose-500 hover:underline font-medium">Volunteer</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </>
     );
 }
