@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,15 @@ export function Hero() {
                         <h1 className="text-5xl md:text-7xl font-bold text-stone-800 leading-[1.1] mb-6">
                             Every Cat Deserves a <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-600">Loving Home</span>
                         </h1>
+                        {/* Inserted Image component as per instruction */}
+                        <Image
+                            src="/assets/cat1.jpg" // Assuming this is the blob cat image replacement or placeholder
+                            alt="Happy Cat"
+                            width={500}
+                            height={500}
+                            className="relative z-10 w-full max-w-lg mx-auto drop-shadow-2xl animate-float"
+                            priority
+                        />
                         <p className="text-xl text-stone-500 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                             Join us in transforming the lives of street cats in Bangladesh through rescue, care, and adoption.
                         </p>

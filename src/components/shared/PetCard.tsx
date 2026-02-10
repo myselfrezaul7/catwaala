@@ -27,14 +27,16 @@ export function PetCard({ cat }: { cat: CatProps }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             whileHover={{ y: -8, scale: 1.02 }}
-            className="group glass-card rounded-[28px] overflow-hidden transition-all duration-500"
+            className="group glass-card rounded-[28px] overflow-hidden transition-all duration-300"
         >
             <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
                     src={cat.imageUrl}
                     alt={cat.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    width={400}
+                    height={400}
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />

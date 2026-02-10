@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { cats } from "@/data/cats";
@@ -55,7 +56,13 @@ export default function DashboardPage() {
                         <div className="relative group cursor-pointer shrink-0">
                             {user.user_metadata.avatar_url ? (
                                 // eslint-disable-next-line @next/next/no-img-element
-                                <img src={user.user_metadata.avatar_url} alt={user.user_metadata.full_name || "User"} className="w-28 h-28 rounded-3xl object-cover border-4 border-white shadow-xl shadow-rose-100/50" />
+                                <Image
+                                    src={user.user_metadata.avatar_url}
+                                    alt={user.user_metadata.full_name || "User"}
+                                    width={112}
+                                    height={112}
+                                    className="rounded-3xl object-cover border-4 border-white shadow-xl shadow-rose-100/50"
+                                />
                             ) : (
                                 <div className="w-28 h-28 rounded-3xl bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center border-4 border-white shadow-xl shadow-rose-100/50 text-white text-3xl font-bold">
                                     {getInitials(user.user_metadata.full_name || "User")}

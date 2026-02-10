@@ -67,7 +67,7 @@
 
     .glass-card-hover {
         @apply glass-card;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .glass-card-hover:hover {
@@ -157,6 +157,6 @@
     }
 
     .animate-fade-in-up {
-        animation: fade-in-up 0.6s ease-out forwards;
+        animation: fade-in-up 0.4s ease-out forwards;
     }
 }

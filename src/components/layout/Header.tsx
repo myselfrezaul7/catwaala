@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Heart, User, LogIn, Cat, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
@@ -77,7 +78,13 @@ export function Header() {
                                     <Button variant="ghost" size="sm" className="gap-2 rounded-xl text-stone-700 hover:bg-rose-50/60 h-10 px-3">
                                         {user.user_metadata.avatar_url ? (
                                             // eslint-disable-next-line @next/next/no-img-element
-                                            <img src={user.user_metadata.avatar_url} alt="User" className="w-7 h-7 rounded-lg object-cover" />
+                                            <Image
+                                                src={user.user_metadata.avatar_url}
+                                                alt="User"
+                                                width={28}
+                                                height={28}
+                                                className="rounded-lg object-cover"
+                                            />
                                         ) : (
                                             <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-rose-400 to-rose-500 flex items-center justify-center">
                                                 <User className="w-4 h-4 text-white" />
