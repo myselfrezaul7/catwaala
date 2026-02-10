@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 import { submitToWeb3Forms } from "@/lib/web3forms";
+import { ReportService } from "@/services/ReportService";
 
 // Dynamically import LocationPicker to avoid SSR issues with Leaflet
 const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
@@ -41,25 +42,29 @@ export function ReportForm() {
             return;
         }
 
-        const formData = {
-            form_name: "Report Issue",
-            ...data,
-            // Convert numbers/files to string or handle appropriately for email
-            latitude: data.latitude.toString(),
-            longitude: data.longitude.toString(),
-            // Note: File upload needs special handling (base64 or link) for basic Web3Forms free tier, 
-            // skipping binary file for now or user can upgrade. sending basic text data.
-        };
+        try {
+            let imageUrl = null;
+            if (data.image && data.image.length > 0) {
+                imageUrl = await ReportService.uploadImage(data.image[0]);
+            }
 
-        const result = await submitToWeb3Forms(formData);
+            await ReportService.create({
+                type: data.type,
+                description: data.description,
+                latitude: data.latitude,
+                longitude: data.longitude,
+                location_text: data.locationDetails,
+                contact_info: data.contact, // Check if schema uses contact_info
+                image_url: imageUrl,
+            });
 
-        if (result.success) {
             setSubmitted(true);
             reset();
             setCaptchaValue(null);
             recaptchaRef.current?.reset();
-        } else {
-            alert(result.message || "Something went wrong.");
+        } catch (error) {
+            console.error(error);
+            alert("Failed to submit report. Please try again.");
         }
     };
 

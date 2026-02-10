@@ -1,52 +1,65 @@
-import { MOCK_VET_CLINICS, VetClinic } from "@/data/vets";
-import { cats, Cat } from "@/data/cats";
-// import { createClient } from "@/utils/supabase/server"; // TODO: Uncomment when Supabase is set up
+export type Profile = {
+    id: string;
+    full_name: string | null;
+    avatar_url: string | null;
+    phone: string | null;
+    role: 'user' | 'admin';
+    created_at: string;
+};
 
-export async function getVets(): Promise<VetClinic[]> {
-    // TODO: Uncomment this block to enable Supabase data fetching
-    /*
-    try {
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-          return [...MOCK_VET_CLINICS];
-      }
-      
-      const { createClient } = await import("@/utils/supabase/server");
-      const supabase = await createClient();
-  
-      const { data, error } = await supabase.from('vets').select('*');
-      if (error || !data) {
-          console.warn("Supabase Fetch Error (Vets):", error);
-          return [...MOCK_VET_CLINICS];
-      }
-      return data as VetClinic[];
-    } catch (e) {
-        console.warn("Supabase Client Init Error:", e);
-        return [...MOCK_VET_CLINICS];
-    }
-    */
-    return [...MOCK_VET_CLINICS];
-}
+export type Cat = {
+    id: number;
+    name: string;
+    age: number;
+    gender: 'Male' | 'Female';
+    breed: string | null;
+    location: string;
+    description: string | null;
+    attributes: {
+        vaccinated: boolean;
+        neutered: boolean;
+        goodWithKids: boolean;
+        houseTrained: boolean;
+    };
+    images: string[];
+    status: 'Available' | 'Adopted' | 'Pending';
+    created_at: string;
+};
 
-export async function getCats(): Promise<Cat[]> {
-    // TODO: Uncomment this block to enable Supabase data fetching
-    /*
-    try {
-      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-          return [...cats];
-      }
-  
-      const { createClient } = await import("@/utils/supabase/server");
-      const supabase = await createClient();
-  
-      const { data, error } = await supabase.from('cats').select('*');
-      if (error || !data) {
-           console.warn("Supabase Fetch Error (Cats):", error);
-          return [...cats];
-      }
-      return data as Cat[];
-    } catch (e) {
-        return [...cats];
-    }
-    */
-    return [...cats];
-}
+export type Memorial = {
+    id: number;
+    pet_name: string;
+    owner_name: string;
+    tribute: string;
+    image_url: string | null;
+    user_id: string | null;
+    created_at: string;
+};
+
+export type Report = {
+    id: number;
+    type: 'Lost' | 'Found' | 'Injured';
+    description: string | null;
+    latitude: number | null;
+    longitude: number | null;
+    location_text: string | null;
+    contact_info: string | null;
+    image_url: string | null;
+    user_id: string | null;
+    status: 'Open' | 'Resolved';
+    created_at: string;
+};
+
+export type Vet = {
+    id: number;
+    name: string;
+    address: string;
+    phone: string | null;
+    latitude: number | null;
+    longitude: number | null;
+    rating: number;
+    services: string[];
+    website: string | null;
+    image_url: string | null;
+    created_at: string;
+};

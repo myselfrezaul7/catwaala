@@ -5,6 +5,7 @@ import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const ibmPlexSans = IBM_Plex_Sans({
     variable: "--font-ibm-plex-sans",
@@ -71,6 +72,7 @@ export default function RootLayout({
                             </main>
                             <Footer />
                         </div>
+                        <Toaster position="top-center" richColors />
                     </FavoritesProvider>
                 </AuthProvider>
             </body>

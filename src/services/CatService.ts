@@ -1,39 +1,45 @@
-import { createClient } from "@/utils/supabase/client";
-import { cats, Cat } from "@/data/cats";
+import { supabaseClient } from "@/utils/supabase/client";
+import { Cat } from "./server-data";
 
 export const CatService = {
-    async getAllCats(): Promise<Cat[]> {
-        const supabase = createClient();
+    async getAll() {
+        const { data, error } = await supabaseClient
+            .from("cats")
+            .select("*")
+            .eq("status", "Available")
+            .order("created_at", { ascending: false });
 
-        const isSupabaseConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-        if (!isSupabaseConfigured) {
-            return cats;
-        }
-
-        const { data, error } = await supabase
-            .from('cats')
-            .select('*');
-
-        if (error || !data || data.length === 0) {
-            return cats;
+        if (error) {
+            console.error("Error fetching cats:", error);
+            return [];
         }
 
         return data as Cat[];
     },
 
-    async getCatById(id: string): Promise<Cat | undefined> {
-        const supabase = createClient();
-        if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return cats.find(c => c.id === id);
-
-        const { data, error } = await supabase
-            .from('cats')
-            .select('*')
-            .eq('id', id)
+    async getById(id: number) {
+        const { data, error } = await supabaseClient
+            .from("cats")
+            .select("*")
+            .eq("id", id)
             .single();
 
-        if (error || !data) return cats.find(c => c.id === id);
-
+        if (error) return null;
         return data as Cat;
+    },
+
+    async getByIds(ids: number[]) {
+        if (ids.length === 0) return [];
+
+        const { data, error } = await supabaseClient
+            .from("cats")
+            .select("*")
+            .in("id", ids);
+
+        if (error) {
+            console.error("Error fetching cats by ids:", error);
+            return [];
+        }
+        return data as Cat[];
     }
 };

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { cats } from "@/data/cats";
 import { Button } from "@/components/ui/button";
 import { MapPin, Info, CheckCircle, ArrowLeft, Share2, Heart } from "lucide-react";
 import { AdoptionForm } from "@/components/adopt/AdoptionForm";
+import { CatService } from "@/services/CatService";
 
 type Props = {
     params: Promise<{ id: string }>;
@@ -12,11 +12,39 @@ type Props = {
 
 export default async function CatDetailPage({ params }: Props) {
     const { id } = await params;
-    const cat = cats.find(c => c.id === id);
+    const catId = parseInt(id);
 
-    if (!cat) {
+    if (isNaN(catId)) {
         return notFound();
     }
+
+    const dbCat = await CatService.getById(catId);
+
+    if (!dbCat) {
+        return notFound();
+    }
+
+    // Adapt DB data to UI format
+    const cat = {
+        name: dbCat.name,
+        tag: dbCat.status === 'Adopted' ? 'Adopted' : null,
+        location: dbCat.location,
+        breed: dbCat.breed || "Domestic Short Hair",
+        age: formatAge(dbCat.age),
+        gender: dbCat.gender,
+        description: dbCat.description || "No description available.",
+        imageUrl: dbCat.images?.[0] || `/assets/cat${(dbCat.id % 3) + 1}.jpg`,
+        vaccinated: dbCat.attributes.vaccinated,
+        neutered: dbCat.attributes.neutered,
+        goodWithKids: dbCat.attributes.goodWithKids,
+        // Derive some tags for UI
+        temperamentTags: [
+            dbCat.attributes.goodWithKids ? "Good with Kids" : "Quiet Home",
+            dbCat.attributes.vaccinated ? "Health Checked" : null,
+            dbCat.attributes.neutered ? "Sterilized" : null,
+            dbCat.gender === 'Female' ? "Sweet" : "Playful" // Dummy logic for now
+        ].filter(Boolean) as string[]
+    };
 
     return (
         <div className="min-h-screen pb-24">
@@ -115,4 +143,10 @@ export default async function CatDetailPage({ params }: Props) {
             </div>
         </div>
     );
+}
+
+function formatAge(ageInMonths: number): string {
+    if (ageInMonths < 12) return `${ageInMonths} months`;
+    const years = Math.floor(ageInMonths / 12);
+    return `${years} year${years > 1 ? 's' : ''}`;
 }

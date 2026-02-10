@@ -1,13 +1,14 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { PawPrint, Upload, Plus, Heart } from "lucide-react";
-import { Memorial } from "@/data/memorials";
+import { Upload, Plus, Heart, Loader2 } from "lucide-react";
+import { Memorial } from "@/services/server-data";
+import { MemorialService } from "@/services/MemorialService";
+import { toast } from "sonner";
+import Image from "next/image";
 
 interface MemorialModalProps {
     onAddTribute: (memorial: Memorial) => void;
@@ -16,32 +17,54 @@ interface MemorialModalProps {
 export function MemorialModal({ onAddTribute }: MemorialModalProps) {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
     const [formData, setFormData] = useState({
         petName: "",
         ownerName: "",
         tribute: "",
     });
 
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setSelectedFile(file);
+            const url = URL.createObjectURL(file);
+            setPreviewUrl(url);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
-        // Mock upload delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            let imageUrl = null;
+            if (selectedFile) {
+                imageUrl = await MemorialService.uploadImage(selectedFile);
+            }
 
-        const newMemorial: Memorial = {
-            id: Date.now(),
-            petName: formData.petName,
-            ownerName: formData.ownerName,
-            tribute: formData.tribute,
-            imageUrl: `/assets/cat${Math.floor(Math.random() * 3) + 1}.jpg`,
-            timestamp: new Date().toISOString(),
-        };
+            const newMemorial = await MemorialService.create({
+                pet_name: formData.petName,
+                owner_name: formData.ownerName,
+                tribute: formData.tribute,
+                image_url: imageUrl,
+            });
 
-        onAddTribute(newMemorial);
-        setLoading(false);
-        setOpen(false);
-        setFormData({ petName: "", ownerName: "", tribute: "" });
+            onAddTribute(newMemorial);
+            toast.success("Tribute posted successfully");
+            setOpen(false);
+            setFormData({ petName: "", ownerName: "", tribute: "" });
+            setSelectedFile(null);
+            setPreviewUrl(null);
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to post tribute. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -104,17 +127,43 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
 
                         <div className="space-y-2">
                             <Label className="text-stone-700 font-bold">Photo</Label>
-                            <div className="border-2 border-dashed border-rose-200 rounded-2xl p-6 text-center hover:bg-rose-50 transition-colors cursor-pointer group bg-rose-50/30">
-                                <div className="bg-white p-3 rounded-full inline-block shadow-sm mb-2 group-hover:scale-110 transition-transform">
-                                    <Upload className="w-6 h-6 text-rose-400" />
-                                </div>
-                                <p className="text-sm text-stone-500 font-medium">Click to upload image</p>
+                            <div
+                                onClick={() => fileInputRef.current?.click()}
+                                className="border-2 border-dashed border-rose-200 rounded-2xl p-4 text-center hover:bg-rose-50 transition-colors cursor-pointer group bg-rose-50/30 relative overflow-hidden h-32 flex flex-col items-center justify-center"
+                            >
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    className="hidden"
+                                    accept="image/*"
+                                    onChange={handleFileSelect}
+                                />
+                                {previewUrl ? (
+                                    <Image
+                                        src={previewUrl}
+                                        alt="Preview"
+                                        fill
+                                        className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    />
+                                ) : (
+                                    <>
+                                        <div className="bg-white p-2 rounded-full inline-block shadow-sm mb-2 group-hover:scale-110 transition-transform">
+                                            <Upload className="w-5 h-5 text-rose-400" />
+                                        </div>
+                                        <p className="text-sm text-stone-500 font-medium">Click to upload image</p>
+                                    </>
+                                )}
                             </div>
                         </div>
 
                         <div className="flex justify-end pt-2">
                             <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold h-12 rounded-xl shadow-lg shadow-rose-200">
-                                {loading ? "Posting..." : "Post Tribute"}
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                        Posting...
+                                    </>
+                                ) : "Post Tribute"}
                             </Button>
                         </div>
                     </form>

@@ -59,6 +59,26 @@ export function Hero() {
                             </Button>
                         </Link>
                     </motion.div>
+
+                    {/* Kuttawaala Link */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="mt-8 pt-8 border-t border-rose-100/50 flex items-center gap-4"
+                    >
+                        <div className="text-sm font-medium text-stone-500">Also love dogs?</div>
+                        <a
+                            href="https://kuttawaala.vercel.app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-3 px-5 py-2.5 bg-orange-50 hover:bg-orange-100 text-orange-700 rounded-xl transition-all duration-300 border border-orange-200/50 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/10"
+                        >
+                            <span className="text-lg">🐕</span>
+                            <span className="font-bold">Visit Kuttawaala</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </a>
+                    </motion.div>
                 </div>
 
                 {/* Hero Image */}

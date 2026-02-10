@@ -1,16 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PetCard } from "@/components/shared/PetCard";
 import { Button } from "@/components/ui/button";
 import { Search, X } from "lucide-react";
-import { cats, getAgeCategory, type AgeCategory, type Cat } from "@/data/cats";
+import { Cat as DbCat } from "@/services/server-data";
+import { CatService } from "@/services/CatService";
+import { getAgeCategory, type AgeCategory } from "@/data/cats";
 
-interface AdoptPageContentProps {
-    initialCats?: Cat[];
-}
+// UI Cat type matching PetCard expectations (derived from old data/cats.ts)
+type UiCat = {
+    id: string;
+    name: string;
+    breed: string;
+    age: string;
+    gender: string;
+    location: string;
+    imageUrl: string;
+    tag: string | null;
+    vaccinated: boolean;
+    neutered: boolean;
+    goodWithKids: boolean;
+};
 
-export function AdoptPageContent({ initialCats }: AdoptPageContentProps) {
+export function AdoptPageContent() {
+    const [cats, setCats] = useState<UiCat[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    // Filters
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedGender, setSelectedGender] = useState<string>("All");
     const [selectedAge, setSelectedAge] = useState<AgeCategory | "All">("All");
@@ -20,9 +37,42 @@ export function AdoptPageContent({ initialCats }: AdoptPageContentProps) {
         goodWithKids: false,
     });
 
-    const allCats = initialCats || cats;
+    useEffect(() => {
+        loadCats();
+    }, []);
 
-    const filteredCats = allCats.filter(cat => {
+    async function loadCats() {
+        try {
+            const dbCats = await CatService.getAll();
+            // Adapt DB data to UI format
+            const uiCats: UiCat[] = dbCats.map(cat => ({
+                id: cat.id.toString(),
+                name: cat.name,
+                breed: cat.breed || "Domestic Short Hair",
+                age: formatAge(cat.age),
+                gender: cat.gender,
+                location: cat.location,
+                imageUrl: cat.images?.[0] || `/assets/cat${(cat.id % 3) + 1}.jpg`, // Fallback for demo
+                tag: cat.status === 'Adopted' ? 'Adopted' : null,
+                vaccinated: cat.attributes?.vaccinated || false,
+                neutered: cat.attributes?.neutered || false,
+                goodWithKids: cat.attributes?.goodWithKids || false,
+            }));
+            setCats(uiCats);
+        } catch (error) {
+            console.error("Failed to load cats", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    function formatAge(ageInMonths: number): string {
+        if (ageInMonths < 12) return `${ageInMonths} months`;
+        const years = Math.floor(ageInMonths / 12);
+        return `${years} year${years > 1 ? 's' : ''}`;
+    }
+
+    const filteredCats = cats.filter(cat => {
         const matchesSearch = searchQuery === "" ||
             cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             cat.breed.toLowerCase().includes(searchQuery.toLowerCase()) ||
