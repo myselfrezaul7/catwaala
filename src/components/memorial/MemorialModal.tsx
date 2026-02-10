@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { PawPrint, Upload, Plus } from "lucide-react";
+import { PawPrint, Upload, Plus, Heart } from "lucide-react";
 import { Memorial } from "@/data/memorials";
 
 interface MemorialModalProps {
@@ -30,7 +30,7 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
         await new Promise(resolve => setTimeout(resolve, 1500));
 
         const newMemorial: Memorial = {
-            id: Date.now(), // Changed to number to match interface if needed, or cast
+            id: Date.now(),
             petName: formData.petName,
             ownerName: formData.ownerName,
             tribute: formData.tribute,
@@ -47,72 +47,78 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm h-12 px-8">
-                    <Plus className="w-4 h-4 mr-2" /> Add a Tribute
+                <Button className="rounded-full bg-rose-500 hover:bg-rose-600 text-white shadow-lg shadow-rose-200 border-2 border-rose-100 h-14 px-8 text-lg font-bold gap-2 transition-all hover:scale-105">
+                    <Plus className="w-5 h-5" /> Add a Tribute
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] bg-zinc-900 border-zinc-800 text-slate-100">
-                <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold font-heading flex items-center gap-2">
-                        <PawPrint className="w-6 h-6 text-rose-500" /> Remember a Friend
-                    </DialogTitle>
-                    <DialogDescription className="text-slate-400">
-                        Share a photo and a few words to honor your beloved cat.
-                    </DialogDescription>
-                </DialogHeader>
+            <DialogContent className="sm:max-w-[500px] bg-white/95 backdrop-blur-xl border-white shadow-2xl rounded-[2rem] p-0 overflow-hidden">
+                <div className="bg-gradient-to-r from-rose-50 to-orange-50 p-6 border-b border-rose-100">
+                    <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold font-heading flex items-center gap-2 text-stone-800">
+                            <Heart className="w-6 h-6 text-rose-500 fill-rose-500" /> Remember a Friend
+                        </DialogTitle>
+                        <DialogDescription className="text-stone-500 font-medium">
+                            Share a photo and a few words to honor your beloved cat.
+                        </DialogDescription>
+                    </DialogHeader>
+                </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-                    <div className="grid grid-cols-2 gap-4">
+                <div className="p-6">
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="petName" className="text-stone-700 font-bold">Pet's Name</Label>
+                                <Input
+                                    id="petName"
+                                    required
+                                    value={formData.petName}
+                                    onChange={(e) => setFormData({ ...formData, petName: e.target.value })}
+                                    className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
+                                    placeholder="e.g. Luna"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="ownerName" className="text-stone-700 font-bold">Your Name</Label>
+                                <Input
+                                    id="ownerName"
+                                    required
+                                    value={formData.ownerName}
+                                    onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
+                                    className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
+                                    placeholder="e.g. Sarah"
+                                />
+                            </div>
+                        </div>
+
                         <div className="space-y-2">
-                            <Label htmlFor="petName">Pet's Name</Label>
-                            <Input
-                                id="petName"
+                            <Label htmlFor="tribute" className="text-stone-700 font-bold">Tribute</Label>
+                            <Textarea
+                                id="tribute"
                                 required
-                                value={formData.petName}
-                                onChange={(e) => setFormData({ ...formData, petName: e.target.value })}
-                                className="bg-black/20 border-zinc-700 focus:ring-rose-500"
-                                placeholder="e.g. Luna"
+                                value={formData.tribute}
+                                onChange={(e) => setFormData({ ...formData, tribute: e.target.value })}
+                                className="bg-stone-50 border-amber-100 focus:ring-rose-500 min-h-[100px] rounded-xl"
+                                placeholder="Tell us what made them special..."
                             />
                         </div>
+
                         <div className="space-y-2">
-                            <Label htmlFor="ownerName">Your Name</Label>
-                            <Input
-                                id="ownerName"
-                                required
-                                value={formData.ownerName}
-                                onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
-                                className="bg-black/20 border-zinc-700 focus:ring-rose-500"
-                                placeholder="e.g. Sarah"
-                            />
+                            <Label className="text-stone-700 font-bold">Photo</Label>
+                            <div className="border-2 border-dashed border-rose-200 rounded-2xl p-6 text-center hover:bg-rose-50 transition-colors cursor-pointer group bg-rose-50/30">
+                                <div className="bg-white p-3 rounded-full inline-block shadow-sm mb-2 group-hover:scale-110 transition-transform">
+                                    <Upload className="w-6 h-6 text-rose-400" />
+                                </div>
+                                <p className="text-sm text-stone-500 font-medium">Click to upload image</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="tribute">Tribute</Label>
-                        <Textarea
-                            id="tribute"
-                            required
-                            value={formData.tribute}
-                            onChange={(e) => setFormData({ ...formData, tribute: e.target.value })}
-                            className="bg-black/20 border-zinc-700 focus:ring-rose-500 min-h-[100px]"
-                            placeholder="Tell us what made them special..."
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label>Photo</Label>
-                        <div className="border-2 border-dashed border-zinc-700 rounded-xl p-8 text-center hover:bg-white/5 transition-colors cursor-pointer group">
-                            <Upload className="w-8 h-8 mx-auto text-slate-500 group-hover:text-rose-400 mb-2 transition-colors" />
-                            <p className="text-sm text-slate-500">Click to upload image</p>
+                        <div className="flex justify-end pt-2">
+                            <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold h-12 rounded-xl shadow-lg shadow-rose-200">
+                                {loading ? "Posting..." : "Post Tribute"}
+                            </Button>
                         </div>
-                    </div>
-
-                    <div className="flex justify-end pt-2">
-                        <Button type="submit" disabled={loading} className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold">
-                            {loading ? "Posting..." : "Post Tribute"}
-                        </Button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </DialogContent>
         </Dialog>
     );

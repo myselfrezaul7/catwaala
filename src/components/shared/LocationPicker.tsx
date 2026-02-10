@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -48,7 +48,7 @@ export default function LocationPicker({ onLocationSelect, initialLat, initialLn
     const defaultCenter: [number, number] = [23.8103, 90.4125];
 
     return (
-        <div className="h-[300px] w-full rounded-xl overflow-hidden border border-slate-200 dark:border-zinc-700 z-0 relative">
+        <div className="h-[300px] w-full z-0 relative">
             <MapContainer
                 center={position || defaultCenter}
                 zoom={13}

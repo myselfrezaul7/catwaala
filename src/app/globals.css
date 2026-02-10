@@ -4,76 +4,40 @@
 
 @layer base {
     :root {
-        --background: 0 0% 98%;
-        --foreground: 0 0% 3.9%;
+        --background: 35 30% 98%;
+        --foreground: 25 10% 15%;
 
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
+        --card: 35 25% 99%;
+        --card-foreground: 25 10% 15%;
 
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
+        --popover: 35 25% 99%;
+        --popover-foreground: 25 10% 15%;
 
         --primary: 347 77% 50%;
-        --primary-foreground: 0 0% 98%;
+        --primary-foreground: 0 0% 100%;
 
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
+        --secondary: 35 20% 95%;
+        --secondary-foreground: 25 10% 20%;
 
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
+        --muted: 35 15% 94%;
+        --muted-foreground: 25 5% 45%;
 
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
+        --accent: 35 20% 95%;
+        --accent-foreground: 25 10% 20%;
 
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
 
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
+        --border: 35 15% 90%;
+        --input: 35 15% 90%;
         --ring: 347 77% 50%;
 
         --radius: 1rem;
 
-        /* iOS 26 Glassmorphism variables */
-        --glass-background: rgba(255, 255, 255, 0.72);
-        --glass-border: rgba(255, 255, 255, 0.5);
-        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        --glass-blur: 20px;
-    }
-
-    .dark {
-        --background: 240 10% 3.9%;
-        --foreground: 0 0% 98%;
-
-        --card: 240 10% 8%;
-        --card-foreground: 0 0% 98%;
-
-        --popover: 240 10% 8%;
-        --popover-foreground: 0 0% 98%;
-
-        --primary: 347 77% 60%;
-        --primary-foreground: 0 0% 9%;
-
-        --secondary: 240 3.7% 15.9%;
-        --secondary-foreground: 0 0% 98%;
-
-        --muted: 240 3.7% 15.9%;
-        --muted-foreground: 0 0% 63.9%;
-
-        --accent: 240 3.7% 15.9%;
-        --accent-foreground: 0 0% 98%;
-
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-
-        --border: 240 3.7% 15.9%;
-        --input: 240 3.7% 15.9%;
-        --ring: 347 77% 60%;
-
-        /* iOS 26 Glassmorphism variables - Dark mode */
-        --glass-background: rgba(30, 30, 35, 0.75);
-        --glass-border: rgba(255, 255, 255, 0.08);
-        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+        /* iOS 26 Glassmorphism variables - Warm cream */
+        --glass-background: rgba(255, 253, 248, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.7);
+        --glass-shadow: 0 8px 40px rgba(180, 160, 130, 0.10), 0 2px 12px rgba(0, 0, 0, 0.04);
         --glass-blur: 24px;
     }
 }
@@ -85,16 +49,18 @@
 
     body {
         @apply bg-background text-foreground font-sans antialiased;
+        background: linear-gradient(160deg, #FFFDF8 0%, #FFF8EE 40%, #FFF5E8 100%);
+        min-height: 100vh;
     }
 }
 
 @layer utilities {
 
-    /* iOS 26.2 Glassmorphism Effect */
+    /* iOS 26 Glassmorphism Effect — Premium */
     .glass-card {
         background: var(--glass-background);
-        backdrop-filter: blur(var(--glass-blur));
-        -webkit-backdrop-filter: blur(var(--glass-blur));
+        backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
         border: 1px solid var(--glass-border);
         box-shadow: var(--glass-shadow);
     }
@@ -105,27 +71,22 @@
     }
 
     .glass-card-hover:hover {
-        transform: translateY(-4px) scale(1.01);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-6px) scale(1.015);
+        box-shadow: 0 24px 48px rgba(180, 160, 130, 0.16), 0 4px 16px rgba(0, 0, 0, 0.06);
+        border-color: rgba(255, 255, 255, 0.85);
     }
 
-    .dark .glass-card-hover:hover {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Animated gradient background */
+    /* Warm gradient background */
     .gradient-bg {
         background: linear-gradient(135deg,
-                hsl(347, 77%, 97%) 0%,
-                hsl(240, 60%, 97%) 50%,
-                hsl(280, 60%, 97%) 100%);
+                #FFFDF8 0%,
+                #FFF5E8 50%,
+                #FFF0E0 100%);
     }
 
-    .dark .gradient-bg {
-        background: linear-gradient(135deg,
-                hsl(240, 10%, 6%) 0%,
-                hsl(280, 10%, 8%) 50%,
-                hsl(320, 10%, 6%) 100%);
+    /* Cream section bg */
+    .cream-section {
+        background: linear-gradient(180deg, #FFFDF8 0%, #FFF8EE 100%);
     }
 
     /* Smooth float animation */
@@ -154,7 +115,7 @@
         }
 
         50% {
-            box-shadow: 0 0 20px 4px rgba(225, 29, 72, 0.2);
+            box-shadow: 0 0 20px 4px rgba(225, 29, 72, 0.15);
         }
     }
 
@@ -176,9 +137,26 @@
     .animate-shimmer {
         background: linear-gradient(90deg,
                 transparent,
-                rgba(255, 255, 255, 0.4),
+                rgba(255, 255, 255, 0.5),
                 transparent);
         background-size: 200% 100%;
         animation: shimmer 2s infinite;
+    }
+
+    /* Gentle fade-in */
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 0.6s ease-out forwards;
     }
 }

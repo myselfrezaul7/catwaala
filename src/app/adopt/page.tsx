@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { AdoptPageContent } from "@/components/adopt/AdoptPageContent";
+import { cats } from "@/data/cats";
 
 export const metadata: Metadata = {
     title: "Adopt a Rescued Cat",
@@ -7,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AdoptPage() {
-    return <AdoptPageContent />;
+    return <AdoptPageContent initialCats={cats} />;
 }

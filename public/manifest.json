@@ -1,0 +1,21 @@
+{
+    "name": "Catwaala",
+    "short_name": "Catwaala",
+    "description": "Adoption & rescue platform for cats in Bangladesh",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#f43f5e",
+    "icons": [
+        {
+            "src": "/logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}

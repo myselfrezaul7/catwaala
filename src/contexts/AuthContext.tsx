@@ -1,66 +1,84 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-
-type User = {
-    uid: string;
-    email: string | null;
-    displayName: string | null;
-    photoURL: string | null;
-} | null;
+import { User, Session } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 type AuthContextType = {
-    currentUser: User;
+    user: User | null;
+    session: Session | null;
     loading: boolean;
-    updateUserProfile: (name: string, photoURL?: string) => Promise<void>;
-    logout: () => Promise<void>;
+    signInWithGoogle: () => Promise<void>;
+    signOut: () => Promise<void>;
 };
 
-const AuthContext = createContext<AuthContextType>({ currentUser: null, loading: true, updateUserProfile: async () => { }, logout: async () => { } });
+const AuthContext = createContext<AuthContextType>({
+    user: null,
+    session: null,
+    loading: true,
+    signInWithGoogle: async () => { },
+    signOut: async () => { },
+});
 
 export function useAuth() {
     return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [currentUser, setCurrentUser] = useState<User>(null);
+    const [user, setUser] = useState<User | null>(null);
+    const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
+    const supabase = createClient();
 
     useEffect(() => {
-        setTimeout(() => {
-            // Mocking a logged in user for demo purposes after 500ms
-            setCurrentUser({
-                uid: "123",
-                email: "catlover@example.com",
-                displayName: "Cat Lover",
-                photoURL: null
-            });
-            setLoading(false);
-        }, 500);
-    }, []);
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+            (event, session) => {
+                if (session) {
+                    setUser(session.user);
+                    setSession(session);
+                } else {
+                    setUser(null);
+                    setSession(null);
+                }
+                setLoading(false);
+            }
+        );
 
-    const updateUserProfile = async (name: string, photoURL?: string) => {
-        // Mock update
-        const updatedUser = { ...currentUser!, displayName: name, photoURL: photoURL || null };
-        setCurrentUser(updatedUser);
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 500));
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, [supabase]);
+
+    const signInWithGoogle = async () => {
+        await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/auth/callback`,
+            },
+        });
     };
 
-    const logout = async () => {
-        setCurrentUser(null);
+    const signOut = async () => {
+        await supabase.auth.signOut();
+        setUser(null);
+        setSession(null);
+        router.refresh();
     };
+
 
     const value = {
-        currentUser,
+        user,
+        session,
         loading,
-        updateUserProfile,
-        logout
+        signInWithGoogle,
+        signOut,
     };
 
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 }

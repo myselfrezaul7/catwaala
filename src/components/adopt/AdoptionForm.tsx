@@ -34,12 +34,12 @@ export function AdoptionForm({ catName }: { catName: string }) {
 
     if (submitted) {
         return (
-            <div className="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl border border-green-100 dark:border-green-800 text-center">
-                <h3 className="text-xl font-bold text-green-700 dark:text-green-400 mb-2">Application Sent! 😻</h3>
-                <p className="text-slate-600 dark:text-slate-300">
+            <div className="bg-emerald-50 p-8 rounded-2xl border border-emerald-100 text-center">
+                <h3 className="text-xl font-bold text-emerald-700 mb-2">Application Sent! 😻</h3>
+                <p className="text-stone-600">
                     We've received your request to adopt {catName}. We'll review it and get back to you shortly.
                 </p>
-                <Button variant="outline" onClick={() => setSubmitted(false)} className="mt-4">
+                <Button variant="outline" onClick={() => setSubmitted(false)} className="mt-4 border-emerald-200 text-emerald-700 hover:bg-emerald-100">
                     Send another
                 </Button>
             </div>
@@ -47,33 +47,33 @@ export function AdoptionForm({ catName }: { catName: string }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4 bg-rose-50/50 dark:bg-zinc-900/50 p-6 rounded-2xl border border-rose-100 dark:border-zinc-800">
+        <form onSubmit={handleSubmit} className="space-y-4 glass-card p-8 rounded-[2rem]">
             <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Name</label>
-                    <input name="name" required type="text" className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Your Name" />
+                    <label className="text-sm font-bold text-stone-700">Name</label>
+                    <input name="name" required type="text" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="Your Name" />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Phone</label>
-                    <input name="phone" required type="tel" className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none" placeholder="017..." />
+                    <label className="text-sm font-bold text-stone-700">Phone</label>
+                    <input name="phone" required type="tel" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="017..." />
                 </div>
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Email (Optional)</label>
-                <input name="email" type="email" className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none" placeholder="you@example.com" />
+                <label className="text-sm font-bold text-stone-700">Email (Optional)</label>
+                <input name="email" type="email" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="you@example.com" />
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 dark:text-slate-300">Why do you want to adopt {catName}?</label>
-                <textarea name="message" required className="w-full p-3 rounded-xl border bg-white dark:bg-black focus:ring-2 focus:ring-rose-500 outline-none min-h-[100px]" placeholder="Tell us about your home and experience with cats..." />
+                <label className="text-sm font-bold text-stone-700">Why do you want to adopt {catName}?</label>
+                <textarea name="message" required className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none min-h-[100px] placeholder:text-stone-400 text-stone-700" placeholder="Tell us about your home and experience with cats..." />
             </div>
             <div className="hidden">
                 {/* HoneyPot for spam protection */}
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
             </div>
-            <Button type="submit" size="lg" disabled={isSubmitting} className="w-full text-lg h-14 shadow-xl shadow-rose-500/20 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl">
+            <Button type="submit" size="lg" disabled={isSubmitting} className="w-full text-lg h-14 shadow-xl shadow-rose-500/20 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white rounded-2xl transition-all duration-300">
                 {isSubmitting ? "Sending..." : "Submit Adoption Application"}
             </Button>
-            <p className="text-center text-xs text-slate-400 mt-2">
+            <p className="text-center text-xs text-stone-400 mt-2">
                 We will review your application and contact you within 24 hours.
             </p>
         </form>

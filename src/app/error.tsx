@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { AlertCircle, RefreshCcw } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 
 export default function Error({
     error,
@@ -11,31 +10,19 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
-    useEffect(() => {
-        // Log the error to an error reporting service
-        console.error(error);
-    }, [error]);
-
     return (
-        <div className="min-h-screen bg-white dark:bg-zinc-950 flex flex-col items-center justify-center p-4 text-center pb-20">
-            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-full mb-6">
-                <AlertCircle className="w-12 h-12 text-red-500" />
-            </div>
-            <h2 className="text-3xl font-bold font-heading mb-4 text-slate-900 dark:text-white">
-                Something went wrong!
-            </h2>
-            <p className="text-slate-500 dark:text-slate-400 max-w-md mb-8">
-                We apologize for the inconvenience. An unexpected error has occurred.
-            </p>
-            <div className="flex gap-4">
+        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
+            <div className="glass-card rounded-[2.5rem] p-12 max-w-md w-full">
+                <div className="w-16 h-16 rounded-2xl bg-rose-100/80 flex items-center justify-center mx-auto mb-6">
+                    <AlertTriangle className="w-8 h-8 text-rose-500" />
+                </div>
+                <h1 className="text-3xl font-bold mb-3 text-stone-800">Something went wrong</h1>
+                <p className="text-stone-400 mb-8">An unexpected error occurred. Please try again.</p>
                 <Button
-                    onClick={() => reset()}
-                    className="gap-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200"
+                    onClick={reset}
+                    className="rounded-2xl h-12 px-8 bg-gradient-to-r from-rose-500 to-rose-600 text-white font-semibold shadow-lg shadow-rose-500/20"
                 >
-                    <RefreshCcw className="w-4 h-4" /> Try again
-                </Button>
-                <Button variant="outline" onClick={() => window.location.href = '/'}>
-                    Go Home
+                    Try Again
                 </Button>
             </div>
         </div>

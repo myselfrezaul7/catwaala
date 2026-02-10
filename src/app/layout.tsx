@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { Header } from "@/components/layout/Header";
@@ -13,6 +12,13 @@ const ibmPlexSans = IBM_Plex_Sans({
     weight: ["300", "400", "500", "600", "700"],
 });
 
+export const viewport: Viewport = {
+    themeColor: "#f43f5e",
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+};
+
 export const metadata: Metadata = {
     title: {
         default: "Catwaala | Save a Stray, Gain a Friend",
@@ -22,6 +28,15 @@ export const metadata: Metadata = {
     keywords: ["cat adoption bangladesh", "stray cat rescue dhaka", "veterinary clinics dhaka", "catwaala", "animal welfare bangladesh"],
     authors: [{ name: "Catwaala Team" }],
     creator: "Catwaala",
+    manifest: "/manifest.json",
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: "default",
+        title: "Catwaala",
+    },
+    formatDetection: {
+        telephone: false,
+    },
     openGraph: {
         type: "website",
         locale: "en_US",
@@ -45,26 +60,19 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en">
             <body className={`${ibmPlexSans.variable} antialiased`}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <AuthProvider>
-                        <FavoritesProvider>
-                            <div className="flex flex-col min-h-screen">
-                                <Header />
-                                <main className="flex-grow pt-24">
-                                    {children}
-                                </main>
-                                <Footer />
-                            </div>
-                        </FavoritesProvider>
-                    </AuthProvider>
-                </ThemeProvider>
+                <AuthProvider>
+                    <FavoritesProvider>
+                        <div className="flex flex-col min-h-screen">
+                            <Header />
+                            <main className="flex-grow pt-20">
+                                {children}
+                            </main>
+                            <Footer />
+                        </div>
+                    </FavoritesProvider>
+                </AuthProvider>
             </body>
         </html>
     );

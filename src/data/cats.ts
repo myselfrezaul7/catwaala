@@ -1,4 +1,20 @@
-export const cats = [
+export type Cat = {
+    id: string;
+    name: string;
+    breed: string;
+    age: string;
+    gender: string;
+    location: string;
+    description: string;
+    imageUrl: string;
+    tag: string | null;
+    temperamentTags: string[];
+    vaccinated: boolean;
+    neutered: boolean;
+    goodWithKids: boolean;
+};
+
+export const cats: Cat[] = [
     {
         id: "1",
         name: 'Mimi',
