@@ -41,15 +41,24 @@ export function VetFinder({ initialVets }: VetFinderProps) {
                 <div className="glass-card p-6 rounded-2xl space-y-6">
                     {/* Search & Filter */}
                     <div className="flex flex-col md:flex-row gap-4">
-                        <div className="relative flex-grow">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
+                        <div className="relative flex-grow group">
+                            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                                <Search className="w-5 h-5 text-emerald-500/50 group-focus-within:text-emerald-500 transition-colors duration-300" />
+                            </div>
                             <input
                                 type="text"
-                                placeholder="Search clinic name or area..."
-                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-emerald-500 outline-none transition-all text-stone-700 placeholder:text-stone-400"
+                                placeholder="Search by clinic name or area..."
+                                className="w-full pl-11 pr-32 py-4 rounded-2xl border-2 border-emerald-100/50 bg-white/80 focus:bg-white focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all duration-300 text-stone-700 placeholder:text-stone-400 shadow-sm hover:shadow-md focus:shadow-emerald-500/20 text-lg"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
+                            <div className="absolute top-2 right-2 bottom-2">
+                                <Button
+                                    className="h-full px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40 transition-all duration-300 font-medium group/btn"
+                                >
+                                    Search
+                                </Button>
+                            </div>
                         </div>
                         <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
                             <Button

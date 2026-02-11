@@ -32,7 +32,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
                 const { data, error } = await supabaseClient
                     .from('favorites')
                     .select('cat_id')
-                    .eq('user_id', user.id);
+                    .eq('user_id', user.uid);
 
                 if (data && !error) {
                     // Start with DB favorites
@@ -81,12 +81,12 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
                 await supabaseClient
                     .from('favorites')
                     .delete()
-                    .match({ user_id: user.id, cat_id: catId });
+                    .match({ user_id: user.uid, cat_id: catId });
             } else {
                 // Add
                 await supabaseClient
                     .from('favorites')
-                    .insert({ user_id: user.id, cat_id: catId });
+                    .insert({ user_id: user.uid, cat_id: catId });
             }
         } else {
             // Update local storage

@@ -45,8 +45,8 @@ export function Header() {
                 <div className="container mx-auto px-4 py-3.5 flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 group">
-                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-lg shadow-rose-500/20 group-hover:shadow-rose-500/40 transition-all duration-300 group-hover:scale-105">
-                            <Cat className="w-5 h-5 text-white" />
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 overflow-hidden">
+                            <Image src="/logo.png" alt="Catwaala Logo" width={36} height={36} className="object-contain" />
                         </div>
                         <span className="text-xl font-bold text-stone-800 tracking-tight">
                             CATWAALA
@@ -86,10 +86,10 @@ export function Header() {
                             user ? (
                                 <Link href="/profile">
                                     <Button variant="ghost" size="sm" className="gap-2 rounded-xl text-stone-700 hover:bg-rose-50/60 h-10 px-3">
-                                        {user.user_metadata.avatar_url ? (
+                                        {user.photoURL ? (
                                             // eslint-disable-next-line @next/next/no-img-element
                                             <Image
-                                                src={user.user_metadata.avatar_url}
+                                                src={user.photoURL}
                                                 alt="User"
                                                 width={28}
                                                 height={28}
@@ -100,7 +100,7 @@ export function Header() {
                                                 <User className="w-4 h-4 text-white" />
                                             </div>
                                         )}
-                                        <span className="max-w-[80px] truncate font-medium">{user.user_metadata.full_name?.split(' ')[0] || "User"}</span>
+                                        <span className="max-w-[80px] truncate font-medium">{user.displayName?.split(' ')[0] || "User"}</span>
                                     </Button>
                                 </Link>
                             ) : (

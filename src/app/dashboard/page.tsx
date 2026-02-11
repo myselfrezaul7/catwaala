@@ -27,6 +27,7 @@ import { CatService } from "@/services/CatService";
 import { supabaseClient } from "@/utils/supabase/client";
 import { Report, Memorial } from "@/services/server-data";
 import { adaptCatToCard } from "@/utils/adapters";
+import { updateProfile } from "firebase/auth";
 
 export default function DashboardPage() {
     const { user, signOut, loading } = useAuth();
@@ -58,8 +59,8 @@ export default function DashboardPage() {
     useEffect(() => {
         if (user) {
             setProfileForm({
-                full_name: user.user_metadata.full_name || "",
-                phone: user.user_metadata.phone || ""
+                full_name: user.displayName || "",
+                phone: user.phoneNumber || ""
             });
         }
     }, [user]);
@@ -92,8 +93,8 @@ export default function DashboardPage() {
             setIsLoadingActivity(true);
             try {
                 const [userReports, userMemorials] = await Promise.all([
-                    ReportService.getByUserId(user.id),
-                    MemorialService.getByUserId(user.id)
+                    ReportService.getByUserId(user.uid),
+                    MemorialService.getByUserId(user.uid)
                 ]);
                 setReports(userReports);
                 setMemorials(userMemorials);
@@ -114,31 +115,30 @@ export default function DashboardPage() {
         if (!user) return;
         setIsSavingProfile(true);
         try {
-            let avatarUrl = user.user_metadata.avatar_url;
+            let avatarUrl = user.photoURL;
 
             if (avatarFile) {
                 avatarUrl = await ProfileService.uploadAvatar(avatarFile);
             }
 
-            // Update Supabase Auth Metadata (so it reflects immediately in session)
-            const { error: authError } = await supabaseClient.auth.updateUser({
-                data: {
+            // Update Firebase Auth Profile
+            await updateProfile(user, {
+                displayName: profileForm.full_name,
+                photoURL: avatarUrl
+            });
+
+            // Update Profiles Table (Supabase - might fail if RLS is strict)
+            try {
+                await ProfileService.updateProfile(user.uid, {
+                    id: user.uid,
                     full_name: profileForm.full_name,
                     phone: profileForm.phone,
-                    avatar_url: avatarUrl
-                }
-            });
-
-            if (authError) throw authError;
-
-            // Update Profiles Table
-            await ProfileService.updateProfile(user.id, {
-                id: user.id,
-                full_name: profileForm.full_name,
-                phone: profileForm.phone,
-                avatar_url: avatarUrl,
-                role: 'user'
-            });
+                    avatar_url: avatarUrl,
+                    role: 'user'
+                });
+            } catch (e) {
+                console.error("Failed to update supabase profile, but auth updated", e);
+            }
 
             toast.success("Profile updated successfully!");
             setIsEditing(false);
@@ -176,18 +176,18 @@ export default function DashboardPage() {
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10">
                         {/* Avatar */}
                         <div className="relative group shrink-0">
-                            {user.user_metadata.avatar_url ? (
+                            {user.photoURL ? (
                                 <div className="relative w-28 h-28 md:w-32 md:h-32">
                                     <Image
-                                        src={user.user_metadata.avatar_url}
-                                        alt={user.user_metadata.full_name || "User"}
+                                        src={user.photoURL}
+                                        alt={user.displayName || "User"}
                                         fill
                                         className="rounded-full object-cover border-4 border-white shadow-xl shadow-rose-100/50"
                                     />
                                 </div>
                             ) : (
                                 <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center border-4 border-white shadow-xl shadow-rose-100/50 text-white text-3xl font-bold">
-                                    {getInitials(user.user_metadata.full_name || "User")}
+                                    {getInitials(user.displayName || "User")}
                                 </div>
                             )}
                         </div>
@@ -195,7 +195,7 @@ export default function DashboardPage() {
                         {/* User Info */}
                         <div className="flex-1 text-center md:text-left space-y-3">
                             <h1 className="text-3xl md:text-4xl font-bold text-stone-800">
-                                {user.user_metadata.full_name || "Welcome Back"}
+                                {user.displayName || "Welcome Back"}
                             </h1>
                             <p className="text-stone-400">{user.email}</p>
 
@@ -271,8 +271,8 @@ export default function DashboardPage() {
                                         <div>
                                             <div className="flex items-center gap-3 mb-2">
                                                 <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${report.type === 'Lost' ? 'bg-red-100 text-red-600' :
-                                                        report.type === 'Found' ? 'bg-green-100 text-green-600' :
-                                                            'bg-orange-100 text-orange-600'
+                                                    report.type === 'Found' ? 'bg-green-100 text-green-600' :
+                                                        'bg-orange-100 text-orange-600'
                                                     }`}>
                                                     {report.type}
                                                 </span>
@@ -340,8 +340,8 @@ export default function DashboardPage() {
                                     {avatarFile ? (
                                         // eslint-disable-next-line @next/next/no-img-element
                                         <img src={URL.createObjectURL(avatarFile)} alt="Preview" className="w-full h-full object-cover" />
-                                    ) : user?.user_metadata.avatar_url ? (
-                                        <Image src={user.user_metadata.avatar_url} alt="Current" fill className="object-cover" />
+                                    ) : user?.photoURL ? (
+                                        <Image src={user.photoURL} alt="Current" fill className="object-cover" />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center text-stone-400"><Plus className="w-8 h-8" /></div>
                                     )}

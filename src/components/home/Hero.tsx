@@ -89,10 +89,12 @@ export function Hero() {
                     className="relative order-1 lg:order-2 flex justify-center"
                 >
                     <div className="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[200px] overflow-hidden border-4 border-white/70 shadow-2xl shadow-rose-100/50 bg-amber-50 flex items-center justify-center">
-                        <img
+                        <Image
                             src="/hero-community.png"
                             alt="Community caring for cats"
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
 
                         {/* Floating badge */}
