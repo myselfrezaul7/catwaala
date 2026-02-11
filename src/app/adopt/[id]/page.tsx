@@ -12,17 +12,15 @@ type Props = {
 
 export default async function CatDetailPage({ params }: Props) {
     const { id } = await params;
-    const catId = parseInt(id);
 
-    if (isNaN(catId)) {
-        return notFound();
-    }
-
-    const dbCat = await CatService.getById(catId);
+    const dbCat = await CatService.getById(id);
 
     if (!dbCat) {
         return notFound();
     }
+
+    // fallback image calculation
+    const fallbackId = (id.charCodeAt(0) % 3) + 1;
 
     // Adapt DB data to UI format
     const cat = {
@@ -33,7 +31,7 @@ export default async function CatDetailPage({ params }: Props) {
         age: formatAge(dbCat.age),
         gender: dbCat.gender,
         description: dbCat.description || "No description available.",
-        imageUrl: dbCat.images?.[0] || `/assets/cat${(dbCat.id % 3) + 1}.jpg`,
+        imageUrl: dbCat.images?.[0] || `/assets/cat${fallbackId}.jpg`,
         vaccinated: dbCat.attributes.vaccinated,
         neutered: dbCat.attributes.neutered,
         goodWithKids: dbCat.attributes.goodWithKids,
