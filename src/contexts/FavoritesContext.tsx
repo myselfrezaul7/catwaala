@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { supabaseClient } from "@/utils/supabase/client";
+import { db } from "@/utils/firebase";
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 
 type FavoritesContextType = {
     favoriteIds: string[];
@@ -22,35 +23,45 @@ export function useFavorites() {
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
     const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
-    const { user } = useAuth(); // Assume we have access to user from AuthContext
+    const { user } = useAuth();
 
     // Load favorites
     useEffect(() => {
         async function loadFavorites() {
             if (user) {
-                // Load from DB
-                const { data, error } = await supabaseClient
-                    .from('favorites')
-                    .select('cat_id')
-                    .eq('user_id', user.uid);
+                // Load from Firestore
+                try {
+                    const docRef = doc(db, "users", user.uid);
+                    const docSnap = await getDoc(docRef);
 
-                if (data && !error) {
-                    // Start with DB favorites
-                    const dbFavorites = data.map(f => f.cat_id.toString());
-
-                    // Merge with local storage (if any pending from guest session)
-                    const localStored = localStorage.getItem("catwaala_favorites");
-                    if (localStored) {
-                        const localFavorites = JSON.parse(localStored);
-                        // Combine unique
-                        const combined = Array.from(new Set([...dbFavorites, ...localFavorites]));
-                        setFavoriteIds(combined);
-
-                        // Clear local storage to avoid confusion, or keep it as cache?
-                        // Let's keep it as is, but maybe we should sync ONLY to DB if logged in.
-                    } else {
+                    if (docSnap.exists() && docSnap.data().favorites) {
+                        const dbFavorites = docSnap.data().favorites || [];
                         setFavoriteIds(dbFavorites);
+
+                        // Sync local storage if any (optional, keeping simple for now)
+                        const localStored = localStorage.getItem("catwaala_favorites");
+                        if (localStored) {
+                            const localFavorites = JSON.parse(localStored);
+                            const combined = Array.from(new Set([...dbFavorites, ...localFavorites]));
+                            if (combined.length > dbFavorites.length) {
+                                // Update DB with merged
+                                await updateDoc(docRef, { favorites: combined });
+                                setFavoriteIds(combined);
+                                localStorage.removeItem("catwaala_favorites");
+                            }
+                        }
+                    } else {
+                        // Initialize if empty but local storage has data
+                        const localStored = localStorage.getItem("catwaala_favorites");
+                        if (localStored) {
+                            const localFavorites = JSON.parse(localStored);
+                            await setDoc(docRef, { favorites: localFavorites }, { merge: true });
+                            setFavoriteIds(localFavorites);
+                            localStorage.removeItem("catwaala_favorites");
+                        }
                     }
+                } catch (error) {
+                    console.error("Error loading favorites from Firestore:", error);
                 }
             } else {
                 // Load from local storage
@@ -75,18 +86,14 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
         // Persist
         if (user) {
             // Update DB
-            const catId = parseInt(id);
-            if (isCurrentlyFavorite) {
-                // Remove
-                await supabaseClient
-                    .from('favorites')
-                    .delete()
-                    .match({ user_id: user.uid, cat_id: catId });
-            } else {
-                // Add
-                await supabaseClient
-                    .from('favorites')
-                    .insert({ user_id: user.uid, cat_id: catId });
+            const docRef = doc(db, "users", user.uid);
+            try {
+                await setDoc(docRef, {
+                    favorites: isCurrentlyFavorite ? arrayRemove(id) : arrayUnion(id)
+                }, { merge: true });
+            } catch (error) {
+                console.error("Error updating favorites:", error);
+                // Revert state on error? For now, let's just log.
             }
         } else {
             // Update local storage

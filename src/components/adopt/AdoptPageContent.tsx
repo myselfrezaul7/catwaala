@@ -59,13 +59,13 @@ export function AdoptPageContent() {
             const dbCats = await CatService.getAll();
             // Adapt DB data to UI format
             const uiCats: UiCat[] = dbCats.map(cat => ({
-                id: cat.id.toString(),
+                id: cat.id,
                 name: cat.name,
                 breed: cat.breed || "Domestic Short Hair",
                 age: formatAge(cat.age),
                 gender: cat.gender,
                 location: cat.location,
-                imageUrl: cat.images?.[0] || `/assets/cat${(cat.id % 3) + 1}.jpg`, // Fallback for demo
+                imageUrl: cat.images?.[0] || `/assets/cat${(Math.floor(Math.random() * 3) + 1)}.jpg`, // Fallback
                 tag: cat.status === 'Adopted' ? 'Adopted' : null,
                 vaccinated: cat.attributes?.vaccinated || false,
                 neutered: cat.attributes?.neutered || false,

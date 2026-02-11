@@ -1,52 +1,51 @@
-import { supabaseClient } from "@/utils/supabase/client";
+import { db, storage } from "@/utils/firebase";
+import { collection, addDoc, query, where, getDocs, orderBy } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Report } from "./server-data";
+
+const COLLECTION_NAME = "reports";
 
 export const ReportService = {
     async getByUserId(userId: string) {
-        const { data, error } = await supabaseClient
-            .from("reports")
-            .select("*")
-            .eq("user_id", userId)
-            .order("created_at", { ascending: false });
-
-        if (error) {
+        try {
+            const q = query(
+                collection(db, COLLECTION_NAME),
+                where("user_id", "==", userId),
+                orderBy("created_at", "desc")
+            );
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Report));
+        } catch (error) {
             console.error("Error fetching user reports:", error);
             return [];
         }
-
-        return data as Report[];
     },
 
-    async create(report: Omit<Report, "id" | "created_at" | "user_id" | "status">) {
-        const { data: { user } } = await supabaseClient.auth.getUser();
-
-        if (!user) throw new Error("User must be logged in to submit a report");
-
-        const { data, error } = await supabaseClient
-            .from("reports")
-            .insert([{ ...report, user_id: user.id }])
-            .select()
-            .single();
-
-        if (error) throw error;
-        return data as Report;
+    async create(report: any) { // using 'any' loosely here to avoid strict type mismatch with Supabase types during transition
+        try {
+            const docRef = await addDoc(collection(db, COLLECTION_NAME), {
+                ...report,
+                created_at: new Date().toISOString(),
+                status: 'Open'
+            });
+            return { id: docRef.id, ...report };
+        } catch (error) {
+            console.error("Error creating report:", error);
+            throw error;
+        }
     },
 
     async uploadImage(file: File) {
-        const fileExt = file.name.split(".").pop();
-        const fileName = `${Math.random()}.${fileExt}`;
-        const filePath = `report-images/${fileName}`;
+        try {
+            const fileExt = file.name.split(".").pop();
+            const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+            const storageRef = ref(storage, `report-images/${fileName}`);
 
-        const { error: uploadError } = await supabaseClient.storage
-            .from("reports")
-            .upload(filePath, file);
-
-        if (uploadError) throw uploadError;
-
-        const { data } = supabaseClient.storage
-            .from("reports")
-            .getPublicUrl(filePath);
-
-        return data.publicUrl;
+            await uploadBytes(storageRef, file);
+            return await getDownloadURL(storageRef);
+        } catch (error) {
+            console.error("Report image upload failed:", error);
+            throw error;
+        }
     }
 };

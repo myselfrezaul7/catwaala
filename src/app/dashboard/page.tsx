@@ -24,10 +24,10 @@ import { ReportService } from "@/services/ReportService";
 import { MemorialService } from "@/services/MemorialService";
 import { ProfileService } from "@/services/ProfileService";
 import { CatService } from "@/services/CatService";
-import { supabaseClient } from "@/utils/supabase/client";
 import { Report, Memorial } from "@/services/server-data";
 import { adaptCatToCard } from "@/utils/adapters";
 import { updateProfile } from "firebase/auth";
+import { seedData } from "@/utils/seed-data";
 
 export default function DashboardPage() {
     const { user, signOut, loading } = useAuth();
@@ -55,13 +55,15 @@ export default function DashboardPage() {
         }
     }, [user, loading, router]);
 
-    // Load initial profile data
+    // Seed Data & Load Profile
     useEffect(() => {
         if (user) {
             setProfileForm({
                 full_name: user.displayName || "",
                 phone: user.phoneNumber || ""
             });
+            // Try seeding data quietly
+            seedData().catch(e => console.error("Seeding error:", e));
         }
     }, [user]);
 
@@ -72,13 +74,20 @@ export default function DashboardPage() {
                 setFavoriteCats([]);
                 return;
             }
-            // Parse IDs to numbers
-            const numericIds = favoriteIds.map(id => parseInt(id)).filter(id => !isNaN(id));
-            if (numericIds.length > 0) {
-                const catsData = await CatService.getByIds(numericIds);
-                // Adapt cats for UI
-                const adaptedCats = catsData.map(adaptCatToCard);
-                setFavoriteCats(adaptedCats);
+            // Parse IDs (now strings in Firestore usually, but CatService inputs strings)
+            // If they are numeric strings, keep as strings for Firestore IDs if using auto-IDs or specific format
+            // Our seed data used numeric IDs? No, addDoc makes auto IDs.
+            // Our favorites might be mixed.
+
+            if (favoriteIds.length > 0) {
+                try {
+                    const catsData = await CatService.getByIds(favoriteIds);
+                    // Adapt cats for UI (checking if adapter still valid)
+                    const adaptedCats = catsData.map(adaptCatToCard);
+                    setFavoriteCats(adaptedCats);
+                } catch (e) {
+                    console.error("Error loading favorite cats", e);
+                }
             } else {
                 setFavoriteCats([]);
             }
@@ -127,7 +136,7 @@ export default function DashboardPage() {
                 photoURL: avatarUrl
             });
 
-            // Update Profiles Table (Supabase - might fail if RLS is strict)
+            // Update Firestore Profile
             try {
                 await ProfileService.updateProfile(user.uid, {
                     id: user.uid,
@@ -137,7 +146,7 @@ export default function DashboardPage() {
                     role: 'user'
                 });
             } catch (e) {
-                console.error("Failed to update supabase profile, but auth updated", e);
+                console.error("Failed to update firestore profile", e);
             }
 
             toast.success("Profile updated successfully!");
