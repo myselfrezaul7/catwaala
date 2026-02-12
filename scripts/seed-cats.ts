@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, writeBatch, doc } from "firebase/firestore";
 import * as dotenv from "dotenv";
-import { CATS } from "../src/data/cats"; // Assuming CATS export
+import { cats } from "../src/data/cats";
 
 // Load environment variables
 dotenv.config({ path: ".env.local" });
@@ -36,7 +36,7 @@ async function seedCats() {
         const batch = writeBatch(db);
         let count = 0;
 
-        for (const cat of CATS) {
+        for (const cat of cats) {
             const docRef = doc(catsCollection); // Auto-ID
             batch.set(docRef, {
                 ...cat,
