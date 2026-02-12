@@ -1,28 +1,46 @@
-import { createClient } from "@/utils/supabase/client";
-import { MOCK_VET_CLINICS, VetClinic } from "@/data/vets";
+import { db } from "@/utils/firebase";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+
+export type VetClinic = {
+    id: string; // Firestore ID
+    legacy_id?: number; // From mock data
+    name: string;
+    address: string;
+    phone: string;
+    website?: string;
+    mapUrl: string;
+    hours: string;
+    district: string;
+    rating: number;
+    reviewCount: number;
+    services: string[];
+};
+
+const COLLECTION_NAME = "vets";
 
 export const VetService = {
-    async getAllVets(): Promise<VetClinic[]> {
-        const supabase = createClient();
-
-        // Check if Supabase is configured (rudimentary check)
-        const isSupabaseConfigured = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-        if (!isSupabaseConfigured) {
-            console.warn("Supabase keys missing, using mock data for Vets.");
-            return MOCK_VET_CLINICS;
+    async getAll() {
+        try {
+            const q = query(collection(db, COLLECTION_NAME), orderBy("district"));
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as VetClinic));
+        } catch (error) {
+            console.error("Error fetching vets:", error);
+            return [];
         }
+    },
 
-        const { data, error } = await supabase
-            .from('vets')
-            .select('*');
-
-        if (error || !data || data.length === 0) {
-            // Fallback to mock if table is empty or error
-            console.warn("Error fetching from Supabase or empty table, using mock data.", error);
-            return MOCK_VET_CLINICS;
+    async getByDistrict(district: string) {
+        try {
+            const q = query(
+                collection(db, COLLECTION_NAME),
+                where("district", "==", district)
+            );
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as VetClinic));
+        } catch (error) {
+            console.error("Error fetching vets by district:", error);
+            return [];
         }
-
-        return data as VetClinic[];
     }
 };

@@ -1,22 +1,31 @@
 "use client";
-
-import { useState } from "react";
-import { MOCK_VET_CLINICS, VetClinic } from "@/data/vets";
+import { VetService, VetClinic } from "@/services/VetService";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Clock, ExternalLink, Search, Star } from "lucide-react";
+import { MapPin, Phone, Clock, ExternalLink, Search, Star, Loader2 } from "lucide-react";
 
-interface VetFinderProps {
-    initialVets?: VetClinic[];
-}
-
-export function VetFinder({ initialVets }: VetFinderProps) {
+export function VetFinder() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+    const [vets, setVets] = useState<VetClinic[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    const allVets = initialVets || MOCK_VET_CLINICS;
-    const districts = Array.from(new Set(allVets.map(v => v.district))).sort();
+    useEffect(() => {
+        const fetchVets = async () => {
+            try {
+                const data = await VetService.getAll();
+                setVets(data);
+            } catch (error) {
+                console.error("Failed to load vets", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchVets();
+    }, []);
 
-    const filteredVets = allVets.filter(vet => {
+    const districts = Array.from(new Set(vets.map(v => v.district))).sort();
+
+    const filteredVets = vets.filter(vet => {
         const matchesSearch = vet.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             vet.address.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesDistrict = selectedDistrict ? vet.district === selectedDistrict : true;
@@ -82,67 +91,76 @@ export function VetFinder({ initialVets }: VetFinderProps) {
                     </div>
                 </div>
 
-                {/* Results Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                    {filteredVets.map(vet => (
-                        <div key={vet.id} className="glass-card-hover rounded-2xl overflow-hidden group">
-                            <div className="p-6">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-stone-800 group-hover:text-emerald-600 transition-colors mb-1">{vet.name}</h3>
-                                        <span className="text-xs font-semibold px-2 py-1 bg-amber-50/70 rounded-lg text-stone-500">
-                                            {vet.district}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-lg">
-                                        <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                                        <span className="font-bold text-sm text-yellow-700">{vet.rating}</span>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-3 text-sm text-stone-500 mb-6">
-                                    <div className="flex items-start gap-3">
-                                        <MapPin className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                        <p>{vet.address}</p>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <Phone className="w-4 h-4 text-emerald-500 shrink-0" />
-                                        <p>{vet.phone}</p>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <Clock className="w-4 h-4 text-emerald-500 shrink-0" />
-                                        <p>{vet.hours}</p>
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-3">
-                                    <a
-                                        href={`tel:${vet.phone}`}
-                                        className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-emerald-200 text-emerald-600 font-semibold hover:bg-emerald-50 transition-colors"
-                                    >
-                                        <Phone className="w-4 h-4" /> Call
-                                    </a>
-                                    <a
-                                        href={vet.mapUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-500/20"
-                                    >
-                                        Map <ExternalLink className="w-4 h-4" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {filteredVets.length === 0 && (
-                    <div className="text-center py-20">
-                        <p className="text-stone-400 text-lg">No clinics found matching your search.</p>
-                        <Button variant="link" onClick={() => { setSearchQuery(""); setSelectedDistrict(null); }} className="text-emerald-600">
-                            Clear Filters
-                        </Button>
+                {/* Loading State */}
+                {loading ? (
+                    <div className="flex justify-center py-20">
+                        <Loader2 className="w-10 h-10 animate-spin text-emerald-500" />
                     </div>
+                ) : (
+                    <>
+                        {/* Results Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                            {filteredVets.map(vet => (
+                                <div key={vet.id} className="glass-card-hover rounded-2xl overflow-hidden group">
+                                    <div className="p-6">
+                                        <div className="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h3 className="text-xl font-bold text-stone-800 group-hover:text-emerald-600 transition-colors mb-1">{vet.name}</h3>
+                                                <span className="text-xs font-semibold px-2 py-1 bg-amber-50/70 rounded-lg text-stone-500">
+                                                    {vet.district}
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded-lg">
+                                                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                                                <span className="font-bold text-sm text-yellow-700">{vet.rating}</span>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-3 text-sm text-stone-500 mb-6">
+                                            <div className="flex items-start gap-3">
+                                                <MapPin className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                                <p>{vet.address}</p>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <Phone className="w-4 h-4 text-emerald-500 shrink-0" />
+                                                <p>{vet.phone}</p>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <Clock className="w-4 h-4 text-emerald-500 shrink-0" />
+                                                <p>{vet.hours}</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <a
+                                                href={`tel:${vet.phone}`}
+                                                className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-emerald-200 text-emerald-600 font-semibold hover:bg-emerald-50 transition-colors"
+                                            >
+                                                <Phone className="w-4 h-4" /> Call
+                                            </a>
+                                            <a
+                                                href={vet.mapUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-500/20"
+                                            >
+                                                Map <ExternalLink className="w-4 h-4" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {filteredVets.length === 0 && (
+                            <div className="text-center py-20">
+                                <p className="text-stone-400 text-lg">No clinics found matching your search.</p>
+                                <Button variant="link" onClick={() => { setSearchQuery(""); setSelectedDistrict(null); }} className="text-emerald-600">
+                                    Clear Filters
+                                </Button>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </div>

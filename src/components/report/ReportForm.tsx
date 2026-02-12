@@ -8,6 +8,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 import { submitToWeb3Forms } from "@/lib/web3forms";
 import { ReportService } from "@/services/ReportService";
+import { useAuth } from "@/contexts/AuthContext";
 
 // Dynamically import LocationPicker to avoid SSR issues with Leaflet
 const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
@@ -26,6 +27,7 @@ type ReportFormType = {
 };
 
 export function ReportForm() {
+    const { user } = useAuth();
     const { register, handleSubmit, setValue, formState: { errors, isSubmitting }, reset } = useForm<ReportFormType>();
     const [submitted, setSubmitted] = useState(false);
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
@@ -54,8 +56,9 @@ export function ReportForm() {
                 latitude: data.latitude,
                 longitude: data.longitude,
                 location_text: data.locationDetails,
-                contact_info: data.contact, // Check if schema uses contact_info
+                contact_info: data.contact,
                 image_url: imageUrl,
+                user_id: user?.uid, // Link report to user
             });
 
             setSubmitted(true);
