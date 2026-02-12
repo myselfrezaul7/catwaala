@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PetCard } from "@/components/shared/PetCard";
 import { Button } from "@/components/ui/button";
-import { Search, X } from "lucide-react";
+import { Search, X, ArrowRight } from "lucide-react";
 import { Cat as DbCat } from "@/services/server-data";
 import { CatService } from "@/services/CatService";
 import { getAgeCategory, type AgeCategory } from "@/data/cats";
@@ -114,23 +115,47 @@ export function AdoptPageContent() {
             {/* Header */}
             <div className="bg-gradient-to-br from-rose-500 to-rose-600 text-white py-16 text-center px-4 relative overflow-hidden">
                 <div className="relative z-10">
-                    <h1 className="text-4xl font-bold mb-4">Find Your Feline Soulmate</h1>
-                    <p className="text-rose-100 max-w-xl mx-auto mb-6">
+                    <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-4xl font-bold mb-4"
+                    >
+                        Find Your Feline Soulmate
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-rose-100 max-w-xl mx-auto mb-8"
+                    >
                         Browse through our list of rescued cats. From kittens to snoozy seniors, they are all waiting for love.
-                    </p>
-                    <div className="flex flex-col items-center gap-4">
-                        <p className="text-sm font-bold bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 inline-block">
-                            🚫 We promotes &quot;Adopt Don&apos;t Shop&quot;. No buying/selling.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="flex flex-col items-center gap-6"
+                    >
+                        <p className="text-sm font-bold bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 inline-block shadow-lg">
+                            🚫 We promote &quot;Adopt Don&apos;t Shop&quot;. No buying/selling.
                         </p>
+
                         <a
                             href="https://www.kuttawaala.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-white hover:text-orange-200 underline underline-offset-4 decoration-orange-300 decoration-2 font-bold transition-all hover:scale-105"
+                            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-400 to-amber-500 text-white rounded-2xl font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                         >
-                            🐕 Looking for a dog instead? Visit KuttaWaala
+                            <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                            <span className="text-2xl">🐕</span>
+                            <div className="text-left">
+                                <span className="block text-xs text-orange-100 uppercase tracking-wider">Looking for a dog?</span>
+                                <span className="block text-lg leading-none">Visit KuttaWaala</span>
+                            </div>
+                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                         </a>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_80%,_rgba(255,255,255,0.15)_0%,_transparent_50%)] pointer-events-none" />
             </div>
@@ -220,23 +245,41 @@ export function AdoptPageContent() {
                     )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredCats.length > 0 ? (
-                        filteredCats.map(cat => (
-                            // @ts-ignore
-                            <PetCard key={cat.id} cat={cat} />
-                        ))
-                    ) : (
-                        <div className="col-span-full text-center py-20">
-                            <div className="w-24 h-24 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
-                                😿
-                            </div>
-                            <h3 className="text-xl font-bold text-stone-800 mb-2">No cats matched your filters</h3>
-                            <p className="text-stone-400">Maybe try broadening your search? Our cats are picky, but you shouldn't have to be!</p>
-                            <Button variant="link" onClick={resetFilters} className="text-rose-600">Clear all filters</Button>
-                        </div>
-                    )}
-                </div>
+                <motion.div
+                    layout
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                    <AnimatePresence mode="popLayout">
+                        {filteredCats.length > 0 ? (
+                            filteredCats.map((cat, index) => (
+                                <motion.div
+                                    key={cat.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                                >
+                                    {/* @ts-ignore */}
+                                    <PetCard cat={cat} />
+                                </motion.div>
+                            ))
+                        ) : (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="col-span-full text-center py-20"
+                            >
+                                <div className="w-24 h-24 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl animate-bounce">
+                                    😿
+                                </div>
+                                <h3 className="text-xl font-bold text-stone-800 mb-2">No cats matched your filters</h3>
+                                <p className="text-stone-400">Maybe try broadening your search? Our cats are picky, but you shouldn't have to be!</p>
+                                <Button variant="link" onClick={resetFilters} className="text-rose-600">Clear all filters</Button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
             </div>
         </div>
     );
