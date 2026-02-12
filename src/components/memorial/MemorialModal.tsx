@@ -1,3 +1,5 @@
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -15,6 +17,8 @@ interface MemorialModalProps {
 }
 
 export function MemorialModal({ onAddTribute }: MemorialModalProps) {
+    const { user } = useAuth(); // Auth hook
+    const router = useRouter(); // For navigation
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -23,8 +27,15 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
 
     const [formData, setFormData] = useState({
         petName: "",
-        ownerName: "",
+        ownerName: "", // Will auto-fill in useEffect
         tribute: "",
+    });
+
+    // Auto-fill owner name when user logs in
+    useState(() => {
+        if (user?.displayName) {
+            setFormData(prev => ({ ...prev, ownerName: user.displayName || "" }));
+        }
     });
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,12 +62,17 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                 owner_name: formData.ownerName,
                 tribute: formData.tribute,
                 image_url: imageUrl,
+                user_id: user?.uid, // Link tribute to user
             });
 
             onAddTribute(newMemorial);
             toast.success("Tribute posted successfully");
             setOpen(false);
-            setFormData({ petName: "", ownerName: "", tribute: "" });
+            setFormData({
+                petName: "",
+                ownerName: user?.displayName || "",
+                tribute: ""
+            });
             setSelectedFile(null);
             setPreviewUrl(null);
         } catch (error) {
@@ -87,86 +103,104 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                 </div>
 
                 <div className="p-6">
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="petName" className="text-stone-700 font-bold">Pet's Name</Label>
-                                <Input
-                                    id="petName"
-                                    required
-                                    value={formData.petName}
-                                    onChange={(e) => setFormData({ ...formData, petName: e.target.value })}
-                                    className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
-                                    placeholder="e.g. Luna"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="ownerName" className="text-stone-700 font-bold">Your Name</Label>
-                                <Input
-                                    id="ownerName"
-                                    required
-                                    value={formData.ownerName}
-                                    onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
-                                    className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
-                                    placeholder="e.g. Sarah"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor="tribute" className="text-stone-700 font-bold">Tribute</Label>
-                            <Textarea
-                                id="tribute"
-                                required
-                                value={formData.tribute}
-                                onChange={(e) => setFormData({ ...formData, tribute: e.target.value })}
-                                className="bg-stone-50 border-amber-100 focus:ring-rose-500 min-h-[100px] rounded-xl"
-                                placeholder="Tell us what made them special..."
-                            />
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label className="text-stone-700 font-bold">Photo</Label>
-                            <div
-                                onClick={() => fileInputRef.current?.click()}
-                                className="border-2 border-dashed border-rose-200 rounded-2xl p-4 text-center hover:bg-rose-50 transition-colors cursor-pointer group bg-rose-50/30 relative overflow-hidden h-32 flex flex-col items-center justify-center"
-                            >
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    className="hidden"
-                                    accept="image/*"
-                                    onChange={handleFileSelect}
-                                />
-                                {previewUrl ? (
-                                    <Image
-                                        src={previewUrl}
-                                        alt="Preview"
-                                        fill
-                                        className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                    {user ? (
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="petName" className="text-stone-700 font-bold">Pet&apos;s Name</Label>
+                                    <Input
+                                        id="petName"
+                                        required
+                                        value={formData.petName}
+                                        onChange={(e) => setFormData({ ...formData, petName: e.target.value })}
+                                        className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
+                                        placeholder="e.g. Luna"
                                     />
-                                ) : (
-                                    <>
-                                        <div className="bg-white p-2 rounded-full inline-block shadow-sm mb-2 group-hover:scale-110 transition-transform">
-                                            <Upload className="w-5 h-5 text-rose-400" />
-                                        </div>
-                                        <p className="text-sm text-stone-500 font-medium">Click to upload image</p>
-                                    </>
-                                )}
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="ownerName" className="text-stone-700 font-bold">Your Name</Label>
+                                    <Input
+                                        id="ownerName"
+                                        required
+                                        value={formData.ownerName}
+                                        onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
+                                        className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
+                                        placeholder="e.g. Sarah"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="flex justify-end pt-2">
-                            <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold h-12 rounded-xl shadow-lg shadow-rose-200">
-                                {loading ? (
-                                    <>
-                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                        Posting...
-                                    </>
-                                ) : "Post Tribute"}
+                            <div className="space-y-2">
+                                <Label htmlFor="tribute" className="text-stone-700 font-bold">Tribute</Label>
+                                <Textarea
+                                    id="tribute"
+                                    required
+                                    value={formData.tribute}
+                                    onChange={(e) => setFormData({ ...formData, tribute: e.target.value })}
+                                    className="bg-stone-50 border-amber-100 focus:ring-rose-500 min-h-[100px] rounded-xl"
+                                    placeholder="Tell us what made them special..."
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label className="text-stone-700 font-bold">Photo</Label>
+                                <div
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="border-2 border-dashed border-rose-200 rounded-2xl p-4 text-center hover:bg-rose-50 transition-colors cursor-pointer group bg-rose-50/30 relative overflow-hidden h-32 flex flex-col items-center justify-center"
+                                >
+                                    <input
+                                        type="file"
+                                        ref={fileInputRef}
+                                        className="hidden"
+                                        accept="image/*"
+                                        onChange={handleFileSelect}
+                                    />
+                                    {previewUrl ? (
+                                        <Image
+                                            src={previewUrl}
+                                            alt="Preview"
+                                            fill
+                                            className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                        />
+                                    ) : (
+                                        <>
+                                            <div className="bg-white p-2 rounded-full inline-block shadow-sm mb-2 group-hover:scale-110 transition-transform">
+                                                <Upload className="w-5 h-5 text-rose-400" />
+                                            </div>
+                                            <p className="text-sm text-stone-500 font-medium">Click to upload image</p>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="flex justify-end pt-2">
+                                <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold h-12 rounded-xl shadow-lg shadow-rose-200">
+                                    {loading ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                            Posting...
+                                        </>
+                                    ) : "Post Tribute"}
+                                </Button>
+                            </div>
+                        </form>
+                    ) : (
+                        <div className="text-center py-8 space-y-6">
+                            <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center mx-auto text-4xl">
+                                🔒
+                            </div>
+                            <div className="space-y-2">
+                                <h3 className="text-xl font-bold text-stone-800">Login Required</h3>
+                                <p className="text-stone-500 max-w-xs mx-auto">Please sign in to share your tribute on the Memorial Wall.</p>
+                            </div>
+                            <Button
+                                onClick={() => router.push('/login')}
+                                className="w-full bg-rose-500 hover:bg-rose-600 text-white h-12 rounded-xl font-bold"
+                            >
+                                Sign In / Sign Up
                             </Button>
                         </div>
-                    </form>
+                    )}
                 </div>
             </DialogContent>
         </Dialog>
