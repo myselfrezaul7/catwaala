@@ -70,6 +70,24 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${ibmPlexSans.variable} antialiased`}>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            name: "Catwaala",
+                            url: "https://catwaala.com",
+                            logo: "https://catwaala.com/logo.png",
+                            sameAs: ["https://twitter.com/catwaala"],
+                            contactPoint: {
+                                "@type": "ContactPoint",
+                                telephone: "+880-123-456789",
+                                contactType: "customer service",
+                            },
+                        }),
+                    }}
+                />
                 <AuthProvider>
                     <FavoritesProvider>
                         <ThemeProvider
