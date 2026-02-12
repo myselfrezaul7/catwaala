@@ -103,6 +103,20 @@ export const MOCK_VET_CLINICS: VetClinic[] = [
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Narayanganj',
         hours: '9 AM - 5 PM', district: 'Narayanganj', rating: 3.7, reviewCount: 32, services: ['Government', 'Emergency', 'Vaccination']
     },
+    {
+        id: 113, name: 'District Veterinary Hospital, Munshiganj',
+        address: 'Munshiganj Sadar, Munshiganj',
+        phone: '01324-290335',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Munshiganj',
+        hours: '9 AM - 5 PM', district: 'Munshiganj', rating: 3.8, reviewCount: 25, services: ['Government', 'Livestock', 'General Care']
+    },
+    {
+        id: 114, name: 'Upazila Livestock Office & Veterinary Hospital, Sirajdikhan',
+        address: 'Sirajdikhan, Munshiganj',
+        phone: '16358',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Upazila+Livestock+Office+Sirajdikhan',
+        hours: '9 AM - 5 PM', district: 'Munshiganj', rating: 3.7, reviewCount: 15, services: ['Government', 'Animal Health']
+    },
 
     // ==========================================
     //         CHATTOGRAM DIVISION
