@@ -5,13 +5,13 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA66yeeb21kzl84v1C_7cVlO2WG3zHFiWY",
-    authDomain: "catwaal-animal-welfare.firebaseapp.com",
-    projectId: "catwaal-animal-welfare",
-    storageBucket: "catwaal-animal-welfare.firebasestorage.app",
-    messagingSenderId: "758797390593",
-    appId: "1:758797390593:web:798fdadbeced5e2490c100",
-    measurementId: "G-WBTHC18V1L"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

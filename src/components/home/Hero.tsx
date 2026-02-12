@@ -23,7 +23,7 @@ export function Hero() {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-semibold text-rose-600 mb-6">
                             <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                            Bangladesh&apos;s Cat Rescue Platform
+                            Bangladesh&apos;s biggest cat community platform
                         </div>
                         <h1 className="text-5xl md:text-7xl font-bold text-stone-800 leading-[1.1] mb-6">
                             Every Cat Deserves a <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-600">Loving Home</span>
