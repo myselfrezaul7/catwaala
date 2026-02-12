@@ -7,6 +7,7 @@ import { MapPin, Phone, Clock, ExternalLink, Search, Star, Loader2 } from "lucid
 export function VetFinder() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+    const [showEmergencyOnly, setShowEmergencyOnly] = useState(false);
     const [vets, setVets] = useState<VetClinic[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -30,7 +31,9 @@ export function VetFinder() {
         const matchesSearch = vet.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             vet.address.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesDistrict = selectedDistrict ? vet.district === selectedDistrict : true;
-        return matchesSearch && matchesDistrict;
+        const matchesEmergency = showEmergencyOnly ? (vet.services.some(s => s.toLowerCase().includes("24") || s.toLowerCase().includes("emergency"))) : true;
+
+        return matchesSearch && matchesDistrict && matchesEmergency;
     });
 
     return (
@@ -50,27 +53,32 @@ export function VetFinder() {
             <div className="container mx-auto px-4 -mt-8 relative z-20">
                 <div className="glass-card p-6 rounded-2xl space-y-6">
                     {/* Search & Filter */}
-                    <div className="flex flex-col md:flex-row gap-4">
-                        <div className="relative flex-grow group">
-                            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                                <Search className="w-5 h-5 text-emerald-500/50 group-focus-within:text-emerald-500 transition-colors duration-300" />
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col md:flex-row gap-4">
+                            <div className="relative flex-grow group">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-emerald-500/50 w-5 h-5 pointer-events-none" />
+                                <input
+                                    type="text"
+                                    placeholder="Search by clinic name or area..."
+                                    className="w-full pl-11 pr-4 py-4 rounded-2xl border-2 border-emerald-100/50 bg-white/80 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all text-stone-700 placeholder:text-stone-400 shadow-sm text-lg"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
                             </div>
-                            <input
-                                type="text"
-                                placeholder="Search by clinic name or area..."
-                                className="w-full pl-11 pr-32 py-4 rounded-2xl border-2 border-emerald-100/50 bg-white/80 focus:bg-white focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all duration-300 text-stone-700 placeholder:text-stone-400 shadow-sm hover:shadow-md focus:shadow-emerald-500/20 text-lg"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
-                            <div className="absolute top-2 right-2 bottom-2">
-                                <Button
-                                    className="h-full px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40 transition-all duration-300 font-medium group/btn"
-                                >
-                                    Search
-                                </Button>
+                            <div className="flex items-center">
+                                <label className="flex items-center gap-3 cursor-pointer bg-red-50 hover:bg-red-100 border border-red-200 px-5 py-3.5 rounded-2xl transition-all select-none">
+                                    <input
+                                        type="checkbox"
+                                        checked={showEmergencyOnly}
+                                        onChange={(e) => setShowEmergencyOnly(e.target.checked)}
+                                        className="w-5 h-5 text-red-600 rounded focus:ring-red-500 border-gray-300"
+                                    />
+                                    <span className="font-bold text-red-700">Emergency / 24h</span>
+                                </label>
                             </div>
                         </div>
-                        <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+
+                        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                             <Button
                                 variant={selectedDistrict === null ? "default" : "outline"}
                                 onClick={() => setSelectedDistrict(null)}
@@ -145,7 +153,7 @@ export function VetFinder() {
                                                 rel="noopener noreferrer"
                                                 className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-500/20"
                                             >
-                                                Map <ExternalLink className="w-4 h-4" />
+                                                Get Directions <ExternalLink className="w-4 h-4" />
                                             </a>
                                         </div>
                                     </div>
@@ -156,7 +164,7 @@ export function VetFinder() {
                         {filteredVets.length === 0 && (
                             <div className="text-center py-20">
                                 <p className="text-stone-400 text-lg">No clinics found matching your search.</p>
-                                <Button variant="link" onClick={() => { setSearchQuery(""); setSelectedDistrict(null); }} className="text-emerald-600">
+                                <Button variant="link" onClick={() => { setSearchQuery(""); setSelectedDistrict(null); setShowEmergencyOnly(false); }} className="text-emerald-600">
                                     Clear Filters
                                 </Button>
                             </div>

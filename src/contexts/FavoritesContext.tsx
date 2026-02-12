@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { db } from "@/utils/firebase";
-import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove, onSnapshot } from "firebase/firestore";
 
 type FavoritesContextType = {
     favoriteIds: string[];
@@ -25,28 +25,27 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
     const { user } = useAuth();
 
-    // Load favorites
+    // Real-time sync with Firestore
     useEffect(() => {
-        async function loadFavorites() {
-            if (user) {
-                // Load from Firestore
-                try {
-                    const docRef = doc(db, "users", user.uid);
-                    const docSnap = await getDoc(docRef);
+        let unsubscribe: () => void;
 
+        async function setupFavorites() {
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+
+                // Set up listener
+                unsubscribe = onSnapshot(docRef, async (docSnap) => {
                     if (docSnap.exists() && docSnap.data().favorites) {
                         const dbFavorites = docSnap.data().favorites || [];
                         setFavoriteIds(dbFavorites);
 
-                        // Sync local storage if any (optional, keeping simple for now)
+                        // Check for local favorites to merge (one-time check usually, but good to keep logic safe)
                         const localStored = localStorage.getItem("catwaala_favorites");
                         if (localStored) {
                             const localFavorites = JSON.parse(localStored);
                             const combined = Array.from(new Set([...dbFavorites, ...localFavorites]));
                             if (combined.length > dbFavorites.length) {
-                                // Update DB with merged
                                 await updateDoc(docRef, { favorites: combined });
-                                setFavoriteIds(combined);
                                 localStorage.removeItem("catwaala_favorites");
                             }
                         }
@@ -56,22 +55,27 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
                         if (localStored) {
                             const localFavorites = JSON.parse(localStored);
                             await setDoc(docRef, { favorites: localFavorites }, { merge: true });
-                            setFavoriteIds(localFavorites);
                             localStorage.removeItem("catwaala_favorites");
                         }
                     }
-                } catch (error) {
-                    console.error("Error loading favorites from Firestore:", error);
-                }
+                }, (error) => {
+                    console.error("Error listening to favorites:", error);
+                });
+
             } else {
-                // Load from local storage
+                // Load from local storage for guests
                 const stored = localStorage.getItem("catwaala_favorites");
                 if (stored) {
                     setFavoriteIds(JSON.parse(stored));
                 }
             }
         }
-        loadFavorites();
+
+        setupFavorites();
+
+        return () => {
+            if (unsubscribe) unsubscribe();
+        };
     }, [user]);
 
     // Save favorites
@@ -81,11 +85,11 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
             ? favoriteIds.filter(fid => fid !== id)
             : [...favoriteIds, id];
 
+        // Optimistic update
         setFavoriteIds(newFavorites);
 
         // Persist
         if (user) {
-            // Update DB
             const docRef = doc(db, "users", user.uid);
             try {
                 await setDoc(docRef, {
@@ -93,10 +97,9 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
                 }, { merge: true });
             } catch (error) {
                 console.error("Error updating favorites:", error);
-                // Revert state on error? For now, let's just log.
+                // Listener will revert if write fails
             }
         } else {
-            // Update local storage
             localStorage.setItem("catwaala_favorites", JSON.stringify(newFavorites));
         }
     };
