@@ -1,5 +1,6 @@
 "use client";
 import { VetService, VetClinic } from "@/services/VetService";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Clock, ExternalLink, Search, Star, Loader2 } from "lucide-react";
 
