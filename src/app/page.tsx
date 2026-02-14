@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { SuccessStories } from "@/components/home/SuccessStories";
 import { PetCard } from "@/components/shared/PetCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -11,6 +12,8 @@ export default function Home() {
     return (
         <div className="flex flex-col min-h-screen">
             <Hero />
+
+            <SuccessStories />
 
             {/* Featured Cats Section */}
             <section className="py-24 relative overflow-hidden">
