@@ -19,7 +19,8 @@ import {
     DialogTitle,
     DialogFooter,
 } from "@/components/ui/dialog";
-import { Heart, Gift, LogOut, Stethoscope, MessageCircle, BookHeart, Puzzle, HandHelping, Plus, CheckCircle } from "lucide-react";
+import { Heart, Gift, LogOut, Stethoscope, MessageCircle, BookHeart, Puzzle, HandHelping, Plus, CheckCircle, Award, Trophy } from "lucide-react";
+import { Badges } from "@/components/dashboard/Badges";
 import { ReportService } from "@/services/ReportService";
 import { MemorialService } from "@/services/MemorialService";
 import { ProfileService } from "@/services/ProfileService";
@@ -232,6 +233,9 @@ export default function DashboardPage() {
                         <TabsTrigger value="memorials" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white px-6">
                             My Tributes
                         </TabsTrigger>
+                        <TabsTrigger value="achievements" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white px-6">
+                            Awards 🏆
+                        </TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="favorites" className="space-y-8 animate-fade-in-up">
@@ -334,6 +338,45 @@ export default function DashboardPage() {
                         ) : (
                             <div className="text-center py-12 text-stone-400">You haven't requested any memorials yet.</div>
                         )}
+                    </TabsContent>
+
+                    <TabsContent value="achievements" className="space-y-8 animate-fade-in-up">
+                        <div className="grid md:grid-cols-[1fr,300px] gap-8">
+                            <div>
+                                <div className="flex items-center gap-3 mb-6">
+                                    <Award className="w-6 h-6 text-amber-500" />
+                                    <h2 className="text-2xl font-bold text-stone-800">Your Achievements</h2>
+                                </div>
+                                <div className="glass-card p-8 rounded-[2rem] border border-amber-100/50">
+                                    <Badges />
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="flex items-center gap-3 mb-6">
+                                    <Trophy className="w-6 h-6 text-rose-500" />
+                                    <h2 className="text-2xl font-bold text-stone-800">Leaderboard</h2>
+                                </div>
+                                <div className="glass-card p-6 rounded-[2rem] space-y-4">
+                                    {[
+                                        { name: "Sarah K.", points: 1250, rank: 1 },
+                                        { name: "Rafiq M.", points: 980, rank: 2 },
+                                        { name: "Ayesha S.", points: 850, rank: 3 },
+                                        { name: "You", points: 320, rank: 12, highlight: true },
+                                    ].map((volunteer, i) => (
+                                        <div key={i} className={`flex items-center justify-between p-3 rounded-xl ${volunteer.highlight ? 'bg-rose-50 border border-rose-100' : 'hover:bg-stone-50'}`}>
+                                            <div className="flex items-center gap-3">
+                                                <span className={`w-6 h-6 flex items-center justify-center font-bold text-sm rounded-full ${volunteer.rank <= 3 ? 'bg-yellow-100 text-yellow-600' : 'text-stone-400'}`}>
+                                                    {volunteer.rank}
+                                                </span>
+                                                <span className={`font-bold ${volunteer.highlight ? 'text-rose-600' : 'text-stone-700'}`}>{volunteer.name}</span>
+                                            </div>
+                                            <span className="font-bold text-stone-500 text-sm">{volunteer.points} pts</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </TabsContent>
                 </Tabs>
 

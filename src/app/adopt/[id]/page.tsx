@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { MapPin, Info, CheckCircle, ArrowLeft, Share2, Heart, Calendar, PawPrint, Sparkles, ChevronDown } from "lucide-react";
+import { MapPin, Info, CheckCircle, ArrowLeft, Share2, Heart, Calendar, PawPrint, Sparkles, ChevronDown, Gift } from "lucide-react";
 import { AdoptionForm } from "@/components/adopt/AdoptionForm";
+import { SponsorshipModal } from "@/components/adopt/SponsorshipModal";
 import { CatService, Cat } from "@/services/CatService";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -244,7 +245,7 @@ export default function CatDetailPage() {
 
                     {/* Right Column: Sticky Adoption Form (Desktop) */}
                     <div className="md:sticky md:top-24 h-fit">
-                        <div className="bg-white rounded-3xl p-8 shadow-xl shadow-rose-100/50 border border-rose-100">
+                        <div className="bg-white rounded-3xl p-8 shadow-xl shadow-rose-100/50 border border-rose-100 mb-6">
                             <div className="text-center mb-8">
                                 <div className="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                                     <Heart className="w-8 h-8 text-rose-500 fill-rose-500" />
@@ -255,12 +256,19 @@ export default function CatDetailPage() {
                                 </p>
                             </div>
                             <AdoptionForm catName={cat.name} />
+                        </div>
 
-                            <div className="mt-6 pt-6 border-t border-stone-100 text-center">
-                                <p className="text-sm text-stone-400 mb-3">Have questions first?</p>
-                                <Button variant="outline" className="w-full rounded-xl border-stone-200 text-stone-600 hover:text-rose-600 hover:border-rose-200">
-                                    Contact Shelter
-                                </Button>
+                        {/* Sponsorship CTA */}
+                        <div className="bg-gradient-to-br from-indigo-900 to-stone-900 rounded-3xl p-8 text-white text-center relative overflow-hidden shadow-xl">
+                            <div className="absolute top-0 right-0 p-8 opacity-10">
+                                <Gift className="w-32 h-32 rotate-12" />
+                            </div>
+                            <div className="relative z-10">
+                                <h3 className="text-xl font-bold mb-2">Can't Adopt Right Now?</h3>
+                                <p className="text-indigo-200 text-sm mb-6">
+                                    You can still be a hero! Sponsor {cat.name}'s meals or vaccines today.
+                                </p>
+                                <SponsorshipModal catName={cat.name} />
                             </div>
                         </div>
                     </div>

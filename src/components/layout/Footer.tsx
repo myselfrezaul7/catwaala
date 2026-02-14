@@ -23,12 +23,12 @@ export function Footer() {
     return (
         <footer className="relative overflow-hidden">
             {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-50/40 to-orange-50/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-50/40 to-orange-50/50 dark:from-zinc-900 dark:to-black pointer-events-none" />
 
             <div className="relative z-10 pt-16 pb-8">
                 <div className="container mx-auto px-4">
                     {/* Main footer content with glassmorphism */}
-                    <div className="glass-card rounded-3xl p-8 md:p-12 mb-8">
+                    <div className="glass-card rounded-3xl p-8 md:p-12 mb-8 bg-white/40 dark:bg-zinc-900/40 border border-white/20 dark:border-white/10 backdrop-blur-md">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                             {/* Brand */}
                             <div className="space-y-4">
@@ -36,19 +36,19 @@ export function Footer() {
                                     <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center shadow-lg shadow-rose-500/20">
                                         <Cat className="w-5 h-5 text-white" />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-stone-800 tracking-tight">CATWAALA</h3>
+                                    <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 tracking-tight">CATWAALA</h3>
                                 </div>
                                 <p className="text-xs font-semibold text-rose-500 uppercase tracking-wider">
                                     Non-Profit Animal Welfare Organization
                                 </p>
-                                <p className="text-stone-500 text-sm leading-relaxed">
+                                <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed">
                                     Giving every street cat a chance at a warm lap and a full bowl. Join our mission to care for the purring population.
                                 </p>
                             </div>
 
                             {/* Quick Links */}
                             <div>
-                                <h4 className="font-bold mb-5 text-stone-800 text-sm uppercase tracking-wider">Quick Links</h4>
+                                <h4 className="font-bold mb-5 text-stone-800 dark:text-stone-100 text-sm uppercase tracking-wider">Quick Links</h4>
                                 <ul className="space-y-3">
                                     {[
                                         { href: "/adopt", label: "Adopt a Cat" },
@@ -57,7 +57,7 @@ export function Footer() {
                                         { href: "/find-vet", label: "Find a Vet" },
                                     ].map((link) => (
                                         <li key={link.href}>
-                                            <Link href={link.href} className="text-sm text-stone-500 hover:text-rose-500 transition-colors">
+                                            <Link href={link.href} className="text-sm text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 transition-colors">
                                                 {link.label}
                                             </Link>
                                         </li>
@@ -68,7 +68,7 @@ export function Footer() {
 
                             {/* Resources */}
                             <div>
-                                <h4 className="font-bold mb-5 text-stone-800 text-sm uppercase tracking-wider">Care Resources</h4>
+                                <h4 className="font-bold mb-5 text-stone-800 dark:text-stone-100 text-sm uppercase tracking-wider">Care Resources</h4>
                                 <ul className="space-y-3">
                                     {[
                                         { href: "/faq", label: "FAQ" },
@@ -76,7 +76,7 @@ export function Footer() {
                                         { href: "/memorial", label: "Memorial Wall" },
                                     ].map((link) => (
                                         <li key={link.href}>
-                                            <Link href={link.href} className="text-sm text-stone-500 hover:text-rose-500 transition-colors">
+                                            <Link href={link.href} className="text-sm text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 transition-colors">
                                                 {link.label}
                                             </Link>
                                         </li>
@@ -86,13 +86,13 @@ export function Footer() {
 
                             {/* Connect */}
                             <div>
-                                <h4 className="font-bold mb-5 text-stone-800 text-sm uppercase tracking-wider">Connect</h4>
+                                <h4 className="font-bold mb-5 text-stone-800 dark:text-stone-100 text-sm uppercase tracking-wider">Connect</h4>
                                 <div className="flex flex-wrap gap-2.5 mb-5">
                                     <a
                                         href="https://www.facebook.com/groups/catwaala/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2.5 glass-card rounded-xl text-stone-500 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+                                        className="p-2.5 glass-card rounded-xl text-stone-500 dark:text-stone-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
                                         aria-label="Facebook"
                                     >
                                         <Facebook className="w-5 h-5" />
@@ -101,7 +101,7 @@ export function Footer() {
                                         href="https://www.instagram.com/catwaala/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2.5 glass-card rounded-xl text-stone-500 hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/20"
+                                        className="p-2.5 glass-card rounded-xl text-stone-500 dark:text-stone-400 hover:text-white hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/20"
                                         aria-label="Instagram"
                                     >
                                         <Instagram className="w-5 h-5" />
@@ -110,7 +110,7 @@ export function Footer() {
                                         href="https://www.youtube.com/@catwaala"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2.5 glass-card rounded-xl text-stone-500 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20"
+                                        className="p-2.5 glass-card rounded-xl text-stone-500 dark:text-stone-400 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20"
                                         aria-label="YouTube"
                                     >
                                         <YoutubeIcon className="w-5 h-5" />
@@ -119,14 +119,14 @@ export function Footer() {
                                         href="https://www.tiktok.com/@catwaala"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="p-2.5 glass-card rounded-xl text-stone-500 hover:text-white hover:bg-black hover:border-black transition-all duration-300 hover:shadow-lg hover:shadow-stone-500/20"
+                                        className="p-2.5 glass-card rounded-xl text-stone-500 dark:text-stone-400 hover:text-white hover:bg-black hover:border-black transition-all duration-300 hover:shadow-lg hover:shadow-stone-500/20"
                                         aria-label="TikTok"
                                     >
                                         <TikTokIcon className="w-5 h-5" />
                                     </a>
                                 </div>
-                                <div className="space-y-3 text-sm text-stone-500">
-                                    <a href="mailto:catwaala@gmail.com" className="flex items-center gap-3 hover:text-rose-500 transition-colors">
+                                <div className="space-y-3 text-sm text-stone-500 dark:text-stone-400">
+                                    <a href="mailto:catwaala@gmail.com" className="flex items-center gap-3 hover:text-rose-500 dark:hover:text-rose-400 transition-colors">
                                         <Mail className="w-4 h-4 text-rose-400" />
                                         catwaala@gmail.com
                                     </a>
@@ -136,7 +136,7 @@ export function Footer() {
                     </div>
 
                     {/* Copyright */}
-                    <div className="text-center text-sm text-stone-400">
+                    <div className="text-center text-sm text-stone-400 dark:text-stone-500">
                         <p>&copy; 2025 Catwaala. All rights reserved. Made with ❤️ and lots of tuna.</p>
                     </div>
                 </div>

@@ -46,7 +46,7 @@ export default function QuizPage() {
     // Calculate matches based on overlapping tags
     const matchedCats = completed ? cats.map(cat => {
         const catTags = [
-            cat.attributes?.goodWithKids ? 'Good with Kids' : 'Quiet Home',
+            cat.goodWithKids ? 'Good with Kids' : 'Quiet Home',
             cat.gender === 'Female' ? 'Sweet' : 'Playful',
             // Add more inferred tags from your data structure if available
         ];
