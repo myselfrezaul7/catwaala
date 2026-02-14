@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { ReportService } from "@/services/ReportService";
 import { useAuth } from "@/contexts/AuthContext";
 import Image from "next/image";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 // Dynamically import LocationPicker to avoid SSR issues with Leaflet
 const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
@@ -103,7 +104,13 @@ export function ReportForm() {
         try {
             let imageUrl = null;
             if (data.image && data.image.length > 0) {
-                imageUrl = await ReportService.uploadImage(data.image[0]);
+                try {
+                    imageUrl = await ReportService.uploadImage(data.image[0]);
+                } catch (uploadError) {
+                    console.error("Image upload failed:", uploadError);
+                    alert("Failed to upload image. Checks your internet connection or try a smaller image.");
+                    return;
+                }
             }
 
             await ReportService.create({
@@ -117,14 +124,30 @@ export function ReportForm() {
                 user_id: user?.uid, // Link report to user
             });
 
+            // Send Email Notification via Web3Forms
+            await submitToWeb3Forms({
+                form_name: "New Rescue Report",
+                subject: `🚨 New ${data.type} Cat Report!`,
+                message: `
+                    <strong>Type:</strong> ${data.type} <br/>
+                    <strong>Location:</strong> ${data.locationDetails} <br/>
+                    <strong>Coordinates:</strong> <a href="https://www.google.com/maps?q=${data.latitude},${data.longitude}">${data.latitude}, ${data.longitude}</a> <br/>
+                    <strong>Description:</strong> ${data.description} <br/>
+                    <strong>Contact:</strong> ${data.contact} <br/>
+                    <strong>Image:</strong> ${imageUrl ? `<a href="${imageUrl}">View Image</a>` : "No image uploaded"}
+                `,
+                // Web3Forms specific fields to make the email look better
+                from_name: "Catwaala Reporter",
+            });
+
             setSubmitted(true);
             reset();
             setCaptchaValue(null);
             if (recaptchaRef.current) recaptchaRef.current.reset();
             setImagePreview(null);
         } catch (error) {
-            console.error(error);
-            alert("Failed to submit report. Please try again.");
+            console.error("Submission failed:", error);
+            alert("Failed to submit report. Please check your connection and try again.");
         }
     };
 
@@ -136,7 +159,7 @@ export function ReportForm() {
                 </div>
                 <h2 className="text-4xl font-bold mb-4 font-heading text-stone-800">Report Received</h2>
                 <p className="text-stone-500 max-w-md mb-8 text-lg">
-                    We've alerted the Catwaala volunteer network. Thank you for being a responsible citizen. 🐱
+                    We've alerted the Catwaala volunteer network. The report has been securely sent to our system. Thank you for being a responsible citizen. 🐱
                 </p>
                 <Button onClick={() => { setSubmitted(false); setCurrentStep(1); }} className="bg-rose-600 hover:bg-rose-700 text-white shadow-lg shadow-rose-500/20 rounded-full px-8 py-6 text-lg">
                     Submit Another Report
@@ -253,7 +276,19 @@ export function ReportForm() {
 
                                     <div className="relative group">
                                         <div className={`border-2 border-dashed rounded-3xl p-8 text-center transition-all cursor-pointer relative overflow-hidden ${imagePreview ? 'border-rose-500 bg-white' : 'border-stone-300 bg-stone-50 hover:bg-stone-100 hover:border-rose-300'}`}>
-                                            <input type="file" className="absolute inset-0 z-20 opacity-0 cursor-pointer" accept="image/*" {...register("image")} />
+                                            <input
+                                                type="file"
+                                                className="absolute inset-0 z-20 opacity-0 cursor-pointer"
+                                                accept="image/*"
+                                                {...register("image", {
+                                                    validate: {
+                                                        lessThan10MB: (files) => {
+                                                            if (!files || files.length === 0) return true;
+                                                            return files[0].size <= 10 * 1024 * 1024 || "File size should be less than 10MB";
+                                                        }
+                                                    }
+                                                })}
+                                            />
 
                                             {imagePreview ? (
                                                 <div className="relative z-10 h-48 w-full">
@@ -268,10 +303,11 @@ export function ReportForm() {
                                                         <Camera className="w-8 h-8" />
                                                     </div>
                                                     <h3 className="text-lg font-bold text-stone-700">Upload Photo</h3>
-                                                    <p className="text-stone-400 text-sm mt-1">Tap to select from gallery</p>
+                                                    <p className="text-stone-400 text-sm mt-1">Tap to select from gallery (Max 10MB)</p>
                                                 </div>
                                             )}
                                         </div>
+                                        {errors.image && <p className="text-sm text-rose-500 font-bold mt-2 ml-2">{errors.image.message}</p>}
                                     </div>
                                 </div>
                             </div>
