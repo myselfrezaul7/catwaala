@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { SuccessStories } from "@/components/home/SuccessStories";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { PetCard } from "@/components/shared/PetCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -67,30 +68,45 @@ export default function Home() {
                         We are dedicated to improving the lives of street cats in Bangladesh through rescue, rehabilitation, and adoption programs.
                     </p>
 
-                    {/* Stats Cards with iOS 26 Glassmorphism */}
+                    {/* Stats Cards with Interactive Glassmorphism */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        <div className="glass-card rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group">
-                            <div className="w-14 h-14 rounded-2xl bg-rose-100/80 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <div className="glass-card rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
+                                <Heart className="w-24 h-24 text-rose-500" />
+                            </div>
+                            <div className="w-14 h-14 rounded-2xl bg-rose-100/80 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 relative z-10">
                                 <Heart className="w-7 h-7 text-rose-500" />
                             </div>
-                            <span className="block text-4xl font-bold text-rose-600 mb-2">500+</span>
-                            <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider">Cats TNR&apos;d</span>
+                            <span className="block text-4xl font-bold text-rose-600 mb-2 relative z-10">
+                                <AnimatedCounter value={500} />+
+                            </span>
+                            <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Cats TNR'd</span>
                         </div>
 
-                        <div className="glass-card rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group">
-                            <div className="w-14 h-14 rounded-2xl bg-amber-100/80 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <div className="glass-card rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
+                                <Users className="w-24 h-24 text-amber-600" />
+                            </div>
+                            <div className="w-14 h-14 rounded-2xl bg-amber-100/80 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 relative z-10">
                                 <Users className="w-7 h-7 text-amber-600" />
                             </div>
-                            <span className="block text-4xl font-bold text-amber-600 mb-2">200+</span>
-                            <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider">Adoptions</span>
+                            <span className="block text-4xl font-bold text-amber-600 mb-2 relative z-10">
+                                <AnimatedCounter value={200} />+
+                            </span>
+                            <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Adoptions</span>
                         </div>
 
-                        <div className="glass-card rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group">
-                            <div className="w-14 h-14 rounded-2xl bg-emerald-100/80 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <div className="glass-card rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
+                                <Stethoscope className="w-24 h-24 text-emerald-600" />
+                            </div>
+                            <div className="w-14 h-14 rounded-2xl bg-emerald-100/80 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 relative z-10">
                                 <Stethoscope className="w-7 h-7 text-emerald-600" />
                             </div>
-                            <span className="block text-4xl font-bold text-emerald-600 mb-2">50+</span>
-                            <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider">Volunteers</span>
+                            <span className="block text-4xl font-bold text-emerald-600 mb-2 relative z-10">
+                                <AnimatedCounter value={50} />+
+                            </span>
+                            <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Volunteers</span>
                         </div>
                     </div>
                 </div>
