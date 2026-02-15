@@ -163,15 +163,24 @@ export function AdoptPageContent() {
             <div className="container mx-auto px-4 -mt-8 relative z-20">
                 <div className="glass-card p-6 rounded-2xl space-y-6">
                     {/* Search Bar */}
-                    <div className="relative w-full">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
-                        <input
-                            type="text"
-                            placeholder="Search by name, breed, or location..."
-                            className="w-full pl-10 pr-4 py-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none transition-all text-stone-700 placeholder:text-stone-400"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
+                    {/* Search Bar & Download */}
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="relative w-full">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
+                            <input
+                                type="text"
+                                placeholder="Search by name, breed, or location..."
+                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none transition-all text-stone-700 placeholder:text-stone-400"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </div>
+                        <a href="/adoption-form" target="_blank" className="shrink-0">
+                            <Button className="w-full md:w-auto h-full px-6 bg-stone-800 hover:bg-stone-900 text-white rounded-xl gap-2 font-bold shadow-lg shadow-stone-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg>
+                                Download Form
+                            </Button>
+                        </a>
                     </div>
 
                     {/* Filter Controls */}
@@ -247,7 +256,7 @@ export function AdoptPageContent() {
 
                 <motion.div
                     layout
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8"
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredCats.length > 0 ? (

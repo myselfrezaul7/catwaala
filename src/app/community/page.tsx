@@ -2,26 +2,33 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Clock, Star, Download, ChevronRight, Users, Heart } from "lucide-react";
+import { Calendar, MapPin, Clock, Star, Download, ChevronRight, Users, Heart, FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { resources } from "@/data/resources";
 
 export default function CommunityPage() {
     return (
         <div className="min-h-screen pb-24 bg-[#FFFDF8]">
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-                <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-rose-100/50 to-transparent pointer-events-none" />
+                <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-rose-100/50 dark:from-rose-900/20 to-transparent pointer-events-none" />
                 <div className="container mx-auto text-center relative z-10">
-                    <div className="inline-block p-3 rounded-full bg-white shadow-lg shadow-rose-100/50 mb-6 border border-rose-100 animate-bounce-slow">
+                    <div className="inline-block p-3 rounded-full bg-white dark:bg-stone-800 shadow-lg shadow-rose-100/50 dark:shadow-rose-900/20 mb-6 border border-rose-100 dark:border-rose-900/50 animate-bounce-slow">
                         <Users className="w-8 h-8 text-rose-500 fill-rose-500" />
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold font-heading text-stone-800 mb-6 leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-bold font-heading text-stone-800 dark:text-stone-100 mb-6 leading-tight">
                         Catwaala Community <span className="text-rose-500">Hub</span>
                     </h1>
-                    <p className="text-xl text-stone-500 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed mb-8">
                         Join our vibrant community of cat lovers in Dhaka. From adoption drives to kitten yoga, there's always something happening!
                     </p>
+                    <Link href="https://www.facebook.com/groups/catwaala" target="_blank" rel="noopener noreferrer">
+                        <Button size="lg" className="rounded-full bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all">
+                            <Users className="w-5 h-5 mr-2" />
+                            Visit Facebook Community
+                        </Button>
+                    </Link>
                 </div>
             </section>
 
@@ -174,21 +181,17 @@ export default function CommunityPage() {
 
                 {/* Resources */}
                 <section>
-                    <h2 className="text-3xl font-bold text-stone-800 font-heading mb-10 text-center">Feline Resources 📚</h2>
+                    <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 font-heading mb-10 text-center">Feline Resources 📚</h2>
                     <div className="grid md:grid-cols-3 gap-6">
-                        {[
-                            { title: "New Kitten Checklist", desc: "Everything you need for your new furball." },
-                            { title: "Local Vet Directory", desc: "Trusted vets across Dhaka." },
-                            { title: "Cat Nutrition Guide", desc: "What to feed and what to avoid." },
-                        ].map((resource, i) => (
-                            <Link href="#" key={i} className="group glass-card p-8 rounded-[2rem] hover:bg-rose-50 transition-colors border-2 border-transparent hover:border-rose-100">
-                                <div className="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center mb-6 text-rose-500 group-hover:scale-110 transition-transform">
-                                    <Download className="w-7 h-7" />
+                        {resources.map((resource) => (
+                            <Link href={`/resources/${resource.slug}`} key={resource.slug} className="group glass-card p-8 rounded-[2rem] hover:bg-rose-50 dark:hover:bg-stone-800 transition-all border-2 border-transparent hover:border-rose-100 dark:hover:border-stone-700">
+                                <div className="w-14 h-14 bg-rose-100 dark:bg-stone-700 rounded-2xl flex items-center justify-center mb-6 text-rose-500 group-hover:scale-110 transition-transform shadow-sm">
+                                    <FileText className="w-7 h-7" />
                                 </div>
-                                <h3 className="text-xl font-bold text-stone-800 mb-2">{resource.title}</h3>
-                                <p className="text-stone-500 mb-4">{resource.desc}</p>
+                                <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-2">{resource.title}</h3>
+                                <p className="text-stone-500 dark:text-stone-400 mb-4 text-sm leading-relaxed">{resource.description}</p>
                                 <span className="text-rose-500 font-bold text-sm flex items-center gap-1 group-hover:translate-x-2 transition-transform">
-                                    Download PDF <ChevronRight className="w-4 h-4" />
+                                    Read Article <ChevronRight className="w-4 h-4" />
                                 </span>
                             </Link>
                         ))}

@@ -303,7 +303,7 @@ export function ReportForm() {
                                                         <Camera className="w-8 h-8" />
                                                     </div>
                                                     <h3 className="text-lg font-bold text-stone-700">Upload Photo</h3>
-                                                    <p className="text-stone-400 text-sm mt-1">Tap to select from gallery (Max 10MB)</p>
+                                                    <p className="text-stone-400 text-sm mt-1">Tap to select from gallery <span className="text-rose-500 font-bold">(Max 10MB)</span></p>
                                                 </div>
                                             )}
                                         </div>

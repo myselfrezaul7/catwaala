@@ -69,32 +69,32 @@ export function PetCard({ cat }: { cat: CatProps }) {
                 )}
 
                 {/* Cat info overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5 bg-gradient-to-t from-black/80 to-transparent">
+                    <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2 drop-shadow-lg truncate">
                         {cat.name}
                     </h3>
-                    <div className="flex items-center gap-2 text-white/90 text-sm">
-                        <MapPin className="w-4 h-4" />
-                        <span className="font-medium">{cat.location}</span>
+                    <div className="flex items-center gap-1 md:gap-2 text-white/90 text-xs md:text-sm">
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="font-medium truncate">{cat.location}</span>
                     </div>
                 </div>
             </div>
 
             {/* Card content */}
-            <div className="p-5 bg-white/60 backdrop-blur-sm">
-                <div className="flex justify-between items-center mb-4">
-                    <span className="text-sm font-semibold text-rose-600 bg-rose-50/80 px-4 py-1.5 rounded-xl">
+            <div className="p-3 md:p-5 bg-white/60 dark:bg-stone-900/60 backdrop-blur-sm">
+                <div className="flex justify-between items-center mb-3 md:mb-4">
+                    <span className="text-xs md:text-sm font-semibold text-rose-600 dark:text-rose-400 bg-rose-50/80 dark:bg-rose-900/20 px-2 md:px-4 py-1 md:py-1.5 rounded-lg md:rounded-xl truncate max-w-[50%]">
                         {cat.breed}
                     </span>
-                    <span className="text-sm text-stone-500 font-medium">
+                    <span className="text-xs md:text-sm text-stone-500 dark:text-stone-400 font-medium">
                         {cat.age}
                     </span>
                 </div>
 
                 <Link href={`/adopt/${cat.id}`}>
-                    <Button className="w-full h-12 rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold shadow-lg shadow-rose-500/20 hover:shadow-rose-500/35 transition-all duration-300">
+                    <Button className="w-full h-10 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold text-xs md:text-base shadow-lg shadow-rose-500/20 hover:shadow-rose-500/35 transition-all duration-300">
                         <span>Meet {cat.name}</span>
-                        <Sparkles className="w-4 h-4 ml-2" />
+                        <Sparkles className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2" />
                     </Button>
                 </Link>
             </div>
