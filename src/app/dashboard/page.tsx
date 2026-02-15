@@ -223,7 +223,7 @@ export default function DashboardPage() {
 
                 {/* Main Content Tabs */}
                 <Tabs defaultValue="favorites" className="space-y-8" onValueChange={setActiveTab}>
-                    <TabsList className="bg-white/50 dark:bg-stone-900/50 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-800 shadow-sm mx-auto md:mx-0 w-fit">
+                    <TabsList className="bg-white/50 dark:bg-stone-800/80 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-700 shadow-sm mx-auto md:mx-0 w-fit">
                         <TabsTrigger value="favorites" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all">
                             Favorites
                         </TabsTrigger>
@@ -418,7 +418,7 @@ export default function DashboardPage() {
                                     id="full_name"
                                     value={profileForm.full_name}
                                     onChange={(e) => setProfileForm({ ...profileForm, full_name: e.target.value })}
-                                    className="dark:bg-stone-900 dark:border-stone-700"
+                                    className="dark:bg-stone-900 dark:border-stone-700 dark:text-stone-100"
                                 />
                             </div>
 
@@ -429,7 +429,7 @@ export default function DashboardPage() {
                                     value={profileForm.phone}
                                     onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
                                     placeholder="+880..."
-                                    className="dark:bg-stone-900 dark:border-stone-700"
+                                    className="dark:bg-stone-900 dark:border-stone-700 dark:text-stone-100"
                                 />
                             </div>
                         </div>
