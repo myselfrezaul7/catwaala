@@ -4,6 +4,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { EmergencyFAB } from "@/components/shared/EmergencyFAB";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
@@ -104,6 +105,7 @@ export default function RootLayout({
                                     </main>
                                     <Footer />
                                 </div>
+                                <EmergencyFAB />
                                 <Toaster position="top-center" richColors />
                             </LanguageProvider>
                         </ThemeProvider>
