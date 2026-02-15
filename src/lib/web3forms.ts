@@ -1,10 +1,10 @@
 export async function submitToWeb3Forms(data: any) {
     // Use env var or the key provided by user directly
-    const access_key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "d7824851-58ee-4709-ae0e-d9eb2e7e8135";
+    const access_key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
     if (!access_key) {
-        console.error("Web3Forms Access Key is missing!");
-        return { success: false, message: "Server configuration error. Please contact support." };
+        console.error("Web3Forms Access Key is missing from environment variables!");
+        return { success: false, message: "Server configuration error: Missing Email API Key." };
     }
 
     try {
@@ -17,14 +17,18 @@ export async function submitToWeb3Forms(data: any) {
             body: JSON.stringify({
                 access_key,
                 ...data,
-                subject: `New Submission from Catwaala: ${data.form_name || "Form"}`,
+                subject: data.subject || `New Submission from Catwaala`,
             }),
         });
 
         const result = await response.json();
+        if (!result.success) {
+            console.error("Web3Forms API Error:", result);
+            return { success: false, message: result.message || "Failed to send email." };
+        }
         return result;
     } catch (error) {
-        console.error("Web3Forms Error:", error);
-        return { success: false, message: "Failed to send message. Please try again." };
+        console.error("Web3Forms Network Error:", error);
+        return { success: false, message: "Network error occurred while sending email." };
     }
 }

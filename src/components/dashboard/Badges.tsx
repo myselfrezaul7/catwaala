@@ -21,15 +21,15 @@ export function Badges({ earned = ['newbie', 'meal'] }: { earned?: string[] }) {
                     <div
                         key={badge.id}
                         className={`flex flex-col items-center text-center p-4 rounded-2xl border transition-all ${isEarned
-                            ? `bg-white border-stone-100 shadow-sm opacity-100`
-                            : 'bg-stone-50 border-transparent opacity-50 grayscale'
+                            ? `bg-white dark:bg-stone-900 border-stone-100 dark:border-stone-800 shadow-sm opacity-100`
+                            : 'bg-stone-50 dark:bg-stone-900/40 border-transparent opacity-50 grayscale'
                             }`}
                     >
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${isEarned ? badge.bg : 'bg-stone-200'} ${isEarned ? badge.color : 'text-stone-400'}`}>
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${isEarned ? badge.bg : 'bg-stone-200 dark:bg-stone-800'} ${isEarned ? badge.color : 'text-stone-400 dark:text-stone-600'}`}>
                             <Icon className="w-6 h-6 fill-current" />
                         </div>
-                        <h4 className="font-bold text-stone-800 text-sm">{badge.name}</h4>
-                        <p className="text-stone-400 text-xs mt-1">{badge.desc}</p>
+                        <h4 className="font-bold text-stone-800 dark:text-stone-200 text-sm">{badge.name}</h4>
+                        <p className="text-stone-400 dark:text-stone-500 text-xs mt-1">{badge.desc}</p>
                     </div>
                 );
             })}

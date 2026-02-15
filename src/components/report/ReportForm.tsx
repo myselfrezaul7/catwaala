@@ -125,7 +125,7 @@ export function ReportForm() {
             });
 
             // Send Email Notification via Web3Forms
-            await submitToWeb3Forms({
+            const emailResult = await submitToWeb3Forms({
                 form_name: "New Rescue Report",
                 subject: `🚨 New ${data.type} Cat Report!`,
                 message: `
@@ -136,18 +136,24 @@ export function ReportForm() {
                     <strong>Contact:</strong> ${data.contact} <br/>
                     <strong>Image:</strong> ${imageUrl ? `<a href="${imageUrl}">View Image</a>` : "No image uploaded"}
                 `,
-                // Web3Forms specific fields to make the email look better
                 from_name: "Catwaala Reporter",
             });
+
+            if (!emailResult.success) {
+                console.warn("Email notification failed:", emailResult.message);
+                // We don't block the report if email fails, but we log it.
+                // toast.error(`Report saved, but email failed: ${emailResult.message}`);
+            }
 
             setSubmitted(true);
             reset();
             setCaptchaValue(null);
             if (recaptchaRef.current) recaptchaRef.current.reset();
             setImagePreview(null);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Submission failed:", error);
-            alert("Failed to submit report. Please check your connection and try again.");
+            const errorMessage = error.message || "Unknown error occurred";
+            alert(`Failed to submit report: ${errorMessage}. Please check console for details.`);
         }
     };
 
