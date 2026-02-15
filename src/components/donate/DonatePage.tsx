@@ -30,7 +30,7 @@ const OPTIONS: DonationOption[] = [
         title: "Sponsor Cat Vaccine",
         description: "Cover the cost of a Tricat or Rabies vaccine for one rescue.",
         icon: Syringe,
-        amount: "800 BDT",
+        amount: "1000 BDT",
         color: "text-teal-500",
         bgColor: "bg-teal-100 dark:bg-teal-900/30",
     },
@@ -139,13 +139,10 @@ export function DonatePage() {
                                             b
                                         </div>
                                         <div>
-                                            <p className="font-bold text-lg">bKash (Personal)</p>
-                                            <p className="text-pink-600 font-mono text-xl tracking-wider">01712-345678</p>
+                                            <p className="font-bold text-lg">bKash</p>
+                                            <p className="text-pink-600 font-mono text-xl tracking-wider">Coming Soon</p>
                                         </div>
                                     </div>
-                                    <Button variant="ghost" size="icon" onClick={() => handleCopy("01712345678")} className="hover:bg-pink-200/50">
-                                        <Copy className="w-5 h-5 text-pink-500" />
-                                    </Button>
                                 </div>
 
                                 {/* Nagad */}
@@ -155,29 +152,30 @@ export function DonatePage() {
                                             N
                                         </div>
                                         <div>
-                                            <p className="font-bold text-lg">Nagad (Personal)</p>
-                                            <p className="text-orange-600 font-mono text-xl tracking-wider">01987-654321</p>
+                                            <p className="font-bold text-lg">Nagad</p>
+                                            <p className="text-orange-600 font-mono text-xl tracking-wider">Coming Soon</p>
                                         </div>
                                     </div>
-                                    <Button variant="ghost" size="icon" onClick={() => handleCopy("01987654321")} className="hover:bg-orange-200/50">
-                                        <Copy className="w-5 h-5 text-orange-500" />
-                                    </Button>
                                 </div>
                             </div>
 
                             {/* Additional Instructions for Medicine */}
                             {selectedOption === 'medicine' && (
-                                <div className="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30 flex items-start gap-4 mb-8">
-                                    <Pill className="w-6 h-6 text-blue-500 shrink-0 mt-1" />
-                                    <div>
-                                        <h4 className="font-bold text-blue-700 dark:text-blue-300 mb-2">Donate Physical Medicines?</h4>
-                                        <p className="text-sm text-blue-600 dark:text-blue-200 mb-2">
-                                            We accept unused medicines! You can courier them or drop them off at our shelter.
-                                        </p>
-                                        <p className="text-sm font-bold text-blue-800 dark:text-blue-100">
-                                            Address: House 12, Road 4, Sector 7, Uttara, Dhaka.
-                                        </p>
+                                <div className="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30 flex flex-col items-start gap-4 mb-8">
+                                    <div className="flex items-start gap-4">
+                                        <Pill className="w-6 h-6 text-blue-500 shrink-0 mt-1" />
+                                        <div>
+                                            <h4 className="font-bold text-blue-700 dark:text-blue-300 mb-2">Donate Physical Medicines?</h4>
+                                            <p className="text-sm text-blue-600 dark:text-blue-200 mb-2">
+                                                We accept unused medicines! Please email us to arrange a pickup or drop-off.
+                                            </p>
+                                        </div>
                                     </div>
+                                    <a href="mailto:catwaala@gmail.com" className="ml-10">
+                                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-6">
+                                            Mail Us at catwaala@gmail.com
+                                        </Button>
+                                    </a>
                                 </div>
                             )}
 
