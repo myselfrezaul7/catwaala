@@ -1,7 +1,17 @@
 import { MetadataRoute } from "next";
+import { CatService } from "@/services/CatService";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://catwaala.com"; // Replace with actual domain
+
+    // Fetch all available cats for dynamic routes
+    const cats = await CatService.getAll();
+    const catUrls: MetadataRoute.Sitemap = cats.map((cat) => ({
+        url: `${baseUrl}/adopt/${cat.id}`,
+        lastModified: new Date(cat.created_at || new Date()),
+        changeFrequency: "weekly",
+        priority: 0.8,
+    }));
 
     return [
         {
@@ -46,5 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "monthly",
             priority: 0.5,
         },
+        ...catUrls,
     ];
 }
