@@ -161,7 +161,7 @@ export function AdoptPageContent() {
             </div>
 
             <div className="container mx-auto px-4 -mt-8 relative z-20">
-                <div className="glass-card p-6 rounded-2xl space-y-6">
+                <div className="glass-card dark:glass-card dark:bg-stone-900/60 p-6 rounded-2xl space-y-6 transition-colors duration-300">
                     {/* Search Bar */}
                     {/* Search Bar & Download */}
                     <div className="flex flex-col md:flex-row gap-4">
@@ -170,13 +170,13 @@ export function AdoptPageContent() {
                             <input
                                 type="text"
                                 placeholder="Search by name, breed, or location..."
-                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none transition-all text-stone-700 placeholder:text-stone-400"
+                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-amber-100 dark:border-stone-700 bg-white/60 dark:bg-stone-900/50 focus:ring-2 focus:ring-rose-500 outline-none transition-all text-stone-700 dark:text-stone-200 placeholder:text-stone-400"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
                         <a href="/adoption-form" target="_blank" className="shrink-0">
-                            <Button className="w-full md:w-auto h-full px-6 bg-stone-800 hover:bg-stone-900 text-white rounded-xl gap-2 font-bold shadow-lg shadow-stone-200">
+                            <Button className="w-full md:w-auto h-full px-6 bg-stone-800 hover:bg-stone-900 dark:bg-stone-800 dark:hover:bg-stone-700 text-white rounded-xl gap-2 font-bold shadow-lg shadow-stone-200 dark:shadow-stone-900/50">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg>
                                 Download Form
                             </Button>
@@ -186,9 +186,9 @@ export function AdoptPageContent() {
                     {/* Filter Controls */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
                         <div className="space-y-2">
-                            <label className="text-sm font-semibold text-stone-600">Gender</label>
+                            <label className="text-sm font-semibold text-stone-600 dark:text-stone-400">Gender</label>
                             <select
-                                className="w-full p-2.5 rounded-lg border border-amber-100 bg-white/60 outline-none focus:ring-2 focus:ring-rose-500 text-stone-700"
+                                className="w-full p-2.5 rounded-lg border border-amber-100 dark:border-stone-700 bg-white/60 dark:bg-stone-900/50 outline-none focus:ring-2 focus:ring-rose-500 text-stone-700 dark:text-stone-300"
                                 value={selectedGender}
                                 onChange={(e) => setSelectedGender(e.target.value)}
                             >
@@ -199,9 +199,9 @@ export function AdoptPageContent() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-semibold text-stone-600">Age</label>
+                            <label className="text-sm font-semibold text-stone-600 dark:text-stone-400">Age</label>
                             <select
-                                className="w-full p-2.5 rounded-lg border border-amber-100 bg-white/60 outline-none focus:ring-2 focus:ring-rose-500 text-stone-700"
+                                className="w-full p-2.5 rounded-lg border border-amber-100 dark:border-stone-700 bg-white/60 dark:bg-stone-900/50 outline-none focus:ring-2 focus:ring-rose-500 text-stone-700 dark:text-stone-300"
                                 value={selectedAge}
                                 onChange={(e) => setSelectedAge(e.target.value as AgeCategory | "All")}
                             >
@@ -213,42 +213,42 @@ export function AdoptPageContent() {
                         </div>
 
                         <div className="col-span-1 md:col-span-2 flex flex-wrap gap-4 pt-2">
-                            <label className="flex items-center gap-2 cursor-pointer bg-amber-50/60 px-3 py-2 rounded-lg border border-transparent hover:border-rose-200 transition-colors">
+                            <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg border transition-all select-none ${attributes.goodWithKids ? 'bg-rose-50/60 dark:bg-rose-900/20 border-rose-200 dark:border-rose-800' : 'bg-amber-50/60 dark:bg-stone-800/50 border-transparent hover:border-rose-200 dark:hover:border-stone-600'}`}>
                                 <input
                                     type="checkbox"
                                     checked={attributes.goodWithKids}
                                     onChange={(e) => setAttributes(prev => ({ ...prev, goodWithKids: e.target.checked }))}
                                     className="w-4 h-4 text-rose-600 rounded focus:ring-rose-500"
                                 />
-                                <span className="text-sm font-medium text-stone-600">Good with Kids</span>
+                                <span className={`text-sm font-medium ${attributes.goodWithKids ? 'text-rose-700 dark:text-rose-400' : 'text-stone-600 dark:text-stone-400'}`}>Good with Kids</span>
                             </label>
-                            <label className="flex items-center gap-2 cursor-pointer bg-amber-50/60 px-3 py-2 rounded-lg border border-transparent hover:border-rose-200 transition-colors">
+                            <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg border transition-all select-none ${attributes.vaccinated ? 'bg-rose-50/60 dark:bg-rose-900/20 border-rose-200 dark:border-rose-800' : 'bg-amber-50/60 dark:bg-stone-800/50 border-transparent hover:border-rose-200 dark:hover:border-stone-600'}`}>
                                 <input
                                     type="checkbox"
                                     checked={attributes.vaccinated}
                                     onChange={(e) => setAttributes(prev => ({ ...prev, vaccinated: e.target.checked }))}
                                     className="w-4 h-4 text-rose-600 rounded focus:ring-rose-500"
                                 />
-                                <span className="text-sm font-medium text-stone-600">Vaccinated</span>
+                                <span className={`text-sm font-medium ${attributes.vaccinated ? 'text-rose-700 dark:text-rose-400' : 'text-stone-600 dark:text-stone-400'}`}>Vaccinated</span>
                             </label>
-                            <label className="flex items-center gap-2 cursor-pointer bg-amber-50/60 px-3 py-2 rounded-lg border border-transparent hover:border-rose-200 transition-colors">
+                            <label className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg border transition-all select-none ${attributes.neutered ? 'bg-rose-50/60 dark:bg-rose-900/20 border-rose-200 dark:border-rose-800' : 'bg-amber-50/60 dark:bg-stone-800/50 border-transparent hover:border-rose-200 dark:hover:border-stone-600'}`}>
                                 <input
                                     type="checkbox"
                                     checked={attributes.neutered}
                                     onChange={(e) => setAttributes(prev => ({ ...prev, neutered: e.target.checked }))}
                                     className="w-4 h-4 text-rose-600 rounded focus:ring-rose-500"
                                 />
-                                <span className="text-sm font-medium text-stone-600">Neutered</span>
+                                <span className={`text-sm font-medium ${attributes.neutered ? 'text-rose-700 dark:text-rose-400' : 'text-stone-600 dark:text-stone-400'}`}>Neutered</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 {/* Results & Stats */}
-                <div className="mt-8 flex justify-between items-center text-stone-500 mb-6">
+                <div className="mt-8 flex justify-between items-center text-stone-500 dark:text-stone-400 mb-6">
                     <p className="font-medium">Showing {filteredCats.length} cats</p>
                     {(searchQuery || selectedGender !== "All" || selectedAge !== "All" || Object.values(attributes).some(Boolean)) && (
-                        <Button variant="ghost" onClick={resetFilters} className="text-rose-600 hover:text-rose-700 h-auto p-0 hover:bg-transparent">
+                        <Button variant="ghost" onClick={resetFilters} className="text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 h-auto p-0 hover:bg-transparent">
                             <X className="w-4 h-4 mr-1" /> Clear Filters
                         </Button>
                     )}

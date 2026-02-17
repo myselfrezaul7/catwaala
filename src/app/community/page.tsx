@@ -41,139 +41,47 @@ export default function CommunityPage() {
                             <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 font-heading mb-2">Upcoming Events 📅</h2>
                             <p className="text-stone-500 dark:text-stone-400">Mark your calendars for these purr-fect gatherings.</p>
                         </div>
-                        <Button variant="ghost" className="text-rose-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20">View All <ChevronRight className="w-4 h-4 ml-1" /></Button>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {/* Event 1 */}
-                        <div className="group glass-card dark:bg-stone-900/60 dark:border-stone-800 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                            <div className="relative h-48 bg-stone-200 dark:bg-stone-800">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Kitten Yoga"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute top-4 left-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur px-3 py-1 rounded-xl text-center shadow-lg">
-                                    <span className="block text-xs font-bold text-rose-500 uppercase">Feb</span>
-                                    <span className="block text-xl font-bold text-stone-800 dark:text-stone-100">24</span>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-2 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">Kitten Yoga Charity Class</h3>
-                                <div className="space-y-2 text-stone-500 dark:text-stone-400 text-sm mb-6">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4 text-rose-400" /> 10:00 AM - 11:30 AM
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <MapPin className="w-4 h-4 text-rose-400" /> Gulshan 2 Park
-                                    </div>
-                                </div>
-                                <Button className="w-full rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-600 font-bold transition-all">
-                                    RSVP Now
-                                </Button>
-                            </div>
+                    <div className="bg-stone-100 dark:bg-stone-900/50 rounded-[2rem] p-12 text-center border-2 border-dashed border-stone-200 dark:border-stone-800">
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-100 dark:bg-rose-900/20 text-rose-500 mb-6">
+                            <Calendar className="w-8 h-8" />
                         </div>
-
-                        {/* Event 2 */}
-                        <div className="group glass-card dark:bg-stone-900/60 dark:border-stone-800 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                            <div className="relative h-48 bg-stone-200 dark:bg-stone-800">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Adoption Drive"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute top-4 left-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur px-3 py-1 rounded-xl text-center shadow-lg">
-                                    <span className="block text-xs font-bold text-rose-500 uppercase">Mar</span>
-                                    <span className="block text-xl font-bold text-stone-800 dark:text-stone-100">02</span>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-2 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">Mega Adoption Drive</h3>
-                                <div className="space-y-2 text-stone-500 dark:text-stone-400 text-sm mb-6">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4 text-rose-400" /> 2:00 PM - 6:00 PM
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <MapPin className="w-4 h-4 text-rose-400" /> Dhanmondi Lake
-                                    </div>
-                                </div>
-                                <Button className="w-full rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-600 font-bold transition-all">
-                                    Learn More
-                                </Button>
-                            </div>
-                        </div>
-
-                        {/* Event 3 */}
-                        <div className="group glass-card dark:bg-stone-900/60 dark:border-stone-800 rounded-[2rem] overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                            <div className="relative h-48 bg-stone-200 dark:bg-stone-800">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Vet Q&A"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute top-4 left-4 bg-white/90 dark:bg-stone-900/90 backdrop-blur px-3 py-1 rounded-xl text-center shadow-lg">
-                                    <span className="block text-xs font-bold text-rose-500 uppercase">Mar</span>
-                                    <span className="block text-xl font-bold text-stone-800 dark:text-stone-100">15</span>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-2 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">Vet Q&A Session</h3>
-                                <div className="space-y-2 text-stone-500 dark:text-stone-400 text-sm mb-6">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="w-4 h-4 text-rose-400" /> 8:00 PM - 9:00 PM
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <MapPin className="w-4 h-4 text-rose-400" /> Online (Zoom)
-                                    </div>
-                                </div>
-                                <Button className="w-full rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-600 font-bold transition-all">
-                                    Register Free
-                                </Button>
-                            </div>
-                        </div>
+                        <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-3"> exciting events coming soon!</h3>
+                        <p className="text-stone-500 dark:text-stone-400 max-w-md mx-auto mb-8">
+                            We are planning some amazing meetups, adoption drives, and workshops. Stay tuned for updates!
+                        </p>
+                        <Button disabled className="opacity-50 cursor-not-allowed rounded-full bg-stone-800 dark:bg-stone-700 text-white font-bold px-8 py-6">
+                            Coming Soon
+                        </Button>
                     </div>
                 </section>
 
                 {/* Volunteer Spotlight */}
-                <section className="bg-gradient-to-br from-rose-500 to-orange-500 rounded-[3rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-rose-200 dark:shadow-rose-900/20">
-                    <div className="absolute top-0 right-0 p-12 opacity-10">
+                <section className="bg-gradient-to-br from-rose-500 to-orange-500 rounded-[3rem] p-8 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-rose-200 dark:shadow-rose-900/20 text-center">
+                    <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                         <Star className="w-64 h-64 rotate-12" />
                     </div>
 
-                    <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm font-bold mb-6 border border-white/20">
-                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                Volunteer of the Month
-                            </div>
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 !leading-snug text-white">
-                                Meet Sarah, the "Kitten Whisperer"
-                            </h2>
-                            <p className="text-rose-100 text-lg mb-8 leading-relaxed">
-                                Sarah has fostered over 20 litters of neonatal kittens this year alone. Her dedication to bottle-feeding round the clock has saved countless lives.
-                            </p>
-                            <div className="flex flex-wrap gap-4">
-                                <div className="bg-white/10 backdrop-blur px-4 py-3 rounded-xl border border-white/10 text-center min-w-[100px]">
-                                    <span className="block text-2xl font-bold text-white">50+</span>
-                                    <span className="text-xs uppercase opacity-80 text-white">Rescues</span>
-                                </div>
-                                <div className="bg-white/10 backdrop-blur px-4 py-3 rounded-xl border border-white/10 text-center min-w-[100px]">
-                                    <span className="block text-2xl font-bold text-white">2yr</span>
-                                    <span className="text-xs uppercase opacity-80 text-white">Service</span>
-                                </div>
-                            </div>
+                    <div className="relative z-10 max-w-3xl mx-auto">
+                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm font-bold mb-8 border border-white/20">
+                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                            Community Moderator
                         </div>
-                        <div className="relative">
-                            <div className="aspect-square rounded-[2.5rem] overflow-hidden border-8 border-white/20 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop" // Placeholder portrait
-                                    alt="Sarah"
-                                    fill
-                                    className="object-cover"
-                                />
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6 !leading-snug text-white">
+                            Meet Wasima Mursalin
+                        </h2>
+                        <p className="text-rose-100 text-xl mb-10 leading-relaxed">
+                            She is an moderator of our 450K members community.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <div className="bg-white/10 backdrop-blur px-6 py-4 rounded-xl border border-white/10 text-center min-w-[120px]">
+                                <span className="block text-3xl font-bold text-white">450K+</span>
+                                <span className="text-xs uppercase opacity-80 text-white tracking-wider">Members</span>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur px-6 py-4 rounded-xl border border-white/10 text-center min-w-[120px]">
+                                <span className="block text-3xl font-bold text-white">24/7</span>
+                                <span className="text-xs uppercase opacity-80 text-white tracking-wider">Support</span>
                             </div>
                         </div>
                     </div>
