@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { CatService } from "@/services/CatService";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://catwaala.com"; // Replace with actual domain
+    const baseUrl = "https://www.catwaala.com"; // Replace with actual domain
 
     // Fetch all available cats for dynamic routes
     const cats = await CatService.getAll();

@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         description: "Helping street cats in Bangladesh find loving homes.",
         creator: "@catwaala",
     },
-    metadataBase: new URL("https://catwaala.com"),
+    metadataBase: new URL("https://www.catwaala.com"),
     verification: {
         google: "hupCVTRe4rmruCdhQMfoGSShCmcE4ZUUn8pXAoFX2Qg",
     },
