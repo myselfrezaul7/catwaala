@@ -61,6 +61,9 @@ export const metadata: Metadata = {
         creator: "@catwaala",
     },
     metadataBase: new URL("https://catwaala.com"),
+    alternates: {
+        canonical: "./",
+    },
     verification: {
         google: "hupCVTRe4rmruCdhQMfoGSShCmcE4ZUUn8pXAoFX2Qg",
     },
