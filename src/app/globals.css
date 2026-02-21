@@ -4,82 +4,76 @@
 
 @layer base {
     :root {
-        --background: 35 30% 98%;
-        --foreground: 25 10% 15%;
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
 
-        --card: 35 25% 99%;
-        --card-foreground: 25 10% 15%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 3.9%;
 
-        --popover: 35 25% 99%;
-        --popover-foreground: 25 10% 15%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 3.9%;
 
-        --primary: 347 77% 50%;
+        --primary: 346 87% 60%;
         --primary-foreground: 0 0% 100%;
 
-        --secondary: 35 20% 95%;
-        --secondary-foreground: 25 10% 20%;
+        --secondary: 240 4.8% 95.9%;
+        --secondary-foreground: 240 5.9% 10%;
 
-        --muted: 35 15% 94%;
-        --muted-foreground: 25 5% 45%;
+        --muted: 240 4.8% 95.9%;
+        --muted-foreground: 240 3.8% 46.1%;
 
-        --accent: 35 20% 95%;
-        --accent-foreground: 25 10% 20%;
+        --accent: 240 4.8% 95.9%;
+        --accent-foreground: 240 5.9% 10%;
 
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
 
-        --border: 35 15% 90%;
-        --input: 35 15% 90%;
-        --ring: 347 77% 50%;
+        --border: 240 5.9% 90%;
+        --input: 240 5.9% 90%;
+        --ring: 346 87% 60%;
 
         --radius: 1rem;
 
-        /* iOS 26 Glassmorphism variables - Warm cream */
-        --glass-background: rgba(255, 253, 248, 0.65);
-        --glass-border: rgba(255, 255, 255, 0.7);
-        --glass-shadow: 0 8px 40px rgba(180, 160, 130, 0.10), 0 2px 12px rgba(0, 0, 0, 0.04);
+        /* Modern Glassmorphism variables - Clean */
+        --glass-background: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.5);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
         --glass-blur: 24px;
     }
 
     .dark {
-        --background: 24 5% 6%;
-        /* Stone 950 */
-        --foreground: 60 9.1% 97.8%;
-        /* Stone 50 */
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
 
-        --card: 24 5% 10%;
-        /* Stone 900 */
-        --card-foreground: 60 9.1% 97.8%;
+        --card: 240 10% 3.9%;
+        --card-foreground: 0 0% 98%;
 
-        --popover: 24 5% 10%;
-        --popover-foreground: 60 9.1% 97.8%;
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
 
         --primary: 346 87% 60%;
-        /* Rose 500 */
-        --primary-foreground: 60 9.1% 97.8%;
+        --primary-foreground: 0 0% 100%;
 
-        --secondary: 12 6.5% 15.1%;
-        /* Stone 800 */
-        --secondary-foreground: 60 9.1% 97.8%;
+        --secondary: 240 3.7% 15.9%;
+        --secondary-foreground: 0 0% 98%;
 
-        --muted: 12 6.5% 15.1%;
-        --muted-foreground: 24 5.4% 63.9%;
+        --muted: 240 3.7% 15.9%;
+        --muted-foreground: 240 5% 64.9%;
 
-        --accent: 12 6.5% 15.1%;
-        --accent-foreground: 60 9.1% 97.8%;
+        --accent: 240 3.7% 15.9%;
+        --accent-foreground: 0 0% 98%;
 
         --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 60 9.1% 97.8%;
+        --destructive-foreground: 0 0% 98%;
 
-        --border: 12 6.5% 15.1%;
-        --input: 12 6.5% 15.1%;
+        --border: 240 3.7% 15.9%;
+        --input: 240 3.7% 15.9%;
         --ring: 346 87% 60%;
 
-        /* Dark Glassmorphism */
-        --glass-background: rgba(28, 25, 23, 0.65);
-        /* Stone 900 with opacity */
+        /* Dark Glassmorphism - Clean */
+        --glass-background: rgba(9, 9, 11, 0.65);
         --glass-border: rgba(255, 255, 255, 0.08);
-        --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 2px 12px rgba(0, 0, 0, 0.2);
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -90,12 +84,7 @@
 
     body {
         @apply bg-background text-foreground font-sans antialiased;
-        background: linear-gradient(160deg, #FFFDF8 0%, #FFF8EE 40%, #FFF5E8 100%);
         min-height: 100vh;
-    }
-
-    .dark body {
-        background: linear-gradient(160deg, #0c0a09 0%, #1c1917 100%);
     }
 }
 
@@ -104,8 +93,8 @@
     /* iOS 26 Glassmorphism Effect — Premium */
     .glass-card {
         background: var(--glass-background);
-        backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
-        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+        backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+        -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
         border: 1px solid var(--glass-border);
         box-shadow: var(--glass-shadow);
     }
@@ -116,22 +105,26 @@
     }
 
     .glass-card-hover:hover {
-        transform: translateY(-6px) scale(1.015);
-        box-shadow: 0 24px 48px rgba(180, 160, 130, 0.16), 0 4px 16px rgba(0, 0, 0, 0.06);
-        border-color: rgba(255, 255, 255, 0.85);
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+        border-color: rgba(255, 255, 255, 1);
     }
 
-    /* Warm gradient background */
+    .dark .glass-card-hover:hover {
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Clean gradient backgrounds if needed */
     .gradient-bg {
         background: linear-gradient(135deg,
-                #FFFDF8 0%,
-                #FFF5E8 50%,
-                #FFF0E0 100%);
+                hsl(var(--background)) 0%,
+                hsl(var(--muted)) 100%);
     }
 
-    /* Cream section bg */
+    /* Clean section bg */
     .cream-section {
-        background: linear-gradient(180deg, #FFFDF8 0%, #FFF8EE 100%);
+        @apply bg-muted/30;
     }
 
     /* Smooth float animation */
