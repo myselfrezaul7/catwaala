@@ -3,8 +3,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { submitToWeb3Forms } from "@/lib/web3forms";
+import { useAuth } from "@/contexts/AuthContext";
+import { db } from "@/utils/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 export function AdoptionForm({ catName }: { catName: string }) {
+    const { user } = useAuth();
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -25,6 +29,22 @@ export function AdoptionForm({ catName }: { catName: string }) {
         setIsSubmitting(false);
 
         if (result.success) {
+            try {
+                await addDoc(collection(db, "adoptions"), {
+                    dogName: catName, // Re-using property name for compatibility with admin page if they share DB structures, or changing to petName
+                    catName: catName,
+                    applicantName: data.name,
+                    applicantEmail: data.email || "",
+                    applicantPhone: data.phone,
+                    status: "Pending",
+                    created_at: Date.now(),
+                    experience: data.message,
+                    userId: user?.uid || null,
+                });
+            } catch (e) {
+                console.error("Failed to save adoption to firestore:", e);
+            }
+
             setSubmitted(true);
             form.reset();
         } else {

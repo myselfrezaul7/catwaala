@@ -19,7 +19,7 @@ import {
     DialogTitle,
     DialogFooter,
 } from "@/components/ui/dialog";
-import { Heart, Gift, LogOut, Stethoscope, MessageCircle, BookHeart, Puzzle, HandHelping, Plus, CheckCircle, Award, Trophy } from "lucide-react";
+import { Heart, Gift, LogOut, MessageCircle, BookHeart, Plus, CheckCircle, Award, Trophy, FileText, FileCheck, FileX, Loader2 } from "lucide-react";
 import { Badges } from "@/components/dashboard/Badges";
 import { ReportService } from "@/services/ReportService";
 import { MemorialService } from "@/services/MemorialService";
@@ -29,9 +29,12 @@ import { Report, Memorial } from "@/services/server-data";
 import { adaptCatToCard } from "@/utils/adapters";
 import { updateProfile } from "firebase/auth";
 import { seedData } from "@/utils/seed-data";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "@/utils/firebase";
+import { formatDistanceToNow } from "date-fns";
 
 export default function DashboardPage() {
-    const { user, signOut, loading } = useAuth();
+    const { user, signOut, loading, userData } = useAuth();
     const { favoriteIds } = useFavorites();
     const router = useRouter();
 
@@ -39,6 +42,10 @@ export default function DashboardPage() {
     const [reports, setReports] = useState<Report[]>([]);
     const [memorials, setMemorials] = useState<Memorial[]>([]);
     const [favoriteCats, setFavoriteCats] = useState<any[]>([]);
+
+    // New States
+    const [applications, setApplications] = useState<any[]>([]);
+    const [leaderboard, setLeaderboard] = useState<any[]>([]);
     const [isLoadingActivity, setIsLoadingActivity] = useState(false);
 
     // Profile Editing
@@ -75,15 +82,10 @@ export default function DashboardPage() {
                 setFavoriteCats([]);
                 return;
             }
-            // Parse IDs (now strings in Firestore usually, but CatService inputs strings)
-            // If they are numeric strings, keep as strings for Firestore IDs if using auto-IDs or specific format
-            // Our seed data used numeric IDs? No, addDoc makes auto IDs.
-            // Our favorites might be mixed.
 
             if (favoriteIds.length > 0) {
                 try {
                     const catsData = await CatService.getByIds(favoriteIds);
-                    // Adapt cats for UI (checking if adapter still valid)
                     const adaptedCats = catsData.map(adaptCatToCard);
                     setFavoriteCats(adaptedCats);
                 } catch (e) {
@@ -108,6 +110,18 @@ export default function DashboardPage() {
                 ]);
                 setReports(userReports);
                 setMemorials(userMemorials);
+
+                // Fetch Applications
+                const appQ = query(collection(db, "adoptions"), where("userId", "==", user.uid));
+                const appSnap = await getDocs(appQ);
+                setApplications(appSnap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a: any, b: any) => b.created_at - a.created_at));
+
+                // Fetch Leaderboard
+                const leadSnap = await getDocs(collection(db, "users"));
+                const usersList = leadSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+                usersList.sort((a: any, b: any) => (b.points || 0) - (a.points || 0));
+                setLeaderboard(usersList.slice(0, 10));
+
             } catch (error) {
                 console.error("Failed to load activity", error);
                 toast.error("Failed to load your activity");
@@ -144,7 +158,7 @@ export default function DashboardPage() {
                     full_name: profileForm.full_name,
                     phone: profileForm.phone,
                     avatar_url: avatarUrl,
-                    role: 'user'
+                    role: 'user' // Default to user
                 });
             } catch (e) {
                 console.error("Failed to update firestore profile", e);
@@ -204,8 +218,9 @@ export default function DashboardPage() {
 
                         {/* User Info */}
                         <div className="flex-1 text-center md:text-left space-y-3">
-                            <h1 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100">
+                            <h1 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100 flex flex-col sm:flex-row items-center sm:items-baseline gap-3">
                                 {user.displayName || "Welcome Back"}
+                                {userData?.points && <span className="text-xl text-rose-500 bg-rose-100 dark:bg-rose-900/30 px-3 py-1 rounded-full">{userData.points} pts</span>}
                             </h1>
                             <p className="text-stone-400 dark:text-stone-500">{user.email}</p>
 
@@ -223,9 +238,12 @@ export default function DashboardPage() {
 
                 {/* Main Content Tabs */}
                 <Tabs defaultValue="favorites" className="space-y-8" onValueChange={setActiveTab}>
-                    <TabsList className="bg-white/50 dark:bg-stone-800/80 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-700 shadow-sm mx-auto md:mx-0 w-fit">
+                    <TabsList className="bg-white/50 dark:bg-stone-800/80 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-700 shadow-sm mx-auto md:mx-0 w-fit flex-wrap overflow-x-auto h-auto">
                         <TabsTrigger value="favorites" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all">
                             Favorites
+                        </TabsTrigger>
+                        <TabsTrigger value="applications" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all">
+                            My Applications
                         </TabsTrigger>
                         <TabsTrigger value="reports" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-6 dark:data-[state=active]:text-white transition-all">
                             My Reports
@@ -262,6 +280,39 @@ export default function DashboardPage() {
                         )}
                     </TabsContent>
 
+                    {/* Applications Tab */}
+                    <TabsContent value="applications" className="space-y-8 animate-fade-in-up">
+                        <div className="flex items-center gap-3 mb-6">
+                            <FileText className="w-6 h-6 text-rose-500" />
+                            <h2 className="text-2xl font-bold text-stone-800 dark:text-stone-100">Adoption Applications</h2>
+                        </div>
+                        {isLoadingActivity ? (
+                            <div className="text-center py-12"><Loader2 className="w-8 h-8 animate-spin mx-auto text-rose-500" /></div>
+                        ) : applications.length > 0 ? (
+                            <div className="grid gap-4">
+                                {applications.map((app) => (
+                                    <div key={app.id} className="glass-card dark:bg-stone-900/60 dark:border-stone-800 p-6 rounded-3xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                        <div>
+                                            <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100">Application for <span className="text-rose-500">{app.catName || app.dogName}</span></h3>
+                                            <p className="text-sm text-stone-500 dark:text-stone-400">Submitted {app.created_at ? formatDistanceToNow(new Date(app.created_at), { addSuffix: true }) : 'recently'}</p>
+                                        </div>
+                                        <div className={`px-4 py-2 rounded-xl font-bold flex items-center gap-2 ${app.status === 'Approved' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : app.status === 'Rejected' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}`}>
+                                            {app.status === 'Approved' ? <FileCheck className="w-5 h-5" /> : app.status === 'Rejected' ? <FileX className="w-5 h-5" /> : <Loader2 className="w-5 h-5 animate-spin" />}
+                                            {app.status}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center glass-card dark:bg-stone-900/60 dark:border-stone-800 p-12 rounded-[2.5rem] border border-dashed border-amber-200/60 dark:border-stone-700">
+                                <div className="text-6xl mb-4">📝</div>
+                                <h3 className="text-xl font-bold mb-2 text-stone-800 dark:text-stone-100">No active applications</h3>
+                                <p className="text-stone-500 dark:text-stone-400 mb-6">When you apply to adopt a cat, track the status here.</p>
+                                <Link href="/adopt"><Button className="bg-rose-500 hover:bg-rose-600 text-white shadow-xl shadow-rose-500/20 rounded-xl">Find a Cat</Button></Link>
+                            </div>
+                        )}
+                    </TabsContent>
+
                     <TabsContent value="reports" className="space-y-8 animate-fade-in-up">
                         <div className="flex items-center gap-3 mb-6">
                             <MessageCircle className="w-6 h-6 text-blue-500" />
@@ -289,10 +340,12 @@ export default function DashboardPage() {
                                                     }`}>
                                                     {report.type}
                                                 </span>
-                                                <span className="text-stone-400 text-xs">{new Date(report.created_at).toLocaleDateString()}</span>
+                                                <span className="text-stone-400 text-xs text-muted-foreground font-medium">
+                                                    {report.created_at ? formatDistanceToNow(new Date(report.created_at), { addSuffix: true }) : 'Recently'}
+                                                </span>
                                             </div>
-                                            <p className="text-stone-700 dark:text-stone-200 font-medium mb-1">{report.description}</p>
-                                            <p className="text-stone-400 dark:text-stone-500 text-sm">{report.location_text}</p>
+                                            <p className="text-stone-700 dark:text-stone-200 font-medium mb-1 pl-1 line-clamp-2">{report.description}</p>
+                                            <p className="text-stone-500 dark:text-stone-400 text-xs pl-1 flex items-center gap-1 mt-2">📍 {report.location_text}</p>
                                             <div className="mt-3">
                                                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium border ${report.status === 'Resolved' ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-900' : 'bg-stone-50 text-stone-500 border-stone-200 dark:bg-stone-800 dark:text-stone-400 dark:border-stone-700'
                                                     }`}>
@@ -305,7 +358,12 @@ export default function DashboardPage() {
                                 ))}
                             </div>
                         ) : (
-                            <div className="text-center py-12 text-stone-400 dark:text-stone-500">You haven't submitted any reports yet.</div>
+                            <div className="text-center glass-card dark:bg-stone-900/60 dark:border-stone-800 p-12 rounded-[2.5rem] border border-dashed border-amber-200/60 dark:border-stone-700">
+                                <div className="text-6xl mb-4 opacity-80">🚨</div>
+                                <h3 className="text-xl font-bold mb-2 text-stone-800 dark:text-stone-100">No reports filed</h3>
+                                <p className="text-stone-500 dark:text-stone-400 mb-6">If you spot a cat in danger, report it to our volunteer network.</p>
+                                <Link href="/report"><Button variant="outline" className="border-orange-200 text-orange-600 hover:bg-orange-50 font-bold bg-orange-50/50">Report a Rescue</Button></Link>
+                            </div>
                         )}
                     </TabsContent>
 
@@ -358,22 +416,29 @@ export default function DashboardPage() {
                                     <h2 className="text-2xl font-bold text-stone-800 dark:text-stone-100">Leaderboard</h2>
                                 </div>
                                 <div className="glass-card dark:bg-stone-900/60 dark:border-stone-800 p-6 rounded-[2rem] space-y-4">
-                                    {[
-                                        { name: "Sarah K.", points: 1250, rank: 1 },
-                                        { name: "Rafiq M.", points: 980, rank: 2 },
-                                        { name: "Ayesha S.", points: 850, rank: 3 },
-                                        { name: "You", points: 320, rank: 12, highlight: true },
-                                    ].map((volunteer, i) => (
-                                        <div key={i} className={`flex items-center justify-between p-3 rounded-xl ${volunteer.highlight ? 'bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-900/30' : 'hover:bg-stone-50 dark:hover:bg-stone-800'}`}>
+                                    {isLoadingActivity ? (
+                                        <div className="py-8 flex justify-center"><Loader2 className="w-6 h-6 animate-spin text-rose-500" /></div>
+                                    ) : leaderboard.length > 0 ? leaderboard.map((u, i) => (
+                                        <div key={u.id} className={`flex items-center justify-between p-3 rounded-xl ${u.id === user.uid ? 'bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-900/30' : 'hover:bg-stone-50 dark:hover:bg-stone-800'}`}>
                                             <div className="flex items-center gap-3">
-                                                <span className={`w-6 h-6 flex items-center justify-center font-bold text-sm rounded-full ${volunteer.rank <= 3 ? 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400' : 'text-stone-400 dark:text-stone-600 '}`}>
-                                                    {volunteer.rank}
+                                                <span className={`w-6 h-6 flex items-center justify-center font-bold text-sm rounded-full ${i <= 2 ? 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400' : 'text-stone-400 dark:text-stone-600 '}`}>
+                                                    {i + 1}
                                                 </span>
-                                                <span className={`font-bold ${volunteer.highlight ? 'text-rose-600 dark:text-rose-400' : 'text-stone-700 dark:text-stone-300'}`}>{volunteer.name}</span>
+                                                <div className="w-8 h-8 rounded-full overflow-hidden bg-white dark:bg-stone-800 shrink-0 border border-stone-200 dark:border-stone-700 hidden sm:block">
+                                                    {u.photoURL ? (
+                                                        // eslint-disable-next-line @next/next/no-img-element
+                                                        <img src={u.photoURL} alt="" className="w-full h-full object-cover" />
+                                                    ) : (
+                                                        <div className="w-full h-full flex items-center justify-center text-xs font-bold text-stone-500">{getInitials(u.name || 'U')}</div>
+                                                    )}
+                                                </div>
+                                                <span className={`font-bold ${u.id === user.uid ? 'text-rose-600 dark:text-rose-400' : 'text-stone-700 dark:text-stone-300'}`}>{u.id === user.uid ? 'You' : u.name}</span>
                                             </div>
-                                            <span className="font-bold text-stone-500 dark:text-stone-400 text-sm">{volunteer.points} pts</span>
+                                            <span className="font-bold text-stone-500 dark:text-stone-400 text-sm">{u.points || 0} pts</span>
                                         </div>
-                                    ))}
+                                    )) : (
+                                        <div className="text-center text-sm text-stone-500 dark:text-stone-400 py-4">No points recorded yet.</div>
+                                    )}
                                 </div>
                             </div>
                         </div>

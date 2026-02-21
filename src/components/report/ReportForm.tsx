@@ -287,7 +287,11 @@ export function ReportForm() {
                                 <div className="relative">
                                     <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-rose-500 w-5 h-5" />
                                     <input
-                                        {...register("locationDetails", { required: "Please provide specific location details" })}
+                                        {...register("locationDetails", {
+                                            required: "Please provide specific location details",
+                                            minLength: { value: 5, message: "Location details must be at least 5 characters long." },
+                                            maxLength: { value: 150, message: "Location details cannot exceed 150 characters." }
+                                        })}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl border-none ring-1 ring-stone-200 bg-white/80 focus:ring-2 focus:ring-rose-500 outline-none text-stone-700 font-medium shadow-sm transition-all"
                                         placeholder="Specific details (e.g. Beside the tea stall, under the bridge...)"
                                     />
@@ -306,7 +310,11 @@ export function ReportForm() {
 
                                 <div className="space-y-4">
                                     <textarea
-                                        {...register("description", { required: "Please provide a description" })}
+                                        {...register("description", {
+                                            required: "Please provide a description",
+                                            minLength: { value: 10, message: "Description details must be at least 10 characters long." },
+                                            maxLength: { value: 500, message: "Description details cannot exceed 500 characters." }
+                                        })}
                                         className="w-full p-4 rounded-2xl border-none ring-1 ring-stone-200 bg-white/80 focus:ring-2 focus:ring-rose-500 outline-none min-h-[120px] text-stone-700 resize-none font-medium text-lg leading-relaxed shadow-sm"
                                         placeholder="Describe the animal (color, size, condition)..."
                                     />
@@ -363,11 +371,20 @@ export function ReportForm() {
                                     <div className="relative">
                                         <Shield className="absolute left-4 top-1/2 -translate-y-1/2 text-rose-500 w-5 h-5" />
                                         <input
-                                            {...register("contact", { required: "Contact info is required" })}
+                                            {...register("contact", {
+                                                required: "Contact info is required",
+                                                pattern: {
+                                                    value: /^[+]{0,1}[0-9\s-]+$/,
+                                                    message: "Please enter a valid phone number"
+                                                },
+                                                minLength: { value: 10, message: "Contact number must be at least 10 digits" },
+                                                maxLength: { value: 15, message: "Contact number cannot exceed 15 digits" }
+                                            })}
                                             className="w-full pl-12 pr-4 py-4 rounded-2xl border-none ring-1 ring-stone-200 bg-white/80 focus:ring-2 focus:ring-rose-500 outline-none text-stone-700 font-bold text-lg shadow-sm"
                                             placeholder="Mobile Number"
                                         />
                                     </div>
+                                    {errors.contact && <p className="text-sm text-rose-500 font-bold ml-2">{errors.contact.message}</p>}
                                 </div>
 
                                 <div className="bg-stone-50 p-6 rounded-2xl border border-stone-100">
