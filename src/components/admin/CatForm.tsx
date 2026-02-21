@@ -85,7 +85,7 @@ export function CatForm({ initialData, onSuccess, onCancel }: CatFormProps) {
                 location: formData.location,
                 description: formData.description,
                 imageUrl: finalImageUrl,
-                tag: formData.tag === "Available" ? null : formData.tag,
+                tag: formData.tag === "Available" ? "" : formData.tag, // Stop firestore from throwing null assignment indexing error
                 temperamentTags: formData.temperamentTags.split(",").map(t => t.trim()).filter(Boolean),
                 vaccinated: formData.vaccinated,
                 neutered: formData.neutered,

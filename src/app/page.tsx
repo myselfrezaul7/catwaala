@@ -17,7 +17,7 @@ export default function Home() {
             <SuccessStories />
 
             {/* Featured Cats Section */}
-            <section className="py-24 relative overflow-hidden">
+            <section className="py-12 md:py-24 relative overflow-hidden">
                 {/* Warm decorative elements */}
                 <div className="absolute top-20 left-10 w-72 h-72 bg-rose-200/15 rounded-full blur-3xl" />
                 <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-200/15 rounded-full blur-3xl" />
@@ -49,7 +49,7 @@ export default function Home() {
             </section>
 
             {/* Mission Section with Glass Stats */}
-            <section className="py-28 relative overflow-hidden">
+            <section className="py-16 md:py-28 relative overflow-hidden">
                 <div className="absolute inset-0 gradient-bg dark:bg-stone-950" />
                 <div className="absolute inset-0">
                     <div className="absolute top-0 left-1/4 w-96 h-96 bg-rose-300/15 dark:bg-rose-900/10 rounded-full blur-3xl animate-float" />
@@ -70,7 +70,7 @@ export default function Home() {
 
                     {/* Stats Cards with Interactive Glassmorphism */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+                        <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
                                 <Heart className="w-24 h-24 text-rose-500" />
                             </div>
@@ -83,7 +83,7 @@ export default function Home() {
                             <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Cats TNR'd</span>
                         </div>
 
-                        <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+                        <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
                                 <Users className="w-24 h-24 text-amber-600 dark:text-amber-500" />
                             </div>
@@ -96,7 +96,7 @@ export default function Home() {
                             <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Adoptions</span>
                         </div>
 
-                        <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+                        <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
                                 <Stethoscope className="w-24 h-24 text-emerald-600 dark:text-emerald-500" />
                             </div>
@@ -113,13 +113,13 @@ export default function Home() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 relative overflow-hidden">
+            <section className="py-12 md:py-20 relative overflow-hidden">
                 <div className="absolute inset-0">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-200/20 dark:bg-rose-900/10 rounded-full blur-3xl" />
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <div className="glass-card dark:bg-stone-900/60 rounded-[32px] p-12 md:p-16 text-center max-w-3xl mx-auto border dark:border-white/10">
+                    <div className="glass-card dark:bg-stone-900/60 rounded-[32px] p-8 md:p-16 text-center max-w-3xl mx-auto border dark:border-white/10">
                         <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-white mb-6">
                             Ready to Make a Difference?
                         </h2>
