@@ -13,6 +13,7 @@ import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
+import Link from "next/link";
 
 // Placeholder chart data until we build full analytics pipelines
 const chartData = [
@@ -33,16 +34,11 @@ type Report = {
     user_id?: string;
 };
 
-interface AdminDashboardProps {
-    initialCats: Cat[];
-    initialVets: VetClinic[];
-}
-
-export function AdminDashboard({ initialCats, initialVets }: AdminDashboardProps) {
+export function AdminDashboard() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
 
-    const [stats, setStats] = useState({ cats: initialCats.length, reports: 0, users: 432 });
+    const [stats, setStats] = useState({ cats: 0, reports: 0, users: 0, adoptions: 0 });
     const [recentReports, setRecentReports] = useState<Report[]>([]);
     const [dataLoading, setDataLoading] = useState(true);
 
@@ -70,10 +66,24 @@ export function AdminDashboard({ initialCats, initialVets }: AdminDashboardProps
 
                 setRecentReports(reports);
 
-                setStats(prev => ({
-                    ...prev,
-                    reports: snapshot.size || 0
-                }));
+                setRecentReports(reports);
+
+                // Fetch other aggregates 
+                const catsRef = collection(db, "cats");
+                const catsSnap = await getDocs(catsRef);
+
+                const usersRef = collection(db, "users");
+                const usersSnap = await getDocs(usersRef);
+
+                const adoptionsRef = collection(db, "adoptions");
+                const adoptionsSnap = await getDocs(adoptionsRef);
+
+                setStats({
+                    cats: catsSnap.size || 0,
+                    reports: snapshot.size || 0,
+                    users: usersSnap.size || 0,
+                    adoptions: adoptionsSnap.size || 0,
+                });
 
             } catch (error) {
                 console.error("Error fetching admin data:", error);
@@ -143,17 +153,17 @@ export function AdminDashboard({ initialCats, initialVets }: AdminDashboardProps
                             </div>
                             <div>
                                 <div className="text-2xl font-bold text-stone-800">{stats.users}</div>
-                                <p className="text-xs text-stone-500">Community members</p>
+                                <p className="text-xs text-stone-500">Registered users</p>
                             </div>
                         </div>
                         <div className="glass-card p-6 rounded-3xl border border-primary/20 bg-primary/5 shadow-sm">
                             <div className="flex flex-row items-center justify-between pb-2">
-                                <h3 className="text-sm font-medium text-primary">System Status</h3>
-                                <Shield className="h-4 w-4 text-primary" />
+                                <h3 className="text-sm font-medium text-primary">Applications</h3>
+                                <FileText className="h-4 w-4 text-primary" />
                             </div>
                             <div>
-                                <div className="text-2xl font-bold text-primary">100%</div>
-                                <p className="text-xs text-primary/80">All services running</p>
+                                <div className="text-2xl font-bold text-primary">{stats.adoptions}</div>
+                                <p className="text-xs text-primary/80">Pending/Total Adoptions</p>
                             </div>
                         </div>
                     </div>
@@ -220,101 +230,44 @@ export function AdminDashboard({ initialCats, initialVets }: AdminDashboardProps
                 {/* --- END DYNAMIC SECTION --- */}
 
                 <div className="glass-card p-8 rounded-[2.5rem] mb-8">
-                    <h2 className="text-2xl font-bold font-heading text-stone-800 mb-6">Database Management</h2>
-
-                    <Tabs defaultValue="cats" className="w-full">
-                        <TabsList className="mb-8 w-auto inline-flex bg-white/50 p-1 rounded-2xl border border-amber-100">
-                            <TabsTrigger value="cats" className="rounded-xl px-6 py-2.5 data-[state=active]:bg-rose-500 data-[state=active]:text-white data-[state=active]:shadow-md transition-all flex items-center gap-2">
-                                <LayoutDashboard className="w-4 h-4" /> Cats ({initialCats.length})
-                            </TabsTrigger>
-                            <TabsTrigger value="vets" className="rounded-xl px-6 py-2.5 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all flex items-center gap-2">
-                                <FileText className="w-4 h-4" /> Vets ({initialVets.length})
-                            </TabsTrigger>
-                        </TabsList>
-
-                        <TabsContent value="cats" className="space-y-4">
-                            <div className="glass-card rounded-3xl overflow-hidden border border-amber-100/60">
-                                <table className="w-full text-sm text-left">
-                                    <thead className="bg-amber-50/50 text-stone-500 font-bold uppercase tracking-wider text-xs border-b border-amber-100">
-                                        <tr>
-                                            <th className="px-6 py-5">Name</th>
-                                            <th className="px-6 py-5">Breed</th>
-                                            <th className="px-6 py-5">Age</th>
-                                            <th className="px-6 py-5">Status</th>
-                                            <th className="px-6 py-5">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-amber-100/40">
-                                        {initialCats.map((cat) => (
-                                            <tr key={cat.id} className="hover:bg-white/50 transition-colors">
-                                                <td className="px-6 py-4 font-bold text-stone-800">{cat.name}</td>
-                                                <td className="px-6 py-4 text-stone-600">{cat.breed}</td>
-                                                <td className="px-6 py-4 text-stone-600">{cat.age}</td>
-                                                <td className="px-6 py-4">
-                                                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${cat.tag === 'Urgent' ? 'bg-rose-100 text-rose-700' :
-                                                        cat.tag === 'Adopted' ? 'bg-emerald-100 text-emerald-700' :
-                                                            'bg-blue-100 text-blue-700'
-                                                        }`}>
-                                                        {cat.tag || 'Available'}
-                                                    </span>
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex gap-2">
-                                                        <Button size="icon" variant="ghost" className="h-9 w-9 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl">
-                                                            <Edit className="w-4 h-4" />
-                                                        </Button>
-                                                        <Button size="icon" variant="ghost" className="h-9 w-9 text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl">
-                                                            <Trash className="w-4 h-4" />
-                                                        </Button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                    <h2 className="text-2xl font-bold font-heading text-stone-800 mb-6">Database Management Actions</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <Link href="/admin/cats" className="group">
+                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-rose-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <CatIcon className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800">Manage Cats</h3>
+                                    <p className="text-sm text-stone-500 mt-1">Add, edit, or remove cats from the system.</p>
+                                </div>
                             </div>
-                        </TabsContent>
+                        </Link>
 
-                        <TabsContent value="vets" className="space-y-4">
-                            <div className="glass-card rounded-3xl overflow-hidden border border-amber-100/60">
-                                <table className="w-full text-sm text-left">
-                                    <thead className="bg-amber-50/50 text-stone-500 font-bold uppercase tracking-wider text-xs border-b border-amber-100">
-                                        <tr>
-                                            <th className="px-6 py-5">Name</th>
-                                            <th className="px-6 py-5">District</th>
-                                            <th className="px-6 py-5">Phone</th>
-                                            <th className="px-6 py-5">Rating</th>
-                                            <th className="px-6 py-5">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-amber-100/40">
-                                        {initialVets.map((vet) => (
-                                            <tr key={vet.id} className="hover:bg-white/50 transition-colors">
-                                                <td className="px-6 py-4 font-bold text-stone-800">{vet.name}</td>
-                                                <td className="px-6 py-4 text-stone-600">{vet.district}</td>
-                                                <td className="px-6 py-4 text-emerald-600 font-medium">{vet.phone}</td>
-                                                <td className="px-6 py-4">
-                                                    <span className="flex items-center gap-1 text-stone-700 font-semibold">
-                                                        {vet.rating} <span className="text-yellow-500">★</span>
-                                                    </span>
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="flex gap-2">
-                                                        <Button size="icon" variant="ghost" className="h-9 w-9 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl">
-                                                            <Edit className="w-4 h-4" />
-                                                        </Button>
-                                                        <Button size="icon" variant="ghost" className="h-9 w-9 text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl">
-                                                            <Trash className="w-4 h-4" />
-                                                        </Button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                        <Link href="/admin/applications" className="group">
+                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-emerald-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <FileText className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800">Adoption Requests</h3>
+                                    <p className="text-sm text-stone-500 mt-1">Review and approve incoming adoption forms.</p>
+                                </div>
                             </div>
-                        </TabsContent>
-                    </Tabs>
+                        </Link>
+
+                        <Link href="/admin/users" className="group">
+                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-blue-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <Users className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800">User Profiles</h3>
+                                    <p className="text-sm text-stone-500 mt-1">Manage registered community members.</p>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
