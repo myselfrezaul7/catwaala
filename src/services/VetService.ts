@@ -1,5 +1,6 @@
 import { db } from "@/utils/firebase";
-import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
+import { MOCK_VET_CLINICS } from "@/data/vets";
 
 export type VetClinic = {
     id: string; // Firestore ID
@@ -21,26 +22,27 @@ const COLLECTION_NAME = "vets";
 export const VetService = {
     async getAll() {
         try {
-            const q = query(collection(db, COLLECTION_NAME), orderBy("district"));
-            const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as VetClinic));
+            const snapshot = await getDocs(collection(db, COLLECTION_NAME));
+            if (!snapshot.empty) {
+                return snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as VetClinic[];
+            }
         } catch (error) {
-            console.error("Error fetching vets:", error);
-            return [];
+            console.error("Firebase fetch failed, using fallback mock vets.", error);
         }
+
+        // Fallback
+        return MOCK_VET_CLINICS.map(vet => ({
+            ...vet,
+            id: vet.id.toString(),
+            legacy_id: vet.id
+        })) as VetClinic[];
     },
 
     async getByDistrict(district: string) {
-        try {
-            const q = query(
-                collection(db, COLLECTION_NAME),
-                where("district", "==", district)
-            );
-            const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as VetClinic));
-        } catch (error) {
-            console.error("Error fetching vets by district:", error);
-            return [];
-        }
+        const all = await this.getAll();
+        return all.filter(v => v.district === district);
     }
 };

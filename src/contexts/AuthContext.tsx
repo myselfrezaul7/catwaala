@@ -10,11 +10,13 @@ import {
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword
 } from "firebase/auth";
-import { auth } from "@/utils/firebase";
+import { auth, db } from "@/utils/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
 type AuthContextType = {
     user: User | null;
+    userData: any;
     loading: boolean;
     signInWithGoogle: () => Promise<void>;
     signOut: () => Promise<void>;
@@ -24,6 +26,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
+    userData: null,
     loading: true,
     signInWithGoogle: async () => { },
     signOut: async () => { },
@@ -37,12 +40,27 @@ export function useAuth() {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
+    const [userData, setUserData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
+            if (user) {
+                try {
+                    const docSnap = await getDoc(doc(db, "users", user.uid));
+                    if (docSnap.exists()) {
+                        setUserData(docSnap.data());
+                    } else {
+                        setUserData(null);
+                    }
+                } catch (e) {
+                    console.error("Error fetching user data", e);
+                }
+            } else {
+                setUserData(null);
+            }
             setLoading(false);
         });
 
@@ -80,6 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const value = {
         user,
+        userData,
         loading,
         signInWithGoogle,
         signOut,

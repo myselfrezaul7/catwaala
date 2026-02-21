@@ -15,15 +15,7 @@ import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import Link from "next/link";
 
-// Placeholder chart data until we build full analytics pipelines
-const chartData = [
-    { name: "Jan", reports: 2 },
-    { name: "Feb", reports: 5 },
-    { name: "Mar", reports: 3 },
-    { name: "Apr", reports: 10 },
-    { name: "May", reports: 7 },
-    { name: "Jun", reports: 12 },
-];
+// We will calculate chartData dynamically.
 
 type Report = {
     id: string;
@@ -35,38 +27,56 @@ type Report = {
 };
 
 export function AdminDashboard() {
-    const { user, loading: authLoading } = useAuth();
+    const { user, userData, loading: authLoading } = useAuth();
     const router = useRouter();
 
     const [stats, setStats] = useState({ cats: 0, reports: 0, users: 0, adoptions: 0 });
     const [recentReports, setRecentReports] = useState<Report[]>([]);
+    const [chartDataState, setChartDataState] = useState<{ name: string, reports: number }[]>([]);
     const [dataLoading, setDataLoading] = useState(true);
 
     useEffect(() => {
         if (!authLoading) {
             if (!user) {
                 router.push("/login");
-            } else if (user.email !== "catwaala@gmail.com") {
+            } else if (user.email !== "catwaala@gmail.com" && userData?.role !== "admin") {
                 router.push("/");
             }
         }
-    }, [user, authLoading, router]);
+    }, [user, userData, authLoading, router]);
 
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
+                // Fetch All Reports to build graph and list
                 const reportsRef = collection(db, "reports");
-                const q = query(reportsRef, orderBy("created_at", "desc"), limit(5));
-                const snapshot = await getDocs(q);
+                const snapshot = await getDocs(reportsRef);
 
                 const reports = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 })) as Report[];
 
-                setRecentReports(reports);
+                const sortedReports = [...reports].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
+                setRecentReports(sortedReports.slice(0, 5));
 
-                setRecentReports(reports);
+                // Process chart data (last 6 months)
+                const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                const now = new Date();
+                const last6Months = Array.from({ length: 6 }).map((_, i) => {
+                    const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
+                    return { monthIndex: d.getMonth(), year: d.getFullYear(), name: monthNames[d.getMonth()], reports: 0 };
+                });
+
+                reports.forEach(r => {
+                    if (r.created_at) {
+                        const d = new Date(r.created_at);
+                        const match = last6Months.find(m => m.monthIndex === d.getMonth() && m.year === d.getFullYear());
+                        if (match) match.reports++;
+                    }
+                });
+
+                setChartDataState(last6Months.map(m => ({ name: m.name, reports: m.reports })));
 
                 // Fetch other aggregates 
                 const catsRef = collection(db, "cats");
@@ -92,10 +102,10 @@ export function AdminDashboard() {
             }
         };
 
-        if (user && user.email === "catwaala@gmail.com") {
+        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
             fetchDashboardData();
         }
-    }, [user]);
+    }, [user, userData]);
 
     if (authLoading || dataLoading) return (
         <div className="min-h-screen flex flex-col items-center justify-center">
@@ -103,7 +113,7 @@ export function AdminDashboard() {
             <div className="text-stone-500 font-medium animate-pulse">Loading secure dashboard...</div>
         </div>
     );
-    if (!user || user.email !== "catwaala@gmail.com") return null;
+    if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) return null;
 
     return (
         <div className="min-h-screen pt-28 pb-20 bg-stone-50/30 dark:bg-zinc-950">
@@ -174,7 +184,7 @@ export function AdminDashboard() {
                             <h3 className="text-lg font-bold mb-4 text-stone-800">Report Trends</h3>
                             <div className="h-[300px]">
                                 <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={chartData}>
+                                    <BarChart data={chartDataState}>
                                         <CartesianGrid strokeDasharray="3 3" className="stroke-stone-200" vertical={false} />
                                         <XAxis dataKey="name" className="text-xs text-stone-500" axisLine={false} tickLine={false} />
                                         <YAxis className="text-xs text-stone-500" axisLine={false} tickLine={false} />
@@ -231,7 +241,7 @@ export function AdminDashboard() {
 
                 <div className="glass-card p-8 rounded-[2.5rem] mb-8">
                     <h2 className="text-2xl font-bold font-heading text-stone-800 mb-6">Database Management Actions</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                         <Link href="/admin/cats" className="group">
                             <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-rose-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
                                 <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -264,6 +274,30 @@ export function AdminDashboard() {
                                 <div>
                                     <h3 className="font-bold text-lg text-stone-800">User Profiles</h3>
                                     <p className="text-sm text-stone-500 mt-1">Manage registered community members.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/reports" className="group">
+                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-orange-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <AlertTriangle className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800">Rescue Reports</h3>
+                                    <p className="text-sm text-stone-500 mt-1">Monitor submitted emergency reports.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/vets" className="group">
+                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-teal-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-teal-50 text-teal-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <MapPin className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800">Veterinarians</h3>
+                                    <p className="text-sm text-stone-500 mt-1">Update local vet directory listings.</p>
                                 </div>
                             </div>
                         </Link>

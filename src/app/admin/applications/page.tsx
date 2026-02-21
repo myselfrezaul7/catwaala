@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Button } from "@/components/ui/button";
-import { Loader2, FileText, CheckCircle, XCircle, Trash, ArrowLeft } from "lucide-react";
+import { Loader2, FileText, CheckCircle, XCircle, Trash, ArrowLeft, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
@@ -24,7 +24,7 @@ type Application = {
 };
 
 export default function AdminApplicationsPage() {
-    const { user, loading: authLoading } = useAuth();
+    const { user, userData, loading: authLoading } = useAuth();
     const router = useRouter();
 
     const [applications, setApplications] = useState<Application[]>([]);
@@ -32,11 +32,11 @@ export default function AdminApplicationsPage() {
 
     useEffect(() => {
         if (!authLoading) {
-            if (!user || user.email !== "catwaala@gmail.com") {
+            if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) {
                 router.push("/");
             }
         }
-    }, [user, authLoading, router]);
+    }, [user, userData, authLoading, router]);
 
     const fetchApplications = async () => {
         setLoading(true);
@@ -57,14 +57,23 @@ export default function AdminApplicationsPage() {
     };
 
     useEffect(() => {
-        if (user && user.email === "catwaala@gmail.com") {
+        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
             fetchApplications();
         }
-    }, [user]);
+    }, [user, userData]);
 
-    const handleUpdateStatus = async (id: string, newStatus: string) => {
+    const handleUpdateStatus = async (id: string, newStatus: string, catId?: string) => {
         try {
             await updateDoc(doc(db, "adoptions", id), { status: newStatus });
+
+            if (newStatus === 'Approved' && catId) {
+                try {
+                    await updateDoc(doc(db, "cats", catId), { tag: 'Adopted' });
+                } catch (e) {
+                    console.error("Failed to update cat status", e);
+                }
+            }
+
             toast.success(`Application marked as ${newStatus}`);
             fetchApplications();
         } catch (error) {
@@ -121,8 +130,8 @@ export default function AdminApplicationsPage() {
                                         <div className="flex items-center gap-3">
                                             <h3 className="font-bold text-lg text-stone-800">{app.applicantName}</h3>
                                             <span className={`text-xs px-2.5 py-1 rounded-lg font-bold shadow-sm ${app.status === 'Approved' ? 'bg-emerald-100 text-emerald-700' :
-                                                    app.status === 'Rejected' ? 'bg-rose-100 text-rose-700' :
-                                                        'bg-amber-100 text-amber-700'
+                                                app.status === 'Rejected' ? 'bg-rose-100 text-rose-700' :
+                                                    'bg-amber-100 text-amber-700'
                                                 }`}>
                                                 {app.status || 'Pending'}
                                             </span>
@@ -139,14 +148,19 @@ export default function AdminApplicationsPage() {
                                         <p className="text-[11px] text-stone-400 font-medium px-2 py-1 rounded-md bg-white border border-stone-100 shadow-sm self-start md:self-end">
                                             {app.created_at ? formatDistanceToNow(new Date(app.created_at), { addSuffix: true }) : 'Recently'}
                                         </p>
-                                        <div className="flex gap-2">
+                                        <div className="flex gap-2 flex-wrap justify-end">
+                                            <a href={`mailto:${app.applicantEmail}?subject=Regarding your adoption application for ${app.catName || 'the cat'}`}>
+                                                <Button size="sm" variant="outline" className="text-blue-600 border-blue-200 hover:text-blue-700 hover:bg-blue-50 rounded-xl">
+                                                    <Mail className="w-4 h-4 mr-1.5" /> Email
+                                                </Button>
+                                            </a>
                                             {app.status !== 'Approved' && (
-                                                <Button size="sm" variant="outline" className="text-emerald-600 border-emerald-200 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl" onClick={() => handleUpdateStatus(app.id, 'Approved')}>
+                                                <Button size="sm" variant="outline" className="text-emerald-600 border-emerald-200 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl" onClick={() => handleUpdateStatus(app.id, 'Approved', app.catId)}>
                                                     <CheckCircle className="w-4 h-4 mr-1.5" /> Approve
                                                 </Button>
                                             )}
                                             {app.status !== 'Rejected' && (
-                                                <Button size="sm" variant="outline" className="text-orange-600 border-orange-200 hover:text-orange-700 hover:bg-orange-50 rounded-xl" onClick={() => handleUpdateStatus(app.id, 'Rejected')}>
+                                                <Button size="sm" variant="outline" className="text-orange-600 border-orange-200 hover:text-orange-700 hover:bg-orange-50 rounded-xl" onClick={() => handleUpdateStatus(app.id, 'Rejected', app.catId)}>
                                                     <XCircle className="w-4 h-4 mr-1.5" /> Reject
                                                 </Button>
                                             )}

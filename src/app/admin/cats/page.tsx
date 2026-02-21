@@ -10,21 +10,25 @@ import { Cat } from "@/data/cats";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import { CatForm } from "@/components/admin/CatForm";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export default function AdminCatsPage() {
-    const { user, loading: authLoading } = useAuth();
+    const { user, userData, loading: authLoading } = useAuth();
     const router = useRouter();
 
     const [cats, setCats] = useState<Cat[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [selectedCat, setSelectedCat] = useState<Cat | null>(null);
 
     useEffect(() => {
         if (!authLoading) {
-            if (!user || user.email !== "catwaala@gmail.com") {
+            if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) {
                 router.push("/");
             }
         }
-    }, [user, authLoading, router]);
+    }, [user, userData, authLoading, router]);
 
     const fetchCats = async () => {
         setLoading(true);
@@ -45,10 +49,10 @@ export default function AdminCatsPage() {
     };
 
     useEffect(() => {
-        if (user && user.email === "catwaala@gmail.com") {
+        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
             fetchCats();
         }
-    }, [user]);
+    }, [user, userData]);
 
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure you want to delete this cat? This action cannot be undone.")) return;
@@ -61,6 +65,16 @@ export default function AdminCatsPage() {
             console.error("Error deleting cat:", error);
             toast.error("Failed to delete cat");
         }
+    };
+
+    const handleEdit = (cat: Cat) => {
+        setSelectedCat(cat);
+        setIsFormOpen(true);
+    };
+
+    const handleAdd = () => {
+        setSelectedCat(null);
+        setIsFormOpen(true);
     };
 
     const handleMockSeed = async () => {
@@ -119,7 +133,7 @@ export default function AdminCatsPage() {
                             {cats.length === 0 && (
                                 <Button variant="outline" className="border-stone-200 text-stone-600 rounded-xl" onClick={handleMockSeed}>Seed Test Data</Button>
                             )}
-                            <Button onClick={() => alert("Add Cat Form coming soon!")} className="bg-rose-500 hover:bg-rose-600 text-white gap-2 rounded-xl">
+                            <Button onClick={handleAdd} className="bg-rose-500 hover:bg-rose-600 text-white gap-2 rounded-xl">
                                 <Plus className="w-4 h-4" /> Add New Cat
                             </Button>
                         </div>
@@ -155,15 +169,15 @@ export default function AdminCatsPage() {
                                             <td className="px-6 py-4 text-stone-500">{cat.age} • {cat.gender}</td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-2.5 py-1 rounded-lg text-xs font-bold shadow-sm ${cat.tag === 'Urgent' ? 'bg-rose-100 text-rose-700' :
-                                                        cat.tag === 'Adopted' ? 'bg-emerald-100 text-emerald-700' :
-                                                            'bg-blue-100 text-blue-700'
+                                                    cat.tag === 'Adopted' ? 'bg-emerald-100 text-emerald-700' :
+                                                        'bg-blue-100 text-blue-700'
                                                     }`}>
                                                     {cat.tag || 'Available'}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 <div className="flex justify-end gap-2">
-                                                    <Button size="icon" variant="ghost" className="h-9 w-9 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl">
+                                                    <Button size="icon" variant="ghost" onClick={() => handleEdit(cat)} className="h-9 w-9 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl">
                                                         <Edit className="w-4 h-4" />
                                                     </Button>
                                                     <Button size="icon" variant="ghost" onClick={() => handleDelete(cat.id)} className="h-9 w-9 text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-xl">
@@ -185,6 +199,24 @@ export default function AdminCatsPage() {
                     )}
                 </div>
             </div>
+
+            <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+                <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle className="text-2xl font-heading mb-4 text-stone-800">
+                            {selectedCat ? "Edit Cat Profile" : "Add New Cat"}
+                        </DialogTitle>
+                    </DialogHeader>
+                    <CatForm
+                        initialData={selectedCat}
+                        onSuccess={() => {
+                            setIsFormOpen(false);
+                            fetchCats();
+                        }}
+                        onCancel={() => setIsFormOpen(false)}
+                    />
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

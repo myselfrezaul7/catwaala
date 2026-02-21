@@ -18,7 +18,7 @@ export function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [scrolled, setScrolled] = useState(false);
-    const { user, loading } = useAuth();
+    const { user, userData, loading } = useAuth();
     const { t } = useLanguage();
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export function Header() {
     ];
 
     // Conditionally add Admin link
-    if (user?.email === "catwaala@gmail.com") {
+    if (user?.email === "catwaala@gmail.com" || userData?.role === "admin") {
         navLinks.push({ name: "Admin", href: "/admin" });
     }
 

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Button } from "@/components/ui/button";
-import { Loader2, Users as UsersIcon, Trash, Info, ArrowLeft } from "lucide-react";
+import { Loader2, Users as UsersIcon, Trash, Info, ArrowLeft, ShieldCheck, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
@@ -19,7 +19,7 @@ type UserData = {
 };
 
 export default function AdminUsersPage() {
-    const { user, loading: authLoading } = useAuth();
+    const { user, userData, loading: authLoading } = useAuth();
     const router = useRouter();
 
     const [users, setUsers] = useState<UserData[]>([]);
@@ -27,11 +27,11 @@ export default function AdminUsersPage() {
 
     useEffect(() => {
         if (!authLoading) {
-            if (!user || user.email !== "catwaala@gmail.com") {
+            if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) {
                 router.push("/");
             }
         }
-    }, [user, authLoading, router]);
+    }, [user, userData, authLoading, router]);
 
     const fetchUsers = async () => {
         setLoading(true);
@@ -51,10 +51,21 @@ export default function AdminUsersPage() {
     };
 
     useEffect(() => {
-        if (user && user.email === "catwaala@gmail.com") {
+        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
             fetchUsers();
         }
-    }, [user]);
+    }, [user, userData]);
+
+    const handleRoleChange = async (id: string, newRole: string) => {
+        try {
+            await updateDoc(doc(db, "users", id), { role: newRole });
+            toast.success(`User role updated to ${newRole}`);
+            fetchUsers();
+        } catch (error) {
+            console.error("Error updating role:", error);
+            toast.error("Failed to update user role");
+        }
+    };
 
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure? This deletes their profile data (Auth must be managed via Firebase Console).")) return;
@@ -116,15 +127,26 @@ export default function AdminUsersPage() {
                                             <td className="px-6 py-4 text-stone-500">{u.email}</td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-2.5 py-1 rounded-lg text-xs font-bold shadow-sm ${u.role === 'admin' ? 'bg-primary/20 text-primary border-primary/20 border' :
-                                                        'bg-white text-stone-600 border border-stone-100'
+                                                    'bg-white text-stone-600 border border-stone-100'
                                                     }`}>
                                                     {u.role || 'Member'}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 text-right">
-                                                <Button size="icon" variant="ghost" onClick={() => handleDelete(u.id)} className="h-9 w-9 text-rose-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl">
-                                                    <Trash className="w-4 h-4" />
-                                                </Button>
+                                                <div className="flex justify-end gap-2">
+                                                    {u.role === 'admin' ? (
+                                                        <Button size="sm" variant="outline" onClick={() => handleRoleChange(u.id, "user")} className="text-orange-600 hover:text-orange-700 hover:bg-orange-50 rounded-xl border-orange-200">
+                                                            <ShieldAlert className="w-4 h-4 mr-1.5" /> Revoke Admin
+                                                        </Button>
+                                                    ) : (
+                                                        <Button size="sm" variant="outline" onClick={() => handleRoleChange(u.id, "admin")} className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl border-emerald-200">
+                                                            <ShieldCheck className="w-4 h-4 mr-1.5" /> Make Admin
+                                                        </Button>
+                                                    )}
+                                                    <Button size="icon" variant="ghost" onClick={() => handleDelete(u.id)} className="h-9 w-9 text-rose-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl">
+                                                        <Trash className="w-4 h-4" />
+                                                    </Button>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
