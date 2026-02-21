@@ -6,18 +6,17 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Locate } from "lucide-react";
 
-// Fix Leaflet/Next.js icon issue
-const iconUrl = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png";
-const iconRetinaUrl = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png";
-const shadowUrl = "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png";
-
-const customIcon = L.icon({
-    iconUrl,
-    iconRetinaUrl,
-    shadowUrl,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-});
+// Fix Leaflet/Next.js icon issue by not putting it in the top level scope
+// which can cause SSR issues in Next.js
+const createCustomIcon = () => {
+    return L.icon({
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+    });
+};
 
 type LocationPickerProps = {
     onLocationSelect: (lat: number, lng: number) => void;
@@ -93,7 +92,7 @@ export default function LocationPicker({ onLocationSelect, initialLat, initialLn
                 />
                 <MapEvents onLocationSelect={handleSelect} />
                 <LocationButton />
-                {position && <Marker position={position} icon={customIcon} />}
+                {position && <Marker position={position} icon={createCustomIcon()} />}
             </MapContainer>
         </div>
     );

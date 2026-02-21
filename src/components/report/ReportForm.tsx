@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { MapPin, Camera, AlertTriangle, CheckCircle, PawPrint, Shield, ChevronRight, ChevronLeft, X } from "lucide-react";
+import { MapPin, Camera, AlertTriangle, CheckCircle, PawPrint, Shield, ChevronRight, ChevronLeft, X, Facebook, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
@@ -196,6 +196,38 @@ export function ReportForm() {
                             </div>
                         )
                     })}
+                </div>
+
+                {/* Facebook Community Banner */}
+                <div className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
+                    <a
+                        href="https://facebook.com/groups/catwaala"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-blue-600 to-blue-500 p-1 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all cursor-pointer"
+                    >
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+                        <div className="relative bg-white/10 backdrop-blur-md rounded-[1.85rem] p-6 flex flex-col sm:flex-row items-center justify-between gap-6 border border-white/20 group-hover:bg-white/20 transition-colors">
+                            <div className="flex items-center gap-5">
+                                <div className="w-14 h-14 bg-white text-blue-600 rounded-full flex items-center justify-center shadow-inner flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <Facebook className="w-7 h-7 fill-current" />
+                                </div>
+                                <div className="text-white text-center sm:text-left">
+                                    <h3 className="text-xl font-bold mb-1 flex items-center justify-center sm:justify-start gap-2">
+                                        Join 450K+ Rescuers
+                                        <span className="relative flex h-3 w-3">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                                        </span>
+                                    </h3>
+                                    <p className="text-blue-100 text-sm font-medium">Post directly in our Facebook Group for immediate local help!</p>
+                                </div>
+                            </div>
+                            <Button variant="secondary" className="rounded-xl font-bold bg-white text-blue-600 hover:bg-blue-50 shadow-md group-hover:scale-105 transition-all">
+                                Post in Group <ExternalLink className="w-4 h-4 ml-2" />
+                            </Button>
+                        </div>
+                    </a>
                 </div>
 
                 <div className="glass-card p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden transition-all duration-500">

@@ -36,6 +36,11 @@ export function Header() {
         { name: t.nav.dashboard, href: "/dashboard" },
     ];
 
+    // Conditionally add Admin link
+    if (user?.email === "catwaala@gmail.com") {
+        navLinks.push({ name: "Admin", href: "/admin" });
+    }
+
 
     return (
         <>
