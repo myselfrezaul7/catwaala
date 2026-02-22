@@ -161,21 +161,30 @@ export function DonatePage() {
 
                             {/* Additional Instructions for Medicine */}
                             {selectedOption === 'medicine' && (
-                                <div className="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30 flex flex-col items-start gap-4 mb-8">
-                                    <div className="flex items-start gap-4">
-                                        <Pill className="w-6 h-6 text-blue-500 shrink-0 mt-1" />
+                                <div className="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-[2rem] border border-blue-100 dark:border-blue-900/30 flex flex-col md:flex-row items-center justify-between gap-6 mb-10 shadow-sm">
+                                    <div className="flex items-start gap-4 flex-1">
+                                        <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center shrink-0">
+                                            <Pill className="w-6 h-6 text-blue-500" />
+                                        </div>
                                         <div>
-                                            <h4 className="font-bold text-blue-700 dark:text-blue-300 mb-2">Donate Physical Medicines?</h4>
-                                            <p className="text-sm text-blue-600 dark:text-blue-200 mb-2">
-                                                We accept unused medicines! Please email us to arrange a pickup or drop-off.
+                                            <h4 className="font-bold text-blue-800 dark:text-blue-300 mb-2 text-lg">Donate Physical Medicines?</h4>
+                                            <p className="text-sm text-blue-600 dark:text-blue-200 leading-relaxed">
+                                                We accept unused medicines! Please email us or text us on our Facebook page to arrange a pickup or drop-off.
                                             </p>
                                         </div>
                                     </div>
-                                    <a href="mailto:catwaala@gmail.com" className="ml-10">
-                                        <Button size="sm" className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-6">
-                                            Mail Us at catwaala@gmail.com
-                                        </Button>
-                                    </a>
+                                    <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                                        <a href="mailto:kuttawaala@gmail.com" className="w-full sm:w-auto">
+                                            <Button size="default" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md">
+                                                Email Us
+                                            </Button>
+                                        </a>
+                                        <a href="https://www.facebook.com/kuttawaalaa/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                                            <Button size="default" variant="outline" className="w-full sm:w-auto border-blue-200 text-blue-600 hover:bg-blue-50 rounded-xl bg-white">
+                                                Message Facebook
+                                            </Button>
+                                        </a>
+                                    </div>
                                 </div>
                             )}
 
@@ -183,7 +192,7 @@ export function DonatePage() {
                                 <p className="text-sm text-muted-foreground mb-4">
                                     After sending, please email us with the Transaction ID so we can thank you!
                                 </p>
-                                <a href="mailto:donate@catwaala.com">
+                                <a href="mailto:kuttawaala@gmail.com">
                                     <Button className="rounded-full px-8 h-12 shadow-lg shadow-orange-500/20 bg-orange-500 hover:bg-orange-600 text-white">
                                         Sent Donation? Click to Notify Us <ArrowRight className="ml-2 w-4 h-4" />
                                     </Button>
