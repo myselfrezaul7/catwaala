@@ -65,6 +65,24 @@ export default function FAQPage() {
                                     4. Take them home and start your journey!
                                 </AccordionContent>
                             </AccordionItem>
+
+                            <AccordionItem value="adoption-fee" className="border border-rose-100/60 dark:border-zinc-800 rounded-xl px-2 data-[state=open]:bg-white/50 dark:data-[state=open]:bg-zinc-800/50 transition-colors">
+                                <AccordionTrigger className="hover:no-underline font-bold text-left px-4 text-lg py-4 text-stone-800 dark:text-stone-200">
+                                    Is there an adoption fee?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
+                                    Catwaala does <strong>not charge adoption fees</strong>. However, we ask adopters to cover the cost of vaccinations and neutering/spaying if the cat hasn&apos;t been treated yet. This ensures every cat goes home healthy.
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="return-policy" className="border border-rose-100/60 dark:border-zinc-800 rounded-xl px-2 data-[state=open]:bg-white/50 dark:data-[state=open]:bg-zinc-800/50 transition-colors">
+                                <AccordionTrigger className="hover:no-underline font-bold text-left px-4 text-lg py-4 text-stone-800 dark:text-stone-200">
+                                    What if the adoption doesn&apos;t work out?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
+                                    We have a <strong>no-questions-asked return policy</strong>. If for any reason you cannot keep the cat, please contact us and we will take them back. We never want a cat to end up on the streets again.
+                                </AccordionContent>
+                            </AccordionItem>
                         </Accordion>
                     </div>
                 </div>
@@ -88,6 +106,24 @@ export default function FAQPage() {
                                     <strong>Boiled Fish</strong> (boneless) is great. Raw fish can destroy vitamins. Dry cat food or wet food pouches are the most balanced option.
                                 </AccordionContent>
                             </AccordionItem>
+
+                            <AccordionItem value="toxic-foods" className="border border-rose-100/60 dark:border-zinc-800 rounded-xl px-2 data-[state=open]:bg-white/50 dark:data-[state=open]:bg-zinc-800/50 transition-colors">
+                                <AccordionTrigger className="hover:no-underline font-bold text-left px-4 text-lg py-4 text-stone-800 dark:text-stone-200">
+                                    What foods are toxic to cats?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
+                                    <strong>Onions, garlic, chocolate, grapes, and raisins</strong> are all highly toxic to cats. Also avoid giving them raw eggs and caffeine. When in doubt, stick to quality commercial cat food or plain boiled chicken/fish.
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="best-food" className="border border-rose-100/60 dark:border-zinc-800 rounded-xl px-2 data-[state=open]:bg-white/50 dark:data-[state=open]:bg-zinc-800/50 transition-colors">
+                                <AccordionTrigger className="hover:no-underline font-bold text-left px-4 text-lg py-4 text-stone-800 dark:text-stone-200">
+                                    What are the best cat food brands available in Bangladesh?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
+                                    <strong>Royal Canin, Me-O, and Whiskas</strong> are widely available. For premium options, <strong>Orijen and Acana</strong> can be found at specialty pet stores. A mix of dry kibble and occasional wet food pouches provides the best nutrition.
+                                </AccordionContent>
+                            </AccordionItem>
                         </Accordion>
                     </div>
                 </div>
@@ -108,6 +144,24 @@ export default function FAQPage() {
                                 </AccordionTrigger>
                                 <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
                                     <strong>High-Rise Syndrome.</strong> Cats see a bird, jump, and fall. In Dhaka, this is the #1 cause of unnecessary cat injury/death. Simple pigeon netting (available at any hardware store) saves lives. We <strong>require</strong> this for all adoptions.
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="vaccines" className="border border-rose-100/60 dark:border-zinc-800 rounded-xl px-2 data-[state=open]:bg-white/50 dark:data-[state=open]:bg-zinc-800/50 transition-colors">
+                                <AccordionTrigger className="hover:no-underline font-bold text-left px-4 text-lg py-4 text-stone-800 dark:text-stone-200">
+                                    What vaccines does my cat need?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
+                                    All cats should receive a <strong>Tricat/FVRCP vaccine</strong> (protects against feline distemper, calicivirus, and rhinotracheitis) and a <strong>Rabies vaccine</strong>. Kittens need a series of shots starting at 8 weeks. Boosters are required annually.
+                                </AccordionContent>
+                            </AccordionItem>
+
+                            <AccordionItem value="balcony" className="border border-rose-100/60 dark:border-zinc-800 rounded-xl px-2 data-[state=open]:bg-white/50 dark:data-[state=open]:bg-zinc-800/50 transition-colors">
+                                <AccordionTrigger className="hover:no-underline font-bold text-left px-4 text-lg py-4 text-stone-800 dark:text-stone-200">
+                                    Is it safe to let my cat on the balcony?
+                                </AccordionTrigger>
+                                <AccordionContent className="text-stone-600 dark:text-stone-400 leading-relaxed px-4 pb-4 text-base">
+                                    <strong>Only with a fully enclosed net or mesh.</strong> Even cats who seem cautious can leap after a bird or insect. A simple ৳500 pigeon net from your local hardware store can be the difference between life and death. Never leave a balcony unnetted.
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>

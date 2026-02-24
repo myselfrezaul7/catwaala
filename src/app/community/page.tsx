@@ -9,7 +9,7 @@ import { resources } from "@/data/resources";
 
 export default function CommunityPage() {
     return (
-        <div className="min-h-screen pb-24 bg-[#FFFDF8] dark:bg-stone-950 transition-colors duration-300">
+        <div className="min-h-screen pb-24 bg-stone-50/50 dark:bg-stone-950 transition-colors duration-300">
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 px-4 overflow-hidden">
                 <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-rose-100/50 dark:from-rose-900/10 to-transparent pointer-events-none" />
@@ -43,15 +43,16 @@ export default function CommunityPage() {
                         </div>
                     </div>
 
-                    <div className="bg-stone-100 dark:bg-stone-900/50 rounded-[2rem] p-12 text-center border-2 border-dashed border-stone-200 dark:border-stone-800">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-100 dark:bg-rose-900/20 text-rose-500 mb-6">
+                    <div className="glass-card dark:bg-stone-900/60 rounded-[2.5rem] p-12 text-center border border-rose-100/50 dark:border-stone-800 shadow-xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-400 via-amber-400 to-rose-400 animate-shimmer" />
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-rose-100/80 dark:bg-rose-900/30 text-rose-500 mb-6 animate-pulse">
                             <Calendar className="w-8 h-8" />
                         </div>
-                        <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-3"> exciting events coming soon!</h3>
+                        <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-3">Exciting Events Coming Soon!</h3>
                         <p className="text-stone-500 dark:text-stone-400 max-w-md mx-auto mb-8">
                             We are planning some amazing meetups, adoption drives, and workshops. Stay tuned for updates!
                         </p>
-                        <Button disabled className="opacity-50 cursor-not-allowed rounded-full bg-stone-800 dark:bg-stone-700 text-white font-bold px-8 py-6">
+                        <Button disabled className="opacity-60 cursor-not-allowed rounded-full bg-stone-800 dark:bg-stone-700 text-white font-bold px-8 py-5 shadow-lg">
                             Coming Soon
                         </Button>
                     </div>

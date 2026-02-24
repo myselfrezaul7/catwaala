@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Cat } from "@/data/cats";
 import { VetClinic } from "@/data/vets";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Edit, Trash, LayoutDashboard, FileText, TrendingUp, AlertTriangle, Shield, MapPin, Users, Loader2, Cat as CatIcon } from "lucide-react";
+import { Plus, Edit, Trash, LayoutDashboard, FileText, TrendingUp, AlertTriangle, Shield, MapPin, Users, Loader2, Heart, Cat as CatIcon } from "lucide-react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
 import { db } from "@/utils/firebase";
@@ -298,6 +298,18 @@ export function AdminDashboard() {
                                 <div>
                                     <h3 className="font-bold text-lg text-stone-800">Veterinarians</h3>
                                     <p className="text-sm text-stone-500 mt-1">Update local vet directory listings.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/memorials" className="group">
+                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-purple-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <Heart className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800">Memorials</h3>
+                                    <p className="text-sm text-stone-500 mt-1">Moderate memorial wall tributes.</p>
                                 </div>
                             </div>
                         </Link>

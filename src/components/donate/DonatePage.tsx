@@ -63,7 +63,7 @@ export function DonatePage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFFDF8] dark:bg-zinc-950 pb-20">
+        <div className="min-h-screen bg-stone-50/50 dark:bg-zinc-950 pb-20">
             {/* Hero Section */}
             <div className="relative pt-32 pb-20 px-4 overflow-hidden bg-orange-50/50 dark:bg-zinc-900/50">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />

@@ -238,20 +238,20 @@ export default function DashboardPage() {
 
                 {/* Main Content Tabs */}
                 <Tabs defaultValue="favorites" className="space-y-8" onValueChange={setActiveTab}>
-                    <TabsList className="bg-white/50 dark:bg-stone-800/80 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-700 shadow-sm mx-auto md:mx-0 w-fit flex-wrap overflow-x-auto h-auto">
-                        <TabsTrigger value="favorites" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all">
+                    <TabsList className="bg-white/50 dark:bg-stone-800/80 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-700 shadow-sm mx-auto md:mx-0 w-full md:w-fit flex flex-nowrap overflow-x-auto scrollbar-hide h-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        <TabsTrigger value="favorites" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-5 transition-all whitespace-nowrap text-sm">
                             Favorites
                         </TabsTrigger>
-                        <TabsTrigger value="applications" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all">
-                            My Applications
+                        <TabsTrigger value="applications" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-5 transition-all whitespace-nowrap text-sm">
+                            Applications
                         </TabsTrigger>
-                        <TabsTrigger value="reports" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-6 dark:data-[state=active]:text-white transition-all">
-                            My Reports
+                        <TabsTrigger value="reports" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-5 dark:data-[state=active]:text-white transition-all whitespace-nowrap text-sm">
+                            Reports
                         </TabsTrigger>
-                        <TabsTrigger value="memorials" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-6 dark:data-[state=active]:text-white transition-all">
-                            My Tributes
+                        <TabsTrigger value="memorials" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-5 dark:data-[state=active]:text-white transition-all whitespace-nowrap text-sm">
+                            Tributes
                         </TabsTrigger>
-                        <TabsTrigger value="achievements" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-6 dark:data-[state=active]:text-white transition-all">
+                        <TabsTrigger value="achievements" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-5 dark:data-[state=active]:text-white transition-all whitespace-nowrap text-sm">
                             Awards 🏆
                         </TabsTrigger>
                     </TabsList>

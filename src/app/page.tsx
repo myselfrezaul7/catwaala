@@ -16,6 +16,39 @@ export default function Home() {
 
             <SuccessStories />
 
+            {/* Visit Kuttawaala Banner */}
+            <section className="py-12 md:py-20 relative overflow-hidden">
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="glass-card dark:bg-stone-900/60 rounded-[3rem] p-8 md:p-16 text-center border border-amber-100/50 dark:border-stone-800 shadow-xl relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400" />
+                        <div className="absolute top-10 right-10 opacity-10 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none">
+                            <span className="text-[120px]">🐕</span>
+                        </div>
+                        <div className="relative z-10 max-w-2xl mx-auto">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/80 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-bold mb-6 border border-amber-200 dark:border-amber-800/30">
+                                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+                                Sister Project
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-white mb-4">
+                                More of a <span className="text-amber-500">Dog Person</span>?
+                            </h2>
+                            <p className="text-lg text-stone-500 dark:text-stone-400 mb-8 max-w-xl mx-auto">
+                                Visit Kuttawaala — our sister platform dedicated to rescuing and rehoming street dogs in Bangladesh.
+                            </p>
+                            <a
+                                href="https://kuttawaala.vercel.app"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Button size="lg" className="h-14 px-8 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 gap-2">
+                                    Visit Kuttawaala <ArrowRight className="w-5 h-5" />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Featured Cats Section */}
             <section className="py-12 md:py-24 relative overflow-hidden">
                 {/* Warm decorative elements */}
@@ -39,7 +72,7 @@ export default function Home() {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
                         {featuredCats.map((cat) => (
                             // @ts-ignore
                             <PetCard key={cat.id} cat={cat} />

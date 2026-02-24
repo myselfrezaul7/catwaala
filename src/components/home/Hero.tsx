@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export function Hero() {
     return (
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-background">
+        <section className="relative py-20 lg:py-32 flex items-center overflow-hidden bg-background">
             {/* Subtle premium gradient background instead of muddy blobs */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background opacity-70" />
 
