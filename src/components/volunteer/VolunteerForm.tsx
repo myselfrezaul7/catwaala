@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Heart, Hand, CheckCircle, AlertTriangle, User, Mail, Phone, MessageSquare } from "lucide-react";
 import { submitToWeb3Forms } from "@/lib/web3forms";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@/utils/firebase";
 import confetti from "canvas-confetti";
 
 type VolunteerFormData = {
@@ -39,6 +41,17 @@ export function VolunteerForm() {
         });
 
         if (result.success) {
+            try {
+                await addDoc(collection(db, "volunteers"), {
+                    ...data,
+                    status: "Pending",
+                    created_at: new Date().toISOString()
+                });
+            } catch (error) {
+                console.error("Error saving volunteer to Firestore:", error);
+                // We still show success since the email was sent
+            }
+
             setSubmitted(true);
             confetti({
                 particleCount: 150,

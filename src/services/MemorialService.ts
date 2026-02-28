@@ -13,7 +13,9 @@ export const MemorialService = {
                 orderBy("created_at", "desc")
             );
             const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Memorial));
+            const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Memorial));
+            // Return only approved memorials, or legacy ones that don't have a status field yet
+            return docs.filter(m => !m.status || m.status === 'Approved');
         } catch (error) {
             console.error("Error fetching memorials:", error);
             return [];
@@ -37,11 +39,13 @@ export const MemorialService = {
 
     async create(memorial: any) {
         try {
-            const docRef = await addDoc(collection(db, COLLECTION_NAME), {
+            const memorialWithStatus = {
                 ...memorial,
+                status: "Pending", // New memorials require admin moderation
                 created_at: new Date().toISOString()
-            });
-            return { id: docRef.id, ...memorial };
+            };
+            const docRef = await addDoc(collection(db, COLLECTION_NAME), memorialWithStatus);
+            return { id: docRef.id, ...memorialWithStatus };
         } catch (error) {
             console.error("Error creating memorial:", error);
             throw error;

@@ -93,7 +93,7 @@ export default function CommunityPage() {
                     <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 font-heading mb-10 text-center">Feline Resources 📚</h2>
                     <div className="grid md:grid-cols-3 gap-6">
                         {resources.map((resource) => (
-                            <Link href={`/resources/${resource.slug}`} key={resource.slug} className="group glass-card dark:bg-stone-900/60 dark:border-stone-800 p-8 rounded-[2rem] hover:bg-rose-50 dark:hover:bg-stone-800 transition-all border-2 border-transparent hover:border-rose-100 dark:hover:border-stone-700">
+                            <Link href={resource.slug === "local-vet-directory" ? "/vets" : `/resources/${resource.slug}`} key={resource.slug} className="group glass-card dark:bg-stone-900/60 dark:border-stone-800 p-8 rounded-[2rem] hover:bg-rose-50 dark:hover:bg-stone-800 transition-all border-2 border-transparent hover:border-rose-100 dark:hover:border-stone-700">
                                 <div className="w-14 h-14 bg-rose-100 dark:bg-stone-800 rounded-2xl flex items-center justify-center mb-6 text-rose-500 group-hover:scale-110 transition-transform shadow-sm">
                                     <FileText className="w-7 h-7" />
                                 </div>

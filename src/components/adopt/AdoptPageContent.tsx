@@ -254,41 +254,30 @@ export function AdoptPageContent() {
                     )}
                 </div>
 
-                <motion.div
-                    layout
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8"
-                >
-                    <AnimatePresence mode="popLayout">
-                        {filteredCats.length > 0 ? (
-                            filteredCats.map((cat, index) => (
-                                <motion.div
-                                    key={cat.id}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                                >
-                                    {/* @ts-ignore */}
-                                    <PetCard cat={cat} />
-                                </motion.div>
-                            ))
-                        ) : (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="col-span-full text-center py-20"
-                            >
-                                <div className="w-24 h-24 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl animate-bounce">
-                                    😿
-                                </div>
-                                <h3 className="text-xl font-bold text-stone-800 mb-2">No cats matched your filters</h3>
-                                <p className="text-stone-400">Maybe try broadening your search? Our cats are picky, but you shouldn't have to be!</p>
-                                <Button variant="link" onClick={resetFilters} className="text-rose-600">Clear all filters</Button>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
+                <div className="relative mt-8 mb-12 rounded-[3rem] overflow-hidden border border-amber-50 dark:border-stone-800 bg-white/40 dark:bg-stone-900/40 p-8 md:p-16 text-center backdrop-blur-sm shadow-xl">
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 dark:opacity-5 mix-blend-luminosity" />
+                    <div className="relative z-10 max-w-2xl mx-auto py-8">
+                        <div className="w-24 h-24 bg-rose-100 dark:bg-rose-900/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-rose-200/50 dark:shadow-rose-900/20">
+                            <span className="text-5xl animate-bounce">🐾</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold font-heading text-stone-800 dark:text-stone-100 mb-6 tracking-tight">Real Adoptions Coming Soon!</h2>
+                        <p className="text-lg text-stone-600 dark:text-stone-400 mb-10 leading-relaxed font-medium">
+                            We are currently building our network of verified rescue shelters and foster homes across Bangladesh. Very soon, you will be able to browse and adopt real rescued felines directly from this page!
+                        </p>
+                        <div className="flex flex-col md:flex-row gap-4 justify-center">
+                            <a href="/volunteer" className="w-full md:w-auto">
+                                <Button size="lg" className="w-full md:w-auto bg-rose-500 hover:bg-rose-600 text-white rounded-xl shadow-lg shadow-rose-500/20 px-8 h-14 text-base font-bold">
+                                    Become a Foster Home
+                                </Button>
+                            </a>
+                            <a href="/donate" className="w-full md:w-auto">
+                                <Button size="lg" variant="outline" className="w-full md:w-auto border-rose-200 text-rose-600 hover:bg-rose-50 dark:border-stone-700 dark:text-rose-400 dark:hover:bg-stone-800 rounded-xl px-8 h-14 text-base font-bold">
+                                    Support Rescues Now
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

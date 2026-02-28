@@ -7,7 +7,27 @@ import { Button } from "@/components/ui/button";
 import { Cat } from "@/data/cats";
 import { VetClinic } from "@/data/vets";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Edit, Trash, LayoutDashboard, FileText, TrendingUp, AlertTriangle, Shield, MapPin, Users, Loader2, Heart, Cat as CatIcon } from "lucide-react";
+import {
+    Plus,
+    Edit,
+    Trash,
+    LayoutDashboard,
+    FileText,
+    TrendingUp,
+    AlertTriangle,
+    Shield,
+    MapPin,
+    Users,
+    Loader2,
+    Heart,
+    Cat as CatIcon,
+    Hand,
+    Filter,
+    BarChart3,
+    DollarSign,
+    Bell,
+    ScrollText,
+} from "lucide-react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
 import { db } from "@/utils/firebase";
@@ -239,77 +259,137 @@ export function AdminDashboard() {
                 </div>
                 {/* --- END DYNAMIC SECTION --- */}
 
-                <div className="glass-card p-8 rounded-[2.5rem] mb-8">
-                    <h2 className="text-2xl font-bold font-heading text-stone-800 mb-6">Database Management Actions</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <div className="glass-card dark:bg-stone-900/50 dark:border-stone-800 p-8 rounded-[2.5rem] mb-8">
+                    <h2 className="text-2xl font-bold font-heading text-stone-800 dark:text-stone-100 mb-6">Database Management Actions</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-6">
                         <Link href="/admin/cats" className="group">
-                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-rose-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
-                                <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-rose-300 dark:hover:border-rose-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-rose-50 dark:bg-rose-900/20 text-rose-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <CatIcon className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-stone-800">Manage Cats</h3>
-                                    <p className="text-sm text-stone-500 mt-1">Add, edit, or remove cats from the system.</p>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Manage Cats</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Add, edit, or remove cats from the system.</p>
                                 </div>
                             </div>
                         </Link>
 
                         <Link href="/admin/applications" className="group">
-                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-emerald-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
-                                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-emerald-300 dark:hover:border-emerald-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <FileText className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-stone-800">Adoption Requests</h3>
-                                    <p className="text-sm text-stone-500 mt-1">Review and approve incoming adoption forms.</p>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Adoption Requests</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Review and approve incoming adoption forms.</p>
                                 </div>
                             </div>
                         </Link>
 
                         <Link href="/admin/users" className="group">
-                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-blue-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
-                                <div className="w-16 h-16 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-blue-300 dark:hover:border-blue-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Users className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-stone-800">User Profiles</h3>
-                                    <p className="text-sm text-stone-500 mt-1">Manage registered community members.</p>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">User Profiles</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Manage registered community members.</p>
                                 </div>
                             </div>
                         </Link>
 
                         <Link href="/admin/reports" className="group">
-                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-orange-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
-                                <div className="w-16 h-16 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-orange-300 dark:hover:border-orange-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-orange-50 dark:bg-orange-900/20 text-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <AlertTriangle className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-stone-800">Rescue Reports</h3>
-                                    <p className="text-sm text-stone-500 mt-1">Monitor submitted emergency reports.</p>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Rescue Reports</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Monitor submitted emergency reports.</p>
                                 </div>
                             </div>
                         </Link>
 
                         <Link href="/admin/vets" className="group">
-                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-teal-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
-                                <div className="w-16 h-16 rounded-full bg-teal-50 text-teal-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-teal-300 dark:hover:border-teal-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-teal-50 dark:bg-teal-900/20 text-teal-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <MapPin className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-stone-800">Veterinarians</h3>
-                                    <p className="text-sm text-stone-500 mt-1">Update local vet directory listings.</p>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Veterinarians</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Update local vet directory listings.</p>
                                 </div>
                             </div>
                         </Link>
 
                         <Link href="/admin/memorials" className="group">
-                            <div className="glass-card p-6 rounded-3xl border border-amber-100 hover:border-purple-300 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
-                                <div className="w-16 h-16 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-purple-300 dark:hover:border-purple-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-purple-50 dark:bg-purple-900/20 text-purple-500 flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Heart className="w-8 h-8" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-stone-800">Memorials</h3>
-                                    <p className="text-sm text-stone-500 mt-1">Moderate memorial wall tributes.</p>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Memorials</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Moderate memorial wall tributes.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/volunteers" className="group">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-orange-300 dark:hover:border-orange-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-orange-50 dark:bg-orange-900/20 text-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <Hand className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Volunteers</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Review volunteer applications.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/content" className="group">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-indigo-300 dark:hover:border-indigo-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-indigo-50 dark:bg-indigo-900/20 text-indigo-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <BarChart3 className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Content</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Manage homepage stats & copy.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/donations" className="group">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-emerald-300 dark:hover:border-emerald-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <DollarSign className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Donations</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Track incoming donations.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/notifications" className="group">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-blue-300 dark:hover:border-blue-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <Bell className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Notifications</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Broadcast announcements.</p>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/admin/logs" className="group">
+                            <div className="glass-card dark:bg-stone-900/80 p-6 rounded-3xl border border-amber-100 dark:border-stone-700 hover:border-violet-300 dark:hover:border-violet-900/50 transition-all hover:shadow-md cursor-pointer h-full flex flex-col items-center justify-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-violet-50 dark:bg-violet-900/20 text-violet-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <ScrollText className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-stone-800 dark:text-stone-100">Audit Logs</h3>
+                                    <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">Track admin actions.</p>
                                 </div>
                             </div>
                         </Link>

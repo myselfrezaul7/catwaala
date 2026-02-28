@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { VetForm } from "@/components/admin/VetForm";
 import { MOCK_VET_CLINICS as vets } from "@/data/vets";
+import { REAL_BD_VETS } from "@/data/bd-vets";
 import { VetClinic } from "@/services/VetService";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
@@ -110,6 +111,19 @@ export default function AdminVetsPage() {
         }
     };
 
+    const handleImportRealVets = async () => {
+        if (!confirm(`Are you sure you want to import ${REAL_BD_VETS.length} real locations? This will add them to the live database.`)) return;
+        try {
+            const promises = REAL_BD_VETS.map((v) => addDoc(collection(db, "vets"), { ...v }));
+            await Promise.all(promises);
+            toast.success(`Successfully mapped ${REAL_BD_VETS.length} real locations!`);
+            fetchVets();
+        } catch (error) {
+            console.error("Error importing real vets:", error);
+            toast.error("Failed to pull real map data.");
+        }
+    };
+
     if (authLoading || !user) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
     return (
@@ -133,6 +147,9 @@ export default function AdminVetsPage() {
                             <Activity className="w-5 h-5 text-teal-500" /> Registered Clinics ({clinics.length})
                         </h2>
                         <div className="flex gap-4">
+                            <Button variant="outline" className="border-stone-200 text-teal-600 hover:bg-teal-50 rounded-xl" onClick={handleImportRealVets}>
+                                Import Real BD Vets ({REAL_BD_VETS.length})
+                            </Button>
                             {clinics.length === 0 && (
                                 <Button variant="outline" className="border-stone-200 text-stone-600 rounded-xl" onClick={handleMockSeed}>Seed Initial Vets</Button>
                             )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { resources } from "@/data/resources";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,11 @@ interface PageProps {
 
 export default async function ResourcePage({ params }: PageProps) {
     const { slug } = await params;
+
+    if (slug === "local-vet-directory") {
+        redirect("/vets");
+    }
+
     const resource = resources.find((r) => r.slug === slug);
 
     if (!resource) {
