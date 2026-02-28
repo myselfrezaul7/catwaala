@@ -43,11 +43,14 @@ export function VetFinder() {
     const filteredVets = useMemo(() => {
         return vets.filter(vet => {
             const searchLower = searchQuery.toLowerCase();
-            const matchesSearch = searchQuery === "" ||
-                vet.name.toLowerCase().includes(searchLower) ||
-                vet.address.toLowerCase().includes(searchLower) ||
-                vet.district.toLowerCase().includes(searchLower) ||
-                vet.services.some(s => s.toLowerCase().includes(searchLower));
+            const searchTerms = searchLower.split(" ").filter(Boolean);
+
+            const matchesSearch = searchQuery === "" || searchTerms.every(term =>
+                vet.name.toLowerCase().includes(term) ||
+                vet.address.toLowerCase().includes(term) ||
+                vet.district.toLowerCase().includes(term) ||
+                vet.services.some(s => s.toLowerCase().includes(term))
+            );
 
             const matchesDistrict = selectedDistrict === "all" || vet.district === selectedDistrict;
             const matchesService = selectedService === "all" || vet.services.some(s => s.toLowerCase().includes(selectedService.toLowerCase()));

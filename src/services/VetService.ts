@@ -24,10 +24,15 @@ export const VetService = {
         try {
             const snapshot = await getDocs(collection(db, COLLECTION_NAME));
             if (!snapshot.empty) {
-                return snapshot.docs.map(doc => ({
+                const rawVets = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 })) as VetClinic[];
+
+                // Deduplicate actively based on physical name and phone to prevent seed bloat
+                return rawVets.filter((vet, index, self) =>
+                    index === self.findIndex((t) => t.name === vet.name && t.phone === vet.phone)
+                );
             }
         } catch (error) {
             console.error("Firebase fetch failed, using fallback mock vets.", error);
