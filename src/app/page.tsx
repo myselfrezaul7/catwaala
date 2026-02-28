@@ -1,15 +1,11 @@
 import { Hero } from "@/components/home/Hero";
 import { SuccessStories } from "@/components/home/SuccessStories";
 import { HomepageStats } from "@/components/home/HomepageStats";
-import { PetCard } from "@/components/shared/PetCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { cats } from "@/data/cats";
 
 export default function Home() {
-    const featuredCats = cats.slice(0, 3);
-
     return (
         <div className="flex flex-col min-h-screen">
             <Hero />
@@ -45,38 +41,6 @@ export default function Home() {
                                 </Button>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Featured Cats Section */}
-            <section className="py-12 md:py-24 relative overflow-hidden">
-                {/* Warm decorative elements */}
-                <div className="absolute top-20 left-10 w-72 h-72 bg-rose-200/15 rounded-full blur-3xl" />
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-200/15 rounded-full blur-3xl" />
-
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                        <div className="space-y-4">
-                            <h2 className="text-4xl md:text-5xl font-bold text-stone-800 dark:text-stone-100 leading-tight">
-                                Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-600">Stars</span>
-                            </h2>
-                            <p className="text-lg text-stone-500 dark:text-stone-400 max-w-md">
-                                These adorable cats are looking for their forever homes. Give them a chance at happiness.
-                            </p>
-                        </div>
-                        <Link href="/adopt">
-                            <Button variant="ghost" className="gap-2 text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50/70 dark:hover:bg-rose-900/30 text-base font-semibold rounded-full px-6">
-                                View All Cats <ArrowRight className="w-5 h-5" />
-                            </Button>
-                        </Link>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-                        {featuredCats.map((cat) => (
-                            // @ts-ignore
-                            <PetCard key={cat.id} cat={cat} />
-                        ))}
                     </div>
                 </div>
             </section>
