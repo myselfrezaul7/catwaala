@@ -71,10 +71,10 @@ export function SuccessStories() {
                     }}
                 >
                     {/* Double the array to create seamless loop */}
-                    {[...successStories, ...successStories].map((story, i) => (
+                    {[...successStories, ...successStories].map((story, index) => (
                         <div
-                            key={`${story.id}-${i}`}
-                            className="flex-shrink-0 w-[350px] glass-card rounded-3xl p-6 border border-white/60 hover:border-rose-200 transition-colors"
+                            key={`${story.id}-${index}`}
+                            className="flex-shrink-0 w-[300px] md:w-[450px] glass-card rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/60 hover:border-rose-200 hover:shadow-rose-100 transition-all duration-500"
                         >
                             <div className="flex items-center gap-4 mb-4">
                                 <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md">
