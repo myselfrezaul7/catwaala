@@ -14,10 +14,10 @@ export function VetCard({ vet, index = 0 }: VetCardProps) {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
-            className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-2xl p-6 border border-white/20 dark:border-white/5 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-2xl md:rounded-[1.5rem] p-4 md:p-6 border border-white/20 dark:border-white/5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
         >
             {/* Hover Glow Effect */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />

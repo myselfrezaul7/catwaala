@@ -23,11 +23,11 @@ export function PetCard({ cat }: { cat: CatProps }) {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ y: -8, scale: 1.02 }}
-            className="group glass-card rounded-[28px] overflow-hidden transition-all duration-300"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -4, scale: 1.01 }}
+            className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/10"
         >
             <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
@@ -81,7 +81,7 @@ export function PetCard({ cat }: { cat: CatProps }) {
             </div>
 
             {/* Card content */}
-            <div className="p-3 md:p-5 bg-white/60 dark:bg-stone-900/60 backdrop-blur-sm">
+            <div className="p-4 md:p-5 bg-white/60 dark:bg-stone-900/60 backdrop-blur-sm">
                 <div className="flex justify-between items-center mb-3 md:mb-4">
                     <span className="text-xs md:text-sm font-semibold text-rose-600 dark:text-rose-400 bg-rose-50/80 dark:bg-rose-900/20 px-2 md:px-4 py-1 md:py-1.5 rounded-lg md:rounded-xl truncate max-w-[50%]">
                         {cat.breed}
