@@ -49,23 +49,40 @@ export function Hero() {
                         </Link>
                     </motion.div>
 
-                    {/* Kuttawaala Link */}
+                    {/* Floating Companion Badge Redirect */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="mt-8 pt-8 border-t border-border flex items-center gap-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+                        className="mt-8 md:mt-12 flex justify-start"
                     >
-                        <div className="text-sm font-medium text-muted-foreground">Also love dogs?</div>
                         <a
                             href="https://kuttawaala.vercel.app"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center gap-2 px-5 py-2.5 bg-secondary hover:bg-secondary/80 text-foreground rounded-xl transition-all border border-border shadow-sm"
+                            className="group relative inline-flex items-center gap-4 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-border/50 dark:border-zinc-800 px-2 py-2 pr-6 rounded-full shadow-lg shadow-zinc-200/20 dark:shadow-none hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 overflow-hidden"
                         >
-                            <span className="text-lg">🐕</span>
-                            <span className="font-bold">Visit Kuttawaala</span>
-                            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 group-hover:text-foreground transition-all" />
+                            {/* Hover Color Sweep */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-amber-500/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
+
+                            {/* Split Circle Icon */}
+                            <div className="relative w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:rotate-180 shrink-0 border border-zinc-200 dark:border-zinc-700">
+                                <div className="absolute inset-y-0 left-0 w-1/2 bg-teal-100 dark:bg-teal-900/40 flex justify-end items-center pr-1 transition-colors duration-300">
+                                    <span className="text-[12px] opacity-70 group-hover:rotate-180 transition-transform duration-500">🐈</span>
+                                </div>
+                                <div className="absolute inset-y-0 right-0 w-1/2 bg-amber-100 dark:bg-amber-900/40 flex justify-start items-center pl-1 transition-colors duration-300">
+                                    <span className="text-[12px] opacity-70 group-hover:-rotate-180 transition-transform duration-500">🐕</span>
+                                </div>
+                                <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-200 dark:bg-zinc-700 z-10" />
+                            </div>
+
+                            <div className="relative z-10 flex flex-col justify-center">
+                                <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider leading-none mb-1">Also love dogs?</span>
+                                <span className="text-sm font-bold text-foreground leading-none group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1">
+                                    Visit Kuttawaala
+                                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-amber-500" />
+                                </span>
+                            </div>
                         </a>
                     </motion.div>
                 </div>
