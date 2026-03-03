@@ -91,20 +91,62 @@ export default function CommunityPage() {
 
                 {/* Resources */}
                 <section>
-                    <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 font-heading mb-10 text-center">Feline Resources 📚</h2>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {resources.map((resource) => (
-                            <Link href={resource.slug === "local-vet-directory" ? "/vets" : `/resources/${resource.slug}`} key={resource.slug} className="group glass-card dark:bg-stone-900/60 dark:border-stone-800 p-8 rounded-[2rem] hover:bg-rose-50 dark:hover:bg-stone-800 transition-all border-2 border-transparent hover:border-rose-100 dark:hover:border-stone-700">
-                                <div className="w-14 h-14 bg-rose-100 dark:bg-stone-800 rounded-2xl flex items-center justify-center mb-6 text-rose-500 group-hover:scale-110 transition-transform shadow-sm">
-                                    <FileText className="w-7 h-7" />
-                                </div>
-                                <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-2">{resource.title}</h3>
-                                <p className="text-stone-500 dark:text-stone-400 mb-4 text-sm leading-relaxed">{resource.description}</p>
-                                <span className="text-rose-500 font-bold text-sm flex items-center gap-1 group-hover:translate-x-2 transition-transform">
-                                    Read Article <ChevronRight className="w-4 h-4" />
-                                </span>
-                            </Link>
-                        ))}
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 font-heading mb-4">Feline Resources 📚</h2>
+                        <p className="text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">Essential reading for new and experienced cat parents alike.</p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {resources.map((resource) => {
+                            const badgeColor = {
+                                "rose": "bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400 border-rose-200 dark:border-rose-900",
+                                "amber": "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400 border-amber-200 dark:border-amber-900",
+                                "teal": "bg-teal-100 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400 border-teal-200 dark:border-teal-900",
+                            }[resource.color] || "bg-stone-100 text-stone-600 dark:bg-zinc-800 dark:text-stone-400 border-stone-200";
+
+                            const iconBgColor = {
+                                "rose": "bg-rose-100 text-rose-500 dark:bg-rose-900/40 dark:text-rose-400",
+                                "amber": "bg-amber-100 text-amber-500 dark:bg-amber-900/40 dark:text-amber-400",
+                                "teal": "bg-teal-100 text-teal-500 dark:bg-teal-900/40 dark:text-teal-400",
+                            }[resource.color] || "bg-stone-100 text-stone-500";
+
+                            const highlightColor = {
+                                "rose": "bg-rose-500",
+                                "amber": "bg-amber-500",
+                                "teal": "bg-teal-500",
+                            }[resource.color] || "bg-stone-500";
+
+                            return (
+                                <Link
+                                    href={resource.slug === "local-vet-directory" ? "/vets" : `/resources/${resource.slug}`}
+                                    key={resource.slug}
+                                    className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:-translate-y-1"
+                                >
+                                    {/* Accent Top Bar */}
+                                    <div className={`absolute top-0 left-0 right-0 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity ${highlightColor}`} />
+
+                                    <div className="flex justify-between items-start mb-8">
+                                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner ${iconBgColor}`}>
+                                            <FileText className="w-7 h-7" />
+                                        </div>
+                                        <div className={`text-xs font-bold px-3 py-1 pb-1.5 rounded-full border shadow-sm ${badgeColor}`}>
+                                            {resource.badge}
+                                        </div>
+                                    </div>
+
+                                    <h3 className="text-xl font-bold text-stone-800 dark:text-stone-100 mb-3">{resource.title}</h3>
+                                    <p className="text-stone-500 dark:text-stone-400 mb-8 text-sm leading-relaxed flex-1">{resource.description}</p>
+
+                                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-stone-100 dark:border-zinc-800/50">
+                                        <span className="text-xs font-medium text-stone-400 dark:text-stone-500">
+                                            {resource.readTime}
+                                        </span>
+                                        <span className="text-rose-500 font-bold text-sm flex items-center gap-1 group-hover:translate-x-2 transition-transform">
+                                            Read <ChevronRight className="w-4 h-4 ml-1" />
+                                        </span>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </section>
 

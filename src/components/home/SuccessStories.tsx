@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, ChevronLeft, ChevronRight, Star, Heart } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { useCallback } from "react";
 
 const successStories = [
     {
@@ -10,6 +12,7 @@ const successStories = [
         cat: "Luna",
         adopter: "Sarah & Tom",
         image: "/assets/cat1.jpg",
+        months: 12,
         quote: "Luna has brought so much joy to our home. She's the perfect cuddle buddy!"
     },
     {
@@ -17,6 +20,7 @@ const successStories = [
         cat: "Oliver",
         adopter: "The Rahman Family",
         image: "/assets/cat2.jpg",
+        months: 8,
         quote: "We can't imagine life without Oliver now. Thank you Catwaala!"
     },
     {
@@ -24,81 +28,113 @@ const successStories = [
         cat: "Mochi",
         adopter: "Anita",
         image: "/assets/cat3.jpg",
+        months: 24,
         quote: "From a shy stray to a confident queen. Watching her transform has been magical."
     },
     {
         id: 4,
         cat: "Simba",
         adopter: "Kamal",
-        image: "/assets/cat1.jpg", // Reusing for demo
+        image: "/assets/cat4.png",
+        months: 5,
         quote: "Simba is the king of our castle. Best decision ever."
     },
     {
         id: 5,
         cat: "Nala",
         adopter: "Priya",
-        image: "/assets/cat2.jpg", // Reusing for demo
+        image: "/assets/cat5.png",
+        months: 14,
         quote: "She purrs non-stop! Thank you for rescuing this angel."
     }
 ];
 
 export function SuccessStories() {
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
+
+    const scrollPrev = useCallback(() => {
+        if (emblaApi) emblaApi.scrollPrev();
+    }, [emblaApi]);
+
+    const scrollNext = useCallback(() => {
+        if (emblaApi) emblaApi.scrollNext();
+    }, [emblaApi]);
+
     return (
-        <section className="py-20 relative overflow-hidden bg-rose-50/30">
+        <section className="py-20 relative overflow-hidden bg-rose-50/30 dark:bg-rose-950/20">
             <div className="container mx-auto px-4 mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-stone-800 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100 mb-4 tracking-tight">
                     Happy Tails 🏠❤️
                 </h2>
-                <p className="text-lg text-stone-500 max-w-2xl mx-auto">
+                <p className="text-lg text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">
                     Nothing makes us happier than seeing our rescues thrive in their forever homes.
                 </p>
             </div>
 
-            {/* Marquee Container */}
-            <div className="flex overflow-hidden relative">
-                {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#FFFDF8] to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#FFFDF8] to-transparent z-10" />
+            <div className="container mx-auto px-4 md:px-12 relative">
+                {/* Carousel Viewport */}
+                <div className="overflow-hidden cursor-grab active:cursor-grabbing rounded-3xl" ref={emblaRef}>
+                    <div className="flex touch-pan-y py-4 px-2">
+                        {successStories.map((story) => (
+                            <div
+                                key={story.id}
+                                className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4 md:pl-6"
+                            >
+                                <div className="h-full glass-card dark:bg-zinc-900/80 rounded-[2rem] p-6 md:p-8 border border-white/60 dark:border-white/10 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-900/20 transition-all duration-300 relative group flex flex-col">
+                                    <div className="absolute top-6 right-6 flex text-amber-400">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} className="w-4 h-4 fill-current" />
+                                        ))}
+                                    </div>
 
-                {/* Animated Track */}
-                <motion.div
-                    className="flex gap-6 pl-6"
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{
-                        ease: "linear",
-                        duration: 40,
-                        repeat: Infinity,
-                    }}
+                                    <div className="flex items-center gap-5 mb-6">
+                                        <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-white dark:border-zinc-800 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                            <Image
+                                                src={story.image}
+                                                alt={story.cat}
+                                                fill
+                                                className="object-cover"
+                                                sizes="80px"
+                                            />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-xl font-bold text-stone-800 dark:text-stone-100">{story.cat}</h4>
+                                            <p className="text-xs text-stone-500 dark:text-stone-400 uppercase tracking-widest mt-1">Adopted by {story.adopter}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="relative flex-1 flex flex-col justify-center">
+                                        <Quote className="absolute -top-3 -left-2 w-10 h-10 text-rose-100 dark:text-rose-900/50 -z-10 rotate-180" />
+                                        <p className="text-stone-600 dark:text-stone-300 italic leading-relaxed text-base pl-3 font-medium">
+                                            "{story.quote}"
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-6 pt-4 border-t border-stone-100 dark:border-zinc-800/50 flex justify-between items-center text-xs font-semibold text-rose-600 dark:text-rose-400">
+                                        <span>Happy for {story.months} months</span>
+                                        <Heart className="w-4 h-4" />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Navigation Buttons */}
+                <button
+                    onClick={scrollPrev}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white dark:bg-zinc-800 rounded-full shadow-lg border border-stone-100 dark:border-zinc-700 flex items-center justify-center text-stone-600 dark:text-stone-300 hover:text-rose-600 dark:hover:text-rose-400 hover:scale-110 transition-all z-10 hidden md:flex"
+                    aria-label="Previous story"
                 >
-                    {/* Double the array to create seamless loop */}
-                    {[...successStories, ...successStories].map((story, index) => (
-                        <div
-                            key={`${story.id}-${index}`}
-                            className="flex-shrink-0 w-[300px] md:w-[450px] glass-card rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/60 hover:border-rose-200 hover:shadow-rose-100 transition-all duration-500"
-                        >
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md">
-                                    <Image
-                                        src={story.image}
-                                        alt={story.cat}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-stone-800">{story.cat}</h4>
-                                    <p className="text-xs text-stone-500 uppercase tracking-wide">Adopted by {story.adopter}</p>
-                                </div>
-                            </div>
-                            <div className="relative">
-                                <Quote className="absolute -top-2 -left-1 w-8 h-8 text-rose-100 -z-10 rotate-180" />
-                                <p className="text-stone-600 italic leading-relaxed text-sm pl-2">
-                                    "{story.quote}"
-                                </p>
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
+                    <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                    onClick={scrollNext}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white dark:bg-zinc-800 rounded-full shadow-lg border border-stone-100 dark:border-zinc-700 flex items-center justify-center text-stone-600 dark:text-stone-300 hover:text-rose-600 dark:hover:text-rose-400 hover:scale-110 transition-all z-10 hidden md:flex"
+                    aria-label="Next story"
+                >
+                    <ChevronRight className="w-6 h-6" />
+                </button>
             </div>
         </section>
     );

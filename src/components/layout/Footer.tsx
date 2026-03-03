@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Mail, Cat } from "lucide-react";
+import { Facebook, Instagram, Mail, Cat, MessageCircle, Heart, PawPrint } from "lucide-react";
 
 function YoutubeIcon({ className }: { className?: string }) {
     return (
@@ -21,9 +21,39 @@ function TikTokIcon({ className }: { className?: string }) {
 
 export function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-secondary border-t border-border mt-16">
+        <footer className="relative overflow-hidden bg-secondary mt-16 pb-6">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/30 dark:via-teal-500/20 to-transparent" />
+            <div className="absolute -bottom-24 -right-24 text-teal-900/5 dark:text-white/5 pointer-events-none -rotate-12">
+                <PawPrint className="w-96 h-96" />
+            </div>
+
             <div className="relative z-10 pt-16 pb-8">
                 <div className="container mx-auto px-4">
+
+                    {/* Support the Paws Mini-Card */}
+                    <div className="mb-16 bg-teal-50/60 dark:bg-teal-950/20 rounded-3xl p-6 md:p-8 border border-teal-200/50 dark:border-teal-800/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
+                        <div className="flex items-start gap-4 text-center md:text-left">
+                            <div className="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center shrink-0 hidden md:flex">
+                                <Heart className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold font-heading text-teal-950 dark:text-teal-50 mb-1">Support the Paws 🐾</h3>
+                                <p className="text-muted-foreground text-sm">Every taka feeds a stray. Reach out to coordinate your life-saving donation.</p>
+                            </div>
+                        </div>
+                        <div className="flex flex-wrap justify-center md:justify-end gap-3 w-full md:w-auto">
+                            <a href="mailto:catwaala@gmail.com" className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm font-medium hover:text-teal-600 transition-colors shadow-sm">
+                                <Mail className="w-4 h-4 mr-2" /> Email Us
+                            </a>
+                            <a href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-[#1877F2]/10 text-[#1877F2] border border-[#1877F2]/20 text-sm font-medium hover:bg-[#1877F2]/20 transition-colors shadow-sm">
+                                <MessageCircle className="w-4 h-4 mr-2" /> Facebook
+                            </a>
+                            <Link href="/donate" className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors shadow-sm shadow-teal-600/20">
+                                Donate Page
+                            </Link>
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                         {/* Brand */}
                         <div className="space-y-4">
@@ -130,8 +160,8 @@ export function Footer() {
                     </div>
 
                     {/* Copyright */}
-                    <div className="pt-8 border-t border-border flex justify-center text-center text-sm text-muted-foreground">
-                        <p>&copy; 2025 Catwaala. All rights reserved. Made with ❤️ and lots of tuna.</p>
+                    <div className="pt-8 border-t border-border/50 flex justify-center text-center text-sm text-muted-foreground">
+                        <p>&copy; {new Date().getFullYear()} Catwaala. All rights reserved. Made with ❤️ and lots of tuna.</p>
                     </div>
                 </div>
             </div>

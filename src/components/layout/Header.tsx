@@ -12,6 +12,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 import { useRouter } from "next/navigation";
 
+const SEARCH_ROUTES = [
+    { title: "Adopt a Cat", keywords: ["adopt", "foster", "get a cat", "kitten"], href: "/adopt" },
+    { title: "Find a Vet", keywords: ["vet", "doctor", "hospital", "clinic", "medical"], href: "/find-vet" },
+    { title: "Report a Stray", keywords: ["report", "injured", "stray", "found", "emergency"], href: "/report" },
+    { title: "Volunteer with Us", keywords: ["volunteer", "help", "join"], href: "/volunteer" },
+    { title: "Make a Donation", keywords: ["donate", "money", "bkash", "nagad", "payment"], href: "/donate" },
+    { title: "Community Resources", keywords: ["community", "resources", "events"], href: "/community" },
+    { title: "Cat Care FAQ", keywords: ["faq", "help", "questions", "answers"], href: "/faq" },
+    { title: "Memorial Wall", passedWords: false, keywords: ["memorial", "rainbow bridge", "died", "passed"], href: "/memorial" },
+];
+
 export function Header() {
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,6 +31,35 @@ export function Header() {
     const [scrolled, setScrolled] = useState(false);
     const { user, userData, loading } = useAuth();
     const { t } = useLanguage();
+
+    // Derived filtered routes
+    const filteredRoutes = SEARCH_ROUTES.filter(route => {
+        if (!searchQuery.trim()) return false;
+        const query = searchQuery.toLowerCase();
+        return route.title.toLowerCase().includes(query) || route.keywords.some(k => k.includes(query));
+    }).slice(0, 4); // Show top 4 max
+
+    // Handle Enter Key
+    const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            if (filteredRoutes.length > 0) {
+                handleRouteSelection(filteredRoutes[0].href);
+            } else {
+                // Default fallback if no match
+                handleRouteSelection(`/adopt`);
+            }
+        }
+        if (e.key === 'Escape') {
+            setIsSearchOpen(false);
+            setSearchQuery("");
+        }
+    };
+
+    const handleRouteSelection = (href: string) => {
+        setIsSearchOpen(false);
+        setSearchQuery("");
+        router.push(href);
+    };
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -179,7 +219,7 @@ export function Header() {
                 isSearchOpen && (
                     <div className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-start pt-32 animate-fade-in-up">
                         <button
-                            onClick={() => setIsSearchOpen(false)}
+                            onClick={() => { setIsSearchOpen(false); setSearchQuery("") }}
                             className="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-muted transition-colors"
                         >
                             <X className="w-7 h-7 text-muted-foreground" />
@@ -196,14 +236,42 @@ export function Header() {
                                     className="w-full pl-16 pr-6 py-6 text-xl rounded-2xl bg-muted/30 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm text-foreground placeholder:text-muted-foreground"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
+                                    onKeyDown={handleSearchKeyDown}
                                 />
                             </div>
 
-                            <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
-                                <span>Try searching for:</span>
-                                <button className="text-primary hover:underline font-medium">Urgent Adoptions</button>
-                                <button className="text-primary hover:underline font-medium">Vet in Dhaka</button>
-                                <button className="text-primary hover:underline font-medium">Volunteer</button>
+                            {/* Search Results / Suggestions */}
+                            <div className="min-h-[200px]">
+                                {searchQuery.trim() === "" ? (
+                                    <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
+                                        <span>Try searching for:</span>
+                                        <button onClick={() => handleRouteSelection('/adopt')} className="text-primary hover:underline font-medium">Urgent Adoptions</button>
+                                        <button onClick={() => handleRouteSelection('/find-vet')} className="text-primary hover:underline font-medium">Vet in Dhaka</button>
+                                        <button onClick={() => handleRouteSelection('/volunteer')} className="text-primary hover:underline font-medium">Volunteer</button>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col gap-2 max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300">
+                                        {filteredRoutes.length > 0 ? (
+                                            filteredRoutes.map((route, i) => (
+                                                <button
+                                                    key={i}
+                                                    onClick={() => handleRouteSelection(route.href)}
+                                                    className="flex items-center justify-between p-4 rounded-xl bg-muted/30 hover:bg-muted border border-transparent hover:border-border transition-all text-left group"
+                                                >
+                                                    <span className="font-semibold text-foreground group-hover:text-primary transition-colors">{route.title}</span>
+                                                    <Search className="w-4 h-4 text-muted-foreground opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all" />
+                                                </button>
+                                            ))
+                                        ) : (
+                                            <div className="text-muted-foreground py-8">
+                                                No specific pages found for "{searchQuery}". Try searching our community resources or FAQ.
+                                                <div className="mt-4 flex gap-2 justify-center">
+                                                    <button onClick={() => handleRouteSelection('/faq')} className="px-4 py-2 rounded-lg bg-muted text-sm hover:bg-border transition-colors">Go to FAQ</button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
