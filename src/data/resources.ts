@@ -7,6 +7,9 @@ export type Resource = {
     coverImage: string;
     date: string;
     author: string;
+    badge: string;
+    readTime: string;
+    color: "rose" | "amber" | "teal";
 };
 
 export const resources: Resource[] = [
@@ -17,6 +20,9 @@ export const resources: Resource[] = [
         iconName: "FileText",
         date: "Feb 15, 2026",
         author: "Catwaala Team",
+        badge: "Guide",
+        readTime: "5 min",
+        color: "rose",
         coverImage: "https://images.unsplash.com/photo-1560807707-8cc77767d783?q=80&w=2000&auto=format&fit=crop",
         content: `
 # Welcome to Parenthood!
@@ -49,6 +55,9 @@ Enjoy your new furry friend!
         iconName: "MapPin",
         date: "Jan 10, 2026",
         author: "Community",
+        badge: "Directory",
+        readTime: "Always updated",
+        color: "teal",
         coverImage: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=2000&auto=format&fit=crop",
         content: `
 # Trusted Veterinarians in Dhaka
@@ -77,6 +86,9 @@ Finding a good vet is crucial. Here are some highly recommended clinics by our c
         iconName: "BriefcaseMedical",
         date: "Dec 05, 2025",
         author: "Dr. Meow",
+        badge: "Article",
+        readTime: "4 min",
+        color: "amber",
         coverImage: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=2000&auto=format&fit=crop",
         content: `
 # Feeding Your Cat Right
