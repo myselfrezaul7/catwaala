@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Clock, Star, Download, ChevronRight, Users, Heart, FileText } from "lucide-react";
+import { Calendar, MapPin, Clock, Star, Download, ChevronRight, Users, Heart, FileText, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { resources } from "@/data/resources";
@@ -23,12 +23,13 @@ export default function CommunityPage() {
                     <p className="text-xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed mb-8">
                         Join our vibrant community of cat lovers in Dhaka. From adoption drives to kitten yoga, there's always something happening!
                     </p>
-                    <Link href="https://www.facebook.com/groups/catwaala" target="_blank" rel="noopener noreferrer">
-                        <Button size="lg" className="rounded-full bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all">
-                            <Users className="w-5 h-5 mr-2" />
-                            Visit Facebook Community
-                        </Button>
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer">
+                            <Button size="lg" className="rounded-2xl h-14 px-8 bg-[#1877F2] hover:bg-[#1877F2]/90 text-white shadow-lg w-full sm:w-auto">
+                                Join Facebook Group <ArrowUpRight className="ml-2 w-5 h-5" />
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </section>
 

@@ -4,7 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HelpCircle, Cat, Syringe, Home, Utensils } from "lucide-react";
+import { HelpCircle, Cat, Syringe, Home, Utensils, ArrowRight } from "lucide-react";
 
 import { Metadata } from "next";
 
@@ -169,12 +169,14 @@ export default function FAQPage() {
                 </div>
 
                 {/* Contact CTA */}
-                <div className="text-center bg-gradient-to-br from-stone-800 to-stone-950 rounded-[2rem] p-12 relative overflow-hidden text-white shadow-2xl">
-                    <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-                    <h3 className="text-2xl font-bold mb-4 relative z-10">Have specialized questions?</h3>
-                    <p className="text-stone-400 mb-8 relative z-10">Join our community and ask our vet experts.</p>
-                    <a href="https://www.facebook.com/groups/catwaala" target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition-all hover:scale-105 shadow-lg shadow-rose-900/20">
-                        Ask in Facebook Group
+                <div className="relative glass-card border-none bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-950/40 dark:to-emerald-950/40 p-12 overflow-hidden shadow-2xl">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+                    <h2 className="text-3xl font-bold mb-4">Still have questions?</h2>
+                    <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                        Join our Facebook group to connect with other rescuers, ask for advice, or share your own success stories!
+                    </p>
+                    <a href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition-all hover:scale-105 shadow-lg shadow-rose-900/20">
+                        Join the Community <ArrowRight className="w-5 h-5" />
                     </a>
                 </div>
 
