@@ -27,11 +27,11 @@ export function Footer() {
                 <PawPrint className="w-96 h-96" />
             </div>
 
-            <div className="relative z-10 pt-16 pb-8">
+            <div className="relative z-10 pt-10 md:pt-16 pb-6 md:pb-8">
                 <div className="container mx-auto px-4">
 
                     {/* Support the Paws Mini-Card */}
-                    <div className="mb-16 bg-teal-50/60 dark:bg-teal-950/20 rounded-3xl p-6 md:p-8 border border-teal-200/50 dark:border-teal-800/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="mb-8 md:mb-16 bg-teal-50/60 dark:bg-teal-950/20 rounded-3xl p-6 md:p-8 border border-teal-200/50 dark:border-teal-800/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-start gap-4 text-center md:text-left">
                             <div className="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center shrink-0 hidden md:flex">
                                 <Heart className="w-6 h-6 text-teal-600 dark:text-teal-400" />
@@ -54,9 +54,9 @@ export function Footer() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-8 md:mb-12">
                         {/* Brand */}
-                        <div className="space-y-4">
+                        <div className="col-span-2 md:col-span-1 space-y-4">
                             <div className="flex items-center gap-2.5">
                                 <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
                                     <Cat className="w-5 h-5 text-primary-foreground" />
@@ -110,7 +110,7 @@ export function Footer() {
                         </div>
 
                         {/* Connect */}
-                        <div>
+                        <div className="col-span-2 md:col-span-1">
                             <h4 className="font-bold mb-5 text-foreground text-sm uppercase tracking-wider">Connect</h4>
                             <div className="flex flex-wrap gap-2.5 mb-5">
                                 <a
@@ -161,7 +161,7 @@ export function Footer() {
 
                     {/* Copyright */}
                     <div className="pt-8 border-t border-border/50 flex justify-center text-center text-sm text-muted-foreground">
-                        <p>&copy; {new Date().getFullYear()} Catwaala. All rights reserved. Made with ❤️ and lots of tuna.</p>
+                        <p>&copy; {new Date().getFullYear()} Catwaala. All rights reserved.</p>
                     </div>
                 </div>
             </div>
