@@ -117,7 +117,7 @@ export default function CommunityPage() {
 
                             return (
                                 <Link
-                                    href={resource.slug === "local-vet-directory" ? "/vets" : `/resources/${resource.slug}`}
+                                    href={resource.slug === "local-vet-directory" ? "/find-vet" : `/resources/${resource.slug}`}
                                     key={resource.slug}
                                     className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:-translate-y-1"
                                 >
