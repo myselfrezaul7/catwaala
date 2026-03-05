@@ -255,7 +255,7 @@ export function AdoptPageContent() {
                 </div>
 
                 <div className="relative mt-8 mb-12 rounded-[3rem] overflow-hidden border border-amber-50 dark:border-stone-800 bg-white/40 dark:bg-stone-900/40 p-8 md:p-16 text-center backdrop-blur-sm shadow-xl">
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 dark:opacity-5 mix-blend-luminosity" />
+                    <div className="absolute inset-0 bg-[url('/assets/cat_adopt_bg.png')] bg-cover bg-center opacity-10 dark:opacity-5 mix-blend-luminosity" />
                     <div className="relative z-10 max-w-2xl mx-auto py-8">
                         <div className="w-24 h-24 bg-rose-100 dark:bg-rose-900/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-rose-200/50 dark:shadow-rose-900/20">
                             <span className="text-5xl animate-bounce">🐾</span>

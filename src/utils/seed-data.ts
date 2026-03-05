@@ -12,7 +12,7 @@ const INITIAL_CATS = [
         location: "Dhanmondi, Dhaka",
         description: "Minu was found near Dhanmondi lake. She is very playful and loves fish. Fully vaccinated.",
         attributes: { vaccinated: true, neutered: true, goodWithKids: true, houseTrained: true },
-        images: ["https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=1887&auto=format&fit=crop"],
+        images: ["/assets/cat_seed_1.png"],
         status: "Available",
         created_at: new Date().toISOString()
     },
@@ -24,7 +24,7 @@ const INITIAL_CATS = [
         location: "Gulshan 1, Dhaka",
         description: "A calm and majestic black cat. Loves to sit by the window. Needs a quiet home.",
         attributes: { vaccinated: true, neutered: true, goodWithKids: false, houseTrained: true },
-        images: ["https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=2030&auto=format&fit=crop"],
+        images: ["/assets/cat_seed_2.png"],
         status: "Available",
         created_at: new Date().toISOString()
     },
@@ -36,7 +36,7 @@ const INITIAL_CATS = [
         location: "Uttara, Dhaka",
         description: "Rescued from a breeder. Tiny kitten needing lots of love and care.",
         attributes: { vaccinated: false, neutered: false, goodWithKids: true, houseTrained: false },
-        images: ["https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=1935&auto=format&fit=crop"],
+        images: ["/assets/cat_seed_3.png"],
         status: "Available",
         created_at: new Date().toISOString()
     },
@@ -48,7 +48,7 @@ const INITIAL_CATS = [
         location: "Mirpur DOHS",
         description: "The friendliest orange tabby you'll meet. Loves belly rubs.",
         attributes: { vaccinated: true, neutered: true, goodWithKids: true, houseTrained: true },
-        images: ["https://images.unsplash.com/photo-1574158622682-e40e69881006?q=80&w=2080&auto=format&fit=crop"],
+        images: ["/assets/cat_seed_4.png"],
         status: "Available",
         created_at: new Date().toISOString()
     },
@@ -60,7 +60,7 @@ const INITIAL_CATS = [
         location: "Bashundhara R/A",
         description: "Shy at first but very affectionate once she knows you.",
         attributes: { vaccinated: true, neutered: true, goodWithKids: false, houseTrained: true },
-        images: ["https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=2043&auto=format&fit=crop"],
+        images: ["/assets/cat_memorial_1.png"],
         status: "Available",
         created_at: new Date().toISOString()
     }

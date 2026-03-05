@@ -13,7 +13,7 @@ export const MOCK_POSTS: Post[] = [
         id: 1,
         author: { id: 1, name: 'Sadia Ahmed' },
         content: 'Just adopted this little guy! Everyone, meet Mimi. She\'s a bit shy but so full of love. Any tips for helping a rescue cat settle into a new home?',
-        imageUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1000&auto=format&fit=crop',
+        imageUrl: '/assets/cat_seed_3.png',
         timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // 30 minutes ago
         likes: 15,
         comments: [
@@ -32,7 +32,7 @@ export const MOCK_POSTS: Post[] = [
         id: 3,
         author: { id: 3, name: 'Fatima' },
         content: 'Beautiful day for a nap in the sun! #catlife',
-        imageUrl: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?q=80&w=1000&auto=format&fit=crop',
+        imageUrl: '/assets/cat_seed_4.png',
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1 day ago
         likes: 22,
         comments: [],
