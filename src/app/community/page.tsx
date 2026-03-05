@@ -11,7 +11,7 @@ export default function CommunityPage() {
     return (
         <div className="min-h-screen pb-24 bg-stone-50/50 dark:bg-stone-950 transition-colors duration-300">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+            <section className="relative pt-24 md:pt-32 pb-12 md:pb-20 px-4 overflow-hidden">
                 <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-rose-100/50 dark:from-rose-900/10 to-transparent pointer-events-none" />
                 <div className="container mx-auto text-center relative z-10">
                     <div className="inline-block p-3 rounded-full bg-white dark:bg-stone-900 shadow-lg shadow-rose-100/50 dark:shadow-rose-900/20 mb-6 border border-rose-100 dark:border-rose-900/30 animate-bounce-slow">
@@ -33,7 +33,7 @@ export default function CommunityPage() {
                 </div>
             </section>
 
-            <div className="container mx-auto px-4 max-w-6xl space-y-24">
+            <div className="container mx-auto px-4 max-w-6xl space-y-16 md:space-y-24">
 
                 {/* Upcoming Events */}
                 <section>
@@ -44,7 +44,7 @@ export default function CommunityPage() {
                         </div>
                     </div>
 
-                    <div className="glass-card dark:bg-stone-900/60 rounded-[2.5rem] p-12 text-center border border-rose-100/50 dark:border-stone-800 shadow-xl relative overflow-hidden">
+                    <div className="glass-card dark:bg-stone-900/60 rounded-[2.5rem] p-6 md:p-12 text-center border border-rose-100/50 dark:border-stone-800 shadow-xl relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-400 via-amber-400 to-rose-400 animate-shimmer" />
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-rose-100/80 dark:bg-rose-900/30 text-rose-500 mb-6 animate-pulse">
                             <Calendar className="w-8 h-8" />
@@ -60,7 +60,7 @@ export default function CommunityPage() {
                 </section>
 
                 {/* Volunteer Spotlight */}
-                <section className="bg-gradient-to-br from-rose-500 to-orange-500 rounded-[3rem] p-8 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-rose-200 dark:shadow-rose-900/20 text-center">
+                <section className="bg-gradient-to-br from-rose-500 to-orange-500 rounded-[3rem] p-6 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-rose-200 dark:shadow-rose-900/20 text-center">
                     <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                         <Star className="w-64 h-64 rotate-12" />
                     </div>
@@ -95,7 +95,7 @@ export default function CommunityPage() {
                         <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 font-heading mb-4">Feline Resources 📚</h2>
                         <p className="text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">Essential reading for new and experienced cat parents alike.</p>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                         {resources.map((resource) => {
                             const badgeColor = {
                                 "rose": "bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400 border-rose-200 dark:border-rose-900",
@@ -119,7 +119,7 @@ export default function CommunityPage() {
                                 <Link
                                     href={resource.slug === "local-vet-directory" ? "/find-vet" : `/resources/${resource.slug}`}
                                     key={resource.slug}
-                                    className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:-translate-y-1"
+                                    className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:-translate-y-1"
                                 >
                                     {/* Accent Top Bar */}
                                     <div className={`absolute top-0 left-0 right-0 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity ${highlightColor}`} />

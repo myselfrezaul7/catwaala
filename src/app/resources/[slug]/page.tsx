@@ -67,7 +67,7 @@ export default function ResourcePage({ params }: PageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent" />
 
-                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 container mx-auto">
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-16 container mx-auto">
                     <Link href="/community">
                         <Button variant="outline" className="mb-8 text-white border-white/30 hover:bg-white/20 hover:text-white backdrop-blur-sm rounded-full">
                             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Community
@@ -95,7 +95,7 @@ export default function ResourcePage({ params }: PageProps) {
             <div className="container mx-auto px-4 -mt-10 relative z-10 max-w-6xl flex flex-col lg:flex-row gap-8 items-start">
 
                 {/* Main Content Area */}
-                <div className="bg-white dark:bg-stone-900 rounded-[2.5rem] p-8 md:p-16 shadow-xl border border-rose-100/50 dark:border-stone-800 flex-1 w-full lg:max-w-4xl">
+                <div className="bg-white dark:bg-stone-900 rounded-[2.5rem] p-6 md:p-16 shadow-xl border border-rose-100/50 dark:border-stone-800 flex-1 w-full lg:max-w-4xl">
                     <div className="prose prose-lg md:prose-xl dark:prose-invert prose-rose mx-auto dark:text-stone-300 text-stone-700 max-w-none">
                         <ReactMarkdown>
                             {resource.content}

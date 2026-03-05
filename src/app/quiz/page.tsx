@@ -57,7 +57,7 @@ export default function QuizPage() {
     }).sort((a, b) => b.score - a.score).slice(0, 3) : [];
 
     return (
-        <div className="min-h-screen bg-[#FFFDF8] py-20 px-4 flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="min-h-screen bg-[#FFFDF8] py-12 md:py-20 px-4 flex flex-col items-center justify-center relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-rose-100/40 filter blur-3xl animate-float" />
@@ -109,7 +109,7 @@ export default function QuizPage() {
                         </div>
 
                         {/* Question Card */}
-                        <div className="glass-card p-8 md:p-12 rounded-[2.5rem] shadow-xl shadow-rose-100/20 border-white/60">
+                        <div className="glass-card p-6 md:p-12 rounded-[2.5rem] shadow-xl shadow-rose-100/20 border-white/60">
                             <h1 className="text-3xl md:text-5xl font-bold text-stone-800 mb-12 leading-tight">
                                 {currentQuestion.questionText}
                             </h1>

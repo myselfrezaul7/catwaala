@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export function Hero() {
     return (
-        <section className="relative py-20 lg:py-32 flex items-center overflow-hidden bg-background">
+        <section className="relative py-12 lg:py-32 flex items-center overflow-hidden bg-background">
             {/* Subtle premium gradient background instead of muddy blobs */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background opacity-70" />
 
@@ -23,7 +23,7 @@ export function Hero() {
                             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                             Bangladesh&apos;s biggest cat community platform
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-[1.1] mb-6 tracking-tight">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-[1.1] mb-6 tracking-tight">
                             Every Cat Deserves a <span className="text-primary">Loving Home</span>
                         </h1>
                         <p className="text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
@@ -60,7 +60,7 @@ export function Hero() {
                             href="https://kuttawaala.vercel.app"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative inline-flex items-center gap-4 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-border/50 dark:border-zinc-800 px-2 py-2 pr-6 rounded-full shadow-lg shadow-zinc-200/20 dark:shadow-none hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 overflow-hidden"
+                            className="group relative inline-flex items-center gap-2 sm:gap-4 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-border/50 dark:border-zinc-800 px-2 py-2 pr-4 sm:pr-6 rounded-full shadow-lg shadow-zinc-200/20 dark:shadow-none hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 overflow-hidden"
                         >
                             {/* Hover Color Sweep */}
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-amber-500/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
@@ -77,7 +77,7 @@ export function Hero() {
                             </div>
 
                             <div className="relative z-10 flex flex-col justify-center">
-                                <span className="text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider leading-none mb-1">Also love dogs?</span>
+                                <span className="hidden sm:block text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider leading-none mb-1">Also love dogs?</span>
                                 <span className="text-sm font-bold text-foreground leading-none group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1">
                                     Visit Kuttawaala
                                     <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-amber-500" />
@@ -110,7 +110,7 @@ export function Hero() {
                         <motion.div
                             animate={{ y: [0, -10, 0] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute bottom-20 -left-6 glass-card p-4 rounded-2xl flex items-center gap-3 z-20 max-w-[200px]"
+                            className="absolute bottom-10 sm:bottom-20 left-2 md:-left-6 glass-card p-3 sm:p-4 rounded-2xl flex items-center gap-2 sm:gap-3 z-20 max-w-[180px] sm:max-w-[200px]"
                         >
                             <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
                                 <Heart className="w-5 h-5 fill-current" />
