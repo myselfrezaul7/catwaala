@@ -66,7 +66,10 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden bg-stone-50 dark:bg-stone-950 transition-colors duration-300">
+        <div className="min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden bg-stone-50 dark:bg-zinc-950 transition-colors duration-300 py-12">
+            {/* Animated Background gradients */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_var(--tw-gradient-stops))] from-rose-100/40 via-transparent to-transparent dark:from-rose-900/20" />
+
             {/* Decorative blobs */}
             <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] bg-rose-200/20 dark:bg-rose-900/10 rounded-full blur-3xl animate-float" />
             <div className="absolute bottom-[10%] right-[5%] w-[350px] h-[350px] bg-amber-200/20 dark:bg-amber-900/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "3s" }} />
@@ -80,8 +83,24 @@ export default function LoginPage() {
                     </div>
                 </div>
 
+                {/* Social Proof Badge */}
+                <div className="flex justify-center mb-6 relative z-20">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 border border-stone-200/50 dark:border-zinc-800 backdrop-blur-md shadow-sm">
+                        <div className="flex -space-x-2">
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 bg-rose-100 dark:bg-rose-900 flex items-center justify-center overflow-hidden">
+                                    <Cat className="w-3 h-3 text-rose-500" />
+                                </div>
+                            ))}
+                        </div>
+                        <span className="text-xs font-semibold text-stone-600 dark:text-stone-300 ml-1">
+                            Join <span className="text-rose-600 dark:text-rose-400">4,500+</span> cat lovers
+                        </span>
+                    </div>
+                </div>
+
                 {/* Login Card */}
-                <div className="glass-card dark:bg-stone-900/60 dark:border-stone-800 rounded-[2.5rem] p-8 md:p-10 border border-white/60 shadow-2xl shadow-rose-100/50 dark:shadow-none backdrop-blur-xl bg-white/60">
+                <div className="glass-card dark:bg-zinc-900/60 dark:border-zinc-800 rounded-[2.5rem] p-8 md:p-10 border border-white/60 shadow-2xl shadow-rose-100/50 dark:shadow-none backdrop-blur-xl bg-white/60 relative z-10">
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold mb-2 text-stone-800 dark:text-stone-100 tracking-tight">
                             {isSignUp ? "Create Account" : "Welcome Back"}
@@ -128,7 +147,7 @@ export default function LoginPage() {
                             </div>
                         </div>
 
-                        <div className="flex justify-center my-4">
+                        <div className="flex justify-center my-4 overflow-hidden max-w-full">
                             <ReCAPTCHA
                                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
                                 onChange={setCaptchaValue}

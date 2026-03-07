@@ -31,8 +31,8 @@ export function HomepageStats() {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 pb-6 sm:pb-0 sm:grid sm:grid-cols-3 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="min-w-[85%] sm:min-w-0 snap-center glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden flex-shrink-0">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
                     <Heart className="w-24 h-24 text-rose-500" />
                 </div>
@@ -45,7 +45,7 @@ export function HomepageStats() {
                 <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Cats TNR&apos;d</span>
             </div>
 
-            <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+            <div className="min-w-[85%] sm:min-w-0 snap-center glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden flex-shrink-0">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
                     <Users className="w-24 h-24 text-amber-600 dark:text-amber-500" />
                 </div>
@@ -58,7 +58,7 @@ export function HomepageStats() {
                 <span className="text-sm font-semibold text-stone-400 uppercase tracking-wider relative z-10">Adoptions</span>
             </div>
 
-            <div className="glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden">
+            <div className="min-w-[85%] sm:min-w-0 snap-center glass-card dark:bg-stone-900/60 rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden flex-shrink-0">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-700">
                     <Stethoscope className="w-24 h-24 text-emerald-600 dark:text-emerald-500" />
                 </div>

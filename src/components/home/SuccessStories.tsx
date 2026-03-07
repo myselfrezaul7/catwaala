@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Quote, ChevronLeft, ChevronRight, Star, Heart } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const successStories = [
     {
@@ -51,6 +51,26 @@ const successStories = [
 
 export function SuccessStories() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+    const onSelect = useCallback(() => {
+        if (!emblaApi) return;
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+    }, [emblaApi]);
+
+    useEffect(() => {
+        if (!emblaApi) return;
+        setScrollSnaps(emblaApi.scrollSnapList());
+        emblaApi.on("select", onSelect);
+        emblaApi.on("reInit", onSelect);
+        onSelect(); // Initial call
+
+        return () => {
+            emblaApi.off("select", onSelect);
+            emblaApi.off("reInit", onSelect);
+        };
+    }, [emblaApi, onSelect]);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -58,6 +78,10 @@ export function SuccessStories() {
 
     const scrollNext = useCallback(() => {
         if (emblaApi) emblaApi.scrollNext();
+    }, [emblaApi]);
+
+    const scrollTo = useCallback((index: number) => {
+        if (emblaApi) emblaApi.scrollTo(index);
     }, [emblaApi]);
 
     return (
@@ -135,6 +159,21 @@ export function SuccessStories() {
                 >
                     <ChevronRight className="w-6 h-6" />
                 </button>
+            </div>
+
+            {/* Pagination Dots (Mobile & Desktop) */}
+            <div className="flex justify-center gap-2 mt-8 z-10 relative">
+                {scrollSnaps.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => scrollTo(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === selectedIndex
+                            ? "bg-rose-500 w-8"
+                            : "bg-rose-200 dark:bg-zinc-700 hover:bg-rose-300 dark:hover:bg-zinc-600"
+                            }`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
             </div>
         </section>
     );

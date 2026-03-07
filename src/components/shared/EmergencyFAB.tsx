@@ -59,7 +59,7 @@ export function EmergencyFAB() {
                                     transition={{ duration: 0.2, delay: item.delay }}
                                 >
                                     <Link href={item.href} onClick={() => setIsOpen(false)} className="flex items-center gap-3 group">
-                                        <span className="bg-white dark:bg-zinc-900 text-stone-700 dark:text-stone-200 text-sm font-bold px-3 py-1.5 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        <span className="bg-white dark:bg-zinc-900 text-stone-700 dark:text-stone-200 text-sm font-bold px-3 py-1.5 rounded-lg shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">
                                             {item.label}
                                         </span>
                                         <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${item.color} transform group-hover:scale-110 transition-transform`}>
