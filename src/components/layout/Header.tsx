@@ -84,11 +84,11 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled
-                ? "bg-background/80 backdrop-blur-2xl shadow-sm border-b border-border/40"
-                : "bg-background/40 backdrop-blur-xl border-b border-transparent"
-                }`}>
-                <div className="container mx-auto px-4 py-3.5 flex justify-between items-center">
+            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-[800px] w-[calc(100%-2rem)] transition-all duration-500 ease-out ${scrolled
+                ? "bg-background/70 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40 translate-y-0"
+                : "bg-background/60 border-transparent translate-y-0 shadow-lg"
+                } backdrop-blur-xl border rounded-[100px]`}>
+                <div className="px-4 md:px-6 py-2.5 flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 group">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 overflow-hidden bg-background">
@@ -119,12 +119,20 @@ export function Header() {
                     </nav>
 
                     {/* Actions */}
-                    <div className="hidden md:flex items-center gap-2">
+                    <div className="hidden md:flex items-center gap-2 ml-auto">
+                        <Link href="https://www.kuttawaala.com" target="_blank" rel="noopener noreferrer">
+                            <Button variant="ghost" size="sm" className="hidden lg:flex text-muted-foreground hover:text-primary rounded-full font-medium h-9 text-xs uppercase tracking-wider">
+                                Visit Kuttawaala
+                            </Button>
+                        </Link>
+
+                        <div className="w-px h-4 bg-border mx-1"></div>
+
                         <LanguageToggle />
                         <ModeToggle />
-                        <Link href="/dashboard">
-                            <button className="p-2.5 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-xl transition-colors">
-                                <Heart className="w-5 h-5" />
+                        <Link href="/dashboard" className="hidden lg:flex">
+                            <button className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors">
+                                <Heart className="w-[18px] h-[18px]" />
                             </button>
                         </Link>
 
@@ -161,16 +169,28 @@ export function Header() {
 
                     {/* Mobile Menu Toggle */}
                     <button
-                        className="md:hidden p-2 text-foreground/80 hover:bg-muted/50 rounded-xl transition-colors"
+                        className="md:hidden p-2 text-foreground/80 hover:bg-muted/50 rounded-full transition-colors ml-auto"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-2xl border-b border-border shadow-xl p-5 flex flex-col gap-1.5 animate-fade-in-up">
+                    <div className="md:hidden absolute top-[calc(100%+12px)] left-0 w-full bg-background/95 backdrop-blur-2xl border border-border/50 shadow-2xl rounded-3xl p-5 flex flex-col gap-2 animate-in slide-in-from-top-4 fade-in duration-300 overflow-hidden">
+                        {/* Stray Image Banner */}
+                        <div className="relative w-full h-32 rounded-2xl overflow-hidden mb-2">
+                            <Image
+                                src="/assets/cat_adopt_bg.png"
+                                alt="Featured Stray Cat"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                                <span className="text-white/90 font-medium text-sm">Every stray deserves a home 🐾</span>
+                            </div>
+                        </div>
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
@@ -203,8 +223,15 @@ export function Header() {
                             </Link>
 
                         )}
-                        <div className="flex items-center justify-between px-3 py-2 mt-2 border-t border-border">
-                            <span className="text-muted-foreground font-medium">{t.nav.theme}</span>
+
+                        <Link href="https://www.kuttawaala.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>
+                            <Button variant="secondary" className="w-full mt-1 rounded-xl h-12 font-medium bg-muted/50 text-foreground">
+                                Visit Kuttawaala 🐕
+                            </Button>
+                        </Link>
+
+                        <div className="flex items-center justify-between px-3 py-2 mt-2 border-t border-border/50">
+                            <span className="text-muted-foreground font-medium text-sm">{t.nav.theme}</span>
                             <div className="flex items-center gap-2">
                                 <LanguageToggle />
                                 <ModeToggle />
@@ -212,7 +239,7 @@ export function Header() {
                         </div>
                     </div>
                 )}
-            </header >
+            </header>
 
             {/* Full Screen Search Overlay */}
             {
