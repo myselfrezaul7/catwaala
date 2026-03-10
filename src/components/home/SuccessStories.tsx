@@ -11,7 +11,7 @@ const successStories = [
         id: 1,
         cat: "Luna",
         adopter: "Sarah & Tom",
-        image: "/assets/cat1.jpg",
+        image: "/assets/cat1.png",
         months: 12,
         quote: "Luna has brought so much joy to our home. She's the perfect cuddle buddy!"
     },
@@ -19,7 +19,7 @@ const successStories = [
         id: 2,
         cat: "Oliver",
         adopter: "The Rahman Family",
-        image: "/assets/cat2.jpg",
+        image: "/assets/cat2.png",
         months: 8,
         quote: "We can't imagine life without Oliver now. Thank you Catwaala!"
     },
@@ -27,7 +27,7 @@ const successStories = [
         id: 3,
         cat: "Mochi",
         adopter: "Anita",
-        image: "/assets/cat3.jpg",
+        image: "/assets/cat3.png",
         months: 24,
         quote: "From a shy stray to a confident queen. Watching her transform has been magical."
     },
