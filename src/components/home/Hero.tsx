@@ -57,7 +57,7 @@ export function Hero() {
                         className="mt-8 md:mt-12 flex justify-start"
                     >
                         <a
-                            href="https://kuttawaala.vercel.app"
+                            href="https://www.kuttawaala.com"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group relative inline-flex items-center gap-2 sm:gap-4 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-border/50 dark:border-zinc-800 px-2 py-2 pr-4 sm:pr-6 rounded-full shadow-lg shadow-zinc-200/20 dark:shadow-none hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 overflow-hidden"

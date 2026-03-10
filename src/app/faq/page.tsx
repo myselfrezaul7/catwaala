@@ -131,7 +131,7 @@ export default function FAQPage() {
 
             <div className="container mx-auto px-4 -mt-10 relative z-20 max-w-4xl">
                 {/* Search & Tabs Controls */}
-                <div className="glass-card bg-white/80 dark:bg-zinc-900/80 rounded-[2rem] p-6 shadow-xl border border-rose-100/50 mb-10 backdrop-blur-xl">
+                <div className="sticky top-[80px] z-30 glass-card bg-white/80 dark:bg-zinc-900/80 rounded-[2rem] p-6 shadow-xl border border-rose-100/50 mb-10 backdrop-blur-xl">
                     <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
                         {/* Tabs */}
                         <div className="flex bg-rose-50 dark:bg-zinc-800/50 p-1.5 rounded-2xl w-full md:w-auto overflow-x-auto hide-scrollbar">
@@ -145,8 +145,8 @@ export default function FAQPage() {
                                     key={tab.id}
                                     onClick={() => { setActiveTab(tab.id); setSearchQuery(""); }}
                                     className={`px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300 ${activeTab === tab.id && searchQuery === ""
-                                            ? "bg-white dark:bg-zinc-700 text-rose-600 dark:text-rose-400 shadow-sm"
-                                            : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-white/50 dark:hover:bg-zinc-700/50"
+                                        ? "bg-white dark:bg-zinc-700 text-rose-600 dark:text-rose-400 shadow-sm"
+                                        : "text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 hover:bg-white/50 dark:hover:bg-zinc-700/50"
                                         }`}
                                 >
                                     {tab.label}

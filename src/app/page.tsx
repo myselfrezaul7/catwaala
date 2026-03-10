@@ -57,7 +57,7 @@ export default function Home() {
                             <div className="relative z-10 text-center flex flex-col items-center h-full justify-center">
                                 <h3 className="text-2xl md:text-3xl font-bold font-heading text-amber-600 dark:text-amber-500 mb-3">The Canine Side</h3>
                                 <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-[250px] mx-auto opacity-80 group-hover/dog:opacity-100 transition-opacity">Discover our sister platform dedicated to rescuing street dogs across Bangladesh.</p>
-                                <a href="https://kuttawaala.vercel.app" target="_blank" rel="noopener noreferrer" className="mt-auto md:mt-0">
+                                <a href="https://www.kuttawaala.com" target="_blank" rel="noopener noreferrer" className="mt-auto md:mt-0">
                                     <Button className="h-12 md:h-14 px-6 md:px-8 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 group-hover/dog:-translate-y-1">
                                         Visit Kuttawaala <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover/dog:translate-x-1 transition-transform" />
                                     </Button>
