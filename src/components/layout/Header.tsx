@@ -84,7 +84,7 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-[800px] w-[calc(100%-2rem)] transition-all duration-500 ease-out ${scrolled
+            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-500 ease-out ${scrolled
                 ? "bg-background/70 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40 translate-y-0"
                 : "bg-background/60 border-transparent translate-y-0 shadow-lg"
                 } backdrop-blur-xl border rounded-[100px]`}>
@@ -257,36 +257,48 @@ export function Header() {
                             </div>
 
                             {/* Search Results / Suggestions */}
-                            <div className="min-h-[200px]">
-                                {searchQuery.trim() === "" ? (
-                                    <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
-                                        <span>Try searching for:</span>
-                                        <button onClick={() => handleRouteSelection('/adopt')} className="text-primary hover:underline font-medium">Urgent Adoptions</button>
-                                        <button onClick={() => handleRouteSelection('/find-vet')} className="text-primary hover:underline font-medium">Vet in Dhaka</button>
-                                        <button onClick={() => handleRouteSelection('/volunteer')} className="text-primary hover:underline font-medium">Volunteer</button>
+                            <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground w-full">
+                                {searchQuery ? (
+                                    <div className="flex flex-col sm:flex-row gap-4 w-full">
+                                        <button
+                                            onClick={() => {
+                                                setIsSearchOpen(false);
+                                                router.push(`/adopt?query=${encodeURIComponent(searchQuery)}`);
+                                            }}
+                                            className="flex-1 p-6 rounded-2xl bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all text-left flex items-start gap-4 group"
+                                        >
+                                            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                                🐈
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-foreground text-lg mb-1">Search Adoptions</h3>
+                                                <p className="text-muted-foreground line-clamp-1">Find cats matching "{searchQuery}"</p>
+                                            </div>
+                                        </button>
+
+                                        <button
+                                            onClick={() => {
+                                                setIsSearchOpen(false);
+                                                router.push(`/find-vet?query=${encodeURIComponent(searchQuery)}`);
+                                            }}
+                                            className="flex-1 p-6 rounded-2xl bg-muted/40 hover:bg-muted/80 border border-border transition-all text-left flex items-start gap-4 group"
+                                        >
+                                            <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                                🏥
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-foreground text-lg mb-1">Search Vets</h3>
+                                                <p className="text-muted-foreground line-clamp-1">Find clinics matching "{searchQuery}"</p>
+                                            </div>
+                                        </button>
                                     </div>
                                 ) : (
-                                    <div className="flex flex-col gap-2 max-w-md mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300">
-                                        {filteredRoutes.length > 0 ? (
-                                            filteredRoutes.map((route, i) => (
-                                                <button
-                                                    key={i}
-                                                    onClick={() => handleRouteSelection(route.href)}
-                                                    className="flex items-center justify-between p-4 rounded-xl bg-muted/30 hover:bg-muted border border-transparent hover:border-border transition-all text-left group"
-                                                >
-                                                    <span className="font-semibold text-foreground group-hover:text-primary transition-colors">{route.title}</span>
-                                                    <Search className="w-4 h-4 text-muted-foreground opacity-50 group-hover:opacity-100 group-hover:text-primary transition-all" />
-                                                </button>
-                                            ))
-                                        ) : (
-                                            <div className="text-muted-foreground py-8">
-                                                No specific pages found for "{searchQuery}". Try searching our community resources or FAQ.
-                                                <div className="mt-4 flex gap-2 justify-center">
-                                                    <button onClick={() => handleRouteSelection('/faq')} className="px-4 py-2 rounded-lg bg-muted text-sm hover:bg-border transition-colors">Go to FAQ</button>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
+                                    <>
+                                        <span>Try searching for:</span>
+                                        <button onClick={() => { setIsSearchOpen(false); router.push('/adopt'); }} className="text-primary hover:underline font-medium">Urgent Adoptions</button>
+                                        <button onClick={() => { setIsSearchOpen(false); router.push('/find-vet'); }} className="text-primary hover:underline font-medium">Vet in Dhaka</button>
+                                        <button onClick={() => { setIsSearchOpen(false); router.push('/volunteer'); }} className="text-primary hover:underline font-medium">Volunteer</button>
+                                    </>
                                 )}
                             </div>
                         </div>
