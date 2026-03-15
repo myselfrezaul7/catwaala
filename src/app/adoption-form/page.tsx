@@ -25,7 +25,8 @@ export default function AdoptionFormPage() {
                 {/* Header */}
                 <header className="border-b-2 border-black pb-6 mb-8 text-center">
                     <h1 className="text-4xl font-bold uppercase tracking-wider mb-2 text-rose-600">Adoption Application</h1>
-                    <p className="text-lg text-gray-600">Catwaala - Saving Every Stray, One Purr at a Time</p>
+                    <p className="text-lg text-gray-600 font-medium italic">"Adopt don't shop"</p>
+                    <p className="text-md text-gray-500">Catwaala - Saving Every Stray, One Purr at a Time</p>
                 </header>
 
                 {/* Section 1: Adopter Information */}
@@ -165,19 +166,20 @@ export default function AdoptionFormPage() {
                     <div>
                         <div className="border-t border-black pt-2 text-center">
                             <p className="font-bold">Signature of Adopter</p>
-                            <p className="text-xs text-gray-500">Date: _________________</p>
+                            <p className="text-xs text-gray-500 mt-6">Date: _________________</p>
                         </div>
                     </div>
                     <div>
                         <div className="border-t border-black pt-2 text-center">
-                            <p className="font-bold">Authorized Catwaala Representative</p>
-                            <p className="text-xs text-gray-500">Date: _________________</p>
+                            <p className="font-bold">Signature of the Owner</p>
+                            <p className="text-xs text-gray-500 mt-6">Date: _________________</p>
                         </div>
                     </div>
                 </section>
 
                 <footer className="mt-16 text-center text-xs text-gray-400 border-t pt-4">
-                    <p>Catwaala - www.catwaala.com | Adoption Support: +880-123-456789</p>
+                    <p className="mb-1 font-medium text-gray-500 uppercase tracking-widest">We don't support buying, selling or breeding</p>
+                    <p>Catwaala - www.catwaala.com | Adoption Support Official Platform</p>
                 </footer>
             </div>
         </div>
