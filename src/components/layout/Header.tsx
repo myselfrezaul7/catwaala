@@ -85,9 +85,9 @@ export function Header() {
     return (
         <>
             <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-500 ease-out print:hidden ${scrolled
-                ? "bg-background/70 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40 translate-y-0"
-                : "bg-background/60 border-transparent translate-y-0 shadow-lg"
-                } backdrop-blur-xl border rounded-[100px]`}>
+                ? "bg-white/50 dark:bg-zinc-900/50 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40 translate-y-0"
+                : "bg-white/40 dark:bg-zinc-900/40 border-transparent translate-y-0 shadow-lg"
+                } backdrop-blur-2xl border rounded-[100px]`}>
                 <div className="px-4 md:px-6 py-2.5 flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 group">
@@ -161,13 +161,22 @@ export function Header() {
                         )}
                     </div>
 
-                    {/* Mobile Menu Toggle */}
-                    <button
-                        className="md:hidden p-2 text-foreground/80 hover:bg-muted/50 rounded-full transition-colors ml-auto"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                    </button>
+                    {/* Mobile Menu & Icons */}
+                    <div className="md:hidden flex items-center gap-1 ml-auto">
+                        <button
+                            onClick={() => setIsSearchOpen(true)}
+                            className="p-2 text-foreground/80 hover:bg-muted/50 rounded-full transition-colors"
+                        >
+                            <Search className="w-5 h-5" />
+                        </button>
+                        <ModeToggle />
+                        <button
+                            className="p-2 text-foreground/80 hover:bg-muted/50 rounded-full transition-colors"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Mobile Menu */}
