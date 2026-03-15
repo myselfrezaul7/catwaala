@@ -1,9 +1,12 @@
+"use client";
+
 import { Hero } from "@/components/home/Hero";
 import { SuccessStories } from "@/components/home/SuccessStories";
 import { HomepageStats } from "@/components/home/HomepageStats";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Sparkles, PawPrint, Heart } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
     return (
@@ -12,59 +15,44 @@ export default function Home() {
 
             <SuccessStories />
 
-            {/* Split Soul Interactive Redirect Banner */}
-            <section className="py-12 md:py-20 relative overflow-hidden">
+            {/* Compact Cross-Link Banner */}
+            <section className="py-8 md:py-16 relative overflow-hidden">
                 <div className="container mx-auto px-4 relative z-10">
-
-                    <div className="mb-8 text-center max-w-2xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100/80 dark:bg-zinc-900/50 text-muted-foreground text-sm font-bold mb-4 border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                            <Sparkles className="w-4 h-4 text-amber-500" />
-                            Same Mission, Different Paws
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-bold font-heading text-foreground mb-4">
-                            Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-amber-500">Companion</span>
-                        </h2>
-                    </div>
-
-                    <div className="group/split relative h-[360px] md:h-[420px] w-full max-w-5xl mx-auto bg-zinc-100 dark:bg-zinc-900 rounded-[3rem] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-zinc-200 dark:border-zinc-800">
-                        {/* Divider Paw Trail */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-row md:flex-col gap-4 pointer-events-none opacity-20">
-                            <PawPrint className="w-5 h-5 md:w-6 md:h-6 -rotate-12 text-zinc-800 dark:text-white" />
-                            <PawPrint className="w-5 h-5 md:w-6 md:h-6 rotate-12 text-zinc-800 dark:text-white translate-y-2 md:translate-x-3 md:translate-y-0" />
-                            <PawPrint className="w-5 h-5 md:w-6 md:h-6 -rotate-12 text-zinc-800 dark:text-white" />
-                            <PawPrint className="w-5 h-5 md:w-6 md:h-6 rotate-12 text-zinc-800 dark:text-white translate-y-2 md:translate-x-3 md:translate-y-0" />
-                        </div>
-
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        className="w-full max-w-5xl mx-auto bg-zinc-100 dark:bg-zinc-900 rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-xl border border-zinc-200 dark:border-zinc-800"
+                    >
                         {/* Catwaala Side (Left) */}
-                        <div className="flex-1 relative flex flex-col justify-center items-center p-5 md:p-8 transition-all duration-700 ease-out hover:flex-[1.5] bg-teal-50/50 dark:bg-teal-950/20 border-b md:border-r md:border-b-0 border-zinc-200 dark:border-zinc-800 overflow-hidden group/cat">
-                            <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent opacity-0 group-hover/cat:opacity-100 transition-opacity duration-700" />
-                            <div className="absolute -left-8 -top-8 text-[80px] md:text-[200px] opacity-5 text-teal-900 dark:text-teal-100 rotate-12 transition-transform duration-700 group-hover/cat:scale-110">🐈</div>
-
-                            <div className="relative z-10 text-center flex flex-col items-center h-full justify-center">
-                                <h3 className="text-xl md:text-3xl font-bold font-heading text-teal-800 dark:text-teal-400 mb-3">The Feline Side</h3>
-                                <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-[250px] mx-auto opacity-80 group-hover/cat:opacity-100 transition-opacity">You're currently exploring Catwaala. Independent, graceful, and purrfect.</p>
-                                <Button disabled variant="outline" className="rounded-2xl border-teal-200 dark:border-teal-900 bg-white/50 dark:bg-zinc-900/50 text-teal-600 dark:text-teal-500 pointer-events-none mt-auto md:mt-0">
-                                    You are here 📍
-                                </Button>
+                        <div className="flex-1 relative flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 bg-teal-50/50 dark:bg-teal-950/20 border-b md:border-r md:border-b-0 border-zinc-200 dark:border-zinc-800 gap-4">
+                            <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent pointer-events-none" />
+                            <div className="relative z-10 text-center sm:text-left flex-1">
+                                <h3 className="text-lg md:text-2xl font-bold font-heading text-teal-800 dark:text-teal-400 mb-1">Catwaala</h3>
+                                <p className="text-xs md:text-sm text-muted-foreground opacity-90">Exploring the feline side.</p>
                             </div>
+                            <Button disabled variant="outline" size="sm" className="relative z-10 rounded-xl border-teal-200 dark:border-teal-900 bg-white/50 dark:bg-zinc-900/50 text-teal-600 dark:text-teal-500 pointer-events-none text-xs h-8">
+                                You are here 📍
+                            </Button>
                         </div>
 
                         {/* Kuttawaala Side (Right) */}
-                        <div className="flex-1 relative flex flex-col justify-center items-center p-5 md:p-8 transition-all duration-700 ease-out hover:flex-[1.5] bg-amber-50/50 dark:bg-amber-950/20 overflow-hidden group/dog shadow-[-10px_0_30px_-15px_rgba(0,0,0,0.1)] md:shadow-[-20px_0_30px_-15px_rgba(0,0,0,0.1)]">
-                            <div className="absolute inset-0 bg-gradient-to-bl from-amber-500/10 to-transparent opacity-0 group-hover/dog:opacity-100 transition-opacity duration-700" />
-                            <div className="absolute -right-8 -bottom-8 text-[80px] md:text-[200px] opacity-5 text-amber-900 dark:text-amber-100 -rotate-12 transition-transform duration-700 group-hover/dog:scale-110">🐕</div>
+                        <div className="flex-[1.2] relative flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 bg-amber-50/50 dark:bg-amber-950/20 gap-4 group">
+                            <div className="absolute inset-0 bg-gradient-to-bl from-amber-500/5 to-transparent pointer-events-none" />
+                            <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                            <div className="relative z-10 text-center flex flex-col items-center h-full justify-center">
-                                <h3 className="text-xl md:text-3xl font-bold font-heading text-amber-600 dark:text-amber-500 mb-3">The Canine Side</h3>
-                                <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-[250px] mx-auto opacity-80 group-hover/dog:opacity-100 transition-opacity">Discover our sister platform dedicated to rescuing street dogs across Bangladesh.</p>
-                                <a href="https://www.kuttawaala.com" target="_blank" rel="noopener noreferrer" className="mt-auto md:mt-0">
-                                    <Button className="h-10 md:h-14 px-6 md:px-8 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/40 transition-all duration-300 group-hover/dog:-translate-y-1">
-                                        Visit Kuttawaala <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover/dog:translate-x-1 transition-transform" />
-                                    </Button>
-                                </a>
+                            <div className="relative z-10 text-center sm:text-left flex-1">
+                                <h3 className="text-lg md:text-2xl font-bold font-heading text-amber-600 dark:text-amber-500 mb-1">Kuttawaala</h3>
+                                <p className="text-xs md:text-sm text-muted-foreground opacity-90">Discover our sister platform for dogs.</p>
                             </div>
+                            <a href="https://www.kuttawaala.com" target="_blank" rel="noopener noreferrer" className="relative z-10 w-full sm:w-auto mt-2 sm:mt-0">
+                                <Button size="sm" className="w-full h-9 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold shadow-md shadow-amber-500/20 transition-all group-hover:-translate-y-0.5 text-xs">
+                                    Visit Kuttawaala <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
+                                </Button>
+                            </a>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
