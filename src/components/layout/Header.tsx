@@ -84,7 +84,7 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-500 ease-out ${scrolled
+            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-500 ease-out print:hidden ${scrolled
                 ? "bg-background/70 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40 translate-y-0"
                 : "bg-background/60 border-transparent translate-y-0 shadow-lg"
                 } backdrop-blur-xl border rounded-[100px]`}>

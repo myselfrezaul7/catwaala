@@ -11,10 +11,13 @@ export default function AdoptionFormPage() {
     return (
         <div className="min-h-screen bg-white text-black p-8 md:p-12 font-sans print:p-0">
             {/* Print Button (Hidden when printing) */}
-            <div className="max-w-[210mm] mx-auto mb-8 print:hidden flex justify-end">
-                <Button onClick={handlePrint} className="bg-rose-500 hover:bg-rose-600 text-white gap-2">
-                    <Printer className="w-4 h-4" /> Print Form
+            <div className="max-w-[210mm] mx-auto mb-8 print:hidden flex flex-col items-end gap-2">
+                <Button onClick={handlePrint} className="bg-rose-500 hover:bg-rose-600 text-white gap-2 px-8 py-6 text-lg font-bold rounded-xl shadow-lg shadow-rose-200">
+                    <Printer className="w-5 h-5" /> Print / Save as PDF
                 </Button>
+                <p className="text-xs text-stone-500 italic">
+                    Mobile users: Tap "Print" then select "Save as PDF" from the printer list.
+                </p>
             </div>
 
             {/* A4 Container */}
