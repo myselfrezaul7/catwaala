@@ -9,6 +9,7 @@ import { ModeToggle } from "@/components/theme/mode-toggle";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { MobileBottomNav } from "./MobileBottomNav";
 
 import { useRouter } from "next/navigation";
 
@@ -170,18 +171,12 @@ export function Header() {
                             <Search className="w-5 h-5" />
                         </button>
                         <ModeToggle />
-                        <button
-                            className="p-2 text-foreground/80 hover:bg-muted/50 rounded-full transition-colors"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                        </button>
                     </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className="md:hidden absolute top-[calc(100%+12px)] left-0 w-full bg-background/95 backdrop-blur-2xl border border-border/50 shadow-2xl rounded-3xl p-5 flex flex-col gap-2 animate-in slide-in-from-top-4 fade-in duration-300 overflow-hidden">
+                    <div className="md:hidden absolute bottom-[calc(100%+12px)] left-0 w-full bg-background/95 backdrop-blur-2xl border border-border/50 shadow-2xl rounded-3xl p-5 flex flex-col gap-2 animate-in slide-in-from-bottom-4 fade-in duration-300 overflow-hidden origin-bottom">
                         {/* Stray Image Banner */}
                         <div className="relative w-full h-32 rounded-2xl overflow-hidden mb-2">
                             <Image
@@ -238,6 +233,11 @@ export function Header() {
                     </div>
                 )}
             </header>
+
+            <MobileBottomNav 
+                isMenuOpen={isMenuOpen} 
+                onMoreTap={() => setIsMenuOpen(!isMenuOpen)} 
+            />
 
             {/* Full Screen Search Overlay */}
             {
