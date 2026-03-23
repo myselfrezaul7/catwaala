@@ -31,24 +31,26 @@ export function Footer() {
                 <div className="container mx-auto px-4">
 
                     {/* Support the Paws Mini-Card */}
-                    <div className="mb-8 md:mb-16 bg-teal-50/60 dark:bg-teal-950/20 rounded-3xl p-6 md:p-8 border border-teal-200/50 dark:border-teal-800/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="mb-8 md:mb-16 bg-teal-50/60 dark:bg-teal-950/20 rounded-3xl p-4 md:p-8 border border-teal-200/50 dark:border-teal-800/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-start gap-4 text-center md:text-left">
-                            <div className="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center shrink-0 hidden md:flex">
+                            <div className="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/40 items-center justify-center shrink-0 hidden md:flex">
                                 <Heart className="w-6 h-6 text-teal-600 dark:text-teal-400" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold font-heading text-teal-950 dark:text-teal-50 mb-1">Support the Paws 🐾</h3>
+                                <h3 className="text-xl font-bold font-heading text-teal-950 dark:text-teal-50 mb-1">
+                                    <span className="md:hidden mr-2">🐾</span>Support the Paws <span className="hidden md:inline">🐾</span>
+                                </h3>
                                 <p className="text-muted-foreground text-sm">Every taka feeds a stray. Reach out to coordinate your life-saving donation.</p>
                             </div>
                         </div>
-                        <div className="flex flex-wrap justify-center md:justify-end gap-3 w-full md:w-auto">
-                            <a href="mailto:catwaala@gmail.com" className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm font-medium hover:text-teal-600 transition-colors shadow-sm">
+                        <div className="flex flex-col md:flex-row md:flex-wrap justify-center md:justify-end gap-3 w-full md:w-auto">
+                            <a href="mailto:catwaala@gmail.com" className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-sm font-medium hover:text-teal-600 transition-colors shadow-sm w-full md:w-auto">
                                 <Mail className="w-4 h-4 mr-2" /> Email Us
                             </a>
-                            <a href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-[#1877F2]/10 text-[#1877F2] border border-[#1877F2]/20 text-sm font-medium hover:bg-[#1877F2]/20 transition-colors shadow-sm">
+                            <a href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-10 px-4 rounded-xl bg-[#1877F2]/10 text-[#1877F2] border border-[#1877F2]/20 text-sm font-medium hover:bg-[#1877F2]/20 transition-colors shadow-sm w-full md:w-auto">
                                 <MessageCircle className="w-4 h-4 mr-2" /> Facebook
                             </a>
-                            <Link href="/donate" className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors shadow-sm shadow-teal-600/20">
+                            <Link href="/donate" className="inline-flex items-center justify-center h-10 px-5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-sm font-bold transition-colors shadow-sm shadow-teal-600/20 w-full md:w-auto">
                                 Donate Page
                             </Link>
                         </div>

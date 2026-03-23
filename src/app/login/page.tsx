@@ -83,8 +83,8 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                {/* Social Proof Badge */}
-                <div className="flex justify-center mb-6 relative z-20">
+                {/* Social Proof Badge (Desktop Only) */}
+                <div className="hidden md:flex justify-center mb-6 relative z-20">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 border border-stone-200/50 dark:border-zinc-800 backdrop-blur-md shadow-sm">
                         <div className="flex -space-x-2">
                             {[1, 2, 3].map((i) => (
@@ -206,6 +206,22 @@ export default function LoginPage() {
                         <p>
                             Protected by Firebase Auth
                         </p>
+                    </div>
+                </div>
+
+                {/* Social Proof Badge (Mobile Only - moved below form) */}
+                <div className="flex md:hidden justify-center mt-6 relative z-20">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 border border-stone-200/50 dark:border-zinc-800 backdrop-blur-md shadow-sm">
+                        <div className="flex -space-x-2">
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="w-5 h-5 rounded-full border-2 border-white dark:border-zinc-900 bg-rose-100 dark:bg-rose-900 flex items-center justify-center overflow-hidden">
+                                    <Cat className="w-2.5 h-2.5 text-rose-500" />
+                                </div>
+                            ))}
+                        </div>
+                        <span className="text-[10px] sm:text-xs font-semibold text-stone-600 dark:text-stone-300 ml-1">
+                            Join <span className="text-rose-600 dark:text-rose-400">4,500+</span> cat lovers
+                        </span>
                     </div>
                 </div>
             </div>

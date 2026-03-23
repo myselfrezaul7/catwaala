@@ -8,6 +8,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle, Cat, Syringe, Home, Utensils, ArrowRight, Search, Filter } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function FAQPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -182,7 +183,14 @@ export default function FAQPage() {
                         }[category.color] || "bg-stone-100 text-stone-600";
 
                         return (
-                            <div key={category.category} className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <motion.div
+                                key={category.category}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.5 }}
+                                className="mb-8"
+                            >
                                 <div className="glass-card bg-white/70 dark:bg-zinc-900/70 rounded-[2rem] p-6 text-stone-300 md:p-8 shadow-md border border-stone-100 dark:border-zinc-800">
                                     <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-stone-800 dark:text-white pb-4 border-b border-stone-100 dark:border-zinc-800">
                                         <div className={`p-2 rounded-xl ${badgeClasses}`}>
@@ -203,7 +211,7 @@ export default function FAQPage() {
                                         ))}
                                     </Accordion>
                                 </div>
-                            </div>
+                            </motion.div>
                         );
                     })
                 ) : (
@@ -223,7 +231,13 @@ export default function FAQPage() {
                 )}
 
                 {/* Contact CTA */}
-                <div className="relative glass-card border-none bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-950/40 dark:to-emerald-950/40 p-12 overflow-hidden shadow-2xl">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5 }}
+                    className="relative glass-card border-none bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-950/40 dark:to-emerald-950/40 p-12 overflow-hidden shadow-2xl"
+                >
                     <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
                     <h2 className="text-3xl font-bold mb-4">Still have questions?</h2>
                     <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -232,7 +246,7 @@ export default function FAQPage() {
                     <a href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition-all hover:scale-105 shadow-lg shadow-rose-900/20">
                         Join the Community <ArrowRight className="w-5 h-5" />
                     </a>
-                </div>
+                </motion.div>
 
             </div>
         </div>

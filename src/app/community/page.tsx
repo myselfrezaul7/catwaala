@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Clock, Star, Download, ChevronRight, Users, Heart, FileText, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { resources } from "@/data/resources";
@@ -116,11 +117,18 @@ export default function CommunityPage() {
                             }[resource.color] || "bg-stone-500";
 
                             return (
-                                <Link
-                                    href={resource.slug === "local-vet-directory" ? "/find-vet" : `/resources/${resource.slug}`}
+                                <motion.div
                                     key={resource.slug}
-                                    className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:-translate-y-1"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.5 }}
+                                    className="h-full block"
                                 >
+                                    <Link
+                                        href={resource.slug === "local-vet-directory" ? "/find-vet" : `/resources/${resource.slug}`}
+                                        className="group relative bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:-translate-y-1"
+                                    >
                                     {/* Accent Top Bar */}
                                     <div className={`absolute top-0 left-0 right-0 h-1.5 opacity-0 group-hover:opacity-100 transition-opacity ${highlightColor}`} />
 
@@ -144,7 +152,8 @@ export default function CommunityPage() {
                                             Read <ChevronRight className="w-4 h-4 ml-1" />
                                         </span>
                                     </div>
-                                </Link>
+                                    </Link>
+                                </motion.div>
                             );
                         })}
                     </div>

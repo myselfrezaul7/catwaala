@@ -94,7 +94,13 @@ export default function Home() {
                         {/* Animated Gradient Border Wrapper */}
                         <div className="absolute -inset-1 bg-gradient-to-r from-rose-400 via-teal-400 to-amber-400 rounded-[2.5rem] blur-md opacity-30 group-hover:opacity-60 transition duration-1000 animate-gradient-xy"></div>
 
-                        <div className="relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-16 text-center shadow-xl border border-white/50 dark:border-zinc-800/50">
+                        <motion.div
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            className="relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-16 text-center shadow-xl border border-white/50 dark:border-zinc-800/50"
+                        >
 
                             <div className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-gradient-to-br from-rose-100 to-rose-50 dark:from-rose-900/40 dark:to-rose-800/20 mb-6 shadow-inner">
                                 <Heart className="w-8 h-8 text-rose-500 animate-pulse" />
@@ -133,7 +139,7 @@ export default function Home() {
                                     </Button>
                                 </Link>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

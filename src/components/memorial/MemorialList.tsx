@@ -86,8 +86,9 @@ export function MemorialList() {
                             <motion.div
                                 key={memorial.id}
                                 initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.5, delay: (index % 10) * 0.1 }}
                                 className="group glass-card rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-rose-100/40 transition-all duration-500 hover:-translate-y-2 bg-white/60 backdrop-blur-md border border-white/60 mb-8 break-inside-avoid"
                             >
                                 <div className="relative aspect-square overflow-hidden bg-rose-50">
