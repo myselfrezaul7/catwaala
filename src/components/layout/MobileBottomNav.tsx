@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Cat, AlertTriangle, Heart, Menu } from "lucide-react";
+import { Home, Cat, AlertTriangle, Heart, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface MobileBottomNavProps {
@@ -47,8 +47,12 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
                     onClick={onMoreTap}
                     className="flex flex-col items-center justify-center w-14 h-12 relative group"
                 >
-                    <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isMenuOpen ? 'bg-primary/10' : 'group-hover:bg-muted/50'}`} />
-                    <Menu className={`w-5 h-5 relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isMenuOpen ? 'bg-primary/20' : 'group-hover:bg-muted/50'}`} />
+                    {isMenuOpen ? (
+                        <X className={`w-5 h-5 relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
+                    ) : (
+                        <Menu className={`w-5 h-5 relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
+                    )}
                     <span className={`text-[10px] font-bold mt-1 uppercase tracking-wider relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`}>
                         More
                     </span>
