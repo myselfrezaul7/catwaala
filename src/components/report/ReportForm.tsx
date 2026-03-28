@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { MapPin, Camera, AlertTriangle, CheckCircle, PawPrint, Shield, ChevronRight, ChevronLeft, X, Facebook, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import ReCAPTCHA from "react-google-recaptcha";
 import dynamic from "next/dynamic";
 import { ReportService } from "@/services/ReportService";
@@ -189,10 +190,10 @@ export function ReportForm() {
                         const isCurrent = currentStep === step.id;
                         return (
                             <div key={step.id} className="flex flex-col items-center gap-2">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${isActive ? 'bg-rose-500 border-rose-100 text-white shadow-lg shadow-rose-500/30' : 'bg-white border-stone-200 text-stone-300'}`}>
-                                    <Icon className="w-5 h-5" />
+                                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${isActive ? 'bg-rose-500 border-rose-100 dark:border-rose-900/30 text-white shadow-lg shadow-rose-500/30' : 'bg-white dark:bg-zinc-800 border-stone-200 dark:border-zinc-700 text-stone-300 dark:text-zinc-500'}`}>
+                                    <Icon className="w-5 h-5 md:w-6 md:h-6" />
                                 </div>
-                                <span className={`text-xs font-bold transition-colors ${isCurrent ? 'text-rose-600' : 'text-stone-400'}`}>{step.title}</span>
+                                <span className={`text-xs md:text-sm font-semibold transition-colors ${isCurrent ? 'text-rose-600 dark:text-rose-400' : 'text-stone-400 dark:text-zinc-500'}`}>{step.title}</span>
                             </div>
                         )
                     })}
@@ -230,7 +231,7 @@ export function ReportForm() {
                     </a>
                 </div>
 
-                <div className="glass-card p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden transition-all duration-500">
+                <div className="glass-card p-5 sm:p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden transition-all duration-500 shadow-xl">
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                         {/* STEP 1: SITUATION */}
@@ -240,7 +241,7 @@ export function ReportForm() {
                                     <h2 className="text-2xl font-bold text-stone-800 font-heading">What's the situation?</h2>
                                     <p className="text-stone-500">Choose the option that best describes the emergency.</p>
                                 </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-3 gap-2 md:gap-4">
                                     {["Lost", "Found", "Injured"].map((type) => (
                                         <label key={type} className="cursor-pointer group">
                                             <input
@@ -249,12 +250,12 @@ export function ReportForm() {
                                                 {...register("type", { required: true })}
                                                 className="peer sr-only"
                                             />
-                                            <div className="h-32 flex flex-col items-center justify-center p-4 rounded-3xl border-2 border-stone-100 bg-white/50 peer-checked:border-rose-500 peer-checked:bg-rose-50 peer-checked:shadow-xl peer-checked:shadow-rose-500/10 transition-all group-hover:border-rose-200">
-                                                <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${type === 'Injured' ? 'bg-red-100 text-red-500' : type === 'Lost' ? 'bg-orange-100 text-orange-500' : 'bg-emerald-100 text-emerald-500'}`}>
-                                                    {type === 'Injured' ? <AlertTriangle className="w-6 h-6" /> : type === 'Lost' ? <Shield className="w-6 h-6" /> : <PawPrint className="w-6 h-6" />}
+                                            <motion.div whileTap={{ scale: 0.96 }} className="h-28 md:h-32 flex flex-col items-center justify-center p-2 md:p-4 rounded-3xl border-2 border-stone-100 dark:border-zinc-800 bg-white/50 dark:bg-zinc-800/50 peer-checked:border-rose-500 peer-checked:bg-rose-50 dark:peer-checked:bg-rose-900/20 peer-checked:shadow-xl peer-checked:shadow-rose-500/10 transition-all group-hover:border-rose-200 dark:group-hover:border-rose-900">
+                                                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-2 md:mb-3 ${type === 'Injured' ? 'bg-red-100 text-red-500 dark:bg-red-900/40' : type === 'Lost' ? 'bg-orange-100 text-orange-500 dark:bg-orange-900/40' : 'bg-emerald-100 text-emerald-500 dark:bg-emerald-900/40'}`}>
+                                                    {type === 'Injured' ? <AlertTriangle className="w-5 h-5 md:w-6 md:h-6" /> : type === 'Lost' ? <Shield className="w-5 h-5 md:w-6 md:h-6" /> : <PawPrint className="w-5 h-5 md:w-6 md:h-6" />}
                                                 </div>
-                                                <span className="font-bold text-stone-600 peer-checked:text-rose-600 text-lg">{type}</span>
-                                            </div>
+                                                <span className="font-bold text-stone-600 dark:text-stone-300 peer-checked:text-rose-600 dark:peer-checked:text-rose-400 text-sm md:text-lg">{type}</span>
+                                            </motion.div>
                                         </label>
                                     ))}
                                 </div>

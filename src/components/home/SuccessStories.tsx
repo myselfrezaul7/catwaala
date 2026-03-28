@@ -102,7 +102,7 @@ export function SuccessStories() {
                         {successStories.map((story) => (
                             <div
                                 key={story.id}
-                                className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4 md:pl-6"
+                                className="flex-[0_0_85%] sm:flex-[0_0_70%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4 md:pl-6"
                             >
                                 <div className="h-full glass-card dark:bg-zinc-900/80 rounded-[2rem] p-6 md:p-8 border border-white/60 dark:border-white/10 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-900/20 transition-all duration-300 relative group flex flex-col">
                                     <div className="absolute top-6 right-6 flex text-amber-400">
@@ -159,6 +159,13 @@ export function SuccessStories() {
                 >
                     <ChevronRight className="w-6 h-6" />
                 </button>
+            </div>
+
+            {/* Mobile Swipe Hint */}
+            <div className="flex md:hidden items-center justify-center gap-2 mt-2 text-stone-400 dark:text-zinc-600 text-xs font-semibold uppercase tracking-widest relative z-10">
+                <ChevronLeft className="w-3 h-3" />
+                Swipe to explore
+                <ChevronRight className="w-3 h-3" />
             </div>
 
             {/* Pagination Dots (Mobile & Desktop) */}

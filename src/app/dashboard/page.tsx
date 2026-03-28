@@ -238,23 +238,31 @@ export default function DashboardPage() {
 
                 {/* Main Content Tabs */}
                 <Tabs defaultValue="favorites" className="space-y-8" onValueChange={setActiveTab}>
-                    <TabsList className="bg-white/50 dark:bg-stone-800/80 backdrop-blur-md p-1 rounded-2xl border border-white/60 dark:border-stone-700 shadow-sm mx-auto md:mx-0 w-full md:w-fit flex flex-nowrap overflow-x-auto scrollbar-hide h-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                        <TabsTrigger value="favorites" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-5 transition-all whitespace-nowrap text-sm">
-                            Favorites
-                        </TabsTrigger>
-                        <TabsTrigger value="applications" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 dark:data-[state=active]:text-white px-5 transition-all whitespace-nowrap text-sm">
-                            Applications
-                        </TabsTrigger>
-                        <TabsTrigger value="reports" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-5 dark:data-[state=active]:text-white transition-all whitespace-nowrap text-sm">
-                            Reports
-                        </TabsTrigger>
-                        <TabsTrigger value="memorials" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-5 dark:data-[state=active]:text-white transition-all whitespace-nowrap text-sm">
-                            Tributes
-                        </TabsTrigger>
-                        <TabsTrigger value="achievements" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white dark:text-stone-400 px-5 dark:data-[state=active]:text-white transition-all whitespace-nowrap text-sm">
-                            Awards 🏆
-                        </TabsTrigger>
-                    </TabsList>
+                    <div className="relative w-full -mx-4 px-4 md:mx-0 md:px-0">
+                        {/* Fade Gradients for Mobile Hinting */}
+                        <div className="absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-stone-50 dark:from-stone-950 to-transparent z-10 pointer-events-none md:hidden block h-[60px]" />
+                        <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-stone-50 dark:from-stone-950 to-transparent z-10 pointer-events-none md:hidden block h-[60px]" />
+                        
+                        <div className="overflow-x-auto pb-2 -mb-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                            <TabsList className="bg-white/80 dark:bg-stone-800/80 backdrop-blur-md p-1.5 rounded-2xl border border-white dark:border-stone-700 shadow-sm flex flex-nowrap w-max min-w-full sm:min-w-0 h-auto gap-1">
+                                <TabsTrigger value="favorites" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white text-stone-600 dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all whitespace-nowrap text-sm font-semibold h-11 shrink-0">
+                                    Favorites
+                                </TabsTrigger>
+                                <TabsTrigger value="applications" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white text-stone-600 dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all whitespace-nowrap text-sm font-semibold h-11 shrink-0">
+                                    Applications
+                                </TabsTrigger>
+                                <TabsTrigger value="reports" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white text-stone-600 dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all whitespace-nowrap text-sm font-semibold h-11 shrink-0">
+                                    Reports
+                                </TabsTrigger>
+                                <TabsTrigger value="memorials" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white text-stone-600 dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all whitespace-nowrap text-sm font-semibold h-11 shrink-0">
+                                    Tributes
+                                </TabsTrigger>
+                                <TabsTrigger value="achievements" className="rounded-xl data-[state=active]:bg-rose-500 data-[state=active]:text-white text-stone-600 dark:text-stone-400 dark:data-[state=active]:text-white px-6 transition-all whitespace-nowrap text-sm font-semibold h-11 shrink-0">
+                                    Awards 🏆
+                                </TabsTrigger>
+                            </TabsList>
+                        </div>
+                    </div>
 
                     <TabsContent value="favorites" className="space-y-8 animate-fade-in-up">
                         <div className="flex items-center gap-3 mb-6">

@@ -91,15 +91,16 @@ export function DonatePage() {
                             <motion.div
                                 initial={{ opacity: 0, y: 24 }}
                                 whileInView={{ opacity: 1, y: 0 }}
+                                whileTap={{ scale: 0.96 }}
                                 transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.08 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 key={option.id}
                                 onClick={() => setSelectedOption(option.id)}
                                 className={`
-                                    cursor-pointer rounded-2xl md:rounded-[2rem] p-3 sm:p-5 border-2 transition-all duration-300 relative overflow-hidden group
+                                    cursor-pointer rounded-2xl md:rounded-[2rem] p-4 sm:p-5 border-[3px] md:border-2 transition-all duration-300 relative overflow-hidden group
                                     ${isSelected
                                         ? "bg-white dark:bg-zinc-900 border-orange-500 shadow-xl scale-[1.02] md:scale-105 z-10"
-                                        : "bg-white/80 dark:bg-zinc-900/80 border-transparent hover:border-orange-200 dark:hover:border-zinc-700 hover:shadow-lg backdrop-blur-md"}
+                                        : "bg-white/80 dark:bg-zinc-900/80 border-orange-100/50 dark:border-zinc-800/80 md:border-transparent hover:border-orange-200 dark:hover:border-zinc-700 hover:shadow-lg backdrop-blur-md"}
                                 `}
                             >
                                 <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl ${option.bgColor} flex items-center justify-center mb-3 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>

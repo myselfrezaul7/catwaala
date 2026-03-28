@@ -266,14 +266,18 @@ export function AdoptPageContent() {
                         </p>
                         <div className="flex flex-col md:flex-row gap-4 justify-center">
                             <a href="/volunteer" className="w-full md:w-auto">
-                                <Button size="lg" className="w-full md:w-auto bg-rose-500 hover:bg-rose-600 text-white rounded-xl shadow-lg shadow-rose-500/20 px-8 h-14 text-base font-bold">
-                                    Become a Foster Home
-                                </Button>
+                                <motion.div whileTap={{ scale: 0.96 }}>
+                                    <Button size="lg" className="w-full md:w-auto bg-rose-500 hover:bg-rose-600 text-white rounded-xl shadow-lg shadow-rose-500/20 px-8 h-14 text-base font-bold">
+                                        Become a Foster Home
+                                    </Button>
+                                </motion.div>
                             </a>
                             <a href="/donate" className="w-full md:w-auto">
-                                <Button size="lg" variant="outline" className="w-full md:w-auto border-rose-200 text-rose-600 hover:bg-rose-50 dark:border-stone-700 dark:text-rose-400 dark:hover:bg-stone-800 rounded-xl px-8 h-14 text-base font-bold">
-                                    Support Rescues Now
-                                </Button>
+                                <motion.div whileTap={{ scale: 0.96 }}>
+                                    <Button size="lg" variant="outline" className="w-full md:w-auto border-rose-200 text-rose-600 hover:bg-rose-50 dark:border-stone-700 dark:text-rose-400 dark:hover:bg-stone-800 rounded-xl px-8 h-14 text-base font-bold">
+                                        Support Rescues Now
+                                    </Button>
+                                </motion.div>
                             </a>
                         </div>
                     </div>

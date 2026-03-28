@@ -56,9 +56,9 @@ export function Footer() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-8 md:mb-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-8 md:mb-12 text-center sm:text-left">
                         {/* Brand */}
-                        <div className="col-span-2 md:col-span-1 space-y-4">
+                        <div className="col-span-1 sm:col-span-2 md:col-span-1 space-y-4 flex flex-col items-center sm:items-start">
                             <div className="flex items-center gap-2.5">
                                 <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
                                     <Cat className="w-5 h-5 text-primary-foreground" />
@@ -112,9 +112,9 @@ export function Footer() {
                         </div>
 
                         {/* Connect */}
-                        <div className="col-span-2 md:col-span-1">
-                            <h4 className="font-bold mb-5 text-foreground text-sm uppercase tracking-wider">Connect</h4>
-                            <div className="flex flex-wrap gap-2.5 mb-5">
+                        <div className="col-span-1 sm:col-span-2 md:col-span-1 flex flex-col items-center sm:items-start">
+                            <h4 className="font-bold mb-4 md:mb-5 text-foreground text-sm uppercase tracking-wider">Connect</h4>
+                            <div className="flex flex-wrap justify-center sm:justify-start gap-2.5 mb-5">
                                 <a
                                     href="https://www.facebook.com/groups/catwaala/"
                                     target="_blank"
@@ -152,7 +152,7 @@ export function Footer() {
                                     <TikTokIcon className="w-5 h-5" />
                                 </a>
                             </div>
-                            <div className="space-y-3 text-sm text-muted-foreground">
+                            <div className="space-y-3 text-sm text-muted-foreground w-full flex flex-col items-center sm:items-start">
                                 <a href="mailto:catwaala@gmail.com" className="flex items-center gap-3 hover:text-primary transition-colors">
                                     <Mail className="w-4 h-4 text-primary" />
                                     catwaala@gmail.com

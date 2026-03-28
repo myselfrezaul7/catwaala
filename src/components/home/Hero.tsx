@@ -31,23 +31,22 @@ export function Hero() {
                         </p>
                     </motion.div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                    >
-                        <Link href="/adopt">
-                            <Button size="lg" className="w-full sm:w-auto text-lg h-14 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5 transition-all gap-2">
-                                Adopt a Cat <ArrowRight className="w-5 h-5" />
-                            </Button>
-                        </Link>
-                        <Link href="/volunteer">
-                            <Button size="lg" variant="outline" className="w-full sm:w-auto text-lg h-14 rounded-2xl border-2 border-border hover:bg-muted text-foreground font-semibold hover:-translate-y-0.5 transition-all bg-transparent">
-                                Become a Volunteer
-                            </Button>
-                        </Link>
-                    </motion.div>
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4 w-full sm:w-auto">
+                            <Link href="/adopt" className="w-full sm:w-auto">
+                                <motion.div whileTap={{ scale: 0.96 }} className="w-full">
+                                    <Button size="lg" className="w-full text-lg h-16 sm:h-14 rounded-2xl shadow-xl shadow-rose-500/20 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 transition-transform hover:-translate-y-1">
+                                        Adopt a Cat
+                                    </Button>
+                                </motion.div>
+                            </Link>
+                            <Link href="/volunteer" className="w-full sm:w-auto text-center">
+                                <motion.div whileTap={{ scale: 0.96 }} className="w-full">
+                                    <Button size="lg" variant="outline" className="w-full sm:w-auto text-stone-500 dark:text-stone-400 sm:text-rose-600 dark:sm:text-rose-400 text-base sm:text-lg h-12 sm:h-14 rounded-2xl border-none sm:border-2 border-stone-200 dark:border-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-transform sm:hover:-translate-y-1 bg-transparent hover:text-rose-600 underline sm:no-underline">
+                                        Become a Volunteer
+                                    </Button>
+                                </motion.div>
+                            </Link>
+                        </div>
 
                     {/* Floating Companion Badge Redirect */}
                     <motion.div
@@ -108,16 +107,16 @@ export function Hero() {
 
                         {/* Floating badge */}
                         <motion.div
-                            animate={{ y: [0, -10, 0] }}
+                            animate={{ y: [0, -15, 0] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute bottom-10 sm:bottom-20 left-2 md:-left-6 glass-card p-3 sm:p-4 rounded-2xl flex items-center gap-2 sm:gap-3 z-20 max-w-[180px] sm:max-w-[200px]"
+                            className="absolute bottom-6 sm:bottom-20 left-4 sm:-left-6 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md p-2.5 sm:p-4 rounded-full sm:rounded-2xl shadow-xl flex items-center gap-2 sm:gap-3 z-20"
                         >
-                            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
-                                <Heart className="w-5 h-5 fill-current" />
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-rose-100 dark:bg-rose-900/30 rounded-full flex items-center justify-center text-rose-500 shrink-0">
+                                <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                             </div>
-                            <div>
-                                <p className="font-bold text-sm text-foreground">500+ Rescued</p>
-                                <p className="text-xs text-muted-foreground">Since 2020</p>
+                            <div className="pr-2 sm:pr-0 flex items-center gap-2 sm:block">
+                                <p className="font-bold text-sm">3,500+ Rescued</p>
+                                <p className="text-xs text-stone-500 dark:text-stone-400 hidden sm:block">Since 2020</p>
                             </div>
                         </motion.div>
                     </div>
