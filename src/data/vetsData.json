@@ -1,0 +1,3616 @@
+[
+  {
+    "id": "gov-vet-dhaka",
+    "name": {
+      "en": "Dhaka District Veterinary Hospital",
+      "bn": "Dhaka জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Dhaka Sadar, Dhaka",
+      "district": "Dhaka",
+      "area": "Dhaka Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Dhaka%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.761Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-faridpur",
+    "name": {
+      "en": "Faridpur District Veterinary Hospital",
+      "bn": "Faridpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Faridpur Sadar, Faridpur",
+      "district": "Faridpur",
+      "area": "Faridpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Faridpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-gazipur",
+    "name": {
+      "en": "Gazipur District Veterinary Hospital",
+      "bn": "Gazipur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Gazipur Sadar, Gazipur",
+      "district": "Gazipur",
+      "area": "Gazipur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Gazipur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-gopalganj",
+    "name": {
+      "en": "Gopalganj District Veterinary Hospital",
+      "bn": "Gopalganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Gopalganj Sadar, Gopalganj",
+      "district": "Gopalganj",
+      "area": "Gopalganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Gopalganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-kishoreganj",
+    "name": {
+      "en": "Kishoreganj District Veterinary Hospital",
+      "bn": "Kishoreganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Kishoreganj Sadar, Kishoreganj",
+      "district": "Kishoreganj",
+      "area": "Kishoreganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Kishoreganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-madaripur",
+    "name": {
+      "en": "Madaripur District Veterinary Hospital",
+      "bn": "Madaripur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Madaripur Sadar, Madaripur",
+      "district": "Madaripur",
+      "area": "Madaripur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Madaripur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-manikganj",
+    "name": {
+      "en": "Manikganj District Veterinary Hospital",
+      "bn": "Manikganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Manikganj Sadar, Manikganj",
+      "district": "Manikganj",
+      "area": "Manikganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Manikganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-munshiganj",
+    "name": {
+      "en": "Munshiganj District Veterinary Hospital",
+      "bn": "Munshiganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Munshiganj Sadar, Munshiganj",
+      "district": "Munshiganj",
+      "area": "Munshiganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Munshiganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-narayanganj",
+    "name": {
+      "en": "Narayanganj District Veterinary Hospital",
+      "bn": "Narayanganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Narayanganj Sadar, Narayanganj",
+      "district": "Narayanganj",
+      "area": "Narayanganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Narayanganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-narsingdi",
+    "name": {
+      "en": "Narsingdi District Veterinary Hospital",
+      "bn": "Narsingdi জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Narsingdi Sadar, Narsingdi",
+      "district": "Narsingdi",
+      "area": "Narsingdi Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Narsingdi%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-rajbari",
+    "name": {
+      "en": "Rajbari District Veterinary Hospital",
+      "bn": "Rajbari জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Rajbari Sadar, Rajbari",
+      "district": "Rajbari",
+      "area": "Rajbari Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Rajbari%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-shariatpur",
+    "name": {
+      "en": "Shariatpur District Veterinary Hospital",
+      "bn": "Shariatpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Shariatpur Sadar, Shariatpur",
+      "district": "Shariatpur",
+      "area": "Shariatpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Shariatpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-tangail",
+    "name": {
+      "en": "Tangail District Veterinary Hospital",
+      "bn": "Tangail জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Tangail Sadar, Tangail",
+      "district": "Tangail",
+      "area": "Tangail Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Tangail%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-chattogram",
+    "name": {
+      "en": "Chattogram District Veterinary Hospital",
+      "bn": "Chattogram জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Chattogram Sadar, Chattogram",
+      "district": "Chattogram",
+      "area": "Chattogram Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Chattogram%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-bandarban",
+    "name": {
+      "en": "Bandarban District Veterinary Hospital",
+      "bn": "Bandarban জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Bandarban Sadar, Bandarban",
+      "district": "Bandarban",
+      "area": "Bandarban Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Bandarban%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-brahmanbaria",
+    "name": {
+      "en": "Brahmanbaria District Veterinary Hospital",
+      "bn": "Brahmanbaria জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Brahmanbaria Sadar, Brahmanbaria",
+      "district": "Brahmanbaria",
+      "area": "Brahmanbaria Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Brahmanbaria%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-chandpur",
+    "name": {
+      "en": "Chandpur District Veterinary Hospital",
+      "bn": "Chandpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Chandpur Sadar, Chandpur",
+      "district": "Chandpur",
+      "area": "Chandpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Chandpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-cumilla",
+    "name": {
+      "en": "Cumilla District Veterinary Hospital",
+      "bn": "Cumilla জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Cumilla Sadar, Cumilla",
+      "district": "Cumilla",
+      "area": "Cumilla Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Cumilla%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-cox-s-bazar",
+    "name": {
+      "en": "Cox's Bazar District Veterinary Hospital",
+      "bn": "Cox's Bazar জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Cox's Bazar Sadar, Cox's Bazar",
+      "district": "Cox's Bazar",
+      "area": "Cox's Bazar Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Cox's%20Bazar%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-feni",
+    "name": {
+      "en": "Feni District Veterinary Hospital",
+      "bn": "Feni জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Feni Sadar, Feni",
+      "district": "Feni",
+      "area": "Feni Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Feni%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-khagrachari",
+    "name": {
+      "en": "Khagrachari District Veterinary Hospital",
+      "bn": "Khagrachari জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Khagrachari Sadar, Khagrachari",
+      "district": "Khagrachari",
+      "area": "Khagrachari Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Khagrachari%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-lakshmipur",
+    "name": {
+      "en": "Lakshmipur District Veterinary Hospital",
+      "bn": "Lakshmipur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Lakshmipur Sadar, Lakshmipur",
+      "district": "Lakshmipur",
+      "area": "Lakshmipur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Lakshmipur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-noakhali",
+    "name": {
+      "en": "Noakhali District Veterinary Hospital",
+      "bn": "Noakhali জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Noakhali Sadar, Noakhali",
+      "district": "Noakhali",
+      "area": "Noakhali Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Noakhali%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-rangamati",
+    "name": {
+      "en": "Rangamati District Veterinary Hospital",
+      "bn": "Rangamati জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Rangamati Sadar, Rangamati",
+      "district": "Rangamati",
+      "area": "Rangamati Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Rangamati%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-rajshahi",
+    "name": {
+      "en": "Rajshahi District Veterinary Hospital",
+      "bn": "Rajshahi জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Rajshahi Sadar, Rajshahi",
+      "district": "Rajshahi",
+      "area": "Rajshahi Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Rajshahi%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-bogura",
+    "name": {
+      "en": "Bogura District Veterinary Hospital",
+      "bn": "Bogura জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Bogura Sadar, Bogura",
+      "district": "Bogura",
+      "area": "Bogura Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Bogura%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-joypurhat",
+    "name": {
+      "en": "Joypurhat District Veterinary Hospital",
+      "bn": "Joypurhat জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Joypurhat Sadar, Joypurhat",
+      "district": "Joypurhat",
+      "area": "Joypurhat Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Joypurhat%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-naogaon",
+    "name": {
+      "en": "Naogaon District Veterinary Hospital",
+      "bn": "Naogaon জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Naogaon Sadar, Naogaon",
+      "district": "Naogaon",
+      "area": "Naogaon Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Naogaon%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-natore",
+    "name": {
+      "en": "Natore District Veterinary Hospital",
+      "bn": "Natore জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Natore Sadar, Natore",
+      "district": "Natore",
+      "area": "Natore Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Natore%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-chapainawabganj",
+    "name": {
+      "en": "Chapainawabganj District Veterinary Hospital",
+      "bn": "Chapainawabganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Chapainawabganj Sadar, Chapainawabganj",
+      "district": "Chapainawabganj",
+      "area": "Chapainawabganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Chapainawabganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-pabna",
+    "name": {
+      "en": "Pabna District Veterinary Hospital",
+      "bn": "Pabna জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Pabna Sadar, Pabna",
+      "district": "Pabna",
+      "area": "Pabna Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Pabna%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-sirajganj",
+    "name": {
+      "en": "Sirajganj District Veterinary Hospital",
+      "bn": "Sirajganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Sirajganj Sadar, Sirajganj",
+      "district": "Sirajganj",
+      "area": "Sirajganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Sirajganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-rangpur",
+    "name": {
+      "en": "Rangpur District Veterinary Hospital",
+      "bn": "Rangpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Rangpur Sadar, Rangpur",
+      "district": "Rangpur",
+      "area": "Rangpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Rangpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-dinajpur",
+    "name": {
+      "en": "Dinajpur District Veterinary Hospital",
+      "bn": "Dinajpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Dinajpur Sadar, Dinajpur",
+      "district": "Dinajpur",
+      "area": "Dinajpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Dinajpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-gaibandha",
+    "name": {
+      "en": "Gaibandha District Veterinary Hospital",
+      "bn": "Gaibandha জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Gaibandha Sadar, Gaibandha",
+      "district": "Gaibandha",
+      "area": "Gaibandha Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Gaibandha%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-kurigram",
+    "name": {
+      "en": "Kurigram District Veterinary Hospital",
+      "bn": "Kurigram জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Kurigram Sadar, Kurigram",
+      "district": "Kurigram",
+      "area": "Kurigram Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Kurigram%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-lalmonirhat",
+    "name": {
+      "en": "Lalmonirhat District Veterinary Hospital",
+      "bn": "Lalmonirhat জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Lalmonirhat Sadar, Lalmonirhat",
+      "district": "Lalmonirhat",
+      "area": "Lalmonirhat Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Lalmonirhat%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-nilphamari",
+    "name": {
+      "en": "Nilphamari District Veterinary Hospital",
+      "bn": "Nilphamari জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Nilphamari Sadar, Nilphamari",
+      "district": "Nilphamari",
+      "area": "Nilphamari Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Nilphamari%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-panchagarh",
+    "name": {
+      "en": "Panchagarh District Veterinary Hospital",
+      "bn": "Panchagarh জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Panchagarh Sadar, Panchagarh",
+      "district": "Panchagarh",
+      "area": "Panchagarh Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Panchagarh%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-thakurgaon",
+    "name": {
+      "en": "Thakurgaon District Veterinary Hospital",
+      "bn": "Thakurgaon জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Thakurgaon Sadar, Thakurgaon",
+      "district": "Thakurgaon",
+      "area": "Thakurgaon Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Thakurgaon%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-khulna",
+    "name": {
+      "en": "Khulna District Veterinary Hospital",
+      "bn": "Khulna জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Khulna Sadar, Khulna",
+      "district": "Khulna",
+      "area": "Khulna Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Khulna%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-bagerhat",
+    "name": {
+      "en": "Bagerhat District Veterinary Hospital",
+      "bn": "Bagerhat জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Bagerhat Sadar, Bagerhat",
+      "district": "Bagerhat",
+      "area": "Bagerhat Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Bagerhat%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-chuadanga",
+    "name": {
+      "en": "Chuadanga District Veterinary Hospital",
+      "bn": "Chuadanga জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Chuadanga Sadar, Chuadanga",
+      "district": "Chuadanga",
+      "area": "Chuadanga Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Chuadanga%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-jashore",
+    "name": {
+      "en": "Jashore District Veterinary Hospital",
+      "bn": "Jashore জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Jashore Sadar, Jashore",
+      "district": "Jashore",
+      "area": "Jashore Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Jashore%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-jhenaidah",
+    "name": {
+      "en": "Jhenaidah District Veterinary Hospital",
+      "bn": "Jhenaidah জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Jhenaidah Sadar, Jhenaidah",
+      "district": "Jhenaidah",
+      "area": "Jhenaidah Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Jhenaidah%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-kushtia",
+    "name": {
+      "en": "Kushtia District Veterinary Hospital",
+      "bn": "Kushtia জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Kushtia Sadar, Kushtia",
+      "district": "Kushtia",
+      "area": "Kushtia Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Kushtia%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-magura",
+    "name": {
+      "en": "Magura District Veterinary Hospital",
+      "bn": "Magura জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Magura Sadar, Magura",
+      "district": "Magura",
+      "area": "Magura Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Magura%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-meherpur",
+    "name": {
+      "en": "Meherpur District Veterinary Hospital",
+      "bn": "Meherpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Meherpur Sadar, Meherpur",
+      "district": "Meherpur",
+      "area": "Meherpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Meherpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-narail",
+    "name": {
+      "en": "Narail District Veterinary Hospital",
+      "bn": "Narail জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Narail Sadar, Narail",
+      "district": "Narail",
+      "area": "Narail Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Narail%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-satkhira",
+    "name": {
+      "en": "Satkhira District Veterinary Hospital",
+      "bn": "Satkhira জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Satkhira Sadar, Satkhira",
+      "district": "Satkhira",
+      "area": "Satkhira Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Satkhira%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-barishal",
+    "name": {
+      "en": "Barishal District Veterinary Hospital",
+      "bn": "Barishal জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Barishal Sadar, Barishal",
+      "district": "Barishal",
+      "area": "Barishal Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Barishal%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-barguna",
+    "name": {
+      "en": "Barguna District Veterinary Hospital",
+      "bn": "Barguna জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Barguna Sadar, Barguna",
+      "district": "Barguna",
+      "area": "Barguna Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Barguna%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-bhola",
+    "name": {
+      "en": "Bhola District Veterinary Hospital",
+      "bn": "Bhola জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Bhola Sadar, Bhola",
+      "district": "Bhola",
+      "area": "Bhola Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Bhola%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-jhalokati",
+    "name": {
+      "en": "Jhalokati District Veterinary Hospital",
+      "bn": "Jhalokati জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Jhalokati Sadar, Jhalokati",
+      "district": "Jhalokati",
+      "area": "Jhalokati Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Jhalokati%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-patuakhali",
+    "name": {
+      "en": "Patuakhali District Veterinary Hospital",
+      "bn": "Patuakhali জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Patuakhali Sadar, Patuakhali",
+      "district": "Patuakhali",
+      "area": "Patuakhali Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Patuakhali%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-pirojpur",
+    "name": {
+      "en": "Pirojpur District Veterinary Hospital",
+      "bn": "Pirojpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Pirojpur Sadar, Pirojpur",
+      "district": "Pirojpur",
+      "area": "Pirojpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Pirojpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-sylhet",
+    "name": {
+      "en": "Sylhet District Veterinary Hospital",
+      "bn": "Sylhet জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Sylhet Sadar, Sylhet",
+      "district": "Sylhet",
+      "area": "Sylhet Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Sylhet%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-habiganj",
+    "name": {
+      "en": "Habiganj District Veterinary Hospital",
+      "bn": "Habiganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Habiganj Sadar, Habiganj",
+      "district": "Habiganj",
+      "area": "Habiganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Habiganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-moulvibazar",
+    "name": {
+      "en": "Moulvibazar District Veterinary Hospital",
+      "bn": "Moulvibazar জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Moulvibazar Sadar, Moulvibazar",
+      "district": "Moulvibazar",
+      "area": "Moulvibazar Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Moulvibazar%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-sunamganj",
+    "name": {
+      "en": "Sunamganj District Veterinary Hospital",
+      "bn": "Sunamganj জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Sunamganj Sadar, Sunamganj",
+      "district": "Sunamganj",
+      "area": "Sunamganj Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Sunamganj%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-mymensingh",
+    "name": {
+      "en": "Mymensingh District Veterinary Hospital",
+      "bn": "Mymensingh জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Mymensingh Sadar, Mymensingh",
+      "district": "Mymensingh",
+      "area": "Mymensingh Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Mymensingh%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-jamalpur",
+    "name": {
+      "en": "Jamalpur District Veterinary Hospital",
+      "bn": "Jamalpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Jamalpur Sadar, Jamalpur",
+      "district": "Jamalpur",
+      "area": "Jamalpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Jamalpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-netrokona",
+    "name": {
+      "en": "Netrokona District Veterinary Hospital",
+      "bn": "Netrokona জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Netrokona Sadar, Netrokona",
+      "district": "Netrokona",
+      "area": "Netrokona Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Netrokona%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "gov-vet-sherpur",
+    "name": {
+      "en": "Sherpur District Veterinary Hospital",
+      "bn": "Sherpur জেলা প্রাণী হাসপাতাল"
+    },
+    "contact": {
+      "phones": [],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "District Livestock Office Compound, Sherpur Sadar, Sherpur",
+      "district": "Sherpur",
+      "area": "Sherpur Sadar",
+      "googleMapsUrl": "https://maps.google.com/?q=Sherpur%20District%20Veterinary%20Hospital"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "09:00-17:00",
+        "tue": "09:00-17:00",
+        "wed": "09:00-17:00",
+        "thu": "09:00-17:00",
+        "fri": "Closed",
+        "sat": "Closed",
+        "sun": "09:00-17:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "http://www.dls.gov.bd/"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Livestock",
+        "Poultry",
+        "Dog",
+        "Cat",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T15:09:08.773Z",
+      "source": "Department of Livestock Services (DLS) Master List"
+    }
+  },
+  {
+    "id": "paw-life-care-lalmatia",
+    "name": {
+      "en": "PAW Life Care (Lalmatia Branch)"
+    },
+    "contact": {
+      "phones": [
+        "+8801909617994",
+        "+8801329666437"
+      ],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "1/12, Block-G, Lalmatia, Dhaka 1207",
+      "district": "Dhaka",
+      "area": "Lalmatia"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "11:00-18:30",
+        "tue": "11:00-18:30",
+        "wed": "11:00-18:30",
+        "thu": "11:00-18:30",
+        "fri": "11:00-18:30",
+        "sat": "11:00-18:30",
+        "sun": "11:00-18:30"
+      }
+    },
+    "digitalPresence": {
+      "facebookPage": "https://www.facebook.com/pawlifecare"
+    },
+    "services": {
+      "hasEmergency": true,
+      "hasSurgery": true,
+      "hasDiagnostics": true,
+      "boarding": false,
+      "grooming": true,
+      "availableSpecies": [
+        "Cat",
+        "Dog",
+        "Exotic"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "Web Research"
+    }
+  },
+  {
+    "id": "saq-teaching-vet-hospital-chattogram",
+    "name": {
+      "en": "S. A. Quaderi Teaching Veterinary Hospital",
+      "bn": "এস. এ. কাদেরী টিচিং ভেটেরিনারি হাসপাতাল"
+    },
+    "contact": {
+      "phones": [
+        "+88031659093"
+      ],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "CVASU Campus, Khulshi, Chattogram",
+      "district": "Chattogram",
+      "area": "Khulshi",
+      "googleMapsUrl": "https://maps.google.com/?q=SAQ+Teaching+Veterinary+Hospital+Chattogram"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "08:00-16:00",
+        "tue": "08:00-16:00",
+        "wed": "08:00-16:00",
+        "thu": "08:00-16:00",
+        "fri": "Closed",
+        "sat": "Contact for hours",
+        "sun": "08:00-16:00"
+      }
+    },
+    "digitalPresence": {
+      "website": "https://cvasu.ac.bd"
+    },
+    "services": {
+      "hasEmergency": true,
+      "hasSurgery": true,
+      "hasDiagnostics": true,
+      "boarding": true,
+      "grooming": false,
+      "availableSpecies": [
+        "Cat",
+        "Dog",
+        "Bird",
+        "Livestock",
+        "Exotic"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "University Listing"
+    }
+  },
+  {
+    "id": "obhoyaronno-animal-clinic",
+    "name": {
+      "en": "Obhoyaronno Animal Clinic",
+      "bn": "অভয়ারণ্য এনিমেল ক্লিনিক"
+    },
+    "contact": {
+      "phones": [
+        "+8801718643497"
+      ],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "DNCC Market, Shaheed Tajuddin Ahmed Ave, Mohakhali, Dhaka",
+      "district": "Dhaka",
+      "area": "Mohakhali"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "Contact for hours",
+        "tue": "Contact for hours",
+        "wed": "Contact for hours",
+        "thu": "Contact for hours",
+        "fri": "Closed",
+        "sat": "Contact for hours",
+        "sun": "Contact for hours"
+      }
+    },
+    "digitalPresence": {
+      "facebookPage": "https://www.facebook.com/ObhoyaronnoBD"
+    },
+    "services": {
+      "hasEmergency": true,
+      "hasSurgery": true,
+      "hasDiagnostics": true,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Cat",
+        "Dog"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "Web Research"
+    }
+  },
+  {
+    "id": "surokkha-vet-clinic-dhanmondi",
+    "name": {
+      "en": "Surokkha Vet Clinic"
+    },
+    "contact": {
+      "phones": [
+        "+8801711770827"
+      ],
+      "emergencies": [
+        "+8801711770827"
+      ],
+      "email": "surokkhavetclinic@gmail.com"
+    },
+    "location": {
+      "fullAddress": "Mohammadia Super Market (2nd Floor), Sobhanbagh, near Dhanmondi 27, Dhaka",
+      "district": "Dhaka",
+      "area": "Dhanmondi"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "Contact for hours",
+        "tue": "Contact for hours",
+        "wed": "Contact for hours",
+        "thu": "Contact for hours",
+        "fri": "Contact for hours",
+        "sat": "Contact for hours",
+        "sun": "Contact for hours"
+      }
+    },
+    "digitalPresence": {
+      "website": "https://surokkhavetclinic.com"
+    },
+    "services": {
+      "hasEmergency": true,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Cat",
+        "Dog",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "Official Website"
+    }
+  },
+  {
+    "id": "dr-sagir-pet-clinic-gulshan",
+    "name": {
+      "en": "Dr. Sagir's Pet Clinic"
+    },
+    "contact": {
+      "phones": [
+        "+8801912251312"
+      ],
+      "emergencies": [
+        "+8801912251312"
+      ]
+    },
+    "location": {
+      "fullAddress": "House 21, Road 6, Block D, Niketon, Gulshan-1, Dhaka",
+      "district": "Dhaka",
+      "area": "Gulshan"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "Contact for hours",
+        "tue": "Contact for hours",
+        "wed": "Contact for hours",
+        "thu": "Contact for hours",
+        "fri": "Contact for hours",
+        "sat": "Contact for hours",
+        "sun": "Contact for hours"
+      }
+    },
+    "digitalPresence": {},
+    "services": {
+      "hasEmergency": true,
+      "hasSurgery": true,
+      "hasDiagnostics": true,
+      "boarding": false,
+      "grooming": false,
+      "availableSpecies": [
+        "Cat",
+        "Dog"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "Web Research"
+    }
+  },
+  {
+    "id": "pawsitive-veterinary-clinic-dhanmondi",
+    "name": {
+      "en": "Pawsitive Veterinary Clinic"
+    },
+    "contact": {
+      "phones": [
+        "+8801766662600"
+      ],
+      "emergencies": [],
+      "email": "info@pawsitivevetclinic.com"
+    },
+    "location": {
+      "fullAddress": "House 11, Road 4, Dhanmondi, Dhaka 1205",
+      "district": "Dhaka",
+      "area": "Dhanmondi"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "Contact for hours",
+        "tue": "Contact for hours",
+        "wed": "Contact for hours",
+        "thu": "Contact for hours",
+        "fri": "Contact for hours",
+        "sat": "Contact for hours",
+        "sun": "Contact for hours"
+      }
+    },
+    "digitalPresence": {
+      "website": "https://pawsitivevetclinic.com"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": true,
+      "boarding": true,
+      "grooming": true,
+      "availableSpecies": [
+        "Cat",
+        "Dog",
+        "Bird"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "Official Website"
+    }
+  },
+  {
+    "id": "gulshan-pet-animal-clinic",
+    "name": {
+      "en": "Gulshan Pet-Animal Clinic"
+    },
+    "contact": {
+      "phones": [
+        "+8801715078434"
+      ],
+      "emergencies": []
+    },
+    "location": {
+      "fullAddress": "Road 97, DNCC Supermarket Ext., 2nd Floor, Gulshan-2, Dhaka 1212",
+      "district": "Dhaka",
+      "area": "Gulshan"
+    },
+    "operatingHours": {
+      "is24_7": false,
+      "schedule": {
+        "mon": "Contact for hours",
+        "tue": "Contact for hours",
+        "wed": "Contact for hours",
+        "thu": "Contact for hours",
+        "fri": "Contact for hours",
+        "sat": "Contact for hours",
+        "sun": "Contact for hours"
+      }
+    },
+    "digitalPresence": {
+      "website": "https://gulshanpetclinic.com"
+    },
+    "services": {
+      "hasEmergency": false,
+      "hasSurgery": true,
+      "hasDiagnostics": false,
+      "boarding": false,
+      "grooming": true,
+      "availableSpecies": [
+        "Cat",
+        "Dog"
+      ]
+    },
+    "metadata": {
+      "status": "Verified",
+      "lastVerifiedAt": "2026-03-30T10:00:00Z",
+      "source": "Web Research"
+    }
+  }
+]
