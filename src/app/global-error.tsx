@@ -18,13 +18,13 @@ export default function GlobalError({
     return (
         <html>
             <body>
-                <div className="min-h-screen bg-stone-50 text-stone-800 flex flex-col items-center justify-center text-center px-4">
-                    <div className="bg-white rounded-[2.5rem] p-12 max-w-md w-full shadow-xl border border-rose-100">
-                        <div className="w-16 h-16 rounded-2xl bg-rose-100 flex items-center justify-center mx-auto mb-6">
+                <div className="min-h-screen bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-100 flex flex-col items-center justify-center text-center px-4" style={{ backgroundColor: '#fafaf9', color: '#292524' }}>
+                    <div className="bg-white dark:bg-stone-900 rounded-[2.5rem] p-12 max-w-md w-full shadow-xl border border-rose-100 dark:border-rose-900/30" style={{ backgroundColor: '#fff', border: '1px solid #ffe4e6' }}>
+                        <div className="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center mx-auto mb-6">
                             <AlertTriangle className="w-8 h-8 text-rose-500" />
                         </div>
                         <h1 className="text-3xl font-bold mb-3">System Failure</h1>
-                        <p className="text-stone-500 mb-8">A critical error occurred. Please refresh or try again later.</p>
+                        <p className="text-stone-500 dark:text-stone-400 mb-8">A critical error occurred. Please refresh or try again later.</p>
                         <div className="flex flex-col gap-3">
                             <Button
                                 onClick={reset}
@@ -35,7 +35,7 @@ export default function GlobalError({
                             <Button
                                 variant="outline"
                                 onClick={() => window.location.href = '/'}
-                                className="w-full rounded-2xl h-12 text-stone-600 font-bold"
+                                className="w-full rounded-2xl h-12 text-stone-600 dark:text-stone-300 dark:border-stone-700 dark:hover:bg-stone-800 font-bold"
                             >
                                 Go Home
                             </Button>

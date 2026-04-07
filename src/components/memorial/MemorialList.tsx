@@ -7,12 +7,16 @@ import { MemorialService } from "@/services/MemorialService";
 import { Heart, Cloud, Star, Flame } from "lucide-react";
 import { MemorialModal } from "@/components/memorial/MemorialModal";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Image from "next/image";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { DataErrorState } from "@/components/shared/DataErrorState";
+import { SkeletonGrid } from "@/components/shared/SkeletonCard";
 
 export function MemorialList() {
     const [memorials, setMemorials] = useState<Memorial[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [candles, setCandles] = useState<Record<string, number>>({});
 
     useEffect(() => {
@@ -20,6 +24,8 @@ export function MemorialList() {
     }, []);
 
     async function loadMemorials() {
+        setLoading(true);
+        setError(null);
         try {
             const data = await MemorialService.getAll();
             setMemorials(data);
@@ -31,6 +37,7 @@ export function MemorialList() {
             setCandles(initialCandles);
         } catch (error) {
             console.error("Failed to load memorials", error);
+            setError("Could not retrieve memorials at this time.");
         } finally {
             setLoading(false);
         }
@@ -78,11 +85,22 @@ export function MemorialList() {
             </div>
 
             <div className="container mx-auto px-4 relative z-10 max-w-7xl">
-                <ResponsiveMasonry
-                    columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-                >
-                    <Masonry gutter="2rem">
-                        {memorials.map((memorial, index) => (
+                {loading ? (
+                    <SkeletonGrid count={6} />
+                ) : error ? (
+                    <div className="py-12 mt-10">
+                        <DataErrorState message={error} onRetry={loadMemorials} />
+                    </div>
+                ) : memorials.length === 0 ? (
+                    <div className="text-center py-20 text-stone-500 text-lg font-medium">
+                        No memorials have been posted yet. You can be the first to honor a pet.
+                    </div>
+                ) : (
+                    <ResponsiveMasonry
+                        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+                    >
+                        <Masonry gutter="2rem">
+                            {memorials.map((memorial, index) => (
                             <motion.div
                                 key={memorial.id}
                                 initial={{ opacity: 0, y: 50 }}
@@ -143,8 +161,9 @@ export function MemorialList() {
                                 </div>
                             </motion.div>
                         ))}
-                    </Masonry>
-                </ResponsiveMasonry>
+                        </Masonry>
+                    </ResponsiveMasonry>
+                )}
             </div>
         </div>
     );

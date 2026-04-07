@@ -11,6 +11,7 @@ import { ReportService } from "@/services/ReportService";
 import { useAuth } from "@/contexts/AuthContext";
 import Image from "next/image";
 import { submitToWeb3Forms } from "@/lib/web3forms";
+import { toast } from "sonner";
 
 // Dynamically import LocationPicker to avoid SSR issues with Leaflet
 const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
@@ -92,12 +93,12 @@ export function ReportForm() {
         // Verification Check
         if (useMathChallenge) {
             if (userMathAnswer.trim() !== mathChallenge.a) {
-                alert(`Incorrect answer. Please solve ${mathChallenge.q}`);
+                toast.warning(`Incorrect answer. Please solve ${mathChallenge.q}`);
                 return;
             }
         } else {
             if (!captchaValue) {
-                alert("Please complete the reCAPTCHA verification.");
+                toast.error("Please complete the reCAPTCHA verification.");
                 return;
             }
         }
@@ -109,7 +110,7 @@ export function ReportForm() {
                     imageUrl = await ReportService.uploadImage(data.image[0]);
                 } catch (uploadError) {
                     console.error("Image upload failed:", uploadError);
-                    alert("Failed to upload image. Checks your internet connection or try a smaller image.");
+                    toast.error("Failed to upload image. Check your internet connection or try a smaller image.");
                     return;
                 }
             }
@@ -154,7 +155,7 @@ export function ReportForm() {
         } catch (error: any) {
             console.error("Submission failed:", error);
             const errorMessage = error.message || "Unknown error occurred";
-            alert(`Failed to submit report: ${errorMessage}. Please check console for details.`);
+            toast.error(`Failed to submit report: ${errorMessage}`);
         }
     };
 

@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Search, Filter, X, Building2, Stethoscope, Loader2, Sparkles } from "lucide-react";
 import { VetCard } from "./VetCard";
 import { motion, AnimatePresence } from "framer-motion";
+import { DataErrorState } from "@/components/shared/DataErrorState";
+import { SkeletonGrid } from "@/components/shared/SkeletonCard";
 
 export function VetFinder() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -14,18 +16,23 @@ export function VetFinder() {
     const [showEmergencyOnly, setShowEmergencyOnly] = useState(false);
     const [vets, setVets] = useState<VetClinic[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchVets = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const data = await VetService.getAll();
+            setVets(data);
+        } catch (error) {
+            console.error("Failed to load vets", error);
+            setError("Could not retrieve clinic list.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchVets = async () => {
-            try {
-                const data = await VetService.getAll();
-                setVets(data);
-            } catch (error) {
-                console.error("Failed to load vets", error);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchVets();
     }, []);
 
@@ -243,13 +250,12 @@ export function VetFinder() {
                     </div>
                 </motion.div>
 
-                {/* Loading State */}
+                {/* Loading & Error States */}
                 {loading ? (
-                    <div className="flex justify-center py-32">
-                        <div className="flex flex-col items-center gap-4">
-                            <Loader2 className="w-12 h-12 animate-spin text-emerald-500" />
-                            <p className="text-muted-foreground animate-pulse">Locating clinics...</p>
-                        </div>
+                    <SkeletonGrid count={6} />
+                ) : error ? (
+                    <div className="py-12 mt-10">
+                        <DataErrorState message={error} onRetry={fetchVets} />
                     </div>
                 ) : (
                     /* Results Grid */
@@ -266,7 +272,7 @@ export function VetFinder() {
                 )}
 
                 {/* Empty State */}
-                {!loading && filteredVets.length === 0 && (
+                {!loading && !error && filteredVets.length === 0 && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}

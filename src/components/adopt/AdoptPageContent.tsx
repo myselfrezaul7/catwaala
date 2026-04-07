@@ -8,6 +8,7 @@ import { Search, X, ArrowRight } from "lucide-react";
 import { Cat as DbCat } from "@/services/server-data";
 import { CatService } from "@/services/CatService";
 import { getAgeCategory, type AgeCategory } from "@/data/cats";
+import { DataErrorState } from "@/components/shared/DataErrorState";
 
 // UI Cat type matching PetCard expectations (derived from old data/cats.ts)
 type UiCat = {
@@ -32,6 +33,7 @@ export function AdoptPageContent() {
     const searchParams = useSearchParams();
     const [cats, setCats] = useState<UiCat[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     // Filters
     const [searchQuery, setSearchQuery] = useState("");
@@ -56,6 +58,8 @@ export function AdoptPageContent() {
     }, []);
 
     async function loadCats() {
+        setLoading(true);
+        setError(null);
         try {
             const dbCats = await CatService.getAll();
             // Adapt DB data to UI format
@@ -75,6 +79,7 @@ export function AdoptPageContent() {
             setCats(uiCats);
         } catch (error) {
             console.error("Failed to load cats", error);
+            setError("We're having trouble connecting to the shelter database. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -256,10 +261,16 @@ export function AdoptPageContent() {
 
                 <div className="relative mt-8 mb-12 rounded-[3rem] overflow-hidden border border-amber-50 dark:border-stone-800 bg-white/40 dark:bg-stone-900/40 p-8 md:p-16 text-center backdrop-blur-sm shadow-xl">
                     <div className="absolute inset-0 bg-[url('/assets/cat_adopt_bg.png')] bg-cover bg-center opacity-10 dark:opacity-5 mix-blend-luminosity" />
-                    <div className="relative z-10 max-w-2xl mx-auto py-8">
-                        <div className="w-24 h-24 bg-rose-100 dark:bg-rose-900/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-rose-200/50 dark:shadow-rose-900/20">
-                            <span className="text-5xl animate-bounce">🐾</span>
+                    
+                    {error ? (
+                        <div className="relative z-10 py-8">
+                            <DataErrorState message={error} onRetry={loadCats} />
                         </div>
+                    ) : (
+                        <div className="relative z-10 max-w-2xl mx-auto py-8">
+                            <div className="w-24 h-24 bg-rose-100 dark:bg-rose-900/30 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-rose-200/50 dark:shadow-rose-900/20">
+                                <span className="text-5xl animate-bounce">🐾</span>
+                            </div>
                         <h2 className="text-4xl md:text-5xl font-bold font-heading text-stone-800 dark:text-stone-100 mb-6 tracking-tight">Real Adoptions Coming Soon!</h2>
                         <p className="text-lg text-stone-600 dark:text-stone-400 mb-10 leading-relaxed font-medium">
                             We are currently building our network of verified rescue shelters and foster homes across Bangladesh. Very soon, you will be able to browse and adopt real rescued felines directly from this page!
@@ -281,6 +292,7 @@ export function AdoptPageContent() {
                             </a>
                         </div>
                     </div>
+                    )}
                 </div>
             </div>
         </div>

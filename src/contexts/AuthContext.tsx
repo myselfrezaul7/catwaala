@@ -13,6 +13,8 @@ import {
 import { auth, db } from "@/utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { friendlyAuthMessage } from "@/utils/friendlyErrors";
 
 type AuthContextType = {
     user: User | null;
@@ -78,11 +80,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const signInWithEmail = async (email: string, pass: string) => {
-        await signInWithEmailAndPassword(auth, email, pass);
+        try {
+            await signInWithEmailAndPassword(auth, email, pass);
+        } catch (error: any) {
+            console.error("Error signing in with email", error);
+            throw error;
+        }
     };
 
     const signUpWithEmail = async (email: string, pass: string) => {
-        await createUserWithEmailAndPassword(auth, email, pass);
+        try {
+            await createUserWithEmailAndPassword(auth, email, pass);
+        } catch (error: any) {
+            console.error("Error signing up", error);
+            throw error;
+        }
     };
 
     const signOut = async () => {

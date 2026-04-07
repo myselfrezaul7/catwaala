@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Cat, Shield, Mail, Lock, Loader2, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import ReCAPTCHA from "react-google-recaptcha";
+import { friendlyAuthMessage } from "@/utils/friendlyErrors";
 
 export default function LoginPage() {
     const { signInWithGoogle, signInWithEmail, signUpWithEmail, user, loading } = useAuth();
@@ -46,11 +47,7 @@ export default function LoginPage() {
             }
         } catch (error: any) {
             console.error(error);
-            let message = "Something went wrong";
-            if (error.code === 'auth/invalid-credential') message = "Invalid email or password";
-            if (error.code === 'auth/email-already-in-use') message = "Email already in use";
-            if (error.code === 'auth/weak-password') message = "Password should be at least 6 characters";
-            toast.error(message);
+            toast.error(friendlyAuthMessage(error.code));
         } finally {
             setIsLoading(false);
         }
@@ -59,9 +56,9 @@ export default function LoginPage() {
     const handleGoogleLogin = async () => {
         try {
             await signInWithGoogle();
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
-            toast.error("Failed to sign in with Google");
+            toast.error(friendlyAuthMessage(error.code));
         }
     };
 

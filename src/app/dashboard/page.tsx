@@ -31,7 +31,7 @@ import { updateProfile } from "firebase/auth";
 import { seedData } from "@/utils/seed-data";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/utils/firebase";
-import { formatDistanceToNow } from "date-fns";
+import { safeTimeAgo } from "@/utils/safeDateFormat";
 
 export default function DashboardPage() {
     const { user, signOut, loading, userData } = useAuth();
@@ -302,7 +302,7 @@ export default function DashboardPage() {
                                     <div key={app.id} className="glass-card dark:bg-stone-900/60 dark:border-stone-800 p-6 rounded-3xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                         <div>
                                             <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100">Application for <span className="text-rose-500">{app.catName || app.dogName}</span></h3>
-                                            <p className="text-sm text-stone-500 dark:text-stone-400">Submitted {app.created_at ? formatDistanceToNow(new Date(app.created_at), { addSuffix: true }) : 'recently'}</p>
+                                            <p className="text-sm text-stone-500 dark:text-stone-400">Submitted {safeTimeAgo(app.created_at)}</p>
                                         </div>
                                         <div className={`px-4 py-2 rounded-xl font-bold flex items-center gap-2 ${app.status === 'Approved' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : app.status === 'Rejected' ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}`}>
                                             {app.status === 'Approved' ? <FileCheck className="w-5 h-5" /> : app.status === 'Rejected' ? <FileX className="w-5 h-5" /> : <Loader2 className="w-5 h-5 animate-spin" />}
@@ -349,7 +349,7 @@ export default function DashboardPage() {
                                                     {report.type}
                                                 </span>
                                                 <span className="text-stone-400 text-xs text-muted-foreground font-medium">
-                                                    {report.created_at ? formatDistanceToNow(new Date(report.created_at), { addSuffix: true }) : 'Recently'}
+                                                    {safeTimeAgo(report.created_at)}
                                                 </span>
                                             </div>
                                             <p className="text-stone-700 dark:text-stone-200 font-medium mb-1 pl-1 line-clamp-2">{report.description}</p>
