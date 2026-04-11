@@ -18,41 +18,22 @@ export default function Home() {
             {/* Compact Cross-Link Banner */}
             <section className="py-8 md:py-16 relative overflow-hidden">
                 <div className="container mx-auto px-4 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.98 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="w-full max-w-5xl mx-auto bg-zinc-100 dark:bg-zinc-900 rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-xl border border-zinc-200 dark:border-zinc-800"
-                    >
-                        {/* Catwaala Side (Left) */}
-                        <div className="flex-1 relative flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 bg-teal-50/50 dark:bg-teal-950/20 border-b md:border-r md:border-b-0 border-zinc-200 dark:border-zinc-800 gap-4">
-                            <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent pointer-events-none" />
-                            <div className="relative z-10 text-center sm:text-left flex-1">
-                                <h3 className="text-lg md:text-2xl font-bold font-heading text-teal-800 dark:text-teal-400 mb-1">Catwaala</h3>
-                                <p className="text-xs md:text-sm text-muted-foreground opacity-90">Exploring the feline side.</p>
+                    {/* Companion Chip */}
+                    <div className="flex justify-center mb-4">
+                        <a href="https://kuttawaala.com" target="_blank" rel="noopener noreferrer"
+                           className="group flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-800/30 hover:border-amber-300 dark:hover:border-amber-700 transition-all shadow-sm hover:shadow-md">
+                            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0 border border-amber-200/50 dark:border-amber-800/50 text-xl sm:text-2xl group-hover:scale-105 transition-transform">
+                                🐕
                             </div>
-                            <Button disabled variant="outline" size="sm" className="relative z-10 rounded-xl border-teal-200 dark:border-teal-900 bg-white/50 dark:bg-zinc-900/50 text-teal-600 dark:text-teal-500 pointer-events-none text-xs h-8">
-                                You are here 📍
-                            </Button>
-                        </div>
-
-                        {/* Kuttawaala Side (Right) */}
-                        <div className="flex-[1.2] relative flex flex-col sm:flex-row items-center justify-between p-4 md:p-6 bg-amber-50/50 dark:bg-amber-950/20 gap-4 group">
-                            <div className="absolute inset-0 bg-gradient-to-bl from-amber-500/5 to-transparent pointer-events-none" />
-                            <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                            <div className="relative z-10 text-center sm:text-left flex-1">
-                                <h3 className="text-lg md:text-2xl font-bold font-heading text-amber-600 dark:text-amber-500 mb-1">Kuttawaala</h3>
-                                <p className="text-xs md:text-sm text-muted-foreground opacity-90">Discover our sister platform for dogs.</p>
+                            <div className="flex-1 min-w-0 pr-4">
+                                <span className="block text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider mb-0.5">Also love dogs?</span>
+                                <span className="block text-sm sm:text-base font-bold text-foreground group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1">
+                                    Visit Kuttawaala 
+                                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-amber-500" />
+                                </span>
                             </div>
-                            <a href="https://www.kuttawaala.com" target="_blank" rel="noopener noreferrer" className="relative z-10 w-full sm:w-auto mt-2 sm:mt-0">
-                                <Button size="sm" className="w-full h-9 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold shadow-md shadow-amber-500/20 transition-all group-hover:-translate-y-0.5 text-xs">
-                                    Visit Kuttawaala <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-0.5 transition-transform" />
-                                </Button>
-                            </a>
-                        </div>
-                    </motion.div>
+                        </a>
+                    </div>
                 </div>
             </section>
 

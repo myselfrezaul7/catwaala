@@ -146,19 +146,18 @@ export function AdoptPageContent() {
                             🚫 We promote &quot;Adopt Don&apos;t Shop&quot;. No buying/selling.
                         </p>
 
-                        <a
-                            href="https://www.kuttawaala.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-400 to-amber-500 text-white rounded-2xl font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                        >
-                            <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                            <span className="text-2xl">🐕</span>
-                            <div className="text-left">
-                                <span className="block text-xs text-orange-100 uppercase tracking-wider">Looking for a dog?</span>
-                                <span className="block text-lg leading-none">Visit KuttaWaala</span>
+                        <a href="https://kuttawaala.com" target="_blank" rel="noopener noreferrer"
+                           className="group flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-amber-50/90 dark:bg-amber-950/40 border border-amber-200/50 dark:border-amber-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all shadow-sm hover:shadow-md mt-2">
+                            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-amber-100 dark:bg-amber-900/60 flex items-center justify-center shrink-0 border border-amber-200/50 dark:border-amber-800/50 text-xl sm:text-2xl group-hover:scale-105 transition-transform">
+                                🐕
                             </div>
-                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                            <div className="flex-1 min-w-0 pr-4 text-left">
+                                <span className="block text-[10px] sm:text-xs font-bold text-amber-800 dark:text-amber-200 uppercase tracking-wider mb-0.5">Looking for a dog?</span>
+                                <span className="block text-sm sm:text-base font-bold text-amber-950 dark:text-amber-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1">
+                                    Visit Kuttawaala 
+                                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-amber-600" />
+                                </span>
+                            </div>
                         </a>
                     </motion.div>
                 </div>
