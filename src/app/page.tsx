@@ -46,16 +46,23 @@ export default function Home() {
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-rose-100/80 dark:bg-rose-900/30 mb-8">
-                        <Sparkles className="w-8 h-8 text-rose-500" />
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-rose-100/80 dark:bg-rose-900/30 mb-8">
+                            <Sparkles className="w-8 h-8 text-rose-500" />
+                        </div>
 
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-800 dark:text-white leading-tight">
-                        Our Mission
-                    </h2>
-                    <p className="text-xl text-stone-500 dark:text-stone-400 mb-16 leading-relaxed max-w-2xl mx-auto">
-                        We are dedicated to improving the lives of street cats in Bangladesh through rescue, rehabilitation, and adoption programs.
-                    </p>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-stone-800 dark:text-white leading-tight">
+                            Our Mission
+                        </h2>
+                        <p className="text-xl text-stone-500 dark:text-stone-400 mb-16 leading-relaxed max-w-2xl mx-auto">
+                            We are dedicated to improving the lives of street cats in Bangladesh through rescue, rehabilitation, and adoption programs.
+                        </p>
+                    </motion.div>
 
                     {/* Stats Cards - Dynamic from Firestore */}
                     <HomepageStats />
@@ -83,9 +90,15 @@ export default function Home() {
                             className="relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-16 text-center shadow-xl border border-white/50 dark:border-zinc-800/50"
                         >
 
-                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-gradient-to-br from-rose-100 to-rose-50 dark:from-rose-900/40 dark:to-rose-800/20 mb-6 shadow-inner">
-                                <Heart className="w-8 h-8 text-rose-500 animate-pulse" />
-                            </div>
+                            <motion.div 
+                                initial={{ scale: 0.5 }} 
+                                whileInView={{ scale: [1, 1.2, 1] }} 
+                                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                                viewport={{ once: true }}
+                                className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-gradient-to-br from-rose-100 to-rose-50 dark:from-rose-900/40 dark:to-rose-800/20 mb-6 shadow-inner"
+                            >
+                                <Heart className="w-8 h-8 text-rose-500" />
+                            </motion.div>
 
                             <h2 className="text-3xl md:text-5xl font-bold font-heading text-stone-800 dark:text-white mb-6 leading-tight">
                                 Ready to Change a Life?
@@ -105,17 +118,17 @@ export default function Home() {
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                                 <Link href="/donate" className="w-full sm:w-auto">
-                                    <Button size="lg" className="h-14 px-8 w-full rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold text-lg shadow-lg shadow-rose-500/25 hover:shadow-xl hover:shadow-rose-500/40 transition-all duration-300 hover:-translate-y-1">
+                                    <Button size="lg" className="h-12 md:h-14 px-6 md:px-8 w-full rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold text-base md:text-lg shadow-lg shadow-rose-500/25 hover:shadow-xl hover:shadow-rose-500/40 transition-all duration-300 hover:-translate-y-1">
                                         Donate Now <Heart className="ml-2 w-5 h-5" />
                                     </Button>
                                 </Link>
                                 <Link href="/adopt" className="w-full sm:w-auto">
-                                    <Button size="lg" className="h-14 px-8 w-full rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-lg shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40 transition-all duration-300 hover:-translate-y-1">
+                                    <Button size="lg" className="h-12 md:h-14 px-6 md:px-8 w-full rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-base md:text-lg shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40 transition-all duration-300 hover:-translate-y-1">
                                         Adopt a Cat
                                     </Button>
                                 </Link>
                                 <Link href="/volunteer" className="w-full sm:w-auto">
-                                    <Button size="lg" variant="outline" className="h-14 px-8 w-full rounded-2xl border-2 border-stone-200 dark:border-zinc-700 hover:border-stone-300 dark:hover:border-zinc-600 text-stone-700 dark:text-stone-300 font-bold text-lg transition-all duration-300 bg-white dark:bg-zinc-900">
+                                    <Button size="lg" variant="outline" className="h-12 md:h-14 px-6 md:px-8 w-full rounded-2xl border-2 border-stone-200 dark:border-zinc-700 hover:border-stone-300 dark:hover:border-zinc-600 text-stone-700 dark:text-stone-300 font-bold text-base md:text-lg transition-all duration-300 bg-white dark:bg-zinc-900">
                                         Volunteer
                                     </Button>
                                 </Link>

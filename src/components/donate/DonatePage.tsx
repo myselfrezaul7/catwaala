@@ -153,14 +153,15 @@ export function DonatePage() {
                                     {/* Email Card */}
                                     <a
                                         href="mailto:catwaala@gmail.com"
-                                        className="group relative bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl md:rounded-3xl p-4 md:p-8 border border-zinc-200 dark:border-zinc-800 hover:border-teal-300 dark:hover:border-teal-700/50 transition-all duration-300 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:shadow-teal-500/5"
+                                        className="group relative bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl md:rounded-3xl p-4 md:p-8 border border-zinc-200 dark:border-zinc-800 hover:border-teal-300 dark:hover:border-teal-700/50 transition-all duration-300 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:shadow-teal-500/5 pb-6"
                                     >
+                                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-teal-500/50 md:hidden block group-hover:bg-teal-500 transition-colors" />
                                         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white dark:bg-zinc-800 shadow-sm border border-zinc-100 dark:border-zinc-700 flex items-center justify-center mb-3 md:mb-6 relative z-10 group-hover:scale-110 transition-transform duration-500">
+                                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white dark:bg-zinc-800 shadow-sm border border-zinc-100 dark:border-zinc-700 flex items-center justify-center mb-4 md:mb-6 relative z-10 group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500">
                                             <Mail className="w-6 h-6 md:w-8 md:h-8 text-teal-500" />
                                         </div>
-                                    <h3 className="text-xl font-bold mb-2">Email Us</h3>
-                                    <div className="inline-flex items-center gap-2 text-muted-foreground group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors bg-white dark:bg-zinc-800 px-4 py-2 rounded-full text-sm font-mono border border-zinc-200 dark:border-zinc-700">
+                                    <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">Email Us</h3>
+                                    <div className="inline-flex items-center gap-2 text-muted-foreground group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors bg-white dark:bg-zinc-800 px-4 py-2 rounded-full text-xs md:text-sm font-mono border border-zinc-200 dark:border-zinc-700">
                                         catwaala@gmail.com
                                     </div>
                                 </a>
@@ -170,14 +171,15 @@ export function DonatePage() {
                                     href="https://www.facebook.com/catwaalaa"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group relative bg-zinc-50 dark:bg-zinc-900/50 rounded-3xl p-5 md:p-8 border border-zinc-200 dark:border-zinc-800 hover:border-[#1877F2]/30 transition-all duration-300 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:shadow-[#1877F2]/5"
+                                    className="group relative bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl md:rounded-3xl p-4 md:p-8 border border-zinc-200 dark:border-zinc-800 hover:border-[#1877F2]/30 transition-all duration-300 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:shadow-[#1877F2]/5 pb-6"
                                 >
+                                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#1877F2]/50 md:hidden block group-hover:bg-[#1877F2] transition-colors" />
                                     <div className="absolute inset-0 bg-gradient-to-br from-[#1877F2]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <div className="w-16 h-16 rounded-2xl bg-white dark:bg-zinc-800 shadow-sm border border-zinc-100 dark:border-zinc-700 flex items-center justify-center mb-6 relative z-10 group-hover:-translate-y-2 transition-transform duration-500">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white dark:bg-zinc-800 shadow-sm border border-zinc-100 dark:border-zinc-700 flex items-center justify-center mb-4 md:mb-6 relative z-10 group-hover:scale-105 group-hover:-translate-y-1 transition-transform duration-500">
                                         <MessageCircle className="w-6 h-6 md:w-8 md:h-8 text-[#1877F2]" />
                                     </div>
-                                    <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Message Facebook</h3>
-                                    <div className="text-muted-foreground group-hover:text-[#1877F2] transition-colors flex items-center gap-1 font-medium">
+                                    <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">Message Facebook</h3>
+                                    <div className="text-muted-foreground group-hover:text-[#1877F2] transition-colors flex items-center justify-center gap-1 font-medium text-xs md:text-sm">
                                         facebook.com/catwaalaa
                                         <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                     </div>

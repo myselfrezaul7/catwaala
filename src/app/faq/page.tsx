@@ -132,7 +132,7 @@ export default function FAQPage() {
 
             <div className="container mx-auto px-4 -mt-10 relative z-20 max-w-4xl">
                 {/* Search & Tabs Controls */}
-                <div className="sticky top-[70px] md:top-[80px] z-30 glass-card bg-white/80 dark:bg-zinc-900/80 rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-6 shadow-xl border border-rose-100/50 mb-10 backdrop-blur-xl">
+                <div className="sticky top-[16px] transition-[top] duration-300 z-30 glass-card bg-white/80 dark:bg-zinc-900/80 rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-6 shadow-xl border border-rose-100/50 mb-10 backdrop-blur-xl">
                     <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
                         {/* Tabs */}
                         <div className="relative w-full md:w-auto -mx-2 px-2 md:mx-0 md:px-0">

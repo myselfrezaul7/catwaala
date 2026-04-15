@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Heart, User, LogIn, Cat, Search, MapPin, Users, HelpCircle, LayoutDashboard, Settings } from "lucide-react";
@@ -31,6 +31,9 @@ export function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [scrolled, setScrolled] = useState(false);
+    const [navVisible, setNavVisible] = useState(true);
+    const lastScrollY = useRef(0);
+    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
     const { user, userData, loading } = useAuth();
     const { t } = useLanguage();
 
@@ -64,9 +67,31 @@ export function Header() {
     };
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 10);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            setScrolled(currentScrollY > 10);
+
+            // Auto-hide logic
+            if (currentScrollY <= 20) {
+                setNavVisible(true);
+            } else if (currentScrollY > lastScrollY.current && currentScrollY > 60) {
+                setNavVisible(false); // scrolling down
+            } else if (currentScrollY < lastScrollY.current) {
+                setNavVisible(true); // scrolling up
+            }
+            lastScrollY.current = currentScrollY;
+
+            // Show after scroll stops
+            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+            scrollTimeout.current = setTimeout(() => {
+                setNavVisible(true);
+            }, 150);
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+        };
     }, []);
 
     const navLinks = [
@@ -86,10 +111,10 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-500 ease-out print:hidden ${scrolled
-                ? "bg-white/50 dark:bg-zinc-900/50 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40 translate-y-0"
-                : "bg-white/40 dark:bg-zinc-900/40 border-transparent translate-y-0 shadow-lg"
-                } backdrop-blur-2xl border rounded-[100px]`}>
+            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-300 ease-out print:hidden ${scrolled
+                ? "bg-white/50 dark:bg-zinc-900/50 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40"
+                : "bg-white/40 dark:bg-zinc-900/40 border-transparent shadow-lg"
+                } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-[100px]`}>
                 <div className="px-4 md:px-6 py-2.5 flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 group">
