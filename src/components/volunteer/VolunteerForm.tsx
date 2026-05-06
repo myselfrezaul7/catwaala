@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Heart, Hand, CheckCircle, AlertTriangle, User, Mail, Phone, MessageSquare } from "lucide-react";
+import { motion } from "framer-motion";
 import { submitToWeb3Forms } from "@/lib/web3forms";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
@@ -68,11 +69,11 @@ export function VolunteerForm() {
     if (submitted) {
         return (
             <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 animate-in fade-in zoom-in duration-500">
-                <div className="w-24 h-24 bg-emerald-100/80 rounded-full flex items-center justify-center mb-6 text-emerald-600 shadow-lg shadow-emerald-100">
+                <div className="w-24 h-24 bg-emerald-100/80 rounded-full flex items-center justify-center mb-6 text-emerald-600 shadow-lg shadow-emerald-100 dark:bg-emerald-900/30 dark:shadow-none">
                     <CheckCircle className="w-12 h-12" />
                 </div>
-                <h2 className="text-4xl font-bold mb-4 font-heading text-stone-800">Application Received!</h2>
-                <p className="text-stone-500 max-w-md mb-8 text-lg">
+                <h2 className="text-4xl font-bold mb-4 font-heading text-stone-800 dark:text-white">Application Received!</h2>
+                <p className="text-stone-500 dark:text-stone-400 max-w-md mb-8 text-lg">
                     Thank you for offering your time and love. We will review your application and contact you soon.
                 </p>
                 <Button
@@ -87,25 +88,31 @@ export function VolunteerForm() {
     }
 
     return (
-        <div className="min-h-screen py-24 px-4 bg-gradient-to-br from-orange-50/50 via-white to-orange-50/30">
+        <div className="min-h-screen py-24 px-4 bg-gradient-to-br from-orange-50/50 via-white to-orange-50/30 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-900">
             <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center justify-center p-3 bg-orange-100 rounded-2xl mb-4 text-orange-600">
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <div className="inline-flex items-center justify-center p-3 bg-orange-100 dark:bg-orange-900/30 rounded-2xl mb-4 text-orange-600">
                         <Hand className="w-8 h-8" />
                     </div>
-                    <h1 className="text-5xl font-bold mb-6 font-heading text-stone-800 tracking-tight">
+                    <h1 className="text-5xl font-bold mb-6 font-heading text-stone-800 dark:text-white tracking-tight">
                         Join the Rescue Squad
                     </h1>
-                    <p className="text-xl text-stone-500 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed">
                         We need more hands to pet cats (and scoop litter). Whether you can foster, transport, or help with events, we have a spot for you.
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
                     {/* Info Card */}
-                    <div className="glass-card p-10 rounded-[2.5rem] bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl shadow-orange-500/5 sticky top-24">
-                        <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 text-stone-800">
-                            <div className="p-2 bg-rose-100 rounded-lg text-rose-500">
+                    <div className="glass-card p-6 md:p-10 rounded-[2.5rem] bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-white/40 dark:border-zinc-800 shadow-xl shadow-orange-500/5 dark:shadow-none sticky top-24">
+                        <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 text-stone-800 dark:text-white">
+                            <div className="p-2 bg-rose-100 dark:bg-rose-900/30 rounded-lg text-rose-500">
                                 <Heart className="w-6 h-6 fill-rose-500" />
                             </div>
                             Why Volunteer?
@@ -117,22 +124,22 @@ export function VolunteerForm() {
                                 "Join a community of passionate animal lovers.",
                                 "Unlimited purrs and headbutts (guaranteed)."
                             ].map((item, index) => (
-                                <li key={index} className="flex gap-4 items-start text-stone-600 font-medium text-lg group">
+                                <li key={index} className="flex gap-4 items-start text-stone-600 dark:text-stone-300 font-medium text-lg group">
                                     <div className="w-2 h-2 rounded-full bg-orange-400 mt-2.5 shrink-0 group-hover:scale-150 transition-transform duration-300" />
                                     {item}
                                 </li>
                             ))}
                         </ul>
 
-                        <div className="mt-10 p-6 bg-orange-50 rounded-2xl border border-orange-100">
-                            <p className="text-orange-800 font-medium italic">
+                        <div className="mt-10 p-6 bg-orange-50 dark:bg-orange-900/10 rounded-2xl border border-orange-100 dark:border-orange-800/30">
+                            <p className="text-orange-800 dark:text-orange-200 font-medium italic">
                                 "Saving one cat will not change the world, but surely for that one cat, the world will change forever."
                             </p>
                         </div>
                     </div>
 
                     {/* Form Card */}
-                    <div className="glass-card p-10 rounded-[2.5rem] bg-white/80 backdrop-blur-xl border border-white/50 shadow-2xl shadow-orange-500/10">
+                    <div className="glass-card p-6 md:p-10 rounded-[2.5rem] bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-zinc-800 shadow-2xl shadow-orange-500/10 dark:shadow-none">
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             {serverError && (
                                 <div className="p-4 bg-red-50 text-red-600 text-sm rounded-2xl flex items-center gap-3 border border-red-100 animate-in slide-in-from-top-2">
@@ -141,12 +148,12 @@ export function VolunteerForm() {
                             )}
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 ml-1">Full Name</label>
+                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Full Name</label>
                                 <div className="relative">
                                     <User className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
                                         {...register("name", { required: "Name is required" })}
-                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 bg-white/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 font-medium"
+                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium"
                                         placeholder="Enter your full name"
                                     />
                                 </div>
@@ -154,7 +161,7 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 ml-1">Email Address</label>
+                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Email Address</label>
                                 <div className="relative">
                                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
@@ -165,7 +172,7 @@ export function VolunteerForm() {
                                                 message: "Invalid email address"
                                             }
                                         })}
-                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 bg-white/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 font-medium"
+                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium"
                                         placeholder="your@email.com"
                                     />
                                 </div>
@@ -173,23 +180,23 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 ml-1">Phone Number <span className="text-stone-400 font-normal">(Optional)</span></label>
+                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Phone Number <span className="text-stone-400 font-normal">(Optional)</span></label>
                                 <div className="relative">
                                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
                                         {...register("phone")}
-                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 bg-white/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 font-medium"
+                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium"
                                         placeholder="+880 1XXX XXXXXX"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 ml-1">I want to help with...</label>
+                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">I want to help with...</label>
                                 <div className="relative">
                                     <select
                                         {...register("interest")}
-                                        className="w-full pl-4 pr-10 py-4 rounded-2xl border border-stone-200 bg-white/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all text-stone-800 font-medium appearance-none cursor-pointer hover:bg-white/80"
+                                        className="w-full pl-4 pr-10 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all text-stone-800 dark:text-white font-medium appearance-none cursor-pointer hover:bg-white/80 dark:hover:bg-zinc-800/80"
                                     >
                                         <option value="General">General Help</option>
                                         <option value="Fostering">Fostering (Short-term home)</option>
@@ -202,12 +209,12 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 ml-1">Message <span className="text-stone-400 font-normal">(Optional)</span></label>
+                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Message <span className="text-stone-400 font-normal">(Optional)</span></label>
                                 <div className="relative">
                                     <MessageSquare className="absolute left-4 top-5 text-stone-400 w-5 h-5" />
                                     <textarea
                                         {...register("message")}
-                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 bg-white/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 font-medium min-h-[120px] resize-none"
+                                        className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium min-h-[120px] resize-none"
                                         placeholder="Tell us a bit about yourself and why you'd like to join..."
                                     />
                                 </div>

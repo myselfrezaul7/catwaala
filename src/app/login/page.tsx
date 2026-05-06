@@ -80,21 +80,7 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                {/* Social Proof Badge (Desktop Only) */}
-                <div className="hidden md:flex justify-center mb-6 relative z-20">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 border border-stone-200/50 dark:border-zinc-800 backdrop-blur-md shadow-sm">
-                        <div className="flex -space-x-2">
-                            {[1, 2, 3].map((i) => (
-                                <div key={i} className="w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 bg-rose-100 dark:bg-rose-900 flex items-center justify-center overflow-hidden">
-                                    <Cat className="w-3 h-3 text-rose-500" />
-                                </div>
-                            ))}
-                        </div>
-                        <span className="text-xs font-semibold text-stone-600 dark:text-stone-300 ml-1">
-                            Join <span className="text-rose-600 dark:text-rose-400">4,500+</span> cat lovers
-                        </span>
-                    </div>
-                </div>
+
 
                 {/* Login Card */}
                 <div className="glass-card dark:bg-zinc-900/60 dark:border-zinc-800 rounded-[2.5rem] p-8 md:p-10 border border-white/60 shadow-2xl shadow-rose-100/50 dark:shadow-none backdrop-blur-xl bg-white/60 relative z-10">
@@ -107,6 +93,20 @@ export default function LoginPage() {
                                 ? "Join our community of cat lovers today"
                                 : "Sign in to manage your profile and favorites"}
                         </p>
+                        <div className="flex justify-center mt-4">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-50/80 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800/30 backdrop-blur-sm">
+                                <div className="flex -space-x-1.5">
+                                    {[1, 2, 3].map((i) => (
+                                        <div key={i} className="w-5 h-5 rounded-full border-2 border-white dark:border-zinc-900 bg-rose-100 dark:bg-rose-900 flex items-center justify-center overflow-hidden">
+                                            <Cat className="w-2.5 h-2.5 text-rose-500" />
+                                        </div>
+                                    ))}
+                                </div>
+                                <span className="text-[10px] font-semibold text-stone-600 dark:text-stone-300">
+                                    Join <span className="text-rose-600 dark:text-rose-400">4,500+</span> cat lovers
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
@@ -206,21 +206,7 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                {/* Social Proof Badge (Mobile Only - moved below form) */}
-                <div className="flex md:hidden justify-center mt-6 relative z-20">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 border border-stone-200/50 dark:border-zinc-800 backdrop-blur-md shadow-sm">
-                        <div className="flex -space-x-2">
-                            {[1, 2, 3].map((i) => (
-                                <div key={i} className="w-5 h-5 rounded-full border-2 border-white dark:border-zinc-900 bg-rose-100 dark:bg-rose-900 flex items-center justify-center overflow-hidden">
-                                    <Cat className="w-2.5 h-2.5 text-rose-500" />
-                                </div>
-                            ))}
-                        </div>
-                        <span className="text-[10px] sm:text-xs font-semibold text-stone-600 dark:text-stone-300 ml-1">
-                            Join <span className="text-rose-600 dark:text-rose-400">4,500+</span> cat lovers
-                        </span>
-                    </div>
-                </div>
+
             </div>
         </div>
     );

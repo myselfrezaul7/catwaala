@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Quote, ChevronLeft, ChevronRight, Star, Heart } from "lucide-react";
+import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useCallback, useEffect, useState } from "react";
@@ -86,14 +87,20 @@ export function SuccessStories() {
 
     return (
         <section className="py-20 relative overflow-hidden bg-rose-50/30 dark:bg-rose-950/20">
-            <div className="container mx-auto px-4 mb-12 text-center">
+            <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="container mx-auto px-4 mb-12 text-center"
+            >
                 <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100 mb-4 tracking-tight">
                     Happy Tails 🏠❤️
                 </h2>
                 <p className="text-lg text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">
                     Nothing makes us happier than seeing our rescues thrive in their forever homes.
                 </p>
-            </div>
+            </motion.div>
 
             <div className="container mx-auto px-4 md:px-12 relative">
                 {/* Carousel Viewport */}

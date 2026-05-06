@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Cat, AlertTriangle, Heart, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { motion } from "framer-motion";
 
 interface MobileBottomNavProps {
     onMoreTap: () => void;
@@ -31,13 +32,22 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
                         <Link
                             key={tab.name}
                             href={tab.href}
-                            className="flex flex-col items-center justify-center w-14 h-12 relative group"
+                            className="flex flex-col items-center justify-center flex-1 h-12 relative group"
                         >
                             <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isActive ? 'bg-primary/10' : 'group-hover:bg-muted/50'}`} />
-                            <Icon className={`w-5 h-5 relative z-10 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-muted-foreground'}`} />
-                            <span className={`text-[10px] font-bold mt-1 uppercase tracking-wider relative z-10 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
-                                {tab.name}
-                            </span>
+                            <motion.div whileTap={{ scale: 0.85 }} className="flex flex-col items-center relative z-10 w-full h-full justify-center">
+                                <Icon className={`w-5 h-5 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-muted-foreground'}`} />
+                                <span className={`text-[10px] font-bold mt-1 uppercase tracking-wider transition-colors duration-300 ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
+                                    {tab.name}
+                                </span>
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="activeTabCatwaala"
+                                        className="absolute -bottom-1 w-1 h-1 rounded-full bg-primary"
+                                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                    />
+                                )}
+                            </motion.div>
                         </Link>
                     )
                 })}
@@ -45,17 +55,19 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
                 {/* More / Menu Tab */}
                 <button
                     onClick={onMoreTap}
-                    className="flex flex-col items-center justify-center w-14 h-12 relative group"
+                    className="flex flex-col items-center justify-center flex-1 h-12 relative group"
                 >
                     <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isMenuOpen ? 'bg-primary/20' : 'group-hover:bg-muted/50'}`} />
-                    {isMenuOpen ? (
-                        <X className={`w-5 h-5 relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
-                    ) : (
-                        <Menu className={`w-5 h-5 relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
-                    )}
-                    <span className={`text-[10px] font-bold mt-1 uppercase tracking-wider relative z-10 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`}>
-                        More
-                    </span>
+                    <motion.div whileTap={{ scale: 0.85 }} className="flex flex-col items-center relative z-10 w-full h-full justify-center">
+                        {isMenuOpen ? (
+                            <X className={`w-5 h-5 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
+                        ) : (
+                            <Menu className={`w-5 h-5 transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`} />
+                        )}
+                        <span className={`text-[10px] font-bold mt-1 uppercase tracking-wider transition-colors duration-300 ${isMenuOpen ? 'text-primary' : 'text-muted-foreground'}`}>
+                            More
+                        </span>
+                    </motion.div>
                 </button>
             </nav>
         </div>
