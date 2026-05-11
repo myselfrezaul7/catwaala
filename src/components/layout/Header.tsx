@@ -67,25 +67,32 @@ export function Header() {
     };
 
     useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            setScrolled(currentScrollY > 10);
-
-            // Auto-hide logic
-            if (currentScrollY <= 20) {
-                setNavVisible(true);
-            } else if (currentScrollY > lastScrollY.current && currentScrollY > 60) {
-                setNavVisible(false); // scrolling down
-            } else if (currentScrollY < lastScrollY.current) {
-                setNavVisible(true); // scrolling up
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    setScrolled(currentScrollY > 10);
+        
+                    // Auto-hide logic
+                    if (currentScrollY <= 20) {
+                        setNavVisible(true);
+                    } else if (currentScrollY > lastScrollY.current && currentScrollY > 60) {
+                        setNavVisible(false); // scrolling down
+                    } else if (currentScrollY < lastScrollY.current) {
+                        setNavVisible(true); // scrolling up
+                    }
+                    lastScrollY.current = currentScrollY;
+        
+                    // Show after scroll stops
+                    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                    scrollTimeout.current = setTimeout(() => {
+                        setNavVisible(true);
+                    }, 150);
+                    ticking = false;
+                });
+                ticking = true;
             }
-            lastScrollY.current = currentScrollY;
-
-            // Show after scroll stops
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => {
-                setNavVisible(true);
-            }, 150);
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => {
@@ -299,9 +306,15 @@ export function Header() {
             </AnimatePresence>
 
             {/* Full Screen Search Overlay */}
-            {
-                isSearchOpen && (
-                    <div className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-start pt-32 animate-fade-in-up">
+            <AnimatePresence>
+                {isSearchOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-start pt-32"
+                    >
                         <button
                             onClick={() => { setIsSearchOpen(false); setSearchQuery("") }}
                             className="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-muted transition-colors"
@@ -370,9 +383,9 @@ export function Header() {
                                 )}
                             </div>
                         </div>
-                    </div>
-                )
-            }
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 }

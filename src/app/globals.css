@@ -86,6 +86,10 @@
         @apply border-border;
     }
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
         @apply bg-background text-foreground font-sans antialiased;
         min-height: 100vh;
@@ -211,6 +215,12 @@
     button:active:not(:disabled) {
         transform: scale(0.97);
         transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* GPU-promote fixed navigation layers */
+    header[class*="fixed"],
+    .md\:hidden[class*="fixed"] {
+        will-change: transform, opacity;
     }
 
     /* Print Media Queries */

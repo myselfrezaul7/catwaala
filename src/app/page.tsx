@@ -41,8 +41,8 @@ export default function Home() {
             <section className="py-16 md:py-28 relative overflow-hidden">
                 <div className="absolute inset-0 gradient-bg dark:bg-stone-950" />
                 <div className="absolute inset-0">
-                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-rose-300/15 dark:bg-rose-900/10 rounded-full blur-3xl animate-float" />
-                    <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-300/15 dark:bg-amber-900/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-rose-300/15 dark:bg-rose-900/10 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-300/15 dark:bg-amber-900/10 rounded-full blur-3xl" />
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">

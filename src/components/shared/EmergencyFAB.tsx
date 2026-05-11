@@ -76,8 +76,10 @@ export function EmergencyFAB() {
             {/* Main Toggle Button */}
             <motion.button
                 onClick={toggleOpen}
-                className={`relative z-50 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-300 ${isOpen ? "bg-zinc-800 text-white rotate-45" : "bg-rose-600 text-white animate-pulse-slow hover:bg-rose-700"
+                className={`relative z-50 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-300 ${isOpen ? "bg-zinc-800 text-white rotate-45" : "bg-rose-600 text-white hover:bg-rose-700"
                     }`}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
@@ -87,10 +89,7 @@ export function EmergencyFAB() {
                     <Cat className="w-8 h-8" />
                 )}
 
-                {/* Ping effect when closed */}
-                {!isOpen && (
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75 animate-ping -z-10"></span>
-                )}
+
             </motion.button>
         </div>
     );

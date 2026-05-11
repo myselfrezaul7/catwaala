@@ -9,11 +9,13 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const ibmPlexSans = IBM_Plex_Sans({
     variable: "--font-ibm-plex-sans",
     subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700"],
+    weight: ["400", "500", "600", "700"],
+    display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -104,7 +106,9 @@ export default function RootLayout({
                                 <div className="flex flex-col min-h-screen">
                                     <Header />
                                     <main className="flex-grow pt-20 pb-24 md:pb-0">
-                                        {children}
+                                        <PageTransition>
+                                            {children}
+                                        </PageTransition>
                                     </main>
                                     <Footer />
                                 </div>
