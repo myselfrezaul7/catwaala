@@ -74,6 +74,7 @@ export function HomepageStats() {
                         key={stat.id}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        whileTap={{ scale: 0.97 }}
                         transition={{ duration: 0.5, ease: "easeOut", delay: stat.delay }}
                         viewport={{ once: true, margin: "-50px" }}
                         className="min-w-[75%] sm:min-w-0 snap-center glass-card dark:bg-stone-900/60 rounded-3xl p-4 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl group cursor-default relative overflow-hidden flex-shrink-0"

@@ -36,14 +36,14 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
                         >
                             <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isActive ? 'bg-primary/10' : 'group-hover:bg-muted/50'}`} />
                             <motion.div whileTap={{ scale: 0.85 }} className="flex flex-col items-center relative z-10 w-full h-full justify-center">
-                                <Icon className={`w-5 h-5 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-muted-foreground'}`} />
+                                <Icon className={`w-5 h-5 transition-all duration-300 ${isActive ? 'text-primary scale-110' : 'text-muted-foreground'}`} />
                                 <span className={`text-[10px] font-bold mt-1 uppercase tracking-wider transition-colors duration-300 ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
                                     {tab.name}
                                 </span>
                                 {isActive && (
                                     <motion.div
                                         layoutId="activeTabCatwaala"
-                                        className="absolute -bottom-1 w-1 h-1 rounded-full bg-primary"
+                                        className="absolute -bottom-0.5 w-5 h-1 rounded-full bg-primary"
                                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                     />
                                 )}

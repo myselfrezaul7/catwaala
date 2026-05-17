@@ -54,6 +54,7 @@ export function SuccessStories() {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+    const [hasInteracted, setHasInteracted] = useState(false);
 
     const onSelect = useCallback(() => {
         if (!emblaApi) return;
@@ -65,6 +66,7 @@ export function SuccessStories() {
         setScrollSnaps(emblaApi.scrollSnapList());
         emblaApi.on("select", onSelect);
         emblaApi.on("reInit", onSelect);
+        emblaApi.on("scroll", () => setHasInteracted(true));
         onSelect(); // Initial call
 
         return () => {
@@ -169,7 +171,7 @@ export function SuccessStories() {
             </div>
 
             {/* Mobile Swipe Hint */}
-            <div className="flex md:hidden items-center justify-center gap-2 mt-2 text-stone-400 dark:text-zinc-600 text-xs font-semibold uppercase tracking-widest relative z-10">
+            <div className={`flex md:hidden items-center justify-center gap-2 mt-2 text-stone-400 dark:text-zinc-600 text-xs font-semibold uppercase tracking-widest relative z-10 transition-opacity duration-500 ${hasInteracted ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <ChevronLeft className="w-3 h-3" />
                 Swipe to explore
                 <ChevronRight className="w-3 h-3" />
@@ -181,9 +183,9 @@ export function SuccessStories() {
                     <button
                         key={index}
                         onClick={() => scrollTo(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === selectedIndex
-                            ? "bg-rose-500 w-8"
-                            : "bg-rose-200 dark:bg-zinc-700 hover:bg-rose-300 dark:hover:bg-zinc-600"
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ring-4 ring-transparent active:scale-125 ${index === selectedIndex
+                            ? "bg-rose-500 w-7"
+                            : "bg-rose-200 dark:bg-zinc-700 hover:bg-rose-300 dark:hover:bg-zinc-600 active:bg-rose-400"
                             }`}
                         aria-label={`Go to slide ${index + 1}`}
                     />

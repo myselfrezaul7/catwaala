@@ -203,7 +203,7 @@ export function ReportForm() {
                 {/* Facebook Community Banner */}
                 <div className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
                     <a
-                        href="https://facebook.com/groups/catwaala"
+                        href="https://www.facebook.com/groups/catwaala/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group block relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-blue-600 to-blue-500 p-1 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all cursor-pointer"

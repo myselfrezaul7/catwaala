@@ -249,7 +249,7 @@ export default function FAQPage() {
                     <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                         Join our Facebook group to connect with other rescuers, ask for advice, or share your own success stories!
                     </p>
-                    <a href="https://www.facebook.com/catwaalaa" target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition-all hover:scale-105 shadow-lg shadow-rose-900/20">
+                    <a href="https://www.facebook.com/groups/catwaala/" target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition-all hover:scale-105 shadow-lg shadow-rose-900/20">
                         Join the Community <ArrowRight className="w-5 h-5" />
                     </a>
                 </motion.div>
