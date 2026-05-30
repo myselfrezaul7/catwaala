@@ -10,11 +10,11 @@ export const ReportService = {
         try {
             const q = query(
                 collection(db, COLLECTION_NAME),
-                where("user_id", "==", userId),
-                orderBy("created_at", "desc")
+                where("user_id", "==", userId)
             );
             const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Report));
+            const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Report));
+            return docs.sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
         } catch (error) {
             console.error("Error fetching user reports:", error);
             return [];

@@ -27,11 +27,11 @@ export const CatService = {
         try {
             const q = query(
                 collection(db, COLLECTION_NAME),
-                where("status", "==", "Available"),
-                orderBy("created_at", "desc")
+                where("status", "==", "Available")
             );
             const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Cat));
+            const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Cat));
+            return docs.sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
         } catch (error) {
             console.error("Error fetching cats:", error);
             return [];

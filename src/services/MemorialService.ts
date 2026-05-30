@@ -26,11 +26,11 @@ export const MemorialService = {
         try {
             const q = query(
                 collection(db, COLLECTION_NAME),
-                where("user_id", "==", userId),
-                orderBy("created_at", "desc")
+                where("user_id", "==", userId)
             );
             const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Memorial));
+            const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as unknown as Memorial));
+            return docs.sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
         } catch (error) {
             console.error("Error fetching user memorials:", error);
             return [];
