@@ -1,0 +1,61 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.role == 'admin';
+    }
+    
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+    
+    function isUnderSizeLimit(mb) {
+      return request.resource.size < mb * 1024 * 1024;
+    }
+
+    // Avatars (Auth'ed users can read and write their own avatar)
+    match /avatars/{userId}/{fileName} {
+      allow read: if true; // Avatars might need to be public for UI, though strictly could be owner-only
+      allow write: if isAuthenticated() && request.auth.uid == userId && isImage() && isUnderSizeLimit(5);
+    }
+
+    // Memorial Images (Auth'ed users can upload, public can view)
+    match /memorial-images/{fileName} {
+      allow read: if true;
+      allow write: if isAuthenticated() && isImage() && isUnderSizeLimit(5);
+    }
+
+    // Report Images (Auth'ed users can upload, public can view)
+    match /report-images/{fileName} {
+      allow read: if true;
+      allow write: if isAuthenticated() && isImage() && isUnderSizeLimit(5);
+    }
+    
+    // Cats/Dogs/Vets Images (Only admin can write, public can view)
+    match /cat-images/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    match /dog-images/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    match /vet-images/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

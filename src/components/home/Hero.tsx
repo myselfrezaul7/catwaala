@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, ArrowRight } from "lucide-react";
+import { Heart, ArrowRight, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { RemoteConfigService } from "@/services/RemoteConfigService";
 
 export function Hero() {
     return (
@@ -20,10 +21,17 @@ export function Hero() {
                     variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
                 >
                     <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-sm font-semibold text-primary mb-6 border border-border">
-                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                            Bangladesh&apos;s biggest cat community platform
-                        </div>
+                        {RemoteConfigService.isHeroAnnouncementEnabled ? (
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/30 text-sm font-semibold text-amber-700 dark:text-amber-400 mb-6 border border-amber-200 dark:border-amber-800/50">
+                                <AlertCircle className="w-4 h-4" />
+                                {RemoteConfigService.heroAnnouncementText}
+                            </div>
+                        ) : (
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-sm font-semibold text-primary mb-6 border border-border">
+                                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                                Bangladesh&apos;s biggest cat community platform
+                            </div>
+                        )}
                     </motion.div>
                     <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}>
                         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-[1.1] mb-6 tracking-tight">

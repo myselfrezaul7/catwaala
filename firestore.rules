@@ -1,0 +1,149 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      // In this setup, we rely on Custom Claims for admin verification
+      // Or we can rely on a query if we needed to, but custom claims is best practice
+      return isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+    
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+    
+    function isValidString(field, minLen, maxLen) {
+      return request.resource.data[field] is string && 
+             request.resource.data[field].size() >= minLen && 
+             request.resource.data[field].size() <= maxLen;
+    }
+    
+    function isValidOptionalString(field, minLen, maxLen) {
+      return !(field in request.resource.data) || 
+             request.resource.data[field] == null ||
+             (request.resource.data[field] is string && 
+              request.resource.data[field].size() >= minLen && 
+              request.resource.data[field].size() <= maxLen);
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidProfile() {
+      return hasOnlyAllowedFields(['full_name', 'avatar_url', 'phone', 'role', 'created_at', 'favorites']) &&
+             isValidOptionalString('full_name', 1, 100) &&
+             isValidOptionalString('avatar_url', 0, 500) &&
+             isValidOptionalString('phone', 0, 20) &&
+             request.resource.data.role == 'user' && // Cannot create self as admin
+             request.resource.data.created_at is string;
+    }
+
+    function isValidProfileUpdate() {
+      // Must not change role to admin
+      return hasOnlyAllowedFields(['full_name', 'avatar_url', 'phone', 'role', 'created_at', 'favorites']) &&
+             isValidOptionalString('full_name', 1, 100) &&
+             isValidOptionalString('avatar_url', 0, 500) &&
+             isValidOptionalString('phone', 0, 20) &&
+             (request.resource.data.role == resource.data.role) && // Prevent role escalation
+             request.resource.data.created_at == resource.data.created_at; // Immutable
+    }
+
+    function isValidMemorial() {
+      return hasOnlyAllowedFields(['pet_name', 'owner_name', 'tribute', 'image_url', 'user_id', 'status', 'created_at']) &&
+             isValidString('pet_name', 1, 100) &&
+             isValidString('owner_name', 1, 100) &&
+             isValidString('tribute', 1, 2000) &&
+             isValidOptionalString('image_url', 0, 500) &&
+             request.resource.data.user_id == request.auth.uid && // Must own the memorial
+             request.resource.data.status == 'Pending' && // Default status
+             request.resource.data.created_at is string;
+    }
+    
+    function isValidReport() {
+      return hasOnlyAllowedFields(['type', 'description', 'latitude', 'longitude', 'location_text', 'contact_info', 'image_url', 'user_id', 'status', 'created_at']) &&
+             request.resource.data.type in ['Lost', 'Found', 'Injured'] &&
+             isValidOptionalString('description', 0, 2000) &&
+             (request.resource.data.latitude is number || request.resource.data.latitude == null) &&
+             (request.resource.data.longitude is number || request.resource.data.longitude == null) &&
+             isValidOptionalString('location_text', 0, 200) &&
+             isValidOptionalString('contact_info', 0, 200) &&
+             isValidOptionalString('image_url', 0, 500) &&
+             request.resource.data.user_id == request.auth.uid && // Must own the report
+             request.resource.data.status == 'Open' && // Default status
+             request.resource.data.created_at is string;
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // Users Collection (Strict PII protection)
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && isValidProfile();
+      allow update: if isOwner(userId) && isValidProfileUpdate();
+      allow delete: if isAdmin();
+    }
+
+    // Cats Collection (Public Read, Admin Write)
+    match /cats/{catId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Dogs Collection (Public Read, Admin Write) (For Kuttawaala)
+    match /dogs/{dogId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Memorials Collection (Public Read Approved, Auth Create, Admin Update/Delete)
+    match /memorials/{memorialId} {
+      allow read: if true; 
+      allow create: if isAuthenticated() && isValidMemorial();
+      allow update, delete: if isAdmin();
+    }
+
+    // Reports Collection (Public Read, Auth Create, Admin Update/Delete)
+    match /reports/{reportId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && isValidReport();
+      allow update, delete: if isAdmin();
+    }
+
+    // Vets Collection (Public Read, Admin Write)
+    match /vets/{vetId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Site Config (Public Read, Admin Write)
+    match /site_config/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

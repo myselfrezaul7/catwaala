@@ -1,0 +1,32 @@
+{
+  "parameters": {
+    "maintenance_mode": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "valueType": "BOOLEAN",
+      "description": "Enable maintenance mode to restrict access."
+    },
+    "hero_announcement_enabled": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "valueType": "BOOLEAN",
+      "description": "Toggle the hero announcement banner."
+    },
+    "hero_announcement_text": {
+      "defaultValue": {
+        "value": "Welcome to Catwaala! We are currently looking for volunteers."
+      },
+      "valueType": "STRING",
+      "description": "The text to display in the hero announcement banner."
+    },
+    "donations_enabled": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "valueType": "BOOLEAN",
+      "description": "Toggle the ability to make donations."
+    }
+  }
+}

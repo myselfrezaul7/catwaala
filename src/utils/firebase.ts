@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getRemoteConfig, isSupported as isRcSupported } from "firebase/remote-config";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -20,7 +21,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-let analytics;
+let analytics: any;
+let remoteConfig: any;
 // Initialize Analytics only on the client side
 if (typeof window !== 'undefined') {
     isSupported().then((supported) => {
@@ -28,6 +30,12 @@ if (typeof window !== 'undefined') {
             analytics = getAnalytics(app);
         }
     });
+    isRcSupported().then((supported) => {
+        if (supported) {
+            remoteConfig = getRemoteConfig(app);
+            remoteConfig.settings.minimumFetchIntervalMillis = 3600000; // 1 hour
+        }
+    });
 }
 
-export { app, auth, db, storage, analytics };
+export { app, auth, db, storage, analytics, remoteConfig };

@@ -10,6 +10,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { RemoteConfigProvider } from "@/contexts/RemoteConfigContext";
 
 const ibmPlexSans = IBM_Plex_Sans({
     variable: "--font-ibm-plex-sans",
@@ -103,17 +104,19 @@ export default function RootLayout({
                             disableTransitionOnChange
                         >
                             <LanguageProvider>
-                                <div className="flex flex-col min-h-screen">
-                                    <Header />
-                                    <main className="flex-grow pt-20 pb-24 md:pb-0">
-                                        <PageTransition>
-                                            {children}
-                                        </PageTransition>
-                                    </main>
-                                    <Footer />
-                                </div>
-                                <EmergencyFAB />
-                                <Toaster position="top-center" richColors />
+                                <RemoteConfigProvider>
+                                    <div className="flex flex-col min-h-screen">
+                                        <Header />
+                                        <main className="flex-grow pt-20 pb-24 md:pb-0">
+                                            <PageTransition>
+                                                {children}
+                                            </PageTransition>
+                                        </main>
+                                        <Footer />
+                                    </div>
+                                    <EmergencyFAB />
+                                    <Toaster position="top-center" richColors />
+                                </RemoteConfigProvider>
                             </LanguageProvider>
                         </ThemeProvider>
                     </FavoritesProvider>
