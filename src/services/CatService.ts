@@ -59,10 +59,7 @@ export const CatService = {
         // Firestore 'in' query supports up to 10 items. For more, we'd need to batch or parallelize.
         // For now, assuming < 10 favorites generally.
         try {
-            const q = query(
-                collection(db, COLLECTION_NAME),
-                where("id", "in", ids) // Note: This assumes 'id' field exists in doc, or we use documentId()
-            );
+        // Actually, fetching by document ID is different.
             // Actually, fetching by document ID is different.
             // Let's do parallel fetches for now as it's cleaner for random IDs
             const stats = await Promise.all(ids.map(id => this.getById(id)));

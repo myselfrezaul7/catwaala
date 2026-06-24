@@ -21,14 +21,14 @@ export const ReportService = {
         }
     },
 
-    async create(report: any) { // using 'any' loosely here to avoid strict type mismatch with Supabase types during transition
+    async create(report: Omit<Report, 'id' | 'created_at' | 'status'>) {
         try {
             const docRef = await addDoc(collection(db, COLLECTION_NAME), {
                 ...report,
                 created_at: new Date().toISOString(),
                 status: 'Open'
             });
-            return { id: docRef.id, ...report };
+            return { id: docRef.id, ...report, created_at: new Date().toISOString(), status: 'Open' } as Report;
         } catch (error) {
             console.error("Error creating report:", error);
             throw error;

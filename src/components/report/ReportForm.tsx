@@ -118,12 +118,12 @@ export function ReportForm() {
             await ReportService.create({
                 type: data.type,
                 description: data.description,
-                latitude: data.latitude,
-                longitude: data.longitude,
-                location_text: data.locationDetails,
-                contact_info: data.contact,
+                latitude: data.latitude ?? null,
+                longitude: data.longitude ?? null,
+                location_text: data.locationDetails || null,
+                contact_info: data.contact || null,
                 image_url: imageUrl,
-                user_id: user?.uid, // Link report to user
+                user_id: user?.uid || null, // Link report to user
             });
 
             // Send Email Notification via Web3Forms

@@ -8,7 +8,7 @@ export type Profile = {
 };
 
 export type Cat = {
-    id: string | number;
+    id: string;
     name: string;
     age: number;
     gender: 'Male' | 'Female';
@@ -27,7 +27,7 @@ export type Cat = {
 };
 
 export type Memorial = {
-    id: string | number;
+    id: string;
     pet_name: string;
     owner_name: string;
     tribute: string;
@@ -38,7 +38,7 @@ export type Memorial = {
 };
 
 export type Report = {
-    id: string | number;
+    id: string;
     type: 'Lost' | 'Found' | 'Injured';
     description: string | null;
     latitude: number | null;
@@ -52,7 +52,7 @@ export type Report = {
 };
 
 export type Vet = {
-    id: number;
+    id: string;
     name: string;
     address: string;
     phone: string | null;

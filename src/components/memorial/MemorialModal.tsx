@@ -62,7 +62,7 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                 owner_name: formData.ownerName,
                 tribute: formData.tribute,
                 image_url: imageUrl,
-                user_id: user?.uid, // Link tribute to user
+                user_id: user?.uid || null, // Link tribute to user
             });
 
             onAddTribute(newMemorial);

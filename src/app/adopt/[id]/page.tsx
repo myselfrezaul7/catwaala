@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { CatService } from "@/services/CatService";
 import { CatDetailClient } from "@/components/adopt/CatDetailClient";
 
-// Force dynamic rendering since we are fetching from Firestore
-export const dynamic = "force-dynamic";
+// Revalidate page data every 60 seconds (ISR)
+export const revalidate = 60;
 
 interface Props {
     params: Promise<{ id: string }>;

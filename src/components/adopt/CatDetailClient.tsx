@@ -86,6 +86,7 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                     fill
                     className="object-cover"
                     priority
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
 

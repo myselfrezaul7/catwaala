@@ -23,11 +23,12 @@ export function PetCard({ cat }: { cat: CatProps }) {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -4, scale: 1.01 }}
-            className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/10"
+            variants={{
+                hidden: { opacity: 0, y: 15 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            whileHover={{ y: -6, scale: 1.02 }}
+            className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/20"
         >
             <div className="relative aspect-[4/5] overflow-hidden">
                 <Image

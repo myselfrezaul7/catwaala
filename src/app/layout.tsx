@@ -56,12 +56,21 @@ export const metadata: Metadata = {
         title: "Catwaala | Save a Stray, Gain a Friend",
         description: "Connect with rescued cats, find vets, and report strays in Bangladesh.",
         siteName: "Catwaala",
+        images: [
+            {
+                url: "/hero-community.png",
+                width: 1200,
+                height: 630,
+                alt: "Catwaala Community",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "Catwaala | Save a Stray, Gain a Friend",
         description: "Helping street cats in Bangladesh find loving homes.",
         creator: "@catwaala",
+        images: ["/hero-community.png"],
     },
     metadataBase: new URL("https://www.catwaala.com"),
     verification: {
