@@ -9,6 +9,7 @@ import { Cat as DbCat } from "@/services/server-data";
 import { CatService } from "@/services/CatService";
 import { getAgeCategory, type AgeCategory } from "@/data/cats";
 import { DataErrorState } from "@/components/shared/DataErrorState";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // UI Cat type matching PetCard expectations (derived from old data/cats.ts)
 type UiCat = {
@@ -272,26 +273,41 @@ export function AdoptPageContent() {
                 </div>
 
                 {/* Staggered Grid of Pets */}
-                <motion.div 
-                    variants={{
-                        hidden: { opacity: 0 },
-                        show: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.05
+                {loading ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 mt-8">
+                        {[...Array(8)].map((_, i) => (
+                            <div key={i} className="flex flex-col space-y-4">
+                                <Skeleton className="aspect-[4/5] w-full rounded-[1.5rem] md:rounded-[28px]" />
+                                <div className="space-y-3 px-2">
+                                    <Skeleton className="h-6 w-3/4" />
+                                    <Skeleton className="h-4 w-1/2" />
+                                    <Skeleton className="h-10 w-full rounded-xl" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <motion.div 
+                        variants={{
+                            hidden: { opacity: 0 },
+                            show: {
+                                opacity: 1,
+                                transition: {
+                                    staggerChildren: 0.05
+                                }
                             }
-                        }
-                    }}
-                    initial="hidden"
-                    animate="show"
-                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 mt-8"
-                >
-                    {filteredCats.map(cat => (
-                        <PetCard key={cat.id} cat={cat} />
-                    ))}
-                </motion.div>
+                        }}
+                        initial="hidden"
+                        animate="show"
+                        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 mt-8"
+                    >
+                        {filteredCats.map(cat => (
+                            <PetCard key={cat.id} cat={cat} />
+                        ))}
+                    </motion.div>
+                )}
 
-                {filteredCats.length === 0 && (
+                {!loading && filteredCats.length === 0 && (
                     <div className="relative mt-8 mb-12 rounded-[3rem] overflow-hidden border border-amber-50 dark:border-stone-800 bg-white/40 dark:bg-stone-900/40 p-8 md:p-16 text-center backdrop-blur-sm shadow-xl">
                     <div className="absolute inset-0 bg-[url('/assets/cat_adopt_bg.png')] bg-cover bg-center opacity-10 dark:opacity-5 mix-blend-luminosity" />
                     

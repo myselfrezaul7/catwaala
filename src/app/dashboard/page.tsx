@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
     Dialog,
     DialogContent,
@@ -181,8 +182,16 @@ export default function DashboardPage() {
 
     if (loading || !user) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="glass-card rounded-2xl px-8 py-4 text-stone-500 font-medium animate-pulse">Loading...</div>
+            <div className="min-h-screen pb-24 bg-stone-50 dark:bg-stone-950">
+                <div className="container mx-auto px-4 py-12 max-w-6xl">
+                    <Skeleton className="h-64 w-full rounded-[2.5rem] mb-12" />
+                    <Skeleton className="h-12 w-full max-w-md mb-8 rounded-xl" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <Skeleton className="h-80 w-full rounded-[2rem]" />
+                        <Skeleton className="h-80 w-full rounded-[2rem]" />
+                        <Skeleton className="h-80 w-full rounded-[2rem]" />
+                    </div>
+                </div>
             </div>
         );
     }

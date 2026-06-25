@@ -1,5 +1,5 @@
 import { db } from "@/utils/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { MOCK_VET_CLINICS } from "@/data/vets";
 
 export type VetClinic = {
@@ -47,7 +47,29 @@ export const VetService = {
     },
 
     async getByDistrict(district: string) {
-        const all = await this.getAll();
-        return all.filter(v => v.district === district);
+        try {
+            const q = query(collection(db, COLLECTION_NAME), where("district", "==", district));
+            const snapshot = await getDocs(q);
+            if (!snapshot.empty) {
+                const rawVets = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })) as VetClinic[];
+
+                return rawVets.filter((vet, index, self) =>
+                    index === self.findIndex((t) => t.name === vet.name && t.phone === vet.phone)
+                );
+            }
+        } catch (error) {
+            console.error("Firebase fetch failed, using fallback mock vets.", error);
+        }
+
+        return MOCK_VET_CLINICS
+            .filter(vet => vet.district === district)
+            .map(vet => ({
+                ...vet,
+                id: vet.id.toString(),
+                legacy_id: vet.id
+            })) as VetClinic[];
     }
 };
