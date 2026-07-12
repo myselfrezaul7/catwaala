@@ -522,5 +522,36 @@ export const MOCK_VET_CLINICS: VetClinic[] = [
         phone: '01324290225',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=District+Veterinary+Hospital+Netrokona',
         hours: '9 AM - 5 PM', district: 'Netrokona', rating: 3.8, reviewCount: 25, services: ['Government', 'Vaccine']
+    },
+    // ==========================================
+    //           NEW CLINICS (BPAC)
+    // ==========================================
+    {
+        id: 901, name: 'Birds and Pet Animal Clinic-BPAC',
+        address: 'Wireless moor, Khulshi, Chattogram',
+        phone: '01620211137',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Birds+and+Pet+Animal+Clinic+BPAC+Wireless+moor+Khulshi+Chattogram',
+        hours: '10 AM - 10 PM', district: 'Chattogram', rating: 4.8, reviewCount: 120, services: ['General Care', 'Emergency', 'Surgery']
+    },
+    {
+        id: 902, name: 'Birds and Pet Animal Clinic',
+        address: 'Uposohor, Darikhorbona, Rajshahi',
+        phone: '01620211137',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Birds+and+Pet+Animal+Clinic+Uposohor+Darikhorbona+Rajshahi',
+        hours: '10 AM - 10 PM', district: 'Rajshahi', rating: 4.8, reviewCount: 85, services: ['General Care', 'Emergency', 'Surgery']
+    },
+    {
+        id: 903, name: 'Birds and Pet Animal Clinic, Khulna Branch',
+        address: 'Hazi Mohosin Road, House 52, Khulna',
+        phone: '01620211137',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Birds+and+Pet+Animal+Clinic+Khulna+Branch+Hazi+Mohosin+Road+House+52+khulna',
+        hours: '10 AM - 10 PM', district: 'Khulna', rating: 4.8, reviewCount: 65, services: ['General Care', 'Emergency', 'Surgery']
+    },
+    {
+        id: 904, name: 'Birds and Pet Animal Clinic, Halishahar Sub branch',
+        address: 'Halishahar, Chattogram',
+        phone: '01620211137',
+        mapUrl: 'https://www.google.com/maps/search/?api=1&query=Birds+and+Pet+Animal+Clinic+Halishahar+Sub+branch+Chattogram',
+        hours: '10 AM - 10 PM', district: 'Chattogram', rating: 4.8, reviewCount: 40, services: ['General Care', 'Emergency', 'Surgery']
     }
 ];
