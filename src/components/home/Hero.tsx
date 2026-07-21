@@ -61,7 +61,6 @@ export function Hero() {
                             </Link>
                         </div>
                     </motion.div>
-                </motion.div>
 
                     {/* Floating Companion Badge Redirect */}
                     <motion.div
@@ -99,6 +98,7 @@ export function Hero() {
                             </div>
                         </a>
                     </motion.div>
+                </motion.div>
 
                 {/* Hero Image */}
                 <motion.div
@@ -111,8 +111,8 @@ export function Hero() {
                         {/* Decorative ring */}
                         <div className="absolute inset-0 rounded-t-full rounded-b-[200px] border border-border/80 z-10 pointer-events-none" />
                         <Image
-                            src="/hero-community.png"
-                            alt="Community caring for cats"
+                            src="/assets/hero-kittens.png"
+                            alt="Small native Bangladeshi stray kittens"
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

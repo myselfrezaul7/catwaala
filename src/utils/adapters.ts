@@ -12,27 +12,33 @@ export const formatAge = (months: number): string => {
     return `${years} Yr ${remainingMonths} Mo`;
 };
 
-export const adaptCatToCard = (cat: Cat) => {
-    // Check if attributes is a string (JSON string from DB?) or object
-    // Supabase returns JSON columns as objects usually, but sometimes it depends.
-    // Assuming typed as object in Cat type.
+export const adaptCatToCard = (cat: any) => {
+    // Support nested attributes OR flat boolean flags
+    const attrs = cat.attributes || {
+        vaccinated: cat.vaccinated,
+        neutered: cat.neutered,
+        goodWithKids: cat.goodWithKids
+    };
 
-    const attributesList = cat.attributes
-        ? Object.entries(cat.attributes)
-            .filter(([_, value]) => value)
-            .map(([key, _]) => key.replace(/([A-Z])/g, ' $1').trim()) // camelCase to Normal Text
+    const attributesList = attrs
+        ? Object.entries(attrs)
+            .filter(([_, value]) => Boolean(value))
+            .map(([key, _]) => key.replace(/([A-Z])/g, ' $1').trim())
         : [];
+
+    const ageDisplay = typeof cat.age === 'number' ? formatAge(cat.age) : (cat.ageDisplay || cat.age || "Unknown");
+    const image = (cat.images && cat.images.length > 0) ? cat.images[0] : (cat.imageUrl || "/assets/cat1.png");
 
     return {
         id: cat.id,
         name: cat.name,
-        age: formatAge(cat.age),
+        age: ageDisplay,
         gender: cat.gender,
         breed: cat.breed || "Mixed Breed",
         location: cat.location,
-        imageUrl: cat.images && cat.images.length > 0 ? cat.images[0] : "/cats/placeholder.jpg",
+        imageUrl: image,
         description: cat.description || "No description available",
         attributes: attributesList,
-        status: cat.status // Keep status for checking availability
+        status: cat.status || "Available"
     };
 };

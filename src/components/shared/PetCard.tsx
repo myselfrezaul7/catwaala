@@ -35,9 +35,8 @@ export function PetCard({ cat }: { cat: CatProps }) {
                     src={cat.imageUrl}
                     alt={cat.name}
                     fill
-                    width={400}
-                    height={400}
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />

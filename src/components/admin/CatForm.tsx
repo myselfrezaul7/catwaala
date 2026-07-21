@@ -76,20 +76,30 @@ export function CatForm({ initialData, onSuccess, onCancel }: CatFormProps) {
                 });
             }
 
-            // 2. Prepare data payload
+            // 2. Prepare data payload (compatible with both server-data.ts schema and legacy fields)
+            const ageNum = parseInt(formData.age, 10) || 0;
             const catData = {
                 name: formData.name,
                 breed: formData.breed,
-                age: formData.age,
+                age: ageNum,
+                ageDisplay: formData.age, // Retain string display format
                 gender: formData.gender,
                 location: formData.location,
                 description: formData.description,
                 imageUrl: finalImageUrl,
-                tag: formData.tag === "Available" ? "" : formData.tag, // Stop firestore from throwing null assignment indexing error
+                images: finalImageUrl ? [finalImageUrl] : [],
+                tag: formData.tag === "Available" ? "" : formData.tag,
                 temperamentTags: formData.temperamentTags.split(",").map(t => t.trim()).filter(Boolean),
                 vaccinated: formData.vaccinated,
                 neutered: formData.neutered,
                 goodWithKids: formData.goodWithKids,
+                attributes: {
+                    vaccinated: formData.vaccinated,
+                    neutered: formData.neutered,
+                    goodWithKids: formData.goodWithKids,
+                    specialNeeds: false
+                },
+                status: 'Available',
                 ...(initialData ? {} : { created_at: serverTimestamp() })
             };
 

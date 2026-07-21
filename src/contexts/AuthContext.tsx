@@ -11,7 +11,7 @@ import {
     createUserWithEmailAndPassword
 } from "firebase/auth";
 import { auth, db } from "@/utils/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { friendlyAuthMessage } from "@/utils/friendlyErrors";
@@ -55,7 +55,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     if (docSnap.exists()) {
                         setUserData(docSnap.data());
                     } else {
-                        setUserData(null);
+                        const newUser = {
+                            id: user.uid,
+                            full_name: user.displayName || "Cat Lover",
+                            email: user.email,
+                            role: 'user',
+                            points: 0,
+                            created_at: new Date().toISOString()
+                        };
+                        await setDoc(doc(db, "users", user.uid), newUser);
+                        setUserData(newUser);
                     }
                 } catch (e) {
                     console.error("Error fetching user data", e);
