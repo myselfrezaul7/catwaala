@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Cat, AlertTriangle, Heart, Menu, X } from "lucide-react";
+import { Home, Cat, AlertTriangle, Heart, Menu, X, ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 
@@ -19,7 +19,7 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
         { name: t.nav.home, href: "/", icon: Home },
         { name: t.nav.adopt, href: "/adopt", icon: Cat },
         { name: t.nav.report, href: "/report", icon: AlertTriangle },
-        { name: "Donate", href: "/donate", icon: Heart },
+        { name: "Shop", href: "https://www.petbhai.com", icon: ShoppingBag, external: true },
     ];
 
     return (
@@ -32,6 +32,7 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
                         <Link
                             key={tab.name}
                             href={tab.href}
+                            {...(tab.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                             className="flex flex-col items-center justify-center flex-1 h-12 relative group"
                         >
                             <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isActive ? 'bg-primary/10' : 'group-hover:bg-muted/50'}`} />

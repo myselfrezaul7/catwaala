@@ -114,7 +114,7 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                                         value={formData.petName}
                                         onChange={(e) => setFormData({ ...formData, petName: e.target.value })}
                                         className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
-                                        placeholder="e.g. Luna"
+                                        placeholder="e.g. Billi"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -125,7 +125,7 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                                         value={formData.ownerName}
                                         onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
                                         className="bg-stone-50 border-amber-100 focus:ring-rose-500 rounded-xl"
-                                        placeholder="e.g. Sarah"
+                                        placeholder="e.g. Sneha"
                                     />
                                 </div>
                             </div>

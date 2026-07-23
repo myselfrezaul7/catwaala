@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { MapPin, Info, CheckCircle, ArrowLeft, Share2, Heart, Calendar, PawPrint, Sparkles, ChevronDown, Gift } from "lucide-react";
+import { MapPin, Info, CheckCircle, ArrowLeft, Share2, Heart, Calendar, PawPrint, Sparkles, ChevronDown, Gift, ShoppingBag } from "lucide-react";
 import { AdoptionForm } from "@/components/adopt/AdoptionForm";
 import { SponsorshipModal } from "@/components/adopt/SponsorshipModal";
 import { motion, AnimatePresence } from "framer-motion";
@@ -245,6 +245,28 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                                 </p>
                             </div>
                             <AdoptionForm catName={cat.name} />
+                        </div>
+
+                        {/* PetBhai Contextual Upsell */}
+                        <div className="bg-gradient-to-r from-purple-50 to-fuchsia-50 dark:from-purple-900/20 dark:to-fuchsia-900/20 border border-purple-100 dark:border-purple-800/50 rounded-3xl p-6 mb-6 shadow-xl">
+                            <div className="flex flex-col gap-4">
+                                <div>
+                                    <h3 className="text-xl font-bold mb-1 text-purple-900 dark:text-purple-300 flex items-center gap-2">
+                                        <ShoppingBag className="w-5 h-5" /> Get Ready for {cat.name}
+                                    </h3>
+                                    <p className="text-purple-700/80 dark:text-purple-300/80 text-sm">
+                                        Grab their starter kit, food, and toys at our new store!
+                                    </p>
+                                </div>
+                                <a
+                                    href="https://www.petbhai.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full text-center px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm"
+                                >
+                                    Shop Now
+                                </a>
+                            </div>
                         </div>
 
                         {/* Sponsorship CTA */}

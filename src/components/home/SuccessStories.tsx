@@ -10,43 +10,43 @@ import { useCallback, useEffect, useState } from "react";
 const successStories = [
     {
         id: 1,
-        cat: "Luna",
-        adopter: "Sarah & Tom",
+        cat: "Rani",
+        adopter: "Sneha & Tariq",
         image: "/assets/cat1.png",
-        months: 12,
-        quote: "Luna has brought so much joy to our home. She's the perfect cuddle buddy!"
+        months: 2,
+        quote: "Rani was just a 3-week-old tiny kitten when we adopted her. She's brought endless warmth and cute purrs to our home!"
     },
     {
         id: 2,
-        cat: "Oliver",
+        cat: "Babu",
         adopter: "The Rahman Family",
         image: "/assets/cat2.png",
-        months: 8,
-        quote: "We can't imagine life without Oliver now. Thank you Catwaala!"
+        months: 1,
+        quote: "We adopted tiny 4-week-old Babu. Watching him take his first steps around the living room is pure magic!"
     },
     {
         id: 3,
         cat: "Mochi",
-        adopter: "Anita",
+        adopter: "Anika",
         image: "/assets/cat3.png",
-        months: 24,
-        quote: "From a shy stray to a confident queen. Watching her transform has been magical."
+        months: 3,
+        quote: "From a tiny helpless newborn kitten to a confident little princess. Adopting her was our best decision."
     },
     {
         id: 4,
         cat: "Simba",
         adopter: "Kamal",
         image: "/assets/cat4.png",
-        months: 5,
-        quote: "Simba is the king of our castle. Best decision ever."
+        months: 2,
+        quote: "Simba is our little 5-week-old miracle. He falls asleep on my shoulder every single evening."
     },
     {
         id: 5,
-        cat: "Nala",
+        cat: "Mishti",
         adopter: "Priya",
         image: "/assets/cat5.png",
-        months: 14,
-        quote: "She purrs non-stop! Thank you for rescuing this angel."
+        months: 1,
+        quote: "She purrs non-stop after her bottle milk! Thank you Catwaala for helping us rescue this baby angel."
     }
 ];
 

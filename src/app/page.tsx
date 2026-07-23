@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/home/Hero";
 import { SuccessStories } from "@/components/home/SuccessStories";
+import { PromoPetBhai } from "@/components/home/PromoPetBhai";
 import { HomepageStats } from "@/components/home/HomepageStats";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -14,6 +15,9 @@ export default function Home() {
             <Hero />
 
             <SuccessStories />
+
+            {/* PetBhai Integration Promo */}
+            <PromoPetBhai />
 
             {/* Compact Cross-Link Banner */}
             <section className="py-8 md:py-16 relative overflow-hidden">

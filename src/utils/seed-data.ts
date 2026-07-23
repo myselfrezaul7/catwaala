@@ -53,13 +53,13 @@ const INITIAL_CATS = [
         created_at: new Date().toISOString()
     },
     {
-        name: "Luna",
-        age: 12, // 1 year
+        name: "Pori",
+        age: 1, // 1 month kitten
         gender: "Female",
-        breed: "Calico",
+        breed: "Calico Kitten",
         location: "Bashundhara R/A",
-        description: "Shy at first but very affectionate once she knows you.",
-        attributes: { vaccinated: true, neutered: true, goodWithKids: false, houseTrained: true },
+        description: "A tiny 1-month-old calico kitten! Shy at first but purrs softly once she knows you.",
+        attributes: { vaccinated: false, neutered: false, goodWithKids: true, houseTrained: false },
         images: ["/assets/cat_memorial_1.png"],
         status: "Available",
         created_at: new Date().toISOString()
