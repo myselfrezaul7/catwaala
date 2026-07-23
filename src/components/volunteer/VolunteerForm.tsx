@@ -13,7 +13,7 @@ import confetti from "canvas-confetti";
 type VolunteerFormData = {
     name: string;
     email: string;
-    phone?: string;
+    phone: string;
     interest: string;
     message?: string;
 };
@@ -36,33 +36,37 @@ export function VolunteerForm() {
     const onSubmit = async (data: VolunteerFormData) => {
         setServerError(null);
 
-        const result = await submitToWeb3Forms({
-            form_name: "Volunteer Application",
-            ...data,
-        });
-
-        if (result.success) {
-            try {
-                await addDoc(collection(db, "volunteers"), {
-                    ...data,
-                    status: "Pending",
-                    created_at: new Date().toISOString()
-                });
-            } catch (error) {
-                console.error("Error saving volunteer to Firestore:", error);
-                // We still show success since the email was sent
-            }
-
-            setSubmitted(true);
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#f97316', '#fb923c', '#ffffff'] // Orange theme colors
+        // 1. Save to Firestore (primary)
+        try {
+            await addDoc(collection(db, "volunteers"), {
+                ...data,
+                status: "Pending",
+                created_at: new Date().toISOString()
             });
-            reset();
-        } else {
-            setServerError(result.message || "Failed to submit application. Please try again.");
+        } catch (error) {
+            console.error("Error saving volunteer to Firestore:", error);
+            setServerError("Something went wrong. Please try again.");
+            return;
+        }
+
+        // 2. Success! Show confirmation
+        setSubmitted(true);
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#f97316', '#fb923c', '#ffffff']
+        });
+        reset();
+
+        // 3. Send email notification via Web3Forms (secondary, non-blocking)
+        try {
+            await submitToWeb3Forms({
+                form_name: "Volunteer Application",
+                ...data,
+            });
+        } catch (e) {
+            console.error("Web3Forms notification failed (non-critical)", e);
         }
     };
 
@@ -180,15 +184,16 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Phone Number <span className="text-stone-400 font-normal">(Optional)</span></label>
+                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Phone Number <span className="text-red-500 font-normal">*</span></label>
                                 <div className="relative">
                                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
-                                        {...register("phone")}
+                                        {...register("phone", { required: "Phone number is required", minLength: { value: 11, message: "Min 11 digits" } })}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium"
                                         placeholder="+880 1XXX XXXXXX"
                                     />
                                 </div>
+                                {errors.phone && <p className="text-red-500 text-sm ml-1">{errors.phone.message}</p>}
                             </div>
 
                             <div className="space-y-2">
@@ -199,6 +204,7 @@ export function VolunteerForm() {
                                         className="w-full pl-4 pr-10 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all text-stone-800 dark:text-white font-medium appearance-none cursor-pointer hover:bg-white/80 dark:hover:bg-zinc-800/80"
                                     >
                                         <option value="General">General Help</option>
+                                        <option value="RescueTreatment">Rescue or Treatment</option>
                                         <option value="Fostering">Fostering (Short-term home)</option>
                                         <option value="Transport">Transport (Driving cats to vet)</option>
                                         <option value="SocialMedia">Social Media / Photography</option>

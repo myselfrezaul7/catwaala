@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { AdoptPageContent } from "@/components/adopt/AdoptPageContent";
 
-export const revalidate = 60;
 
 export const metadata: Metadata = {
     title: "Adopt a Rescued Cat",

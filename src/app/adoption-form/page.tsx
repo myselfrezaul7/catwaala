@@ -21,9 +21,14 @@ export default function AdoptionFormPage() {
             </div>
 
             {/* A4 Container */}
-            <div className="max-w-[210mm] mx-auto bg-white print:w-full print:max-w-none">
+            <div className="max-w-[210mm] mx-auto bg-white print:w-full print:max-w-none relative">
+                {/* Watermark Logo */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none z-0">
+                    <img src="/assets/catwaala-logo.png" alt="Catwaala Watermark" className="w-[400px] h-auto object-contain grayscale" />
+                </div>
+
                 {/* Header */}
-                <header className="border-b-2 border-black pb-6 mb-8 text-center">
+                <header className="border-b-2 border-black pb-6 mb-8 text-center relative z-10">
                     <h1 className="text-4xl font-bold uppercase tracking-wider mb-2 text-rose-600">Adoption Application</h1>
                     <p className="text-lg text-gray-600 font-medium italic">"Adopt don't shop"</p>
                     <p className="text-md text-gray-500">Catwaala - Saving Every Stray, One Purr at a Time</p>
