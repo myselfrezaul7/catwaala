@@ -125,31 +125,31 @@ export function Header() {
                 } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-[100px]`}>
                 <div className="px-4 md:px-6 py-2.5 flex justify-between items-center">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2.5 group">
+                    <Link href="/" className="flex items-center gap-2.5 group shrink-0">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 overflow-hidden bg-background">
                             <Image src="/logo.png" alt="Catwaala Logo" width={36} height={36} className="object-contain" />
                         </div>
-                        <span className="text-xl font-bold text-foreground tracking-tight">
+                        <span className="text-lg lg:text-xl font-bold text-foreground tracking-tight">
                             CATWAALA
                         </span>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-1">
+                    <nav className="hidden md:flex items-center gap-1 lg:gap-2">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
                                 {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                                className="text-sm font-medium text-muted-foreground hover:text-primary px-4 py-2 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1.5"
+                                className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-4 py-2 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 lg:gap-1.5"
                             >
                                 {link.name}
-                                {link.external && <span className="px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-bold">NEW</span>}
+                                {link.external && <span className="px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[9px] lg:text-[10px] font-bold">NEW</span>}
                             </Link>
                         ))}
                         <button
                             onClick={() => setIsSearchOpen(true)}
-                            className="text-sm font-medium text-muted-foreground hover:text-primary px-4 py-2 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1.5"
+                            className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-4 py-2 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 lg:gap-1.5"
                         >
                             <Search className="w-4 h-4" /> Search
                         </button>

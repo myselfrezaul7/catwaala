@@ -1,91 +1,90 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ShoppingBag } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, ShoppingBag, Sparkles, Gift } from "lucide-react";
 
 export function PromoPetBhai() {
     return (
-        <section className="py-16 md:py-24 relative overflow-hidden bg-stone-50 dark:bg-zinc-900/50">
-            {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/50 dark:bg-purple-900/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-fuchsia-200/50 dark:bg-fuchsia-900/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+        <section className="py-8 md:py-16 relative overflow-hidden bg-stone-50 dark:bg-zinc-900/50">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[600px] h-[200px] md:h-[350px] bg-gradient-to-r from-purple-500/20 via-fuchsia-500/20 to-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div className="container mx-auto px-4 max-w-6xl relative z-10">
-                <div className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-border/50 rounded-[2.5rem] p-8 md:p-12 overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
-                    <div className="flex flex-col md:flex-row items-center gap-12">
-                        {/* Text Content */}
-                        <div className="flex-1 space-y-6">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-sm font-semibold"
-                            >
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-                                </span>
-                                Coming Soon
-                            </motion.div>
+            <div className="container mx-auto px-4 max-w-5xl relative z-10">
+                <div className="relative bg-gradient-to-br from-purple-950/80 via-zinc-900/90 to-purple-900/80 backdrop-blur-2xl border border-purple-500/30 rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 overflow-hidden shadow-[0_12px_40px_rgba(147,51,234,0.15)] text-white">
+                    {/* Creative Floating Glass & Decorative Badges (Desktop & Mobile scale) */}
+                    <motion.div 
+                        animate={{ y: [0, -8, 0], rotate: [0, 5, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -top-4 -right-4 md:top-6 md:right-8 w-20 h-20 md:w-32 md:h-32 bg-purple-500/20 backdrop-blur-xl border border-purple-400/30 rounded-2xl md:rounded-3xl flex items-center justify-center pointer-events-none shadow-xl"
+                    >
+                        <ShoppingBag className="w-10 h-10 md:w-16 md:h-16 text-purple-300 opacity-80" />
+                    </motion.div>
 
-                            <motion.h2
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
-                                className="text-3xl md:text-5xl font-bold text-foreground leading-tight font-sans"
-                            >
-                                Prepare your home.<br />
-                                The ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-fuchsia-600">pet shop</span> is coming.
-                            </motion.h2>
+                    <motion.div 
+                        animate={{ y: [0, 8, 0], rotate: [0, -5, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                        className="absolute -bottom-6 -left-4 md:bottom-4 md:left-6 w-16 h-16 md:w-24 md:h-24 bg-fuchsia-500/20 backdrop-blur-xl border border-fuchsia-400/30 rounded-2xl md:rounded-3xl flex items-center justify-center pointer-events-none shadow-xl"
+                    >
+                        <Gift className="w-8 h-8 md:w-12 md:h-12 text-fuchsia-300 opacity-80" />
+                    </motion.div>
 
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
-                                className="text-lg text-muted-foreground max-w-xl"
-                            >
-                                We are building something special for you and your furry friends. 
-                                Everything your newly adopted buddy needs, from premium food to cozy beds, 
-                                delivered right to your doorstep.
-                            </motion.p>
-
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 }}
-                                className="pt-4"
-                            >
-                                <a
-                                    href="https://www.petbhai.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-2xl font-bold hover:scale-105 transition-all shadow-lg shadow-purple-500/25"
-                                >
-                                    <ShoppingBag className="w-5 h-5" />
-                                    Visit PetBhai.com
-                                    <ArrowRight className="w-5 h-5" />
-                                </a>
-                            </motion.div>
-                        </div>
-
-                        {/* Image/Visual Content */}
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-                            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                    {/* Main Content inside One Compact Card */}
+                    <div className="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto space-y-4 sm:space-y-6">
+                        {/* Tag */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
-                            className="flex-1 relative w-full aspect-square md:aspect-auto md:h-[400px] rounded-3xl overflow-hidden bg-gradient-to-br from-purple-100 to-fuchsia-100 dark:from-purple-900/20 dark:to-fuchsia-900/20 border border-purple-200/50 dark:border-purple-800/50 flex items-center justify-center"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-300 text-xs sm:text-sm font-semibold"
                         >
-                            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay"></div>
-                            {/* Abstract decorative elements to represent shopping/pets */}
-                            <div className="relative z-10 w-48 h-48 bg-white dark:bg-zinc-800 rounded-3xl shadow-2xl rotate-3 flex items-center justify-center p-6 border border-border/50">
-                                <ShoppingBag className="w-24 h-24 text-purple-500" />
-                            </div>
-                            <div className="absolute z-0 w-32 h-32 bg-fuchsia-200 dark:bg-fuchsia-800/50 rounded-full blur-2xl top-1/4 right-1/4"></div>
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-400"></span>
+                            </span>
+                            <Sparkles className="w-3.5 h-3.5 text-purple-300" />
+                            Official E-Commerce Partner
+                        </motion.div>
+
+                        {/* Title */}
+                        <motion.h2
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight leading-tight"
+                        >
+                            Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-300 to-pink-400">PetBhai.com</span>
+                        </motion.h2>
+
+                        {/* Description */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-sm sm:text-base md:text-lg text-purple-100/80 max-w-xl font-normal leading-relaxed"
+                        >
+                            Everything your newborn kitten needs—premium food, cat trees, and essentials delivered right to your door.
+                        </motion.p>
+
+                        {/* Button */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="pt-2 sm:pt-4"
+                        >
+                            <a
+                                href="https://www.petbhai.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-fuchsia-600 hover:from-purple-400 hover:to-fuchsia-500 text-white rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base hover:scale-105 transition-all duration-200 shadow-lg shadow-purple-500/30 border border-purple-400/40"
+                            >
+                                <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
+                                Explore PetBhai Shop
+                                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                            </a>
                         </motion.div>
                     </div>
                 </div>
