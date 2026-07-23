@@ -29,7 +29,7 @@ import {
     ScrollText,
 } from "lucide-react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
-import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
+import { collection, getDocs, query, limit, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
@@ -50,7 +50,7 @@ export function AdminDashboard() {
     const { user, userData, loading: authLoading } = useAuth();
     const router = useRouter();
 
-    const [stats, setStats] = useState({ cats: 0, reports: 0, users: 0, adoptions: 0 });
+    const [stats, setStats] = useState({ cats: 0, reports: 0, users: 0, adoptions: 0, volunteers: 0 });
     const [recentReports, setRecentReports] = useState<Report[]>([]);
     const [chartDataState, setChartDataState] = useState<{ name: string, reports: number }[]>([]);
     const [dataLoading, setDataLoading] = useState(true);
@@ -66,65 +66,73 @@ export function AdminDashboard() {
     }, [user, userData, authLoading, router]);
 
     useEffect(() => {
-        const fetchDashboardData = async () => {
-            try {
-                // Fetch All Reports to build graph and list
-                const reportsRef = collection(db, "reports");
-                const snapshot = await getDocs(reportsRef);
+        if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) return;
 
-                const reports = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                })) as Report[];
+        const catsRef = collection(db, "cats");
+        const usersRef = collection(db, "users");
+        const reportsRef = collection(db, "reports");
+        const adoptionsRef = collection(db, "adoptions");
+        const volunteersRef = collection(db, "volunteers");
 
-                const sortedReports = [...reports].sort((a, b) => (b.created_at || 0) - (a.created_at || 0));
-                setRecentReports(sortedReports.slice(0, 5));
+        let catCount = 0;
+        let userCount = 0;
+        let reportCount = 0;
+        let adoptionCount = 0;
+        let volCount = 0;
 
-                // Process chart data (last 6 months)
-                const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                const now = new Date();
-                const last6Months = Array.from({ length: 6 }).map((_, i) => {
-                    const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
-                    return { monthIndex: d.getMonth(), year: d.getFullYear(), name: monthNames[d.getMonth()], reports: 0 };
-                });
-
-                reports.forEach(r => {
-                    if (r.created_at) {
-                        const d = new Date(r.created_at);
-                        const match = last6Months.find(m => m.monthIndex === d.getMonth() && m.year === d.getFullYear());
-                        if (match) match.reports++;
-                    }
-                });
-
-                setChartDataState(last6Months.map(m => ({ name: m.name, reports: m.reports })));
-
-                // Fetch other aggregates 
-                const catsRef = collection(db, "cats");
-                const catsSnap = await getDocs(catsRef);
-
-                const usersRef = collection(db, "users");
-                const usersSnap = await getDocs(usersRef);
-
-                const adoptionsRef = collection(db, "adoptions");
-                const adoptionsSnap = await getDocs(adoptionsRef);
-
-                setStats({
-                    cats: catsSnap.size || 0,
-                    reports: snapshot.size || 0,
-                    users: usersSnap.size || 0,
-                    adoptions: adoptionsSnap.size || 0,
-                });
-
-            } catch (error) {
-                console.error("Error fetching admin data:", error);
-            } finally {
-                setDataLoading(false);
-            }
+        const updateStats = () => {
+            setStats({
+                cats: catCount,
+                users: userCount,
+                reports: reportCount,
+                adoptions: adoptionCount,
+                volunteers: volCount
+            });
+            setDataLoading(false);
         };
 
-        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
-            fetchDashboardData();
-        }
+        const unsubCats = onSnapshot(catsRef, (snap) => { catCount = snap.size; updateStats(); });
+        const unsubUsers = onSnapshot(usersRef, (snap) => { userCount = snap.size; updateStats(); });
+        const unsubAdoptions = onSnapshot(adoptionsRef, (snap) => { adoptionCount = snap.size; updateStats(); });
+        const unsubVols = onSnapshot(volunteersRef, (snap) => { volCount = snap.size; updateStats(); });
+
+        const unsubReports = onSnapshot(query(reportsRef, orderBy("created_at", "desc")), (snap) => {
+            reportCount = snap.size;
+            updateStats();
+
+            const reports = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Report[];
+            setRecentReports(reports.slice(0, 5));
+
+            // Process chart data
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const now = new Date();
+            const last6Months = Array.from({ length: 6 }).map((_, i) => {
+                const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
+                return { monthIndex: d.getMonth(), year: d.getFullYear(), name: monthNames[d.getMonth()], reports: 0 };
+            });
+
+            reports.forEach(r => {
+                if (r.created_at) {
+                    const d = new Date(r.created_at);
+                    const match = last6Months.find(m => m.monthIndex === d.getMonth() && m.year === d.getFullYear());
+                    if (match) match.reports++;
+                }
+            });
+
+            setChartDataState(last6Months.map(m => ({ name: m.name, reports: m.reports })));
+        });
+
+        return () => {
+            unsubCats();
+            unsubUsers();
+            unsubReports();
+            unsubAdoptions();
+            unsubVols();
+        };
+
+
+
+
     }, [user, userData]);
 
     if (authLoading || dataLoading) return (
@@ -155,7 +163,7 @@ export function AdminDashboard() {
                 {/* --- NEW DYNAMIC ANALYTICS SECTION --- */}
                 <div className="mb-12 animate-in fade-in duration-500 slide-in-from-bottom-4">
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
                         <div className="glass-card p-6 rounded-3xl border border-amber-100 shadow-sm">
                             <div className="flex flex-row items-center justify-between pb-2">
                                 <h3 className="text-sm font-medium text-stone-600">Total Cats</h3>
@@ -194,6 +202,16 @@ export function AdminDashboard() {
                             <div>
                                 <div className="text-2xl font-bold text-primary">{stats.adoptions}</div>
                                 <p className="text-xs text-primary/80">Pending/Total Adoptions</p>
+                            </div>
+                        </div>
+                        <div className="glass-card p-6 rounded-3xl border border-emerald-100 bg-emerald-50/30 shadow-sm">
+                            <div className="flex flex-row items-center justify-between pb-2">
+                                <h3 className="text-sm font-medium text-emerald-600">Volunteers</h3>
+                                <Hand className="h-4 w-4 text-emerald-500" />
+                            </div>
+                            <div>
+                                <div className="text-2xl font-bold text-emerald-700">{stats.volunteers}</div>
+                                <p className="text-xs text-emerald-600/80">Active & Pending</p>
                             </div>
                         </div>
                     </div>

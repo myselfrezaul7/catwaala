@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Button } from "@/components/ui/button";
 import { Loader2, Hand, CheckCircle, XCircle, Trash, ArrowLeft, Mail, Search } from "lucide-react";
@@ -40,35 +40,40 @@ export default function AdminVolunteersPage() {
         }
     }, [user, userData, authLoading, router]);
 
-    const fetchVolunteers = async () => {
+    useEffect(() => {
+        if (!authLoading) {
+            if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) {
+                router.push("/");
+            }
+        }
+    }, [user, userData, authLoading, router]);
+
+    useEffect(() => {
+        if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) return;
+
         setLoading(true);
-        try {
-            const volunteersRef = collection(db, "volunteers");
-            const snapshot = await getDocs(volunteersRef);
+        const volunteersRef = collection(db, "volunteers");
+        
+        const unsubscribe = onSnapshot(volunteersRef, (snapshot) => {
             const data = snapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             })) as Volunteer[];
             setVolunteers(data.sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()));
-        } catch (error) {
+            setLoading(false);
+        }, (error) => {
             console.error("Error fetching volunteers:", error);
             toast.error("Failed to load volunteers");
-        } finally {
             setLoading(false);
-        }
-    };
+        });
 
-    useEffect(() => {
-        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
-            fetchVolunteers();
-        }
+        return () => unsubscribe();
     }, [user, userData]);
 
     const handleUpdateStatus = async (id: string, newStatus: string) => {
         try {
             await updateDoc(doc(db, "volunteers", id), { status: newStatus });
             toast.success(`Volunteer marked as ${newStatus}`);
-            fetchVolunteers();
         } catch (error) {
             console.error("Error updating status:", error);
             toast.error("Failed to update status");
@@ -81,7 +86,6 @@ export default function AdminVolunteersPage() {
             await deleteDoc(doc(db, "volunteers", id));
             toast.success("Application deleted");
             setSelectedIds(prev => { const next = new Set(prev); next.delete(id); return next; });
-            fetchVolunteers();
         } catch (error) {
             console.error("Error deleting:", error);
             toast.error("Failed to delete application");
@@ -94,19 +98,17 @@ export default function AdminVolunteersPage() {
             await Promise.all(Array.from(selectedIds).map(id => updateDoc(doc(db, "volunteers", id), { status })));
             toast.success(`${selectedIds.size} applications ${status.toLowerCase()}`);
             setSelectedIds(new Set());
-            fetchVolunteers();
         } catch {
             toast.error(`Failed to bulk ${status.toLowerCase()}`);
         }
     };
 
     const handleBulkDelete = async () => {
-        if (!confirm(`Permanently delete ${selectedIds.size} selected application(s)?`)) return;
+        if (!confirm(`Delete ${selectedIds.size} selected application(s) permanently?`)) return;
         try {
             await Promise.all(Array.from(selectedIds).map(id => deleteDoc(doc(db, "volunteers", id))));
             toast.success(`${selectedIds.size} applications deleted`);
             setSelectedIds(new Set());
-            fetchVolunteers();
         } catch {
             toast.error("Failed to bulk delete");
         }

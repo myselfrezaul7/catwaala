@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Button } from "@/components/ui/button";
 import { Loader2, AlertTriangle, CheckCircle, Trash, MapPin, ArrowLeft, Filter } from "lucide-react";
@@ -37,35 +37,32 @@ export default function AdminReportsPage() {
         }
     }, [user, userData, authLoading, router]);
 
-    const fetchReports = async () => {
+    useEffect(() => {
+        if (!user || (user.email !== "catwaala@gmail.com" && userData?.role !== "admin")) return;
+
         setLoading(true);
-        try {
-            const reportsRef = collection(db, "reports");
-            const snapshot = await getDocs(reportsRef);
+        const reportsRef = collection(db, "reports");
+        
+        const unsubscribe = onSnapshot(reportsRef, (snapshot) => {
             const data = snapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             })) as Report[];
             setReports(data.sort((a, b) => (b.created_at || 0) - (a.created_at || 0)));
-        } catch (error) {
+            setLoading(false);
+        }, (error) => {
             console.error("Error fetching reports:", error);
             toast.error("Failed to load reports");
-        } finally {
             setLoading(false);
-        }
-    };
+        });
 
-    useEffect(() => {
-        if (user && (user.email === "catwaala@gmail.com" || userData?.role === "admin")) {
-            fetchReports();
-        }
+        return () => unsubscribe();
     }, [user, userData]);
 
     const handleUpdateStatus = async (id: string, newStatus: string) => {
         try {
             await updateDoc(doc(db, "reports", id), { status: newStatus });
             toast.success(`Report marked as ${newStatus}`);
-            fetchReports();
         } catch (error) {
             console.error("Error updating status:", error);
             toast.error("Failed to update status");
@@ -78,7 +75,6 @@ export default function AdminReportsPage() {
             await deleteDoc(doc(db, "reports", id));
             toast.success("Report deleted");
             setSelectedIds(prev => { const next = new Set(prev); next.delete(id); return next; });
-            fetchReports();
         } catch (error) {
             console.error("Error deleting:", error);
             toast.error("Failed to delete report");
@@ -91,19 +87,17 @@ export default function AdminReportsPage() {
             await Promise.all(Array.from(selectedIds).map(id => updateDoc(doc(db, "reports", id), { status: "Resolved" })));
             toast.success(`${selectedIds.size} reports resolved`);
             setSelectedIds(new Set());
-            fetchReports();
         } catch {
             toast.error("Failed to bulk resolve");
         }
     };
 
     const handleBulkDelete = async () => {
-        if (!confirm(`Permanently delete ${selectedIds.size} selected report(s)?`)) return;
+        if (!confirm(`Delete ${selectedIds.size} selected report(s) permanently?`)) return;
         try {
             await Promise.all(Array.from(selectedIds).map(id => deleteDoc(doc(db, "reports", id))));
             toast.success(`${selectedIds.size} reports deleted`);
             setSelectedIds(new Set());
-            fetchReports();
         } catch {
             toast.error("Failed to bulk delete");
         }
