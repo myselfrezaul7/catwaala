@@ -111,8 +111,8 @@ export function Hero() {
                         {/* Decorative ring */}
                         <div className="absolute inset-0 rounded-t-full rounded-b-[200px] border border-border/80 z-10 pointer-events-none" />
                         <Image
-                            src="/assets/hero-kittens.png"
-                            alt="Small native Bangladeshi stray kittens"
+                            src="/assets/hero-cat.jpg"
+                            alt="Small native Bangladeshi stray cat"
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
