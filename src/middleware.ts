@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' blob: data: https://images.unsplash.com https://*.firebaseapp.com https://*.googleapis.com https://lh3.googleusercontent.com https://www.google.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://ui-avatars.com;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://api.web3forms.com;
+    connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://firebasestorage.googleapis.com https://*.googleapis.com https://firebaseremoteconfig.googleapis.com https://*.google-analytics.com https://*.analytics.google.com https://api.web3forms.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
@@ -46,7 +46,7 @@ export function middleware(request: NextRequest) {
     response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
     response.headers.set(
         'Permissions-Policy',
-        'camera=(), microphone=(), geolocation=(self)'
+        'camera=(self), microphone=(), geolocation=(self)'
     );
     response.headers.set(
         'Strict-Transport-Security',

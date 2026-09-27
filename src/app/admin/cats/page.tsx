@@ -87,7 +87,7 @@ export default function AdminCatsPage() {
                 gender: 'Female',
                 location: "Mirpur, Dhaka",
                 description: 'Playful and independent.',
-                imageUrl: '/assets/cat1.jpg',
+                imageUrl: '/assets/cat1.png',
                 tag: 'Urgent',
                 temperamentTags: ['Playful', 'Independent'],
                 vaccinated: true,

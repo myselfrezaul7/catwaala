@@ -86,7 +86,7 @@ export function PWAInstallPrompt() {
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ y: 20, opacity: 0, scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 350, damping: 26 }}
-                    className={`fixed ${hasPetBhai ? "bottom-[148px] md:bottom-20" : "bottom-24 md:bottom-6"} left-4 md:left-6 z-40 max-w-sm print:hidden transition-all duration-300`}
+                    className={`fixed ${hasPetBhai ? "bottom-[148px] md:bottom-20" : "bottom-24 md:bottom-6"} left-4 md:left-6 right-20 md:right-auto max-w-[calc(100vw-6rem)] md:max-w-sm z-40 print:hidden transition-all duration-300`}
                     aria-label="Install Catwaala App"
                 >
                     <div className="bg-zinc-900/90 dark:bg-zinc-800/90 backdrop-blur-xl border border-white/10 text-white rounded-full px-4 py-2.5 shadow-2xl flex items-center gap-3">

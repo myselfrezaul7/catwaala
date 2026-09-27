@@ -106,7 +106,7 @@ export function Header() {
         { name: t.nav.adopt, href: "/adopt" },
         { name: t.nav.findVet, href: "/find-vet" },
         { name: t.nav.report, href: "/report" },
-        { name: "Community", href: "/community" },
+        { name: t.nav.community || "Community", href: "/community" },
         { name: "PetBhai Shop", href: "https://www.petbhai.com", external: true },
     ];
 
@@ -118,11 +118,11 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-300 ease-out print:hidden overflow-hidden ${scrolled
-                ? "bg-white/50 dark:bg-zinc-900/50 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40"
-                : "bg-white/40 dark:bg-zinc-900/40 border-transparent shadow-lg"
-                } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-[100px]`}>
-                <div className="px-5 md:px-6 lg:px-7 py-2.5 flex justify-between items-center">
+            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-300 ease-out print:hidden ${scrolled
+                ? "bg-white/70 dark:bg-zinc-900/70 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40"
+                : "bg-white/60 dark:bg-zinc-900/60 border-white/20 dark:border-zinc-800/40 shadow-lg"
+                } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-full`}>
+                <div className="px-4 md:px-5 lg:px-6 py-2 flex justify-between items-center gap-2">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 group shrink-0">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 overflow-hidden bg-background">
@@ -134,13 +134,13 @@ export function Header() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+                    <nav className="hidden md:flex items-center gap-0.5 lg:gap-1.5 shrink">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
                                 {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                                className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-4 py-2 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 lg:gap-1.5"
+                                className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-3 py-1.5 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 shrink-0"
                             >
                                 {link.name}
                                 {link.external && <span className="px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[9px] lg:text-[10px] font-bold">NEW</span>}
@@ -148,33 +148,33 @@ export function Header() {
                         ))}
                         <button
                             onClick={() => setIsSearchOpen(true)}
-                            className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-4 py-2 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 lg:gap-1.5"
+                            className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-3 py-1.5 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 shrink-0"
                         >
                             <Search className="w-4 h-4" /> Search
                         </button>
                     </nav>
 
                     {/* Actions */}
-                    <div className="hidden md:flex items-center gap-1.5 lg:gap-2 shrink-0">
+                    <div className="hidden md:flex items-center gap-1 lg:gap-2 shrink-0">
                         <LanguageToggle />
                         <ModeToggle />
-                        <Link href="/dashboard" className="hidden lg:flex">
-                            <button className="p-2 text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors">
+                        <Link href="/dashboard" className="flex items-center">
+                            <button className="w-9 h-9 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-muted/50 rounded-full transition-colors" aria-label="Favorites">
                                 <Heart className="w-[18px] h-[18px]" />
                             </button>
                         </Link>
 
                         {!loading && (
                             user ? (
-                                <Link href="/profile">
-                                    <Button variant="ghost" size="sm" className="gap-2 rounded-full text-foreground hover:bg-muted/50 h-9 px-3.5">
+                                <Link href="/profile" className="flex items-center">
+                                    <Button variant="ghost" size="sm" className="gap-1.5 rounded-full text-foreground hover:bg-muted/50 h-9 px-3">
                                         {user.photoURL ? (
                                             // eslint-disable-next-line @next/next/no-img-element
                                             <Image
                                                 src={user.photoURL}
                                                 alt="User"
-                                                width={26}
-                                                height={26}
+                                                width={24}
+                                                height={24}
                                                 className="rounded-full object-cover"
                                             />
                                         ) : (
@@ -182,12 +182,12 @@ export function Header() {
                                                 <User className="w-3.5 h-3.5 text-primary" />
                                             </div>
                                         )}
-                                        <span className="max-w-[80px] truncate text-xs font-medium">{user.displayName?.split(' ')[0] || "User"}</span>
+                                        <span className="max-w-[70px] lg:max-w-[90px] truncate text-xs font-medium">{user.displayName?.split(' ')[0] || "User"}</span>
                                     </Button>
                                 </Link>
                             ) : (
-                                <Link href="/login">
-                                    <Button size="sm" className="gap-2 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm h-9 px-4 text-xs font-semibold transition-all">
+                                <Link href="/login" className="flex items-center">
+                                    <Button size="sm" className="gap-1.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm h-9 px-3.5 text-xs font-semibold transition-all">
                                         <LogIn className="w-3.5 h-3.5" /> Login
                                     </Button>
                                 </Link>

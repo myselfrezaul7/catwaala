@@ -19,6 +19,7 @@ import { friendlyAuthMessage } from "@/utils/friendlyErrors";
 export type UserData = {
     email: string;
     displayName: string | null;
+    full_name?: string | null;
     photoURL: string | null;
     role: string;
     createdAt: string;

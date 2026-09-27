@@ -21,7 +21,7 @@ function TikTokIcon({ className }: { className?: string }) {
 
 export function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-secondary mt-16 pb-4">
+        <footer className="relative overflow-hidden bg-secondary mt-16 pb-4 print:hidden">
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/30 dark:via-teal-500/20 to-transparent" />
             <div className="hidden md:block absolute -bottom-24 -right-24 text-teal-900/5 dark:text-white/5 pointer-events-none -rotate-12">
                 <PawPrint className="w-96 h-96" />

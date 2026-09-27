@@ -84,7 +84,7 @@ export default function Home() {
                 <div className="absolute inset-0">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-rose-200/40 dark:from-rose-900/20 to-transparent rounded-full blur-3xl opacity-70" />
                     {/* Faded Paw Pattern Background Overlay */}
-                    <div className="absolute inset-0 bg-[url('/assets/paw-pattern.png')] bg-repeat opacity-5 dark:opacity-[0.02]" />
+                    <div className="absolute inset-0 bg-[url('/assets/paw.svg')] bg-repeat opacity-5 dark:opacity-[0.02]" />
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">

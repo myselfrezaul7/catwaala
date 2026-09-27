@@ -61,23 +61,23 @@ export function CatDetailClient({ cat }: CatDetailProps) {
 
     return (
         <div className="min-h-screen bg-[#FFFDF8] pb-32">
-            {/* Top Navigation Overlay */}
-            <div className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md shadow-sm py-2" : "bg-transparent py-4"}`}>
+            {/* Top Navigation Bar */}
+            <div className="relative w-full z-20 py-3">
                 <div className="container mx-auto px-4 flex justify-between items-center">
                     <Link href="/adopt">
-                        <Button variant="ghost" className={`gap-2 rounded-full ${scrolled ? "bg-white hover:bg-rose-50 text-stone-600" : "bg-black/20 hover:bg-black/30 text-white backdrop-blur-md"}`}>
+                        <Button variant="ghost" className="gap-2 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-foreground backdrop-blur-md">
                             <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to Cats</span>
                         </Button>
                     </Link>
                     <div className="flex gap-2">
-                        <Button variant="ghost" size="icon" onClick={handleShare} className={`rounded-full ${scrolled ? "bg-white hover:bg-rose-50 text-stone-600" : "bg-black/20 hover:bg-black/30 text-white backdrop-blur-md"}`}>
+                        <Button variant="ghost" size="icon" onClick={handleShare} className="rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-foreground backdrop-blur-md">
                             <Share2 className="w-5 h-5" />
                         </Button>
                         <Button
                             variant="ghost"
                             size="icon"
                             onClick={() => toggleFavorite(cat.id)}
-                            className={`rounded-full transition-all ${scrolled ? "bg-white hover:bg-rose-50 text-rose-500" : "bg-black/20 hover:bg-black/30 text-white backdrop-blur-md"} ${favorite ? "text-rose-500" : ""}`}
+                            className={`rounded-full transition-all bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-foreground backdrop-blur-md ${favorite ? "text-rose-500" : ""}`}
                         >
                             <Heart className={`w-5 h-5 ${favorite ? "fill-rose-500 text-rose-500" : ""}`} />
                         </Button>

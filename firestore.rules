@@ -16,9 +16,7 @@ service cloud.firestore {
     }
     
     function isAdmin() {
-      // In this setup, we rely on Custom Claims for admin verification
-      // Or we can rely on a query if we needed to, but custom claims is best practice
-      return isAuthenticated() && request.auth.token.role == 'admin';
+      return isAuthenticated() && (request.auth.token.role == 'admin' || request.auth.token.email in ['catwaala@gmail.com', 'admin@catwaala.com']);
     }
 
     function hasRequiredFields(fields) {
@@ -47,24 +45,34 @@ service cloud.firestore {
     // Domain Validators
     // ===============================================================
 
+    function isValidTimestamp(val) {
+      return val is timestamp || val is int || val is string;
+    }
+
     function isValidProfile() {
-      return hasOnlyAllowedFields(['full_name', 'avatar_url', 'phone', 'role', 'created_at', 'favorites']) &&
+      return hasOnlyAllowedFields(['full_name', 'name', 'id', 'email', 'avatar_url', 'phone', 'role', 'created_at', 'createdAt', 'favorites', 'points']) &&
              isValidOptionalString('full_name', 1, 100) &&
+             isValidOptionalString('name', 1, 100) &&
              isValidOptionalString('avatar_url', 0, 500) &&
              isValidOptionalString('phone', 0, 20) &&
+             isValidOptionalString('email', 1, 200) &&
              request.resource.data.role == 'user' && // Cannot create self as admin
-             request.resource.data.created_at is string;
+             (!('points' in request.resource.data) || request.resource.data.points == 0) &&
+             (!('created_at' in request.resource.data) || isValidTimestamp(request.resource.data.created_at)) &&
+             (!('createdAt' in request.resource.data) || isValidTimestamp(request.resource.data.createdAt));
     }
 
     function isValidProfileUpdate() {
       // Must not change role or points
-      return hasOnlyAllowedFields(['full_name', 'avatar_url', 'phone', 'role', 'created_at', 'updated_at', 'favorites', 'points']) &&
+      return hasOnlyAllowedFields(['full_name', 'name', 'id', 'email', 'avatar_url', 'phone', 'role', 'created_at', 'createdAt', 'updated_at', 'updatedAt', 'favorites', 'points']) &&
              isValidOptionalString('full_name', 1, 100) &&
+             isValidOptionalString('name', 1, 100) &&
              isValidOptionalString('avatar_url', 0, 500) &&
              isValidOptionalString('phone', 0, 20) &&
              (request.resource.data.role == resource.data.role) && // Prevent role escalation
-             (!('points' in request.resource.data) || !('points' in resource.data) || request.resource.data.points == resource.data.points) && // Prevent self points modification
-             request.resource.data.created_at == resource.data.created_at; // Immutable
+             (isAdmin() || (!('points' in request.resource.data) && !('points' in resource.data)) || (request.resource.data.points == resource.data.points)) && // Prevent self points modification
+             (!('created_at' in resource.data) || request.resource.data.created_at == resource.data.created_at) &&
+             (!('createdAt' in resource.data) || request.resource.data.createdAt == resource.data.createdAt);
     }
 
     function isValidMemorial() {
@@ -139,7 +147,7 @@ service cloud.firestore {
     // Adoptions Collection (Public Create, Owner/Admin Read, Admin Write)
     match /adoptions/{adoptionId} {
       allow create: if true;
-      allow read: if isAuthenticated() || isAdmin();
+      allow read: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
       allow update, delete: if isAdmin();
     }
 

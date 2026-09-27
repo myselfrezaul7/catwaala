@@ -29,7 +29,6 @@ import { CatService } from "@/services/CatService";
 import { Report, Memorial } from "@/services/server-data";
 import { adaptCatToCard } from "@/utils/adapters";
 import { updateProfile } from "firebase/auth";
-import { seedData } from "@/utils/seed-data";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { safeTimeAgo } from "@/utils/safeDateFormat";
@@ -64,15 +63,13 @@ export default function DashboardPage() {
         }
     }, [user, loading, router]);
 
-    // Seed Data & Load Profile
+    // Load Profile
     useEffect(() => {
         if (user) {
             setProfileForm({
                 full_name: user.displayName || "",
                 phone: user.phoneNumber || ""
             });
-            // Try seeding data quietly
-            seedData().catch(e => console.error("Seeding error:", e));
         }
     }, [user]);
 
@@ -117,11 +114,19 @@ export default function DashboardPage() {
                 const appSnap = await getDocs(appQ);
                 setApplications(appSnap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a: any, b: any) => b.created_at - a.created_at));
 
-                // Fetch Leaderboard
-                const leadSnap = await getDocs(collection(db, "users"));
-                const usersList = leadSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-                usersList.sort((a: any, b: any) => (b.points || 0) - (a.points || 0));
-                setLeaderboard(usersList.slice(0, 10));
+                // Fetch Leaderboard (only if admin; fallback to current user for non-admin to prevent PERMISSION_DENIED)
+                if (userData?.role === 'admin' || user.email === 'catwaala@gmail.com') {
+                    try {
+                        const leadSnap = await getDocs(collection(db, "users"));
+                        const usersList = leadSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+                        usersList.sort((a: any, b: any) => (b.points || 0) - (a.points || 0));
+                        setLeaderboard(usersList.slice(0, 10));
+                    } catch (err) {
+                        console.warn("Could not load full leaderboard", err);
+                    }
+                } else if (userData) {
+                    setLeaderboard([{ id: user.uid, full_name: userData.full_name || userData.displayName || user.displayName || "User", points: userData.points || 0 }]);
+                }
 
             } catch (error) {
                 console.error("Failed to load activity", error);
@@ -134,7 +139,7 @@ export default function DashboardPage() {
         if (user) {
             loadActivity();
         }
-    }, [user]);
+    }, [user, userData]);
 
     const handleUpdateProfile = async () => {
         if (!user) return;
@@ -143,7 +148,7 @@ export default function DashboardPage() {
             let avatarUrl = user.photoURL;
 
             if (avatarFile) {
-                avatarUrl = await ProfileService.uploadAvatar(avatarFile);
+                avatarUrl = await ProfileService.uploadAvatar(user.uid, avatarFile);
             }
 
             // Update Firebase Auth Profile
