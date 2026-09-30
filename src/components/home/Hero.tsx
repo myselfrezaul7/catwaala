@@ -2,10 +2,25 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Heart, ArrowRight, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RemoteConfigService } from "@/services/RemoteConfigService";
+
+const HeroCatCanvas = dynamic(() => import("@/components/3d/HeroCatCanvas"), {
+    ssr: false,
+    loading: () => (
+        <Image
+            src="/assets/hero-cat.jpg"
+            alt="Small native Bangladeshi stray cat"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
+        />
+    ),
+});
 
 export function Hero() {
     return (
@@ -110,16 +125,7 @@ export function Hero() {
                     <div className="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[200px] overflow-hidden border-[8px] border-background shadow-2xl bg-secondary flex items-center justify-center isolate">
                         {/* Decorative ring */}
                         <div className="absolute inset-0 rounded-t-full rounded-b-[200px] border border-border/80 z-10 pointer-events-none" />
-                        <Image
-                            src="/assets/hero-cat.jpg"
-                            alt="Small native Bangladeshi stray cat"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            priority
-                            placeholder="blur"
-                            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjVmNWY0Ii8+PC9zdmc+"
-                        />
+                        <HeroCatCanvas />
 
                         {/* Floating badge */}
                         <motion.div

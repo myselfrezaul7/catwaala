@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { CatService } from "@/services/CatService";
+import { resources } from "@/data/resources";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://www.catwaala.com"; // Replace with actual domain
+    const baseUrl = "https://www.catwaala.com";
 
     // Fetch all available cats for dynamic routes
     const cats = await CatService.getAll();
@@ -11,6 +12,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(cat.created_at || new Date()),
         changeFrequency: "weekly",
         priority: 0.8,
+    }));
+
+    // Dynamic resources routes
+    const resourceUrls: MetadataRoute.Sitemap = resources.map((resource) => ({
+        url: `${baseUrl}/resources/${resource.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
     }));
 
     return [
@@ -56,6 +65,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "monthly",
             priority: 0.5,
         },
+        {
+            url: `${baseUrl}/donate`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/community`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/quiz`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.7,
+        },
+        ...resourceUrls,
         ...catUrls,
     ];
 }

@@ -105,6 +105,21 @@ export const cats: Cat[] = [
         neutered: false,
         goodWithKids: true,
     },
+    {
+        id: "7",
+        name: 'Luna',
+        breed: 'Domestic Shorthair',
+        age: '1 year',
+        gender: 'Female',
+        location: "Mirpur, Dhaka",
+        description: 'Luna is a graceful, playful, and independent cat who loves sitting near windows watching birds.',
+        imageUrl: '/assets/cat1.png',
+        tag: 'Urgent',
+        temperamentTags: ['Playful', 'Independent', 'Gentle'],
+        vaccinated: true,
+        neutered: true,
+        goodWithKids: true,
+    },
 ] as const;
 
 export type AgeCategory = 'Kitten' | 'Adult' | 'Senior';

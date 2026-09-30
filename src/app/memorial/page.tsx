@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { RainbowBridgeCanvas } from "@/components/3d/DynamicRainbowBridge";
 import { MemorialList } from "@/components/memorial/MemorialList";
 
 export const metadata: Metadata = {
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function MemorialPage() {
-    return <MemorialList />;
+    return (
+        <div className="min-h-screen">
+            <RainbowBridgeCanvas />
+            <MemorialList />
+        </div>
+    );
 }

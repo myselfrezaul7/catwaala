@@ -26,13 +26,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
+    const title = `Adopt ${cat.name} | Catwaala`;
+    const description = `Meet ${cat.name}, a ${cat.breed || 'Rescue'} cat looking for a home in ${cat.location}. ${cat.description ? cat.description.slice(0, 120) + '...' : ''}`;
+    const rawImage = cat.images?.[0] || '/assets/cat1.png';
+    const imageUrl = rawImage.startsWith('http')
+        ? rawImage
+        : `https://www.catwaala.com${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
+
     return {
-        title: `Adopt ${cat.name} | Catwaala`,
-        description: `Meet ${cat.name}, a ${cat.breed || 'Rescue'} cat in ${cat.location}. ${cat.description?.slice(0, 100)}...`,
+        title,
+        description,
         openGraph: {
-            title: `Adopt ${cat.name} | Catwaala`,
-            description: `Meet ${cat.name}, a ${cat.breed || 'Rescue'} cat looking for a home in ${cat.location}.`,
-            images: cat.images?.[0] ? [cat.images[0]] : [],
+            title,
+            description,
+            url: `https://www.catwaala.com/adopt/${cat.id}`,
+            siteName: "Catwaala",
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: `Adopt ${cat.name}`,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [imageUrl],
+            creator: "@catwaala",
         },
     };
 }

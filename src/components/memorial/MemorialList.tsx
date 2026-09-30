@@ -47,11 +47,19 @@ export function MemorialList() {
         setMemorials([newMemorial, ...memorials]);
     };
 
-    const lightCandle = (id: string | number) => {
+    const lightCandle = (id: string | number, petName?: string) => {
         setCandles(prev => ({
             ...prev,
             [id]: (prev[id] || 0) + 1
         }));
+
+        if (typeof window !== "undefined") {
+            window.dispatchEvent(
+                new CustomEvent("catwaala:light-candle", {
+                    detail: { name: petName || "A Cherished Pet" },
+                })
+            );
+        }
     };
 
     return (
@@ -150,8 +158,10 @@ export function MemorialList() {
                                                 </p>
                                             </div>
                                             <button
-                                                onClick={() => lightCandle(memorial.id)}
+                                                onClick={() => lightCandle(memorial.id, memorial.pet_name)}
                                                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-600 transition-colors group/candle"
+                                                title={`Light a candle for ${memorial.pet_name}`}
+                                                aria-label={`Light a candle for ${memorial.pet_name}`}
                                             >
                                                 <Flame className={`w-4 h-4 transition-all duration-300 ${candles[memorial.id] && candles[memorial.id] > 0 ? 'fill-amber-500 text-amber-500 animate-pulse' : 'text-stone-300'}`} />
                                                 <span className="text-sm font-bold">{candles[memorial.id] || 0}</span>

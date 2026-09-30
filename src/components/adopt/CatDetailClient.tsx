@@ -9,6 +9,7 @@ import { AdoptionForm } from "@/components/adopt/AdoptionForm";
 import { SponsorshipModal } from "@/components/adopt/SponsorshipModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFavorites } from "@/contexts/FavoritesContext";
+import { ShareModal } from "@/components/shared/ShareModal";
 
 // Types matching the server data adaptation
 interface CatDetailProps {
@@ -33,6 +34,7 @@ interface CatDetailProps {
 
 export function CatDetailClient({ cat }: CatDetailProps) {
     const [scrolled, setScrolled] = useState(false);
+    const [isShareOpen, setIsShareOpen] = useState(false);
     const { isFavorite, toggleFavorite } = useFavorites();
     const favorite = isFavorite(cat.id);
 
@@ -42,21 +44,8 @@ export function CatDetailClient({ cat }: CatDetailProps) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleShare = async () => {
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: `Adopt ${cat.name} | Catwaala`,
-                    text: `Check out ${cat.name}, an adorable cat looking for a home in Bangladesh!`,
-                    url: window.location.href,
-                });
-            } catch (err) {
-                // User cancelled or share failed
-            }
-        } else {
-            // Fallback copy to clipboard
-            navigator.clipboard.writeText(window.location.href);
-        }
+    const handleShare = () => {
+        setIsShareOpen(true);
     };
 
     return (
@@ -303,6 +292,14 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                     Adopt Me <Heart className="w-4 h-4 ml-2 fill-white" />
                 </Button>
             </div>
+
+            <ShareModal
+                isOpen={isShareOpen}
+                onClose={() => setIsShareOpen(false)}
+                title={`Adopt ${cat.name} | Catwaala`}
+                text={`Meet ${cat.name}, an adorable cat looking for a home in Bangladesh! 🐾`}
+                url={`/adopt/${cat.id}`}
+            />
         </div>
     );
 }

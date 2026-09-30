@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User, Share2, Printer, FileText, ChevronRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { ShareModal } from "@/components/shared/ShareModal";
 
 interface PageProps {
     params: Promise<{
@@ -29,6 +30,7 @@ export default function ResourcePage({ params }: PageProps) {
     }
 
     const [progress, setProgress] = useState(0);
+    const [isShareOpen, setIsShareOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -108,7 +110,13 @@ export default function ResourcePage({ params }: PageProps) {
                             <Button variant="outline" onClick={() => window.print()} className="rounded-full gap-2 border-stone-200 dark:border-stone-700 hover:bg-stone-100 dark:hover:bg-stone-800">
                                 <Printer className="w-4 h-4" /> Print
                             </Button>
-                            <Button variant="outline" className="rounded-full w-12 h-12 p-0 border-stone-200 dark:border-stone-700 hover:bg-rose-50 dark:hover:bg-stone-800 hover:text-rose-500 hover:border-rose-200 dark:hover:border-rose-900/50 transition-colors">
+                            <Button
+                                variant="outline"
+                                onClick={() => setIsShareOpen(true)}
+                                title="Share Guide"
+                                aria-label="Share Guide"
+                                className="rounded-full w-12 h-12 p-0 border-stone-200 dark:border-stone-700 hover:bg-rose-50 dark:hover:bg-stone-800 hover:text-rose-500 hover:border-rose-200 dark:hover:border-rose-900/50 transition-colors"
+                            >
                                 <Share2 className="w-5 h-5" />
                             </Button>
                         </div>
@@ -148,6 +156,14 @@ export default function ResourcePage({ params }: PageProps) {
                     )}
                 </div>
             </div>
+
+            <ShareModal
+                isOpen={isShareOpen}
+                onClose={() => setIsShareOpen(false)}
+                title={`${resource.title} | Catwaala`}
+                text={`Check out this care guide on Catwaala: "${resource.title}" 🐾`}
+                url={`/resources/${resource.slug}`}
+            />
         </div >
     );
 }

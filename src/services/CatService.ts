@@ -1,5 +1,6 @@
 import { db } from "@/utils/firebase";
-import { collection, getDocs, doc, getDoc, query, where, orderBy, limit } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, query, where } from "firebase/firestore";
+import { cats } from "@/data/cats";
 
 export type Cat = {
     id: string;
@@ -38,20 +39,55 @@ export const CatService = {
         }
     },
 
-    async getById(id: string) {
+    async getById(id: string): Promise<Cat | null> {
         try {
             const docRef = doc(db, COLLECTION_NAME, id);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
                 return { id: docSnap.id, ...docSnap.data() } as Cat;
-            } else {
-                return null;
             }
         } catch (error) {
-            console.error("Error fetching cat by id:", error);
-            return null;
+            console.error("Error fetching cat by id from Firestore:", error);
         }
+
+        // Fallback to starter/seed cats so Mimi, Billu, Luna, etc. never 404
+        const seedCat = cats.find(c => c.id === id || c.name.toLowerCase() === id.toLowerCase());
+        if (seedCat) {
+            let ageInMonths = 2;
+            const lowerAge = seedCat.age.toLowerCase();
+            if (lowerAge.includes('week')) {
+                const w = parseInt(seedCat.age);
+                ageInMonths = isNaN(w) ? 1 : Math.max(1, Math.round(w / 4));
+            } else if (lowerAge.includes('year')) {
+                const y = parseInt(seedCat.age);
+                ageInMonths = isNaN(y) ? 12 : y * 12;
+            } else if (lowerAge.includes('month') || lowerAge.includes('mo')) {
+                const m = parseInt(seedCat.age);
+                ageInMonths = isNaN(m) ? 2 : m;
+            }
+
+            return {
+                id: seedCat.id,
+                name: seedCat.name,
+                age: ageInMonths,
+                gender: (seedCat.gender === 'Female' ? 'Female' : 'Male') as 'Male' | 'Female',
+                breed: seedCat.breed || 'Rescue Cat',
+                location: seedCat.location,
+                description: seedCat.description,
+                attributes: {
+                    vaccinated: Boolean(seedCat.vaccinated),
+                    neutered: Boolean(seedCat.neutered),
+                    goodWithKids: Boolean(seedCat.goodWithKids),
+                    houseTrained: true,
+                },
+                images: [seedCat.imageUrl],
+                status: (seedCat.tag === 'Adopted' ? 'Adopted' : 'Available') as 'Available' | 'Adopted' | 'Pending',
+                created_at: new Date().toISOString(),
+            };
+        }
+
+        return null;
     },
 
     async getByIds(ids: string[]) {

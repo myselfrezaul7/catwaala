@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://catwaala.com",
+        url: "https://www.catwaala.com",
         title: "Catwaala | Save a Stray, Gain a Friend",
         description: "Connect with rescued cats, find vets, and report strays in Bangladesh.",
         siteName: "Catwaala",
@@ -94,8 +94,8 @@ export default function RootLayout({
                             "@context": "https://schema.org",
                             "@type": "Organization",
                             name: "Catwaala",
-                            url: "https://catwaala.com",
-                            logo: "https://catwaala.com/logo.png",
+                            url: "https://www.catwaala.com",
+                            logo: "https://www.catwaala.com/logo.png",
                             sameAs: ["https://twitter.com/catwaala"],
                             contactPoint: {
                                 "@type": "ContactPoint",

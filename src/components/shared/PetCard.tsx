@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, MapPin, Sparkles } from "lucide-react";
+import { Heart, MapPin, Sparkles, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFavorites } from "@/contexts/FavoritesContext";
 import { motion } from "framer-motion";
+import { ShareModal } from "@/components/shared/ShareModal";
 
 interface CatProps {
     id: string;
@@ -18,43 +20,61 @@ interface CatProps {
 }
 
 export function PetCard({ cat }: { cat: CatProps }) {
+    const [isShareOpen, setIsShareOpen] = useState(false);
     const { isFavorite, toggleFavorite } = useFavorites();
     const favorite = isFavorite(cat.id);
 
     return (
-        <motion.div
-            variants={{
-                hidden: { opacity: 0, y: 15 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-            }}
-            whileHover={{ y: -6, scale: 1.02 }}
-            className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/20"
-        >
-            <div className="relative aspect-[4/5] overflow-hidden">
-                <Image
-                    src={cat.imageUrl}
-                    alt={cat.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+        <>
+            <motion.div
+                variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+                }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/20"
+            >
+                <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                        src={cat.imageUrl}
+                        alt={cat.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
 
-                {/* Favorite button with glass effect */}
-                <button
-                    onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleFavorite(cat.id);
-                    }}
-                    className={`absolute top-4 right-4 p-3 rounded-2xl backdrop-blur-xl transition-all duration-300 ${favorite
-                        ? "bg-rose-500/90 text-white shadow-lg shadow-rose-500/30"
-                        : "bg-white/25 text-white hover:bg-rose-500/80 hover:shadow-lg hover:shadow-rose-500/20"
-                        }`}
-                >
-                    <Heart className={`w-5 h-5 transition-transform duration-300 ${favorite ? "fill-current scale-110" : "group-hover:scale-110"}`} />
-                </button>
+                    {/* Action buttons with glass effect */}
+                    <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setIsShareOpen(true);
+                            }}
+                            title={`Share ${cat.name}`}
+                            aria-label={`Share ${cat.name}`}
+                            className="p-3 rounded-2xl backdrop-blur-xl bg-white/25 text-white hover:bg-white/40 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 shadow-md shadow-black/10"
+                        >
+                            <Share2 className="w-5 h-5" />
+                        </button>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                toggleFavorite(cat.id);
+                            }}
+                            title={`Favorite ${cat.name}`}
+                            aria-label={`Favorite ${cat.name}`}
+                            className={`p-3 rounded-2xl backdrop-blur-xl transition-all duration-300 ${favorite
+                                ? "bg-rose-500/90 text-white shadow-lg shadow-rose-500/30"
+                                : "bg-white/25 text-white hover:bg-rose-500/80 hover:shadow-lg hover:shadow-rose-500/20"
+                                }`}
+                        >
+                            <Heart className={`w-5 h-5 transition-transform duration-300 ${favorite ? "fill-current scale-110" : "group-hover:scale-110"}`} />
+                        </button>
+                    </div>
 
                 {/* Tag badge */}
                 {cat.tag && (
@@ -99,5 +119,14 @@ export function PetCard({ cat }: { cat: CatProps }) {
                 </Link>
             </div>
         </motion.div>
+
+        <ShareModal
+            isOpen={isShareOpen}
+            onClose={() => setIsShareOpen(false)}
+            title={`Adopt ${cat.name} | Catwaala`}
+            text={`Meet ${cat.name}, looking for a loving home in ${cat.location}! 🐾`}
+            url={`/adopt/${cat.id}`}
+        />
+        </>
     );
 }
