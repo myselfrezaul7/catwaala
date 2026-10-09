@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import Image from "next/image";
 import { submitToWeb3Forms } from "@/lib/web3forms";
 import { toast } from "sonner";
+import { isSafeUrl } from "@/lib/validation";
 
 // Dynamically import LocationPicker to avoid SSR issues with Leaflet
 const LocationPicker = dynamic(() => import("@/components/shared/LocationPicker"), {
@@ -144,12 +145,12 @@ export function ReportForm() {
                 form_name: "New Rescue Report",
                 subject: `🚨 New ${data.type} Cat Report!`,
                 message: `
-                    <strong>Type:</strong> ${data.type} <br/>
+                    <strong>Type:</strong> ${escapeHtml(data.type)} <br/>
                     <strong>Location:</strong> ${escapeHtml(data.locationDetails)} <br/>
-                    <strong>Coordinates:</strong> <a href="https://www.google.com/maps?q=${data.latitude},${data.longitude}">${data.latitude}, ${data.longitude}</a> <br/>
+                    <strong>Coordinates:</strong> <a href="https://www.google.com/maps?q=${data.latitude},${data.longitude}" target="_blank" rel="noopener noreferrer">${data.latitude}, ${data.longitude}</a> <br/>
                     <strong>Description:</strong> ${escapeHtml(data.description)} <br/>
                     <strong>Contact:</strong> ${escapeHtml(data.contact)} <br/>
-                    <strong>Image:</strong> ${imageUrl ? `<a href="${imageUrl}">View Image</a>` : "No image uploaded"}
+                    <strong>Image:</strong> ${imageUrl && isSafeUrl(imageUrl) ? `<a href="${imageUrl}" target="_blank" rel="noopener noreferrer">View Image</a>` : "No image uploaded"}
                 `,
                 from_name: "Catwaala Reporter",
             });

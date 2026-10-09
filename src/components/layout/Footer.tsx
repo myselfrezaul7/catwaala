@@ -90,6 +90,16 @@ export function Footer() {
                                             </Link>
                                         </li>
                                     ))}
+                                    <li>
+                                        <a href="https://kuttawaala.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                            Kuttawaala (Dogs) 🐕
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://petbhai.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                            PetBhai Store 🛍️
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

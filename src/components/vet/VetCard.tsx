@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, ExternalLink, Star } from "lucide-react";
+import { MapPin, Phone, Clock, ExternalLink, Star, Globe } from "lucide-react";
 import { VetClinic } from "@/services/VetService";
+import { isSafeUrl } from "@/lib/validation";
 
 interface VetCardProps {
     vet: VetClinic;
@@ -85,18 +86,28 @@ export function VetCard({ vet, index = 0 }: VetCardProps) {
                 </div>
 
                 {/* Actions */}
-                <div className="grid grid-cols-2 gap-3 mt-auto">
+                <div className={`grid ${vet.website && isSafeUrl(vet.website) ? "grid-cols-3" : "grid-cols-2"} gap-2 sm:gap-3 mt-auto`}>
                     <a
                         href={vet.phone ? `tel:${vet.phone.replace(/[^0-9+]/g, '')}` : '#'}
-                        className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 text-emerald-700 dark:text-emerald-400 font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 transition-all"
+                        className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 text-emerald-700 dark:text-emerald-400 font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 transition-all text-xs sm:text-sm"
                     >
                         <Phone className="w-4 h-4" /> Call
                     </a>
+                    {vet.website && isSafeUrl(vet.website) && (
+                        <a
+                            href={vet.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-teal-200 dark:border-teal-800/50 bg-teal-50/50 dark:bg-teal-900/10 text-teal-700 dark:text-teal-400 font-semibold hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:border-teal-300 transition-all text-xs sm:text-sm"
+                        >
+                            <Globe className="w-4 h-4" /> Website
+                        </a>
+                    )}
                     <a
-                        href={vet.mapUrl}
+                        href={isSafeUrl(vet.mapUrl) ? vet.mapUrl : "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5"
+                        className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm"
                     >
                         Directions <ExternalLink className="w-3.5 h-3.5" />
                     </a>

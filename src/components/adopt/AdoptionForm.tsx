@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { submitToWeb3Forms } from "@/lib/web3forms";
 import { useAuth } from "@/contexts/AuthContext";
-import { db } from "@/utils/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { AdoptionService } from "@/services/AdoptionService";
+import { sanitizeInput } from "@/lib/validation";
 
 export function AdoptionForm({ catName, catId }: { catName: string; catId?: string }) {
     const { user } = useAuth();
@@ -20,26 +20,30 @@ export function AdoptionForm({ catName, catId }: { catName: string; catId?: stri
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
+        const sanitizedData = {
+            name: sanitizeInput((data.name as string) || "").trim(),
+            phone: sanitizeInput((data.phone as string) || "").trim(),
+            email: sanitizeInput((data.email as string) || "").trim(),
+            message: sanitizeInput((data.message as string) || "").trim(),
+        };
+
         const result = await submitToWeb3Forms({
-            form_name: `Adoption Application for ${catName}`,
-            cat_name: catName,
-            ...data
+            form_name: `Adoption Application for ${sanitizeInput(catName)}`,
+            cat_name: sanitizeInput(catName),
+            ...sanitizedData
         });
 
         setIsSubmitting(false);
 
         if (result.success) {
             try {
-                await addDoc(collection(db, "adoptions"), {
+                await AdoptionService.create({
                     catId: catId || "",
-                    dogName: catName, // Re-using property name for compatibility with admin page
                     catName: catName,
-                    applicantName: data.name,
-                    applicantEmail: data.email || "",
-                    applicantPhone: data.phone,
-                    status: "Pending",
-                    created_at: Date.now(),
-                    experience: data.message,
+                    applicantName: sanitizedData.name,
+                    applicantEmail: sanitizedData.email,
+                    applicantPhone: sanitizedData.phone,
+                    experience: sanitizedData.message,
                     userId: user?.uid || null,
                 });
             } catch (e) {

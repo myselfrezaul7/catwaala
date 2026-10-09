@@ -15,6 +15,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { friendlyAuthMessage } from "@/utils/friendlyErrors";
+import { rateLimiter } from "@/lib/rate-limit";
 
 export type UserData = {
     email: string;
@@ -101,10 +102,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     const signInWithEmail = async (email: string, pass: string) => {
+        const limitKey = `auth_login_${(email || "").toLowerCase().trim()}`;
+
+        if (rateLimiter.isLocked(limitKey)) {
+            const lockoutMsg = "Too many failed login attempts. Please wait 1 minute before trying again.";
+            toast.error(lockoutMsg);
+            const err: any = new Error(lockoutMsg);
+            err.code = "auth/too-many-requests";
+            err.customHandled = true;
+            throw err;
+        }
+
         try {
             await signInWithEmailAndPassword(auth, email, pass);
+            rateLimiter.reset(limitKey);
         } catch (error: any) {
             console.error("Error signing in with email", error);
+            const isLocked = rateLimiter.recordFailure(limitKey, 5, 5 * 60 * 1000, 60 * 1000);
+            if (isLocked) {
+                toast.error("Too many failed login attempts. Please wait 1 minute before trying again.");
+            }
             throw error;
         }
     };

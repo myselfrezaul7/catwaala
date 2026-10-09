@@ -47,7 +47,9 @@ export default function LoginPage() {
             }
         } catch (error: any) {
             console.error(error);
-            toast.error(friendlyAuthMessage(error.code));
+            if (!error.customHandled) {
+                toast.error(friendlyAuthMessage(error.code));
+            }
         } finally {
             setIsLoading(false);
         }

@@ -50,6 +50,9 @@ export const ReportService = {
         try {
             const payload = {
                 ...parseResult.data,
+                description: sanitizeInput(parseResult.data.description || ""),
+                location_text: sanitizeInput(parseResult.data.location_text || ""),
+                contact_info: sanitizeInput(parseResult.data.contact_info || ""),
                 user_id: report.user_id,
                 created_at: new Date().toISOString(),
                 status: 'Open'

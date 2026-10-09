@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Heart, Hand, CheckCircle, AlertTriangle, User, Mail, Phone, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 import { submitToWeb3Forms } from "@/lib/web3forms";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "@/utils/firebase";
+import { VolunteerService } from "@/services/VolunteerService";
+import { sanitizeInput } from "@/lib/validation";
 import confetti from "canvas-confetti";
 
 type VolunteerFormData = {
@@ -36,16 +36,21 @@ export function VolunteerForm() {
     const onSubmit = async (data: VolunteerFormData) => {
         setServerError(null);
 
-        // 1. Save to Firestore (primary)
+        // Sanitize applicant inputs before saving
+        const sanitizedData: VolunteerFormData = {
+            name: sanitizeInput(data.name || ""),
+            email: sanitizeInput(data.email || ""),
+            phone: sanitizeInput(data.phone || ""),
+            interest: sanitizeInput(data.interest || "General"),
+            message: data.message ? sanitizeInput(data.message) : "",
+        };
+
+        // 1. Save to Firestore via VolunteerService (primary)
         try {
-            await addDoc(collection(db, "volunteers"), {
-                ...data,
-                status: "Pending",
-                created_at: new Date().toISOString()
-            });
-        } catch (error) {
+            await VolunteerService.create(sanitizedData);
+        } catch (error: any) {
             console.error("Error saving volunteer to Firestore:", error);
-            setServerError("Something went wrong. Please try again.");
+            setServerError(error?.message || "Something went wrong. Please try again.");
             return;
         }
 
@@ -63,7 +68,7 @@ export function VolunteerForm() {
         try {
             await submitToWeb3Forms({
                 form_name: "Volunteer Application",
-                ...data,
+                ...sanitizedData,
             });
         } catch (e) {
             console.error("Web3Forms notification failed (non-critical)", e);

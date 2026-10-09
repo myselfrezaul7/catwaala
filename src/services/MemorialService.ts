@@ -66,6 +66,9 @@ export const MemorialService = {
         try {
             const memorialWithStatus = {
                 ...parseResult.data,
+                pet_name: sanitizeInput(parseResult.data.pet_name || ""),
+                owner_name: sanitizeInput(parseResult.data.owner_name || ""),
+                tribute: sanitizeInput(parseResult.data.tribute || ""),
                 user_id: memorial.user_id,
                 status: "Pending", // New memorials require admin moderation
                 created_at: new Date().toISOString()

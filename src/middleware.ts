@@ -5,14 +5,14 @@ export function middleware(request: NextRequest) {
     const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
     const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com https://apis.google.com;
+    script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com https://apis.google.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://images.unsplash.com https://*.firebaseapp.com https://*.googleapis.com https://lh3.googleusercontent.com https://www.google.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://ui-avatars.com;
+    img-src 'self' blob: data: https://images.unsplash.com https://*.firebaseapp.com https://*.googleapis.com https://lh3.googleusercontent.com https://*.googleusercontent.com https://www.google.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://ui-avatars.com https://unpkg.com https://firebasestorage.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
     connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://firebasestorage.googleapis.com https://*.googleapis.com https://firebaseremoteconfig.googleapis.com https://*.google-analytics.com https://*.analytics.google.com https://api.web3forms.com;
     object-src 'none';
     base-uri 'self';
-    form-action 'self';
+    form-action 'self' https://api.web3forms.com;
     frame-src 'self' https://www.google.com https://www.recaptcha.net https://catwaala-animal-welfare.firebaseapp.com;
     frame-ancestors 'none';
     block-all-mixed-content;
@@ -41,7 +41,7 @@ export function middleware(request: NextRequest) {
         contentSecurityPolicyHeaderValue
     );
 
-    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    response.headers.set('X-Frame-Options', 'DENY');
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
     response.headers.set(
