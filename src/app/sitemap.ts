@@ -15,12 +15,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic resources routes
-    const resourceUrls: MetadataRoute.Sitemap = resources.map((resource) => ({
-        url: `${baseUrl}/resources/${resource.slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.7,
-    }));
+    const resourceUrls: MetadataRoute.Sitemap = resources
+        .filter((resource) => resource.slug !== "local-vet-directory")
+        .map((resource) => ({
+            url: `${baseUrl}/resources/${resource.slug}`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.7,
+        }));
 
     return [
         {
@@ -38,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         {
             url: `${baseUrl}/report`,
             lastModified: new Date(),
-            changeFrequency: "never",
+            changeFrequency: "monthly",
             priority: 0.8,
         },
         {

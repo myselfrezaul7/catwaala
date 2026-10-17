@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Facebook, Instagram, Mail, Cat, Heart, PawPrint, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 function YoutubeIcon({ className }: { className?: string }) {
     return (
@@ -20,6 +21,8 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 export function Footer() {
+    const { t } = useLanguage();
+
     return (
         <footer className="relative overflow-hidden bg-secondary mt-16 pb-4 print:hidden">
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/30 dark:via-teal-500/20 to-transparent" />
@@ -47,10 +50,10 @@ export function Footer() {
                                 <h3 className="text-2xl font-bold text-foreground tracking-tight">CATWAALA</h3>
                             </div>
                             <p className="text-xs font-semibold text-primary uppercase tracking-wider">
-                                Non-Profit Animal Welfare Organization
+                                {t.footer.about}
                             </p>
                             <p className="text-muted-foreground text-sm leading-relaxed">
-                                Giving every street cat a chance at a warm lap and a full bowl. Join our mission to care for the purring population.
+                                {t.footer.desc}
                             </p>
                         </div>
 
@@ -58,7 +61,7 @@ export function Footer() {
                         <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-6">
                             {/* Quick Links */}
                             <div>
-                                <h4 className="font-bold mb-4 text-foreground text-sm uppercase tracking-wider">Quick Links</h4>
+                                <h4 className="font-bold mb-4 text-foreground text-sm uppercase tracking-wider">{t.footer.quick_links}</h4>
                                 <ul className="space-y-2">
                                     {[
                                         { href: "/adopt", label: "Adopt a Cat" },
@@ -77,7 +80,7 @@ export function Footer() {
 
                             {/* Resources */}
                             <div>
-                                <h4 className="font-bold mb-4 text-foreground text-sm uppercase tracking-wider">Resources</h4>
+                                <h4 className="font-bold mb-4 text-foreground text-sm uppercase tracking-wider">{t.footer.resources}</h4>
                                 <ul className="space-y-2">
                                     {[
                                         { href: "/faq", label: "FAQ" },
@@ -106,7 +109,7 @@ export function Footer() {
 
                         {/* Connect */}
                         <div className="col-span-1 md:col-span-1 flex flex-col items-center sm:items-start">
-                            <h4 className="hidden md:block font-bold mb-4 text-foreground text-sm uppercase tracking-wider">Connect</h4>
+                            <h4 className="hidden md:block font-bold mb-4 text-foreground text-sm uppercase tracking-wider">{t.footer.connect}</h4>
                             <div className="flex flex-wrap justify-center sm:justify-start gap-2.5 mb-4">
                                 <a href="https://www.facebook.com/groups/catwaala/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-background border border-border rounded-xl text-muted-foreground hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 shadow-sm" aria-label="Facebook"><Facebook className="w-5 h-5" /></a>
                                 <a href="https://www.instagram.com/catwaala/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-background border border-border rounded-xl text-muted-foreground hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all duration-300 shadow-sm" aria-label="Instagram"><Instagram className="w-5 h-5" /></a>
@@ -122,7 +125,7 @@ export function Footer() {
 
                     {/* Copyright */}
                     <div className="pt-6 border-t border-border/50 flex justify-center text-center text-sm text-muted-foreground">
-                        <p>&copy; 2020–{new Date().getFullYear()} Catwaala. All rights reserved.</p>
+                        <p>&copy; {t.footer.copyright}</p>
                     </div>
                 </div>
             </div>

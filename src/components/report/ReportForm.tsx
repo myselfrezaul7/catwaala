@@ -222,7 +222,6 @@ export function ReportForm() {
                         rel="noopener noreferrer"
                         className="group block relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-blue-600 to-blue-500 p-1 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all cursor-pointer"
                     >
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
                         <div className="relative bg-white/10 backdrop-blur-md rounded-[1.85rem] p-6 flex flex-col sm:flex-row items-center justify-between gap-6 border border-white/20 group-hover:bg-white/20 transition-colors">
                             <div className="flex items-center gap-5">
                                 <div className="w-14 h-14 bg-white text-blue-600 rounded-full flex items-center justify-center shadow-inner flex-shrink-0 group-hover:scale-110 transition-transform">

@@ -76,6 +76,8 @@ export function EmergencyFAB() {
             {/* Main Toggle Button */}
             <motion.button
                 onClick={toggleOpen}
+                aria-label={isOpen ? "Close emergency menu" : "Open emergency menu"}
+                aria-expanded={isOpen}
                 className={`relative z-50 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-300 ${isOpen ? "bg-stone-800 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white"
                     }`}
                 initial={{ scale: 0 }}

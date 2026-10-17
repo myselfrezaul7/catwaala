@@ -31,7 +31,7 @@ export const translations = {
             quick_links: "Quick Links",
             resources: "Care Resources",
             connect: "Connect",
-            copyright: "2025 Catwaala. All rights reserved."
+            copyright: "2026 Catwaala. All rights reserved."
         }
     },
     bn: {
@@ -64,7 +64,7 @@ export const translations = {
             quick_links: "দ্রুত লিংক",
             resources: "যত্ন সম্পদ",
             connect: "যুক্ত হোন",
-            copyright: "২০২৫ ক্যাটওয়ালা। সর্বস্বত্ব সংরক্ষিত।"
+            copyright: "২০২৬ ক্যাটওয়ালা। সর্বস্বত্ব সংরক্ষিত।"
         }
     }
 };

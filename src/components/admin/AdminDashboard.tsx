@@ -153,9 +153,11 @@ export function AdminDashboard() {
                             <p className="text-stone-500">Manage cats, vets, and content.</p>
                         </div>
                         <div className="flex gap-3">
-                            <Button onClick={() => alert("Supabase connnection required for adding data.")} className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl shadow-lg shadow-emerald-500/20">
-                                <Plus className="w-4 h-4" /> Add New
-                            </Button>
+                            <Link href="/admin/cats">
+                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl shadow-lg shadow-emerald-500/20">
+                                    <Plus className="w-4 h-4" /> Manage Cats
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>

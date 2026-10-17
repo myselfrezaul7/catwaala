@@ -57,9 +57,11 @@ export default function ProfilePage() {
                             </h1>
                             <p className="text-stone-400">{user.email}</p>
                             <div className="mt-4 flex flex-col sm:flex-row gap-2">
-                                <Button onClick={() => alert("Coming soon!")} variant="outline" className="rounded-xl border-rose-200 text-rose-600 hover:bg-rose-50/70">
-                                    Edit Profile
-                                </Button>
+                                <Link href="/dashboard">
+                                    <Button variant="outline" className="rounded-xl border-rose-200 text-rose-600 hover:bg-rose-50/70">
+                                        Go to Dashboard & Edit Profile
+                                    </Button>
+                                </Link>
                                 {(userData?.role === "admin" || user.email === "catwaala@gmail.com") && (
                                     <Link href="/admin">
                                         <Button variant="outline" className="rounded-xl border-emerald-200 text-emerald-600 hover:bg-emerald-50/70">

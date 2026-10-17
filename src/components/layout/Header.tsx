@@ -20,9 +20,10 @@ const SEARCH_ROUTES = [
     { title: "Report a Stray", keywords: ["report", "injured", "stray", "found", "emergency"], href: "/report" },
     { title: "Volunteer with Us", keywords: ["volunteer", "help", "join"], href: "/volunteer" },
     { title: "Make a Donation", keywords: ["donate", "money", "bkash", "nagad", "payment"], href: "/donate" },
-    { title: "Community Resources", keywords: ["community", "resources", "events"], href: "/community" },
+    { title: "Cat Care Quiz", keywords: ["quiz", "match", "matchmaker", "personality", "test"], href: "/quiz" },
+    { title: "Community Resources", keywords: ["community", "resources", "events", "guide"], href: "/community" },
     { title: "Cat Care FAQ", keywords: ["faq", "help", "questions", "answers"], href: "/faq" },
-    { title: "Memorial Wall", passedWords: false, keywords: ["memorial", "rainbow bridge", "died", "passed"], href: "/memorial" },
+    { title: "Memorial Wall", keywords: ["memorial", "rainbow bridge", "died", "passed"], href: "/memorial" },
 ];
 
 export function Header() {
@@ -42,7 +43,7 @@ export function Header() {
         if (!searchQuery.trim()) return false;
         const query = searchQuery.toLowerCase();
         return route.title.toLowerCase().includes(query) || route.keywords.some(k => k.includes(query));
-    }).slice(0, 4); // Show top 4 max
+    }).slice(0, 6);
 
     // Handle Enter Key
     const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -51,7 +52,7 @@ export function Header() {
                 handleRouteSelection(filteredRoutes[0].href);
             } else {
                 // Default fallback if no match
-                handleRouteSelection(`/adopt`);
+                handleRouteSelection(`/find-vet`);
             }
         }
         if (e.key === 'Escape') {
@@ -199,6 +200,7 @@ export function Header() {
                     <div className="md:hidden flex items-center gap-1 ml-auto">
                         <button
                             onClick={() => setIsSearchOpen(true)}
+                            aria-label="Open search"
                             className="p-2 text-foreground/80 hover:bg-muted/50 rounded-full transition-colors"
                         >
                             <Search className="w-5 h-5" />
@@ -322,6 +324,7 @@ export function Header() {
                     >
                         <button
                             onClick={() => { setIsSearchOpen(false); setSearchQuery("") }}
+                            aria-label="Close search"
                             className="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-muted transition-colors"
                         >
                             <X className="w-7 h-7 text-muted-foreground" />
@@ -343,49 +346,31 @@ export function Header() {
                             </div>
 
                             {/* Search Results / Suggestions */}
-                            <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground w-full">
-                                {searchQuery ? (
-                                    <div className="flex flex-col sm:flex-row gap-4 w-full">
+                            <div className="mt-8">
+                                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
+                                    {searchQuery.trim() ? "Matching Pages" : "Quick Navigation"}
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-2">
+                                    {(searchQuery.trim() ? filteredRoutes : SEARCH_ROUTES).map((route) => (
                                         <button
+                                            key={route.href}
+                                            type="button"
                                             onClick={() => {
+                                                router.push(route.href);
                                                 setIsSearchOpen(false);
-                                                router.push(`/adopt?query=${encodeURIComponent(searchQuery)}`);
+                                                setSearchQuery("");
                                             }}
-                                            className="flex-1 p-6 rounded-2xl bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all text-left flex items-start gap-4 group"
+                                            className="px-4 py-2 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary border border-border text-sm font-medium transition-colors cursor-pointer"
                                         >
-                                            <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                                🐈
-                                            </div>
-                                            <div>
-                                                <h3 className="font-bold text-foreground text-lg mb-1">Search Adoptions</h3>
-                                                <p className="text-muted-foreground line-clamp-1">Find cats matching "{searchQuery}"</p>
-                                            </div>
+                                            {route.title}
                                         </button>
-
-                                        <button
-                                            onClick={() => {
-                                                setIsSearchOpen(false);
-                                                router.push(`/find-vet?query=${encodeURIComponent(searchQuery)}`);
-                                            }}
-                                            className="flex-1 p-6 rounded-2xl bg-muted/40 hover:bg-muted/80 border border-border transition-all text-left flex items-start gap-4 group"
-                                        >
-                                            <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                                🏥
-                                            </div>
-                                            <div>
-                                                <h3 className="font-bold text-foreground text-lg mb-1">Search Vets</h3>
-                                                <p className="text-muted-foreground line-clamp-1">Find clinics matching "{searchQuery}"</p>
-                                            </div>
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <span>Try searching for:</span>
-                                        <button onClick={() => { setIsSearchOpen(false); router.push('/adopt'); }} className="text-primary hover:underline font-medium">Urgent Adoptions</button>
-                                        <button onClick={() => { setIsSearchOpen(false); router.push('/find-vet'); }} className="text-primary hover:underline font-medium">Vet in Dhaka</button>
-                                        <button onClick={() => { setIsSearchOpen(false); router.push('/volunteer'); }} className="text-primary hover:underline font-medium">Volunteer</button>
-                                    </>
-                                )}
+                                    ))}
+                                    {searchQuery.trim() && filteredRoutes.length === 0 && (
+                                        <p className="text-sm text-muted-foreground">
+                                            No matching page found. Press Enter to browse our Vet Directory.
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </motion.div>

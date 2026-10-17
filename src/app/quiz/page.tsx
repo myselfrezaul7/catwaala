@@ -42,22 +42,28 @@ export default function QuizPage() {
     // Calculate matches based on overlapping tags (memoized to prevent re-shuffling on re-renders)
     const matchedCats = useMemo(() => {
         if (!completed) return [];
-        return cats.map(cat => {
-            const catTags = [
-                cat.goodWithKids ? 'Good with Kids' : 'Quiet Home',
-                cat.gender === 'Female' ? 'Sweet' : 'Playful',
-            ];
-            const score = Math.random();
-            return { ...cat, score };
-        }).sort((a, b) => b.score - a.score).slice(0, 3);
-    }, [completed]);
+        return cats
+            .map((cat) => {
+                const catTags = [
+                    ...(cat.temperamentTags || []),
+                    cat.goodWithKids ? 'Good with Kids' : 'Quiet Home',
+                    cat.age.toLowerCase().includes('month') ? 'Kitten' : 'Adult',
+                ];
+                const matchCount = selectedTags.filter((tag) =>
+                    catTags.some((ct) => ct.toLowerCase() === tag.toLowerCase())
+                ).length;
+                return { ...cat, score: matchCount };
+            })
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 3);
+    }, [completed, selectedTags]);
 
     return (
-        <div className="min-h-screen bg-[#FFFDF8] py-12 md:py-20 px-4 flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="min-h-screen bg-[#FFFDF8] dark:bg-zinc-950 py-12 md:py-20 px-4 flex flex-col items-center justify-center relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-rose-100/40 filter blur-3xl animate-float" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-amber-100/40 filter blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-rose-100/40 dark:bg-rose-900/20 filter blur-3xl animate-float" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-amber-100/40 dark:bg-amber-900/20 filter blur-3xl animate-float" style={{ animationDelay: '2s' }} />
             </div>
 
             <AnimatePresence mode="wait">
@@ -70,14 +76,14 @@ export default function QuizPage() {
                         className="text-center space-y-6"
                     >
                         <div className="relative w-32 h-32 mx-auto">
-                            <div className="absolute inset-0 border-4 border-rose-100 rounded-full" />
+                            <div className="absolute inset-0 border-4 border-rose-100 dark:border-zinc-800 rounded-full" />
                             <div className="absolute inset-0 border-4 border-rose-500 rounded-full border-t-transparent animate-spin" />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <Sparkles className="w-12 h-12 text-rose-500 animate-pulse" />
                             </div>
                         </div>
-                        <h2 className="text-3xl font-bold text-stone-800">Finding your perfect match...</h2>
-                        <p className="text-stone-500">Analyzing compatibility based on {selectedTags.length} factors</p>
+                        <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100">Finding your perfect match...</h2>
+                        <p className="text-stone-500 dark:text-stone-400">Analyzing compatibility based on {selectedTags.length} factors</p>
                     </motion.div>
                 ) : !completed ? (
                     <motion.div
@@ -90,11 +96,11 @@ export default function QuizPage() {
                     >
                         {/* Progress Bar */}
                         <div className="mb-12">
-                            <div className="flex justify-between items-center text-stone-400 text-xs font-bold uppercase tracking-widest mb-3">
+                            <div className="flex justify-between items-center text-stone-400 dark:text-stone-500 text-xs font-bold uppercase tracking-widest mb-3">
                                 <span>Question {currentQuestionIndex + 1} of {QUIZ_QUESTIONS.length}</span>
                                 <span>{Math.round(((currentQuestionIndex) / QUIZ_QUESTIONS.length) * 100)}% Complete</span>
                             </div>
-                            <div className="w-full h-1.5 bg-stone-100 rounded-full overflow-hidden">
+                            <div className="w-full h-1.5 bg-stone-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                                 <motion.div
                                     className="h-full bg-gradient-to-r from-rose-400 to-rose-600 rounded-full"
                                     initial={{ width: 0 }}
@@ -105,8 +111,8 @@ export default function QuizPage() {
                         </div>
 
                         {/* Question Card */}
-                        <div className="glass-card p-6 md:p-12 rounded-[2.5rem] shadow-xl shadow-rose-100/20 border-white/60">
-                            <h1 className="text-3xl md:text-5xl font-bold text-stone-800 mb-12 leading-tight">
+                        <div className="glass-card p-6 md:p-12 rounded-[2.5rem] shadow-xl shadow-rose-100/20 dark:shadow-none border border-white/60 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80">
+                            <h1 className="text-3xl md:text-5xl font-bold text-stone-800 dark:text-stone-100 mb-12 leading-tight">
                                 {currentQuestion.questionText}
                             </h1>
 
@@ -114,15 +120,15 @@ export default function QuizPage() {
                                 {currentQuestion.options.map((option, idx) => (
                                     <motion.button
                                         key={idx}
-                                        whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 241, 242, 0.8)" }}
+                                        whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => handleAnswer(option.tags)}
-                                        className="w-full text-left p-6 rounded-2xl border-2 border-stone-100 hover:border-rose-300 transition-all group bg-white/50 backdrop-blur-sm flex items-center justify-between"
+                                        className="w-full text-left p-6 rounded-2xl border-2 border-stone-100 dark:border-zinc-800 hover:border-rose-300 dark:hover:border-rose-500 transition-all group bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm flex items-center justify-between"
                                     >
-                                        <span className="font-bold text-xl text-stone-600 group-hover:text-rose-600 transition-colors">
+                                        <span className="font-bold text-xl text-stone-600 dark:text-stone-200 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors">
                                             {option.text}
                                         </span>
-                                        <ArrowRight className="w-5 h-5 text-stone-300 group-hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                                        <ArrowRight className="w-5 h-5 text-stone-300 dark:text-stone-600 group-hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                                     </motion.button>
                                 ))}
                             </div>
@@ -140,17 +146,17 @@ export default function QuizPage() {
                                 initial={{ scale: 0 }}
                                 animate={{ scale: 1 }}
                                 transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                                className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-600 shadow-lg shadow-emerald-100"
+                                className="w-20 h-20 bg-emerald-100 dark:bg-emerald-950/40 rounded-full flex items-center justify-center mx-auto text-emerald-600 dark:text-emerald-400 shadow-lg shadow-emerald-100 dark:shadow-none"
                             >
                                 <CheckCircle className="w-10 h-10" />
                             </motion.div>
-                            <h2 className="text-4xl md:text-5xl font-bold text-stone-800">It's a Match! 🎉</h2>
-                            <p className="text-xl text-stone-500 max-w-2xl mx-auto">
+                            <h2 className="text-4xl md:text-5xl font-bold text-stone-800 dark:text-stone-100">It's a Match! 🎉</h2>
+                            <p className="text-xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">
                                 Based on your preferences for <span className="text-rose-500 font-semibold">{selectedTags.slice(0, 3).join(", ")}</span>,
                                 we think you'd love these furballs.
                             </p>
                             <div className="pt-4">
-                                <Button onClick={restartQuiz} variant="outline" className="rounded-full border-stone-200 text-stone-500 hover:border-rose-300 hover:text-rose-600">
+                                <Button onClick={restartQuiz} variant="outline" className="rounded-full border-stone-200 dark:border-zinc-700 text-stone-500 dark:text-stone-400 hover:border-rose-300 hover:text-rose-600">
                                     <RefreshCw className="w-4 h-4 mr-2" /> Start Over
                                 </Button>
                             </div>

@@ -72,46 +72,15 @@ export const SafeOptionalUrlSchema = z
     .nullable();
 
 /**
- * Sanitizes raw string input against stored and reflected XSS:
- * 1. Strips null bytes and non-printable control characters (preserving whitespace/newlines).
- * 2. Strips <script> and <iframe> tags and their contents.
- * 3. Strips dangerous protocol prefixes (javascript:, vbscript:, data:).
- * 4. Strips inline event handlers (\bon\w+\s*=).
- * 5. Safely escapes dangerous characters: &, <, >, ", ', / (&#x2F;) while preserving normal text.
+ * Strips HTML tags and non-printable control characters while preserving
+ * natural punctuation (', ", /, &) to prevent double-escaping in React JSX.
  */
-export function sanitizeInput(str: string): string {
-    if (!str || typeof str !== "string") return "";
-
-    let cleaned = str;
-
-    // 1. Strip null bytes and non-printable control characters (preserve \t 0x09, \n 0x0A, \r 0x0D)
-    cleaned = cleaned.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, "");
-
-    // 2. Strip <script> and <iframe> tags and their contents (including nested/unclosed variants)
-    let prev = "";
-    do {
-        prev = cleaned;
-        cleaned = cleaned
-            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
-            .replace(/<script\b[^>]*\/?>/gi, "")
-            .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, "")
-            .replace(/<iframe\b[^>]*\/?>/gi, "");
-    } while (cleaned !== prev);
-
-    // 3. Strip dangerous protocol prefixes (javascript:, vbscript:, data:)
-    cleaned = cleaned.replace(/(?:javascript|vbscript|data)\s*(?::|&#0*58;|&#x0*3a;|&colon;)/gi, "");
-
-    // 4. Strip inline event handlers (\bon\w+\s*=)
-    cleaned = cleaned.replace(/\bon\w+\s*=/gi, "");
-
-    // 5. Safely escape dangerous characters: &, <, >, ", ', / (&#x2F;)
-    return cleaned
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;")
-        .replace(/\//g, "&#x2F;");
+export function sanitizeInput(input: string): string {
+    if (!input || typeof input !== "string") return '';
+    return input
+        .replace(/<[^>]*>?/gm, '') // Strip HTML tags
+        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '') // Strip control chars
+        .trim();
 }
 
 // ==========================================

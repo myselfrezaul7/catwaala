@@ -49,7 +49,7 @@ export function CatDetailClient({ cat }: CatDetailProps) {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFFDF8] pb-32">
+        <div className="min-h-screen bg-[#FFFDF8] dark:bg-zinc-950 text-stone-800 dark:text-stone-100 pb-44 md:pb-32">
             {/* Top Navigation Bar */}
             <div className="relative w-full z-20 py-3">
                 <div className="container mx-auto px-4 flex justify-between items-center">
@@ -59,12 +59,13 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                         </Button>
                     </Link>
                     <div className="flex gap-2">
-                        <Button variant="ghost" size="icon" onClick={handleShare} className="rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-foreground backdrop-blur-md">
+                        <Button variant="ghost" size="icon" aria-label={`Share ${cat.name}`} onClick={handleShare} className="rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-foreground backdrop-blur-md">
                             <Share2 className="w-5 h-5" />
                         </Button>
                         <Button
                             variant="ghost"
                             size="icon"
+                            aria-label={favorite ? `Remove ${cat.name} from favorites` : `Save ${cat.name} to favorites`}
                             onClick={() => toggleFavorite(cat.id)}
                             className={`rounded-full transition-all bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-foreground backdrop-blur-md ${favorite ? "text-rose-500" : ""}`}
                         >
@@ -92,7 +93,7 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="w-full max-w-4xl glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl bg-white/70 border border-white/40 shadow-2xl shadow-stone-900/10"
+                        className="w-full max-w-4xl glass-card rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl bg-white/70 dark:bg-zinc-900/80 border border-white/40 dark:border-zinc-800 shadow-2xl shadow-stone-900/10"
                     >
                         {/* Decorative background blob */}
                         <div className="absolute -top-20 -right-20 w-64 h-64 bg-rose-200/40 rounded-full blur-3xl pointer-events-none" />
@@ -108,7 +109,7 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                                         <MapPin className="w-4 h-4 text-emerald-500" /> {cat.location}
                                     </span>
                                 </div>
-                                <h1 className="text-5xl md:text-7xl font-bold text-stone-800 tracking-tight leading-none mb-2">
+                                <h1 className="text-5xl md:text-7xl font-bold text-stone-800 dark:text-stone-100 tracking-tight leading-none mb-2">
                                     {cat.name}
                                 </h1>
                                 <p className="text-lg md:text-xl text-stone-500 font-medium">{cat.breed} • {cat.gender}</p>
@@ -157,16 +158,16 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white rounded-3xl p-8 shadow-sm border border-stone-100 relative overflow-hidden"
+                            className="bg-white dark:bg-zinc-900 rounded-3xl p-8 shadow-sm border border-stone-100 dark:border-zinc-800 relative overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-[100px] -z-0" />
-                            <h2 className="text-3xl font-bold text-stone-800 mb-6 flex items-center gap-3 relative z-10">
-                                <span className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 dark:bg-amber-950/20 rounded-bl-[100px] -z-0" />
+                            <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-6 flex items-center gap-3 relative z-10">
+                                <span className="w-10 h-10 bg-amber-100 dark:bg-amber-900/40 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400">
                                     <Info className="w-6 h-6" />
                                 </span>
                                 Meet {cat.name}
                             </h2>
-                            <div className="prose prose-stone prose-lg text-stone-600 leading-relaxed relative z-10">
+                            <div className="prose prose-stone prose-lg text-stone-600 dark:text-stone-300 leading-relaxed relative z-10">
                                 <p className="mb-4 first-letter:text-5xl first-letter:font-bold first-letter:text-rose-500 first-letter:mr-3 first-letter:float-left">
                                     {cat.description}
                                 </p>
@@ -193,7 +194,7 @@ export function CatDetailClient({ cat }: CatDetailProps) {
                             viewport={{ once: true }}
                             transition={{ delay: 0.1 }}
                         >
-                            <h3 className="text-2xl font-bold text-stone-800 mb-6">Medical History</h3>
+                            <h3 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-6">Medical History</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <MedicalCard
                                     active={cat.attributes.vaccinated}
@@ -283,12 +284,12 @@ export function CatDetailClient({ cat }: CatDetailProps) {
             </div>
 
             {/* Mobile Sticky CTA */}
-            <div className="fixed bottom-0 left-0 w-full bg-white border-t border-stone-200 p-4 md:hidden z-50 flex items-center gap-4 safe-area-pb">
+            <div className="fixed bottom-20 left-4 right-4 rounded-2xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-stone-200 dark:border-zinc-800 p-3 md:hidden z-40 flex items-center gap-4 shadow-xl">
                 <div className="flex-1">
-                    <p className="text-xs font-bold text-stone-400 uppercase tracking-wider">Adopting</p>
-                    <p className="font-bold text-lg text-stone-800 leading-none">{cat.name}</p>
+                    <p className="text-xs font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wider">Adopting</p>
+                    <p className="font-bold text-lg text-stone-800 dark:text-stone-100 leading-none">{cat.name}</p>
                 </div>
-                <Button size="lg" className="rounded-xl bg-rose-600 hover:bg-rose-700 text-white shadow-lg shadow-rose-500/30 px-8" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>
+                <Button size="lg" className="rounded-xl bg-rose-600 hover:bg-rose-700 text-white shadow-lg shadow-rose-500/30 px-6 sm:px-8" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>
                     Adopt Me <Heart className="w-4 h-4 ml-2 fill-white" />
                 </Button>
             </div>

@@ -34,11 +34,17 @@ export const adaptCatToCard = (cat: any) => {
         name: cat.name,
         age: ageDisplay,
         gender: cat.gender,
-        breed: cat.breed || "Mixed Breed",
+        breed: cat.breed || "Deshi Mix",
         location: cat.location,
         imageUrl: image,
         description: cat.description || "No description available",
+        tag: (cat as any).tag || (cat.status && cat.status !== "Available" ? cat.status : undefined),
+        temperamentTags: cat.temperament || (cat as any).temperamentTags || [],
         attributes: attributesList,
-        status: cat.status || "Available"
+        status: cat.status || "Available",
+        vaccinated: cat.attributes?.vaccinated ?? (cat as any).vaccinated ?? false,
+        neutered: cat.attributes?.neutered ?? (cat as any).neutered ?? false,
+        goodWithKids: cat.attributes?.goodWithKids ?? (cat as any).goodWithKids ?? false,
+        medicalNotes: (cat as any).medical_history || (cat as any).medicalNotes || undefined,
     };
 };

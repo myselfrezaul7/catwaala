@@ -72,24 +72,24 @@ export function AdoptionForm({ catName, catId }: { catName: string; catId?: stri
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4 glass-card p-8 rounded-[2rem]">
-            <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-4 glass-card p-5 sm:p-8 rounded-[2rem]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-bold text-stone-700">Name</label>
-                    <input name="name" required type="text" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="Your Name" />
+                    <label htmlFor="adopt-name" className="text-sm font-bold text-stone-700">Name</label>
+                    <input id="adopt-name" name="name" required type="text" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="Your Name" />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-bold text-stone-700">Phone</label>
-                    <input name="phone" required type="tel" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="017..." />
+                    <label htmlFor="adopt-phone" className="text-sm font-bold text-stone-700">Phone</label>
+                    <input id="adopt-phone" name="phone" required type="tel" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="017..." />
                 </div>
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-bold text-stone-700">Email (Optional)</label>
-                <input name="email" type="email" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="you@example.com" />
+                <label htmlFor="adopt-email" className="text-sm font-bold text-stone-700">Email (Optional)</label>
+                <input id="adopt-email" name="email" type="email" className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none placeholder:text-stone-400 text-stone-700" placeholder="you@example.com" />
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-bold text-stone-700">Why do you want to adopt {catName}?</label>
-                <textarea name="message" required className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none min-h-[100px] placeholder:text-stone-400 text-stone-700" placeholder="Tell us about your home and experience with cats..." />
+                <label htmlFor="adopt-message" className="text-sm font-bold text-stone-700">Why do you want to adopt {catName}?</label>
+                <textarea id="adopt-message" name="message" required className="w-full p-3 rounded-xl border border-amber-100 bg-white/60 focus:ring-2 focus:ring-rose-500 outline-none min-h-[100px] placeholder:text-stone-400 text-stone-700" placeholder="Tell us about your home and experience with cats..." />
             </div>
             <div className="hidden">
                 {/* HoneyPot for spam protection */}

@@ -136,7 +136,7 @@ export const MOCK_VET_CLINICS: VetClinic[] = [
         hours: '9 AM - 5 PM', district: 'Chattogram', rating: 3.9, reviewCount: 120, services: ['Government', 'Low Cost']
     },
     {
-        id: 203, name: 'Dr. Bibek Chandra (Private)',
+        id: 213, name: 'Dr. Bibek Chandra (Private)',
         address: 'Chittagong',
         phone: '01711057533',
         mapUrl: 'https://www.google.com/maps/search/?api=1&query=Veterinary+Chittagong',

@@ -93,13 +93,13 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                     <Plus className="w-5 h-5" /> Add a Tribute
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] bg-white/95 backdrop-blur-xl border-white shadow-2xl rounded-[2rem] p-0 overflow-hidden">
-                <div className="bg-gradient-to-r from-rose-50 to-orange-50 p-6 border-b border-rose-100">
+            <DialogContent className="sm:max-w-[500px] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border-white dark:border-zinc-800 shadow-2xl rounded-[2rem] p-0 overflow-hidden">
+                <div className="bg-gradient-to-r from-rose-50 to-orange-50 dark:from-zinc-900 dark:to-zinc-800 p-6 border-b border-rose-100 dark:border-zinc-800">
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold font-heading flex items-center gap-2 text-stone-800">
+                        <DialogTitle className="text-2xl font-bold font-heading flex items-center gap-2 text-stone-800 dark:text-stone-100">
                             <Heart className="w-6 h-6 text-rose-500 fill-rose-500" /> Remember a Friend
                         </DialogTitle>
-                        <DialogDescription className="text-stone-500 font-medium">
+                        <DialogDescription className="text-stone-500 dark:text-stone-400 font-medium">
                             Share a photo and a few words to honor your beloved cat.
                         </DialogDescription>
                     </DialogHeader>
@@ -108,7 +108,7 @@ export function MemorialModal({ onAddTribute }: MemorialModalProps) {
                 <div className="p-6">
                     {user ? (
                         <form onSubmit={handleSubmit} className="space-y-5">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="petName" className="text-stone-700 font-bold">Pet&apos;s Name</Label>
                                     <Input

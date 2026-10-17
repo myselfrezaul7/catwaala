@@ -145,6 +145,7 @@ export function VetFinder() {
                         <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground/80 w-5 h-5 group-focus-within:text-emerald-500 transition-colors" />
                         <input
                             type="text"
+                            aria-label="Search clinics by name, area, or service"
                             placeholder="Search by clinic name, area, or service..."
                             className="w-full pl-14 pr-12 py-4 rounded-2xl border-2 border-transparent bg-muted/50 dark:bg-zinc-800/50 focus:bg-white dark:focus:bg-zinc-900 focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all text-lg shadow-inner"
                             value={searchQuery}
@@ -153,6 +154,7 @@ export function VetFinder() {
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery("")}
+                                aria-label="Clear search query"
                                 className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-all"
                             >
                                 <X className="w-5 h-5" />
@@ -170,6 +172,7 @@ export function VetFinder() {
                             <div className="relative">
                                 <select
                                     value={selectedDistrict}
+                                    aria-label="Filter clinics by district"
                                     onChange={(e) => setSelectedDistrict(e.target.value)}
                                     className="w-full appearance-none p-3 pl-4 pr-10 rounded-xl border border-border dark:border-zinc-700 bg-white dark:bg-zinc-900 focus:ring-2 focus:ring-emerald-500 outline-none transition-all cursor-pointer hover:border-emerald-500/50"
                                 >

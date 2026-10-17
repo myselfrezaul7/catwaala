@@ -447,14 +447,14 @@ export default function DashboardPage() {
                                                     {i + 1}
                                                 </span>
                                                 <div className="w-8 h-8 rounded-full overflow-hidden bg-white dark:bg-stone-800 shrink-0 border border-stone-200 dark:border-stone-700 hidden sm:block">
-                                                    {u.photoURL ? (
+                                                    {u.photoURL || u.avatar || u.avatar_url ? (
                                                         // eslint-disable-next-line @next/next/no-img-element
-                                                        <img src={u.photoURL} alt="" className="w-full h-full object-cover" />
+                                                        <img src={u.photoURL || u.avatar || u.avatar_url} alt={u.full_name || u.displayName || u.name || "Community Member"} className="w-full h-full object-cover" />
                                                     ) : (
-                                                        <div className="w-full h-full flex items-center justify-center text-xs font-bold text-stone-500">{getInitials(u.name || 'U')}</div>
+                                                        <div className="w-full h-full flex items-center justify-center text-xs font-bold text-stone-500">{getInitials(u.full_name || u.displayName || u.name || 'U')}</div>
                                                     )}
                                                 </div>
-                                                <span className={`font-bold ${u.id === user.uid ? 'text-rose-600 dark:text-rose-400' : 'text-stone-700 dark:text-stone-300'}`}>{u.id === user.uid ? 'You' : u.name}</span>
+                                                <span className={`font-bold ${u.id === user.uid ? 'text-rose-600 dark:text-rose-400' : 'text-stone-700 dark:text-stone-300'}`}>{u.id === user.uid ? 'You' : (u.full_name || u.displayName || u.name || "Community Member")}</span>
                                             </div>
                                             <span className="font-bold text-stone-500 dark:text-stone-400 text-sm">{u.points || 0} pts</span>
                                         </div>

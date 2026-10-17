@@ -63,7 +63,7 @@ export function MemorialList() {
     };
 
     return (
-        <div className="min-h-screen pb-24 relative overflow-hidden bg-[#FFFDF8]">
+        <div className="min-h-screen pb-24 relative overflow-hidden bg-[#FFFDF8] dark:bg-zinc-950">
             {/* Background elements */}
             <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-rose-100/30 to-transparent pointer-events-none" />
             <div className="absolute top-20 left-10 text-rose-200/40 animate-pulse delay-700">
@@ -78,14 +78,14 @@ export function MemorialList() {
                 <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="inline-block p-4 rounded-full bg-white shadow-xl shadow-rose-100/50 mb-6 border border-rose-100"
+                    className="inline-block p-4 rounded-full bg-white dark:bg-zinc-900 shadow-xl shadow-rose-100/50 dark:shadow-rose-950/20 mb-6 border border-rose-100 dark:border-zinc-800"
                 >
                     <Heart className="fill-rose-500 text-rose-500 w-8 h-8" />
                 </motion.div>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading text-stone-800 tracking-tight">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading text-stone-800 dark:text-stone-100 tracking-tight">
                     The Memorial Wall 🕊️
                 </h1>
-                <p className="text-xl text-stone-500 max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
+                <p className="text-xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
                     A sanctuary to honor the beloved feline companions who have crossed the rainbow bridge. Gone but never forgotten.
                 </p>
 
@@ -115,18 +115,19 @@ export function MemorialList() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.5, delay: (index % 10) * 0.1 }}
-                                className="group glass-card rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-rose-100/40 transition-all duration-500 hover:-translate-y-2 bg-white/60 backdrop-blur-md border border-white/60 mb-8 break-inside-avoid"
+                                className="group glass-card rounded-[2rem] overflow-hidden hover:shadow-2xl hover:shadow-rose-100/40 dark:hover:shadow-rose-950/20 transition-all duration-500 hover:-translate-y-2 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md border border-white/60 dark:border-zinc-800 mb-8 break-inside-avoid"
                             >
-                                <div className="relative aspect-square overflow-hidden bg-rose-50">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <div className="relative aspect-square overflow-hidden bg-rose-50 dark:bg-zinc-800">
                                     {memorial.image_url ? (
-                                        <img
+                                        <Image
                                             src={memorial.image_url}
                                             alt={memorial.pet_name}
-                                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                     ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-rose-200">
+                                        <div className="w-full h-full flex items-center justify-center text-rose-200 dark:text-zinc-700">
                                             <Heart className="w-16 h-16 fill-current" />
                                         </div>
                                     )}
@@ -139,13 +140,13 @@ export function MemorialList() {
 
                                 <div className="p-6 relative">
                                     <div className="absolute -top-8 left-6">
-                                        <div className="bg-white/95 backdrop-blur-md px-6 py-2 rounded-2xl shadow-lg border border-white/60 font-heading text-2xl font-bold text-stone-800 transform group-hover:scale-105 transition-transform origin-bottom-left">
+                                        <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md px-6 py-2 rounded-2xl shadow-lg border border-white/60 dark:border-zinc-800 font-heading text-2xl font-bold text-stone-800 dark:text-stone-100 transform group-hover:scale-105 transition-transform origin-bottom-left">
                                             {memorial.pet_name}
                                         </div>
                                     </div>
 
                                     <div className="mt-6 space-y-4">
-                                        <p className="text-stone-600 italic leading-relaxed font-medium font-serif text-lg">
+                                        <p className="text-stone-600 dark:text-stone-300 italic leading-relaxed font-medium font-serif text-lg">
                                             "{memorial.tribute}"
                                         </p>
                                         <div className="flex justify-between items-center border-t border-amber-100/50 pt-4">

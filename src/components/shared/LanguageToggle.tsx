@@ -10,6 +10,7 @@ export function LanguageToggle() {
         <Button
             variant="ghost"
             size="sm"
+            aria-label={language === "en" ? "Switch language to Bengali" : "Switch language to English"}
             onClick={() => setLanguage(language === 'en' ? 'bn' : 'en')}
             className="w-9 h-9 rounded-full font-bold text-xs bg-white/50 dark:bg-stone-800/50 border border-white/20 dark:border-stone-700/50 hover:bg-white/80 dark:hover:bg-stone-800 transition-all duration-300 flex items-center justify-center p-0"
         >

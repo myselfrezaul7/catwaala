@@ -99,7 +99,24 @@ export default function ResourcePage({ params }: PageProps) {
                 {/* Main Content Area */}
                 <div className="bg-white dark:bg-stone-900 rounded-[2.5rem] p-6 md:p-16 shadow-xl border border-rose-100/50 dark:border-stone-800 flex-1 w-full lg:max-w-4xl">
                     <div className="prose prose-lg md:prose-xl dark:prose-invert prose-rose mx-auto dark:text-stone-300 text-stone-700 max-w-none">
-                        <ReactMarkdown>
+                        <ReactMarkdown
+                            components={{
+                                h1: ({ node, ...props }) => <h2 className="text-2xl md:text-3xl font-bold font-heading text-stone-900 dark:text-stone-100 mt-8 mb-4" {...props} />,
+                                h2: ({ node, children, ...props }) => {
+                                    const text = String(children);
+                                    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                                    return (
+                                        <h2
+                                            id={id}
+                                            className="scroll-mt-28 text-xl md:text-2xl font-bold text-stone-800 dark:text-stone-200 mt-10 mb-4 flex items-center gap-2 border-b border-stone-200/60 dark:border-zinc-800 pb-2"
+                                            {...props}
+                                        >
+                                            {children}
+                                        </h2>
+                                    );
+                                },
+                            }}
+                        >
                             {resource.content}
                         </ReactMarkdown>
                     </div>
@@ -130,12 +147,20 @@ export default function ResourcePage({ params }: PageProps) {
                         <div className="glass-card bg-white/60 dark:bg-stone-900/60 p-6 rounded-3xl border border-rose-100/50 dark:border-stone-800 shadow-sm">
                             <h3 className="font-bold text-stone-800 dark:text-stone-200 mb-4 text-sm uppercase tracking-wider">In this Guide</h3>
                             <ul className="space-y-3 text-sm">
-                                {headings.map((heading, i) => (
-                                    <li key={i} className="text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 transition-colors cursor-pointer flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-rose-200 dark:bg-stone-700" />
-                                        {heading}
-                                    </li>
-                                ))}
+                                {headings.map((heading, i) => {
+                                    const id = heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                                    return (
+                                        <li key={i}>
+                                            <a
+                                                href={`#${id}`}
+                                                className="text-stone-500 dark:text-stone-400 hover:text-rose-500 dark:hover:text-rose-400 transition-colors flex items-start gap-2.5 leading-snug"
+                                            >
+                                                <div className="w-1.5 h-1.5 rounded-full bg-rose-200 dark:bg-stone-700 mt-2 shrink-0" />
+                                                <span>{heading}</span>
+                                            </a>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     )}

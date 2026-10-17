@@ -56,6 +56,8 @@ export function MobileBottomNav({ onMoreTap, isMenuOpen }: MobileBottomNavProps)
                 {/* More / Menu Tab */}
                 <button
                     onClick={onMoreTap}
+                    aria-label="More navigation options"
+                    aria-expanded={isMenuOpen}
                     className="flex flex-col items-center justify-center flex-1 h-12 relative group"
                 >
                     <div className={`absolute inset-0 rounded-xl transition-colors duration-300 ${isMenuOpen ? 'bg-primary/20' : 'group-hover:bg-muted/50'}`} />

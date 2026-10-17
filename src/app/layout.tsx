@@ -99,8 +99,11 @@ export default function RootLayout({
                             sameAs: ["https://twitter.com/catwaala"],
                             contactPoint: {
                                 "@type": "ContactPoint",
-                                telephone: "+880-123-456789",
+                                email: "hello@catwaala.com",
+                                url: "https://catwaala.com/report",
                                 contactType: "customer service",
+                                areaServed: "BD",
+                                availableLanguage: ["en", "bn"],
                             },
                         }),
                     }}

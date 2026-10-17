@@ -157,10 +157,11 @@ export function VolunteerForm() {
                             )}
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Full Name</label>
+                                <label htmlFor="vol-name" className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Full Name</label>
                                 <div className="relative">
                                     <User className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
+                                        id="vol-name"
                                         {...register("name", { required: "Name is required" })}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium"
                                         placeholder="Enter your full name"
@@ -170,10 +171,11 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Email Address</label>
+                                <label htmlFor="vol-email" className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Email Address</label>
                                 <div className="relative">
                                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
+                                        id="vol-email"
                                         {...register("email", {
                                             required: "Email is required",
                                             pattern: {
@@ -189,10 +191,11 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Phone Number <span className="text-red-500 font-normal">*</span></label>
+                                <label htmlFor="vol-phone" className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Phone Number <span className="text-red-500 font-normal">*</span></label>
                                 <div className="relative">
                                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 w-5 h-5" />
                                     <input
+                                        id="vol-phone"
                                         {...register("phone", { required: "Phone number is required", minLength: { value: 11, message: "Min 11 digits" } })}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium"
                                         placeholder="+880 1XXX XXXXXX"
@@ -202,9 +205,10 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">I want to help with...</label>
+                                <label htmlFor="vol-interest" className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">I want to help with...</label>
                                 <div className="relative">
                                     <select
+                                        id="vol-interest"
                                         {...register("interest")}
                                         className="w-full pl-4 pr-10 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all text-stone-800 dark:text-white font-medium appearance-none cursor-pointer hover:bg-white/80 dark:hover:bg-zinc-800/80"
                                     >
@@ -220,10 +224,11 @@ export function VolunteerForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Message <span className="text-stone-400 font-normal">(Optional)</span></label>
+                                <label htmlFor="vol-message" className="block text-sm font-bold text-stone-700 dark:text-stone-300 ml-1">Message <span className="text-stone-400 font-normal">(Optional)</span></label>
                                 <div className="relative">
                                     <MessageSquare className="absolute left-4 top-5 text-stone-400 w-5 h-5" />
                                     <textarea
+                                        id="vol-message"
                                         {...register("message")}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl border border-stone-200 dark:border-zinc-700 bg-white/50 dark:bg-zinc-800/50 focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-stone-400 text-stone-800 dark:text-white font-medium min-h-[120px] resize-none"
                                         placeholder="Tell us a bit about yourself and why you'd like to join..."

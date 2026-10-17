@@ -1,5 +1,3 @@
-"use client";
-
 import { Hero } from "@/components/home/Hero";
 import { SuccessStories } from "@/components/home/SuccessStories";
 import { PromoPetBhai } from "@/components/home/PromoPetBhai";
@@ -7,7 +5,6 @@ import { HomepageStats } from "@/components/home/HomepageStats";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Sparkles, PawPrint, Heart } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function Home() {
     return (
@@ -23,13 +20,7 @@ export default function Home() {
             <section className="py-8 md:py-16 relative overflow-hidden">
                 <div className="container mx-auto px-4 relative z-10">
                     {/* Companion Chip */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                        className="flex justify-center mb-4"
-                    >
+                    <div className="flex justify-center mb-4">
                         <a href="https://kuttawaala.com" target="_blank" rel="noopener noreferrer"
                            className="group flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-800/30 hover:border-amber-300 dark:hover:border-amber-700 transition-all shadow-sm hover:shadow-md">
                             <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0 border border-amber-200/50 dark:border-amber-800/50 text-xl sm:text-2xl group-hover:scale-105 transition-transform">
@@ -43,7 +34,7 @@ export default function Home() {
                                 </span>
                             </div>
                         </a>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -56,12 +47,7 @@ export default function Home() {
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-                    <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                    >
+                    <div>
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-rose-100/80 dark:bg-rose-900/30 mb-8">
                             <Sparkles className="w-8 h-8 text-rose-500" />
                         </div>
@@ -72,7 +58,7 @@ export default function Home() {
                         <p className="text-xl text-stone-500 dark:text-stone-400 mb-16 leading-relaxed max-w-2xl mx-auto">
                             We are dedicated to improving the lives of street cats in Bangladesh through rescue, rehabilitation, and adoption programs.
                         </p>
-                    </motion.div>
+                    </div>
 
                     {/* Stats Cards - Dynamic from Firestore */}
                     <HomepageStats />
@@ -92,23 +78,15 @@ export default function Home() {
                         {/* Animated Gradient Border Wrapper */}
                         <div className="absolute -inset-1 bg-gradient-to-r from-rose-400 via-teal-400 to-amber-400 rounded-[2.5rem] blur-md opacity-30 group-hover:opacity-60 transition duration-1000 animate-gradient-xy"></div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: "easeOut" }}
-                            viewport={{ once: true, margin: "-50px" }}
+                        <div
                             className="relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-16 text-center shadow-xl border border-white/50 dark:border-zinc-800/50"
                         >
 
-                            <motion.div 
-                                initial={{ scale: 0.5 }} 
-                                whileInView={{ scale: [1, 1.2, 1] }} 
-                                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                                viewport={{ once: true }}
+                            <div 
                                 className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-gradient-to-br from-rose-100 to-rose-50 dark:from-rose-900/40 dark:to-rose-800/20 mb-6 shadow-inner"
                             >
                                 <Heart className="w-8 h-8 text-rose-500" />
-                            </motion.div>
+                            </div>
 
                             <h2 className="text-3xl md:text-5xl font-bold font-heading text-stone-800 dark:text-white mb-6 leading-tight">
                                 Ready to Change a Life?
@@ -143,7 +121,7 @@ export default function Home() {
                                     </Button>
                                 </Link>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>

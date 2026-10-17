@@ -2,25 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { Heart, ArrowRight, AlertCircle } from "lucide-react";
+import { ArrowRight, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RemoteConfigService } from "@/services/RemoteConfigService";
-
-const HeroCatCanvas = dynamic(() => import("@/components/3d/HeroCatCanvas"), {
-    ssr: false,
-    loading: () => (
-        <Image
-            src="/assets/hero-cat.jpg"
-            alt="Small native Bangladeshi stray cat"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority
-        />
-    ),
-});
 
 export function Hero() {
     return (
@@ -82,7 +67,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                        className="mt-8 md:mt-12 flex justify-start"
+                        className="mt-8 md:mt-12 flex justify-center lg:justify-start"
                     >
                         <a
                             href="https://www.kuttawaala.com"
@@ -101,7 +86,7 @@ export function Hero() {
                                 <div className="absolute inset-y-0 right-0 w-1/2 bg-amber-100 dark:bg-amber-900/40 flex justify-start items-center pl-1 transition-colors duration-300">
                                     <span className="text-[12px] opacity-70 group-hover:-rotate-180 transition-transform duration-500">🐕</span>
                                 </div>
-                                <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-200 dark:bg-zinc-700 z-10" />
+                                <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-200 dark:border-zinc-700 z-10" />
                             </div>
 
                             <div className="relative z-10 flex flex-col justify-center">
@@ -115,34 +100,46 @@ export function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Hero Image */}
+                {/* Right Column — Subtle & Clean Stray Newborn Kitten Portrait */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative order-1 lg:order-2 flex justify-center"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+                    className="order-1 lg:order-2 relative"
                 >
-                    <div className="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[200px] overflow-hidden border-[8px] border-background shadow-2xl bg-secondary flex items-center justify-center isolate">
-                        {/* Decorative ring */}
-                        <div className="absolute inset-0 rounded-t-full rounded-b-[200px] border border-border/80 z-10 pointer-events-none" />
-                        <HeroCatCanvas />
+                    <div className="relative mx-auto max-w-md lg:max-w-none">
+                        {/* Subtle warm ambient halo */}
+                        <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-tr from-amber-500/10 via-rose-500/5 to-transparent blur-2xl pointer-events-none" />
 
-                        {/* Floating badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.5 }}
-                            viewport={{ once: true }}
-                            className="absolute bottom-6 sm:bottom-20 left-4 sm:-left-6 bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md p-2.5 sm:p-4 rounded-full sm:rounded-2xl shadow-xl flex items-center gap-2 sm:gap-3 z-20"
-                        >
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-rose-100 dark:bg-rose-900/30 rounded-full flex items-center justify-center text-rose-500 shrink-0">
-                                <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                        {/* Clean framed image container */}
+                        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-stone-100 dark:bg-zinc-900 border border-stone-200/80 dark:border-zinc-800/80 shadow-[0_20px_50px_rgba(28,25,23,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+                            <Image
+                                src="/assets/hero-newborn-kitten.webp"
+                                alt="Tiny stray newborn kitten rescued in Dhaka"
+                                fill
+                                priority
+                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 520px"
+                                className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
+
+                            {/* Minimal, clean bottom caption pill */}
+                            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md px-4 py-3 border border-white/60 dark:border-zinc-800 shadow-sm">
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 shrink-0" />
+                                    <div className="truncate">
+                                        <p className="text-xs font-bold text-stone-800 dark:text-stone-100 truncate">Every fragile life matters</p>
+                                        <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">Newborn street rescue • Dhaka, BD</p>
+                                    </div>
+                                </div>
+                                <Link
+                                    href="/adopt"
+                                    className="text-xs font-bold text-primary hover:underline shrink-0"
+                                >
+                                    Foster / Adopt →
+                                </Link>
                             </div>
-                            <div className="pr-2 sm:pr-0 flex items-center gap-2 sm:block">
-                                <p className="font-bold text-sm">3,500+ Rescued</p>
-                                <p className="text-xs text-stone-500 dark:text-stone-400 hidden sm:block">Since 2020</p>
-                            </div>
-                        </motion.div>
+                        </div>
                     </div>
                 </motion.div>
             </div>
