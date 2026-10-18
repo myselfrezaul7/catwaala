@@ -12,6 +12,10 @@ export function friendlyAuthMessage(code: string): string {
         'auth/too-many-requests': 'Too many attempts. Please verify you are human or try again later.',
         'auth/network-request-failed': 'Network error. Please check your connection.',
         'auth/popup-closed-by-user': 'Sign-in was cancelled.',
+        'auth/popup-blocked': 'Sign-in popup was blocked by your browser. Please allow popups or try again.',
+        'auth/cancelled-popup-request': 'Sign-in request was cancelled.',
+        'auth/unauthorized-domain': 'This domain is not authorized for Google sign-in. Please contact admin.',
+        'auth/operation-not-allowed': 'Google sign-in is not enabled for this project.',
         'auth/user-disabled': 'This account has been disabled. Please contact support.',
         'auth/invalid-email': 'Please enter a valid email address.'
     };

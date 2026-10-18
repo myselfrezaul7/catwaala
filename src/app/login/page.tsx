@@ -21,6 +21,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [isGoogleLoading, setIsGoogleLoading] = useState(false);
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
     useEffect(() => {
@@ -57,11 +58,17 @@ export default function LoginPage() {
     };
 
     const handleGoogleLogin = async () => {
+        setIsGoogleLoading(true);
         try {
             await signInWithGoogle();
+            toast.success("Welcome!");
         } catch (error: any) {
             console.error(error);
-            toast.error(friendlyAuthMessage(error.code));
+            if (error?.code !== "auth/popup-closed-by-user") {
+                toast.error(friendlyAuthMessage(error?.code));
+            }
+        } finally {
+            setIsGoogleLoading(false);
         }
     };
 
@@ -85,7 +92,7 @@ export default function LoginPage() {
 
 
                 {/* Login Card */}
-                <div className="glass-card dark:bg-zinc-900/60 dark:border-zinc-800 rounded-[2.5rem] p-8 md:p-10 border border-white/60 shadow-2xl shadow-rose-100/50 dark:shadow-none backdrop-blur-xl bg-white/60 relative z-10">
+                <div className="glass-card dark:bg-zinc-900/60 dark:border-zinc-800 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 border border-white/60 shadow-2xl shadow-rose-100/50 dark:shadow-none backdrop-blur-xl bg-white/60 relative z-10">
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold mb-2 text-stone-800 dark:text-stone-100 tracking-tight">
                             {isSignUp ? "Create Account" : "Welcome Back"}
@@ -146,12 +153,14 @@ export default function LoginPage() {
                             </div>
                         </div>
 
-                        <div className="flex justify-center my-4 overflow-hidden max-w-full">
-                            <ReCAPTCHA
-                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                                onChange={setCaptchaValue}
-                                theme="light"
-                            />
+                        <div className="flex justify-center my-4 w-full overflow-hidden">
+                            <div className="origin-center scale-[0.86] sm:scale-100">
+                                <ReCAPTCHA
+                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                                    onChange={setCaptchaValue}
+                                    theme="light"
+                                />
+                            </div>
                         </div>
 
                         <Button
@@ -180,12 +189,20 @@ export default function LoginPage() {
                     </div>
 
                     <Button
+                        type="button"
                         onClick={handleGoogleLogin}
+                        disabled={isLoading || isGoogleLoading}
                         variant="outline"
                         className="w-full h-12 text-base bg-white dark:bg-stone-800 hover:bg-stone-50 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 border-stone-200 dark:border-stone-700 flex items-center justify-center gap-3 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 font-medium"
                     >
-                        <FcGoogle className="w-5 h-5" />
-                        Google
+                        {isGoogleLoading ? (
+                            <Loader2 className="w-5 h-5 animate-spin text-stone-500" />
+                        ) : (
+                            <>
+                                <FcGoogle className="w-5 h-5" />
+                                Google
+                            </>
+                        )}
                     </Button>
 
                     <div className="mt-8 text-center">

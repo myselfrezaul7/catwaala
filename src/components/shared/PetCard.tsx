@@ -32,7 +32,7 @@ export function PetCard({ cat }: { cat: CatProps }) {
                     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
                 }}
                 whileHover={{ y: -6, scale: 1.02 }}
-                className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/20"
+                className="group glass-card rounded-[1.5rem] md:rounded-[28px] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-rose-500/20 flex flex-col h-full"
             >
                 <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
@@ -101,17 +101,17 @@ export function PetCard({ cat }: { cat: CatProps }) {
             </div>
 
             {/* Card content */}
-            <div className="p-4 md:p-5 bg-white/60 dark:bg-stone-900/60 backdrop-blur-sm">
+            <div className="p-4 md:p-5 bg-white/60 dark:bg-stone-900/60 backdrop-blur-sm flex flex-col flex-1">
                 <div className="flex justify-between items-center mb-3 md:mb-4">
-                    <span className="text-xs md:text-sm font-semibold text-rose-600 dark:text-rose-400 bg-rose-50/80 dark:bg-rose-900/20 px-2 md:px-4 py-1 md:py-1.5 rounded-lg md:rounded-xl truncate max-w-[50%]">
+                    <span className="text-xs md:text-sm font-semibold text-rose-600 dark:text-rose-400 bg-rose-50/80 dark:bg-rose-900/20 px-2 md:px-4 py-1 md:py-1.5 rounded-lg md:rounded-xl truncate max-w-[60%]">
                         {cat.breed}
                     </span>
-                    <span className="text-xs md:text-sm text-stone-500 dark:text-stone-400 font-medium">
+                    <span className="text-xs md:text-sm text-stone-500 dark:text-stone-400 font-medium shrink-0 ml-2">
                         {cat.age}
                     </span>
                 </div>
 
-                <Link href={`/adopt/${cat.id}`}>
+                <Link href={`/adopt/${cat.id}`} className="block mt-auto">
                     <Button className="w-full h-10 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold text-xs md:text-base shadow-lg shadow-rose-500/20 hover:shadow-rose-500/35 transition-all duration-300">
                         <span>Meet {cat.name}</span>
                         <Sparkles className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2" />

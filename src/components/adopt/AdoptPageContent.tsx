@@ -116,7 +116,7 @@ export function AdoptPageContent() {
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-white/40 dark:border-zinc-800 shadow-xl rounded-[2.5rem] p-8 md:p-14 text-center max-w-3xl mx-auto"
+                    className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-white/40 dark:border-zinc-800 shadow-xl rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-center max-w-3xl mx-auto"
                 >
                     {/* Facebook icon */}
                     <motion.div
@@ -156,14 +156,16 @@ export function AdoptPageContent() {
                         href={FACEBOOK_GROUP_URL}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="inline-block w-full sm:w-auto"
                     >
                         <motion.div
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.97 }}
+                            className="w-full sm:w-auto"
                         >
                             <Button
                                 size="lg"
-                                className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-2xl px-10 h-14 text-base font-bold shadow-xl shadow-blue-500/30 gap-2.5"
+                                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-2xl px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl shadow-blue-500/30 gap-2.5"
                             >
                                 <svg
                                     className="w-5 h-5"
@@ -216,7 +218,7 @@ export function AdoptPageContent() {
                             transition: { duration: 0.6, ease: "easeOut" },
                         },
                     }}
-                    className="mt-16 rounded-[2.5rem] bg-gradient-to-br from-rose-500 via-rose-600 to-orange-500 p-10 md:p-14 text-center text-white relative overflow-hidden shadow-2xl"
+                    className="mt-16 rounded-[2.5rem] bg-gradient-to-br from-rose-500 via-rose-600 to-orange-500 p-6 sm:p-10 md:p-14 text-center text-white relative overflow-hidden shadow-2xl"
                 >
                     {/* Decorative glow */}
                     <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
@@ -236,14 +238,16 @@ export function AdoptPageContent() {
                             href={FACEBOOK_GROUP_URL}
                             target="_blank"
                             rel="noopener noreferrer"
+                            className="inline-block w-full sm:w-auto"
                         >
                             <motion.div
                                 whileHover={{ scale: 1.04 }}
                                 whileTap={{ scale: 0.97 }}
+                                className="w-full sm:w-auto"
                             >
                                 <Button
                                     size="lg"
-                                    className="bg-white text-rose-600 hover:bg-rose-50 rounded-2xl px-10 h-14 text-base font-bold shadow-xl shadow-black/10 gap-2.5"
+                                    className="w-full sm:w-auto bg-white text-rose-600 hover:bg-rose-50 rounded-2xl px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl shadow-black/10 gap-2.5"
                                 >
                                     <svg
                                         className="w-5 h-5"

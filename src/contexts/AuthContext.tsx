@@ -5,6 +5,8 @@ import {
     User,
     onAuthStateChanged,
     signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     GoogleAuthProvider,
     signOut as firebaseSignOut,
     signInWithEmailAndPassword,
@@ -60,6 +62,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const router = useRouter();
 
     useEffect(() => {
+        // Handle redirect result if user was redirected for Google login
+        getRedirectResult(auth).catch((e) => {
+            console.error("Error processing auth redirect", e);
+        });
+
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
             if (user) {
@@ -74,6 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                             email: user.email,
                             role: 'user',
                             points: 0,
+                            avatar_url: user.photoURL || null,
                             created_at: new Date().toISOString()
                         };
                         await setDoc(doc(db, "users", user.uid), newUser);
@@ -93,9 +101,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const signInWithGoogle = async () => {
         const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
         try {
             await signInWithPopup(auth, provider);
-        } catch (error) {
+        } catch (error: any) {
+            if (error?.code === 'auth/popup-blocked') {
+                // Fall back to redirect on mobile or strict popup blockers
+                await signInWithRedirect(auth, provider);
+                return;
+            }
             console.error("Error signing in with Google", error);
             throw error;
         }

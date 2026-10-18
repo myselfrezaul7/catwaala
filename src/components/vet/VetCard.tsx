@@ -27,7 +27,7 @@ export function VetCard({ vet, index = 0 }: VetCardProps) {
                 {/* Header */}
                 <div className="flex justify-between items-start mb-4">
                     <div className="flex-1 min-w-0 pr-2">
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5">
                             <span className="inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 rounded-full">
                                 <MapPin className="w-3 h-3" /> {vet.district || "Dhaka"}
                             </span>
@@ -86,30 +86,30 @@ export function VetCard({ vet, index = 0 }: VetCardProps) {
                 </div>
 
                 {/* Actions */}
-                <div className={`grid ${vet.website && isSafeUrl(vet.website) ? "grid-cols-3" : "grid-cols-2"} gap-2 sm:gap-3 mt-auto`}>
+                <div className={`grid ${vet.website && isSafeUrl(vet.website) ? "grid-cols-3" : "grid-cols-2"} gap-1.5 sm:gap-3 mt-auto`}>
                     <a
                         href={vet.phone ? `tel:${vet.phone.replace(/[^0-9+]/g, '')}` : '#'}
-                        className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 text-emerald-700 dark:text-emerald-400 font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 transition-all text-xs sm:text-sm"
+                        className="flex items-center justify-center gap-1 sm:gap-1.5 py-2.5 px-2 rounded-xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 text-emerald-700 dark:text-emerald-400 font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 transition-all text-[11px] sm:text-sm"
                     >
-                        <Phone className="w-4 h-4" /> Call
+                        <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" /> Call
                     </a>
                     {vet.website && isSafeUrl(vet.website) && (
                         <a
                             href={vet.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-teal-200 dark:border-teal-800/50 bg-teal-50/50 dark:bg-teal-900/10 text-teal-700 dark:text-teal-400 font-semibold hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:border-teal-300 transition-all text-xs sm:text-sm"
+                            className="flex items-center justify-center gap-1 sm:gap-1.5 py-2.5 px-2 rounded-xl border border-teal-200 dark:border-teal-800/50 bg-teal-50/50 dark:bg-teal-900/10 text-teal-700 dark:text-teal-400 font-semibold hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:border-teal-300 transition-all text-[11px] sm:text-sm"
                         >
-                            <Globe className="w-4 h-4" /> Website
+                            <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" /> Website
                         </a>
                     )}
                     <a
                         href={isSafeUrl(vet.mapUrl) ? vet.mapUrl : "#"}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 text-xs sm:text-sm"
+                        className="flex items-center justify-center gap-1 sm:gap-1.5 py-2.5 px-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all transform hover:-translate-y-0.5 text-[11px] sm:text-sm"
                     >
-                        Directions <ExternalLink className="w-3.5 h-3.5" />
+                        Directions <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                     </a>
                 </div>
             </div>

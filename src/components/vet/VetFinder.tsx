@@ -110,18 +110,18 @@ export function VetFinder() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="flex flex-wrap justify-center gap-4 mt-10"
+                        className="flex flex-wrap justify-center gap-2.5 sm:gap-4 mt-8 sm:mt-10"
                     >
-                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-full shadow-lg">
-                            <Building2 className="w-5 h-5 text-emerald-200" />
+                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-lg text-xs sm:text-sm">
+                            <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-200" />
                             <span className="font-semibold">{stats.total} Clinics</span>
                         </div>
-                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-full shadow-lg">
-                            <MapPin className="w-5 h-5 text-emerald-200" />
+                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-lg text-xs sm:text-sm">
+                            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-200" />
                             <span className="font-semibold">{stats.districts} Districts</span>
                         </div>
-                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2.5 rounded-full shadow-lg">
-                            <Stethoscope className="w-5 h-5 text-emerald-200" />
+                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-lg text-xs sm:text-sm">
+                            <Stethoscope className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-200" />
                             <span className="font-semibold">{stats.emergency} Emergency Centers</span>
                         </div>
                     </motion.div>
@@ -138,16 +138,16 @@ export function VetFinder() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 md:p-8 rounded-3xl shadow-xl border border-white/20 dark:border-zinc-800 space-y-6"
+                    className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-5 sm:p-6 md:p-8 rounded-3xl shadow-xl border border-white/20 dark:border-zinc-800 space-y-5 sm:space-y-6"
                 >
                     {/* Main Search */}
                     <div className="relative group">
-                        <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground/80 w-5 h-5 group-focus-within:text-emerald-500 transition-colors" />
+                        <Search className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 text-muted-foreground/80 w-4 h-4 sm:w-5 sm:h-5 group-focus-within:text-emerald-500 transition-colors" />
                         <input
                             type="text"
                             aria-label="Search clinics by name, area, or service"
                             placeholder="Search by clinic name, area, or service..."
-                            className="w-full pl-14 pr-12 py-4 rounded-2xl border-2 border-transparent bg-muted/50 dark:bg-zinc-800/50 focus:bg-white dark:focus:bg-zinc-900 focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all text-lg shadow-inner"
+                            className="w-full pl-12 sm:pl-14 pr-10 sm:pr-12 py-3.5 sm:py-4 rounded-2xl border-2 border-transparent bg-muted/50 dark:bg-zinc-800/50 focus:bg-white dark:focus:bg-zinc-900 focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 outline-none transition-all text-base sm:text-lg shadow-inner"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -221,10 +221,10 @@ export function VetFinder() {
                     </div>
 
                     {/* Active Filters & Results Count */}
-                    <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/50">
-                        <div className="flex items-center gap-4">
-                            <p className="font-medium text-muted-foreground">
-                                Found <span className="font-bold text-foreground text-lg">{filteredVets.length}</span> clinics
+                    <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 pt-4 border-t border-border/50">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                            <p className="font-medium text-muted-foreground text-sm sm:text-base">
+                                Found <span className="font-bold text-foreground text-base sm:text-lg">{filteredVets.length}</span> clinics
                             </p>
                             {/* Emergency Toggle */}
                             <label className="flex items-center gap-2 cursor-pointer select-none">

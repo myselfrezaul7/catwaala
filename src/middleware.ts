@@ -5,15 +5,15 @@ export function middleware(request: NextRequest) {
     const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
     const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com https://apis.google.com;
+    script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://va.vercel-scripts.com https://apis.google.com https://accounts.google.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' blob: data: https://images.unsplash.com https://*.firebaseapp.com https://*.googleapis.com https://lh3.googleusercontent.com https://*.googleusercontent.com https://www.google.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://ui-avatars.com https://unpkg.com https://firebasestorage.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://firebasestorage.googleapis.com https://*.googleapis.com https://firebaseremoteconfig.googleapis.com https://*.google-analytics.com https://*.analytics.google.com https://api.web3forms.com;
+    connect-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com https://firebasestorage.googleapis.com https://*.googleapis.com https://firebaseremoteconfig.googleapis.com https://*.google-analytics.com https://*.analytics.google.com https://api.web3forms.com https://accounts.google.com https://*.firebaseapp.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self' https://api.web3forms.com;
-    frame-src 'self' https://www.google.com https://www.recaptcha.net https://catwaala-animal-welfare.firebaseapp.com;
+    frame-src 'self' https://www.google.com https://www.recaptcha.net https://catwaal-animal-welfare.firebaseapp.com https://*.firebaseapp.com https://accounts.google.com;
     frame-ancestors 'none';
     block-all-mixed-content;
     upgrade-insecure-requests;

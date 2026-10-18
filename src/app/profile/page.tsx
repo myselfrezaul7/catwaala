@@ -35,9 +35,9 @@ export default function ProfilePage() {
     if (!user) return null;
 
     return (
-        <div className="min-h-screen pt-10 pb-20 px-4">
+        <div className="min-h-screen pt-24 pb-20 px-4">
             <div className="container mx-auto max-w-2xl">
-                <div className="glass-card rounded-[2rem] p-8 md:p-10">
+                <div className="glass-card rounded-[2rem] p-5 sm:p-8 md:p-10">
                     <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
                         {user.photoURL ? (
                             // eslint-disable-next-line @next/next/no-img-element
@@ -51,26 +51,26 @@ export default function ProfilePage() {
                                 <User className="w-8 h-8 text-white" />
                             </div>
                         )}
-                        <div className="text-center sm:text-left">
+                        <div className="text-center sm:text-left w-full sm:w-auto">
                             <h1 className="text-2xl font-bold text-stone-800">
                                 {user.displayName || "Catwaala User"}
                             </h1>
                             <p className="text-stone-400">{user.email}</p>
-                            <div className="mt-4 flex flex-col sm:flex-row gap-2">
-                                <Link href="/dashboard">
-                                    <Button variant="outline" className="rounded-xl border-rose-200 text-rose-600 hover:bg-rose-50/70">
+                            <div className="mt-4 flex flex-col sm:flex-row gap-2.5 w-full sm:w-auto">
+                                <Link href="/dashboard" className="w-full sm:w-auto">
+                                    <Button variant="outline" className="w-full sm:w-auto rounded-xl border-rose-200 text-rose-600 hover:bg-rose-50/70 h-11 sm:h-10">
                                         Go to Dashboard & Edit Profile
                                     </Button>
                                 </Link>
                                 {(userData?.role === "admin" || user.email === "catwaala@gmail.com") && (
-                                    <Link href="/admin">
-                                        <Button variant="outline" className="rounded-xl border-emerald-200 text-emerald-600 hover:bg-emerald-50/70">
+                                    <Link href="/admin" className="w-full sm:w-auto">
+                                        <Button variant="outline" className="w-full sm:w-auto rounded-xl border-emerald-200 text-emerald-600 hover:bg-emerald-50/70 h-11 sm:h-10">
                                             Admin Dashboard
                                         </Button>
                                     </Link>
                                 )}
-                                <Link href="/adopt">
-                                    <Button className="rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 text-white hover:from-rose-600 hover:to-rose-700 shadow-md shadow-rose-500/15">
+                                <Link href="/adopt" className="w-full sm:w-auto">
+                                    <Button className="w-full sm:w-auto rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 text-white hover:from-rose-600 hover:to-rose-700 shadow-md shadow-rose-500/15 h-11 sm:h-10">
                                         Find a Cat
                                     </Button>
                                 </Link>

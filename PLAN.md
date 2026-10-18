@@ -693,3 +693,78 @@ Keep these files, configurations, and styles exactly as they are unless a specif
      - Inside `Footer()`, call `const { t } = useLanguage();`.
      - Replace the hardcoded tagline on line 30 with `{t.footer.tagline}`, column headings `"Platform"` (line 45) with `{t.footer.quickLinks}`, `"Community"` (line 69) with `{t.footer.support}`, `"Stay in the loop"` (line 95) with `{t.footer.newsletter}`, and `"Made with"` (line 138) with `{t.footer.madeWith}`.
 - **Done when**: Clicking the `EN / বাং` language toggle in the header updates the Footer tagline, section headings, and copyright text between English and Bengali.
+
+---
+
+## Follow-up Polish Tasks
+
+### Task `FIX-01` [DONE]: Fix Google Sign-In CSP, Popup/Redirect Handling, and UI Feedback
+- **Category**: Bugs & Authentication
+- **Files**:
+  - `src/middleware.ts`
+  - `src/contexts/AuthContext.tsx`
+  - `src/utils/friendlyErrors.ts`
+  - `src/app/login/page.tsx`
+- **What to change**:
+  1. In `src/middleware.ts`:
+     - Fix `frame-src` typo: change `https://catwaala-animal-welfare.firebaseapp.com` to `https://catwaal-animal-welfare.firebaseapp.com https://*.firebaseapp.com https://accounts.google.com`.
+     - In `script-src`: add `https://apis.google.com https://accounts.google.com`.
+  2. In `src/contexts/AuthContext.tsx`:
+     - Set custom parameter `{ prompt: 'select_account' }` on `GoogleAuthProvider`.
+     - Handle `auth/popup-blocked` on mobile web by catching and falling back to `signInWithRedirect(auth, provider)` and checking `getRedirectResult(auth)` on mount.
+     - In `createUserProfileDocument`, ensure `avatar_url: user.photoURL || null` is saved.
+  3. In `src/utils/friendlyErrors.ts`:
+     - Add friendly error mappings for `'auth/popup-blocked'`, `'auth/cancelled-popup-request'`, `'auth/unauthorized-domain'`, and `'auth/operation-not-allowed'`.
+  4. In `src/app/login/page.tsx`:
+     - Add loading state, disable button, and show welcome toast on successful Google Sign-In.
+- **Done when**: `npx tsc --noEmit` passes, CSP allows Firebase Auth iframes/scripts, and Google login triggers with proper loading/feedback.
+
+---
+
+### Task `FIX-02` [DONE]: Fix Mobile Card & Button Misalignments (Homepage, Adopt, Community, VetFinder)
+- **Category**: Mobile Responsiveness & UI Consistency
+- **Files**:
+  - `src/components/home/Hero.tsx`
+  - `src/components/home/SuccessStories.tsx`
+  - `src/components/shared/PetCard.tsx`
+  - `src/components/adopt/AdoptPageContent.tsx`
+  - `src/app/community/page.tsx`
+  - `src/components/vet/VetFinder.tsx`
+  - `src/components/vet/VetCard.tsx`
+- **What to change**:
+  1. In `src/components/home/Hero.tsx`:
+     - Align `"Become a Volunteer"` button height and outline border on mobile to match `"Adopt a Cat"` (`h-14 rounded-2xl border-2 border-stone-200 dark:border-zinc-800 text-rose-600 dark:text-rose-400 no-underline hover:bg-stone-100 dark:hover:bg-zinc-800`).
+  2. In `src/components/home/SuccessStories.tsx`:
+     - Fix 5-star rating badge overlap on mobile by reducing avatar size (`w-14 h-14 sm:w-20 sm:h-20`), adding `pr-16 sm:pr-20` on the title block, and balancing slide padding (`px-2 md:px-3` on slides).
+  3. In `src/components/shared/PetCard.tsx`:
+     - Add `flex flex-col h-full` to the card wrapper and `mt-auto` to the `"Meet {cat.name}"` button link, with `shrink-0` on age text.
+  4. In `src/components/adopt/AdoptPageContent.tsx`:
+     - Make Facebook group buttons responsive (`w-full sm:w-auto px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base`) and adjust card padding on mobile (`p-6 sm:p-8 md:p-14`).
+  5. In `src/app/community/page.tsx`:
+     - Add `w-full sm:w-auto` to the hero button `<Link>` wrappers.
+  6. In `src/components/vet/VetFinder.tsx` & `src/components/vet/VetCard.tsx`:
+     - In `VetCard.tsx`, add `flex-wrap` to clinic badge headers so 24/7 Emergency and district badges don't squeeze rating stars on `360px` screens. Tighten button padding (`px-2 text-xs sm:text-sm`).
+- **Done when**: Responsive layout tests at `360px`, `768px`, and `1280px` show no overlapping elements or uneven button sizes.
+
+---
+
+### Task `FIX-03` [DONE]: Fix Mobile Card & Button Alignment on Login, Report, Profile & Dashboard Pages
+- **Category**: Mobile Responsiveness & Form Consistency
+- **Files**:
+  - `src/app/login/page.tsx`
+  - `src/components/report/ReportForm.tsx`
+  - `src/app/profile/page.tsx`
+  - `src/app/dashboard/page.tsx`
+- **What to change**:
+  1. In `src/app/login/page.tsx`:
+     - Change card padding from `p-8 md:p-10` to `p-5 sm:p-8 md:p-10`.
+     - Wrap the ReCAPTCHA widget in a container that scales down slightly on narrow mobile viewports (`scale-[0.88] sm:scale-100 origin-center`).
+  2. In `src/components/report/ReportForm.tsx`:
+     - Wrap ReCAPTCHA with the same scaling container (`scale-[0.88] sm:scale-100 origin-center`).
+  3. In `src/app/profile/page.tsx`:
+     - Add `pt-24 pb-20 px-4` to the page container for navbar clearance.
+     - Add `w-full sm:w-auto` to the action buttons (`Go to Dashboard`, `Admin Dashboard`, `Find a Cat`).
+  4. In `src/app/dashboard/page.tsx`:
+     - Add `pt-24` top padding to prevent floating header collision.
+     - Adjust report cards in the reports tab to wrap cleanly on mobile.
+- **Done when**: On `360px` screens, ReCAPTCHA does not clip horizontally, all action buttons are aligned, and the floating header does not obscure card headers.

@@ -187,8 +187,8 @@ export default function DashboardPage() {
 
     if (loading || !user) {
         return (
-            <div className="min-h-screen pb-24 bg-stone-50 dark:bg-stone-950">
-                <div className="container mx-auto px-4 py-12 max-w-6xl">
+            <div className="min-h-screen pt-24 pb-24 bg-stone-50 dark:bg-stone-950">
+                <div className="container mx-auto px-4 py-8 max-w-6xl">
                     <Skeleton className="h-64 w-full rounded-[2.5rem] mb-12" />
                     <Skeleton className="h-12 w-full max-w-md mb-8 rounded-xl" />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -202,11 +202,11 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="min-h-screen pb-24 bg-stone-50 dark:bg-stone-950 transition-colors duration-300">
-            <div className="container mx-auto px-4 py-12 max-w-6xl">
+        <div className="min-h-screen pt-24 pb-24 bg-stone-50 dark:bg-stone-950 transition-colors duration-300">
+            <div className="container mx-auto px-4 py-4 sm:py-8 max-w-6xl">
 
                 {/* Profile Card */}
-                <div className="glass-card dark:bg-stone-900/80 dark:border-stone-800 rounded-[2.5rem] p-8 md:p-12 mb-12 relative overflow-hidden">
+                <div className="glass-card dark:bg-stone-900/80 dark:border-stone-800 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-12 mb-10 sm:mb-12 relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                         <Heart className="w-64 h-64 text-rose-500 rotate-12" />
                     </div>
@@ -346,8 +346,8 @@ export default function DashboardPage() {
                         ) : reports.length > 0 ? (
                             <div className="grid gap-6">
                                 {reports.map(report => (
-                                    <div key={report.id} className="glass-card dark:bg-stone-900/60 dark:border-stone-800 p-6 rounded-3xl flex gap-6 items-start">
-                                        <div className="w-24 h-24 rounded-2xl bg-stone-100 dark:bg-stone-800 overflow-hidden shrink-0 relative">
+                                    <div key={report.id} className="glass-card dark:bg-stone-900/60 dark:border-stone-800 p-4 sm:p-6 rounded-3xl flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+                                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-stone-100 dark:bg-stone-800 overflow-hidden shrink-0 relative">
                                             {report.image_url ? (
                                                 <Image src={report.image_url} alt="Report" fill className="object-cover" />
                                             ) : (

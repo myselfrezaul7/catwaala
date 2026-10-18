@@ -47,14 +47,14 @@ export function Hero() {
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4 w-full sm:w-auto">
                             <Link href="/adopt" className="w-full sm:w-auto">
                                 <motion.div whileTap={{ scale: 0.96 }} className="w-full">
-                                    <Button size="lg" className="w-full text-lg h-16 sm:h-14 rounded-2xl shadow-xl shadow-rose-500/20 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 transition-transform hover:-translate-y-1">
+                                    <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg h-14 px-8 rounded-2xl shadow-xl shadow-rose-500/20 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 transition-transform hover:-translate-y-1 text-white font-bold">
                                         Adopt a Cat
                                     </Button>
                                 </motion.div>
                             </Link>
                             <Link href="/volunteer" className="w-full sm:w-auto text-center">
                                 <motion.div whileTap={{ scale: 0.96 }} className="w-full">
-                                    <Button size="lg" variant="outline" className="w-full sm:w-auto text-stone-500 dark:text-stone-400 sm:text-rose-600 dark:sm:text-rose-400 text-base sm:text-lg h-12 sm:h-14 rounded-2xl border-none sm:border-2 border-stone-200 dark:border-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-transform sm:hover:-translate-y-1 bg-transparent hover:text-rose-600 underline sm:no-underline">
+                                    <Button size="lg" variant="outline" className="w-full sm:w-auto text-rose-600 dark:text-rose-400 text-base sm:text-lg h-14 px-8 rounded-2xl border-2 border-stone-200 dark:border-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-transform hover:-translate-y-1 bg-transparent hover:text-rose-700 dark:hover:text-rose-300 font-bold shadow-sm">
                                         Become a Volunteer
                                     </Button>
                                 </motion.div>

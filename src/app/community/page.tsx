@@ -24,14 +24,14 @@ export default function CommunityPage() {
                     <p className="text-xl text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed mb-8">
                         Join our vibrant community of cat lovers in Dhaka. From adoption drives to kitten yoga, there's always something happening!
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="https://www.facebook.com/groups/catwaala/" target="_blank" rel="noopener noreferrer">
-                            <Button size="lg" className="rounded-2xl h-14 px-8 bg-[#1877F2] hover:bg-[#1877F2]/90 text-white shadow-lg w-full sm:w-auto">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
+                        <Link href="https://www.facebook.com/groups/catwaala/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                            <Button size="lg" className="rounded-2xl h-14 px-8 bg-[#1877F2] hover:bg-[#1877F2]/90 text-white shadow-lg w-full sm:w-auto font-bold">
                                 Join Facebook Group <ArrowUpRight className="ml-2 w-5 h-5" />
                             </Button>
                         </Link>
-                        <Link href="https://www.facebook.com/Catwaalaa" target="_blank" rel="noopener noreferrer">
-                            <Button size="lg" variant="outline" className="rounded-2xl h-14 px-8 border-2 border-[#1877F2]/30 text-[#1877F2] hover:bg-[#1877F2]/10 shadow-sm w-full sm:w-auto bg-white/50 dark:bg-stone-900/50">
+                        <Link href="https://www.facebook.com/Catwaalaa" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                            <Button size="lg" variant="outline" className="rounded-2xl h-14 px-8 border-2 border-[#1877F2]/30 text-[#1877F2] hover:bg-[#1877F2]/10 shadow-sm w-full sm:w-auto bg-white/50 dark:bg-stone-900/50 font-bold">
                                 Follow Facebook Page <ArrowUpRight className="ml-2 w-5 h-5" />
                             </Button>
                         </Link>

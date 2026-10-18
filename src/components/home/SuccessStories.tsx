@@ -107,43 +107,43 @@ export function SuccessStories() {
             <div className="container mx-auto px-4 md:px-12 relative">
                 {/* Carousel Viewport */}
                 <div className="overflow-hidden cursor-grab active:cursor-grabbing rounded-3xl" ref={emblaRef}>
-                    <div className="flex touch-pan-y py-4 px-2">
+                    <div className="flex touch-pan-y py-4 -ml-3 md:-ml-6 px-1">
                         {successStories.map((story) => (
                             <div
                                 key={story.id}
-                                className="flex-[0_0_85%] sm:flex-[0_0_70%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-4 md:pl-6"
+                                className="flex-[0_0_88%] sm:flex-[0_0_70%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-3 md:pl-6"
                             >
-                                <div className="h-full glass-card dark:bg-zinc-900/80 rounded-[2rem] p-6 md:p-8 border border-white/60 dark:border-white/10 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-900/20 transition-all duration-300 relative group flex flex-col">
-                                    <div className="absolute top-6 right-6 flex text-amber-400">
+                                <div className="h-full glass-card dark:bg-zinc-900/80 rounded-[2rem] p-5 sm:p-6 md:p-8 border border-white/60 dark:border-white/10 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-900/20 transition-all duration-300 relative group flex flex-col">
+                                    <div className="absolute top-5 right-5 sm:top-6 sm:right-6 flex text-amber-400">
                                         {[...Array(5)].map((_, i) => (
-                                            <Star key={i} className="w-4 h-4 fill-current" />
+                                            <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                                         ))}
                                     </div>
 
-                                    <div className="flex items-center gap-5 mb-6">
-                                        <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-white dark:border-zinc-800 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                    <div className="flex items-center gap-3.5 sm:gap-5 mb-5 sm:mb-6 pr-16 sm:pr-20">
+                                        <div className="relative w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white dark:border-zinc-800 shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
                                             <Image
                                                 src={story.image}
                                                 alt={story.cat}
                                                 fill
                                                 className="object-cover"
-                                                sizes="80px"
+                                                sizes="(max-width: 640px) 56px, 80px"
                                             />
                                         </div>
-                                        <div>
-                                            <h4 className="text-xl font-bold text-stone-800 dark:text-stone-100">{story.cat}</h4>
-                                            <p className="text-xs text-stone-500 dark:text-stone-400 uppercase tracking-widest mt-1">Adopted by {story.adopter}</p>
+                                        <div className="min-w-0">
+                                            <h4 className="text-lg sm:text-xl font-bold text-stone-800 dark:text-stone-100 truncate">{story.cat}</h4>
+                                            <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 uppercase tracking-wider sm:tracking-widest mt-0.5 truncate">Adopted by {story.adopter}</p>
                                         </div>
                                     </div>
 
                                     <div className="relative flex-1 flex flex-col justify-center">
                                         <Quote className="absolute -top-3 -left-2 w-10 h-10 text-rose-100 dark:text-rose-900/50 -z-10 rotate-180" />
-                                        <p className="text-stone-600 dark:text-stone-300 italic leading-relaxed text-base pl-3 font-medium">
+                                        <p className="text-stone-600 dark:text-stone-300 italic leading-relaxed text-sm sm:text-base pl-3 font-medium">
                                             "{story.quote}"
                                         </p>
                                     </div>
 
-                                    <div className="mt-6 pt-4 border-t border-stone-100 dark:border-zinc-800/50 flex justify-between items-center text-xs font-semibold text-rose-600 dark:text-rose-400">
+                                    <div className="mt-5 sm:mt-6 pt-4 border-t border-stone-100 dark:border-zinc-800/50 flex justify-between items-center text-xs font-semibold text-rose-600 dark:text-rose-400">
                                         <span>Happy for {story.months} months</span>
                                         <Heart className="w-4 h-4" />
                                     </div>

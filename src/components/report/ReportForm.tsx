@@ -404,15 +404,17 @@ export function ReportForm() {
 
                                 <div className="bg-stone-50 p-6 rounded-2xl border border-stone-100">
                                     <p className="text-stone-500 text-sm font-bold mb-4 text-center uppercase tracking-wider">Security Check</p>
-                                    <div className="flex justify-center">
+                                    <div className="flex justify-center w-full overflow-hidden">
                                         {!useMathChallenge ? (
-                                            <ReCAPTCHA
-                                                ref={recaptchaRef}
-                                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                                                onChange={(val) => setCaptchaValue(val)}
-                                                onError={handleRecaptchaError} // Trigger fallback on error
-                                                onExpired={() => setCaptchaValue(null)}
-                                            />
+                                            <div className="origin-center scale-[0.86] sm:scale-100">
+                                                <ReCAPTCHA
+                                                    ref={recaptchaRef}
+                                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                                                    onChange={(val) => setCaptchaValue(val)}
+                                                    onError={handleRecaptchaError} // Trigger fallback on error
+                                                    onExpired={() => setCaptchaValue(null)}
+                                                />
+                                            </div>
                                         ) : (
                                             <div className="text-center space-y-3 w-full max-w-xs">
                                                 <div className="bg-white p-4 rounded-xl border border-stone-200 shadow-sm">
