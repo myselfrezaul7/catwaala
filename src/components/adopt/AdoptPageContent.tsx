@@ -2,50 +2,66 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink, Heart, Printer } from "lucide-react";
+import { ArrowRight, ExternalLink, Heart, Printer, Sparkles, MessageCircle, HeartHandshake, ShieldCheck } from "lucide-react";
 
 const FACEBOOK_GROUP_URL = "https://www.facebook.com/groups/catwaala/";
 
 const infoCards = [
     {
-        emoji: "🐾",
+        icon: Sparkles,
+        iconColor: "text-amber-500 bg-amber-500/10 border-amber-500/20",
         title: "Real-Time Updates",
         description:
             "See new rescues the moment they're posted. Every cat has a story, and you'll find it on our community page.",
     },
     {
-        emoji: "💬",
+        icon: MessageCircle,
+        iconColor: "text-blue-500 bg-blue-500/10 border-blue-500/20",
         title: "Direct Communication",
         description:
             "Chat directly with our rescue volunteers. Ask questions, schedule visits, and get to know your future companion.",
     },
     {
-        emoji: "❤️",
-        title: "Hundreds of Lives",
+        icon: HeartHandshake,
+        iconColor: "text-rose-500 bg-rose-500/10 border-rose-500/20",
+        title: "Hundreds of Rescues",
         description:
-            "Over 500 cats rescued and counting. From tiny kittens to wise seniors, there's a perfect match waiting for you.",
+            "Over 650 street cats rescued and rehabilitated. From fragile newborns to wise seniors, a companion is waiting.",
     },
 ];
 
 const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 24 },
     visible: (i: number) => ({
         opacity: 1,
         y: 0,
-        transition: { delay: i * 0.12, duration: 0.55, ease: "easeOut" },
+        transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
     }),
 };
 
 export function AdoptPageContent() {
     return (
         <div className="min-h-screen pb-24">
-            {/* ───────────────── Hero Banner ───────────────── */}
-            <div className="bg-gradient-to-br from-rose-500 to-rose-600 text-white py-16 text-center px-4 relative overflow-hidden">
-                <div className="relative z-10">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
+            {/* ───────────────── Subtle Hero Header ───────────────── */}
+            <div className="relative py-16 md:py-24 text-center px-4 overflow-hidden bg-stone-50/70 dark:bg-zinc-950 border-b border-stone-200/60 dark:border-zinc-800/60">
+                {/* Ambient glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-rose-500/5 dark:bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 max-w-3xl mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-bold mb-4"
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/40 border border-rose-200/70 dark:border-rose-900/50 text-rose-700 dark:text-rose-300 text-xs font-semibold mb-6 shadow-sm"
+                    >
+                        <ShieldCheck className="w-4 h-4 text-rose-500" />
+                        <span>Adopt, Don&apos;t Shop • Non-profit animal welfare</span>
+                    </motion.div>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl sm:text-5xl md:text-6xl font-bold font-heading text-stone-900 dark:text-stone-100 mb-4 tracking-tight"
                     >
                         Find Your Feline Soulmate
                     </motion.h1>
@@ -54,101 +70,66 @@ export function AdoptPageContent() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-rose-100 max-w-xl mx-auto mb-8 text-lg"
+                        className="text-stone-600 dark:text-stone-400 max-w-xl mx-auto mb-8 text-base md:text-lg leading-relaxed font-normal"
                     >
-                        Browse through our rescued cats. From kittens to snoozy
-                        seniors, they are all waiting for love.
+                        Browse through our rescued stray cats across Dhaka. Every life deserves dignity, shelter, and a warm family.
                     </motion.p>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="flex flex-col items-center gap-6"
+                        className="flex flex-wrap items-center justify-center gap-3.5"
                     >
-                        {/* Adopt Don't Shop badge */}
-                        <p className="text-sm font-bold bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 inline-block shadow-lg">
-                            🚫 We promote &quot;Adopt Don&apos;t Shop&quot;. No
-                            buying/selling.
-                        </p>
+                        {/* Print Adoption Form */}
+                        <a href="/adoption-form" target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" className="h-11 px-5 rounded-xl border-stone-200 dark:border-zinc-800 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-zinc-800 font-semibold text-xs sm:text-sm gap-2 shadow-sm">
+                                <Printer className="w-4 h-4 text-stone-500" />
+                                Print Adoption Form
+                            </Button>
+                        </a>
 
                         {/* Kuttawaala cross-site badge */}
                         <a
                             href="https://kuttawaala.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center gap-3 p-3 sm:p-4 rounded-2xl bg-amber-50/90 dark:bg-amber-950/40 border border-amber-200/50 dark:border-amber-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all shadow-sm hover:shadow-md mt-2"
+                            className="inline-flex items-center gap-2 h-11 px-4 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-800/40 text-stone-800 dark:text-stone-200 hover:border-amber-300 transition-colors text-xs font-semibold shadow-sm"
                         >
-                            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-amber-100 dark:bg-amber-900/60 flex items-center justify-center shrink-0 border border-amber-200/50 dark:border-amber-800/50 text-xl sm:text-2xl group-hover:scale-105 transition-transform">
-                                🐕
-                            </div>
-                            <div className="flex-1 min-w-0 pr-4 text-left">
-                                <span className="block text-[10px] sm:text-xs font-bold text-amber-800 dark:text-amber-200 uppercase tracking-wider mb-0.5">
-                                    Looking for a dog?
-                                </span>
-                                <span className="block text-sm sm:text-base font-bold text-amber-950 dark:text-amber-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1">
-                                    Visit Kuttawaala
-                                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-amber-600" />
-                                </span>
-                            </div>
-                        </a>
-
-                        {/* Print Adoption Form */}
-                        <a href="/adoption-form" target="_blank" rel="noopener noreferrer">
-                            <motion.div whileTap={{ scale: 0.96 }}>
-                                <Button className="bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white border border-white/30 rounded-xl px-6 h-12 text-sm font-bold shadow-lg gap-2">
-                                    <Printer className="w-4 h-4" />
-                                    Print Adoption Form
-                                </Button>
-                            </motion.div>
+                            <span>🐕</span>
+                            <span>Looking for a dog? <span className="underline decoration-amber-500/50">Visit Kuttawaala</span></span>
+                            <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
                         </a>
                     </motion.div>
                 </div>
-
-                {/* Radial glow overlay */}
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_80%,_rgba(255,255,255,0.15)_0%,_transparent_50%)] pointer-events-none" />
             </div>
 
             {/* ───────────────── Main Content ───────────────── */}
-            <div className="container mx-auto px-4 -mt-10 relative z-20">
+            <div className="container mx-auto px-4 -mt-6 relative z-20">
                 {/* ── Facebook Community Card ── */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-white/40 dark:border-zinc-800 shadow-xl rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-center max-w-3xl mx-auto"
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border border-stone-200/80 dark:border-zinc-800 shadow-[0_20px_50px_rgba(28,25,23,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-center max-w-3xl mx-auto"
                 >
                     {/* Facebook icon */}
-                    <motion.div
-                        initial={{ scale: 0.6, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{
-                            delay: 0.25,
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 14,
-                        }}
-                        className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-xl shadow-blue-500/25"
-                    >
+                    <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-2xl bg-[#1877F2]/10 border border-[#1877F2]/20 flex items-center justify-center text-[#1877F2] shadow-sm">
                         <svg
-                            className="w-10 h-10 md:w-12 md:h-12 text-white"
-                            fill="currentColor"
+                            className="w-8 h-8 md:w-10 md:h-10 fill-current"
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                         >
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                         </svg>
-                    </motion.div>
+                    </div>
 
-                    <h2 className="text-2xl md:text-3xl font-bold text-stone-800 dark:text-stone-100 mb-4 tracking-tight">
+                    <h2 className="text-2xl md:text-3xl font-bold font-heading text-stone-800 dark:text-stone-100 mb-3 tracking-tight">
                         Adopt Through Our Facebook Community
                     </h2>
 
-                    <p className="text-stone-600 dark:text-stone-400 leading-relaxed max-w-2xl mx-auto mb-8 text-base md:text-lg">
-                        We have hundreds of rescued cats waiting for their
-                        forever homes. Our Facebook community is where all
-                        adoptions happen — you can see real-time posts, photos,
-                        and connect directly with our rescue team.
+                    <p className="text-stone-600 dark:text-stone-400 leading-relaxed max-w-2xl mx-auto mb-8 text-sm sm:text-base md:text-lg">
+                        We have rescued cats and kittens waiting for their forever homes. Our Facebook community is where all adoption profiles are published in real time with photos, medical history, and direct foster contact.
                     </p>
 
                     {/* Primary CTA */}
@@ -158,80 +139,75 @@ export function AdoptPageContent() {
                         rel="noopener noreferrer"
                         className="inline-block w-full sm:w-auto"
                     >
-                        <motion.div
-                            whileHover={{ scale: 1.04 }}
-                            whileTap={{ scale: 0.97 }}
-                            className="w-full sm:w-auto"
+                        <Button
+                            size="lg"
+                            className="w-full sm:w-auto bg-[#1877F2] hover:bg-[#166fe5] text-white rounded-2xl px-8 h-12 sm:h-14 text-sm sm:text-base font-bold shadow-lg shadow-blue-500/20 gap-2.5 transition-transform hover:-translate-y-0.5"
                         >
-                            <Button
-                                size="lg"
-                                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-2xl px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl shadow-blue-500/30 gap-2.5"
+                            <svg
+                                className="w-4 h-4 sm:w-5 sm:h-5 fill-current"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
                             >
-                                <svg
-                                    className="w-5 h-5"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                </svg>
-                                Visit Our Facebook Group
-                                <ExternalLink className="w-4 h-4 opacity-70" />
-                            </Button>
-                        </motion.div>
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                            <span>Visit Catwaala Community</span>
+                            <ExternalLink className="w-4 h-4 opacity-70" />
+                        </Button>
                     </a>
                 </motion.div>
 
                 {/* ── Three Info Cards ── */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14 max-w-5xl mx-auto">
-                    {infoCards.map((card, i) => (
-                        <motion.div
-                            key={card.title}
-                            custom={i}
-                            variants={fadeUp}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.3 }}
-                            className="glass-card bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border border-white/40 dark:border-zinc-800 shadow-xl rounded-[2.5rem] p-8 text-center hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-                        >
-                            <div className="text-5xl mb-5">{card.emoji}</div>
-                            <h3 className="text-lg font-bold text-stone-800 dark:text-stone-100 mb-3">
-                                {card.title}
-                            </h3>
-                            <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
-                                {card.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
+                    {infoCards.map((card, i) => {
+                        const Icon = card.icon;
+                        return (
+                            <motion.div
+                                key={card.title}
+                                custom={i}
+                                variants={fadeUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                className="glass-card bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-stone-200/80 dark:border-zinc-800 shadow-md rounded-[2rem] p-6 sm:p-8 text-center hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                            >
+                                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 border ${card.iconColor}`}>
+                                    <Icon className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-base sm:text-lg font-bold text-stone-800 dark:text-stone-100 mb-2">
+                                    {card.title}
+                                </h3>
+                                <p className="text-stone-600 dark:text-stone-400 text-xs sm:text-sm leading-relaxed">
+                                    {card.description}
+                                </p>
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
                 {/* ── Bottom CTA Banner ── */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.4 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     variants={{
-                        hidden: { opacity: 0, y: 30 },
+                        hidden: { opacity: 0, y: 24 },
                         visible: {
                             opacity: 1,
                             y: 0,
-                            transition: { duration: 0.6, ease: "easeOut" },
+                            transition: { duration: 0.5, ease: "easeOut" },
                         },
                     }}
-                    className="mt-16 rounded-[2.5rem] bg-gradient-to-br from-rose-500 via-rose-600 to-orange-500 p-6 sm:p-10 md:p-14 text-center text-white relative overflow-hidden shadow-2xl"
+                    className="mt-16 rounded-[2.5rem] bg-gradient-to-br from-zinc-900 via-zinc-900 to-stone-900 border border-zinc-800 p-8 sm:p-12 md:p-16 text-center text-white relative overflow-hidden shadow-2xl"
                 >
-                    {/* Decorative glow */}
-                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-                    <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-orange-400/15 rounded-full blur-3xl pointer-events-none" />
-
-                    <div className="relative z-10">
-                        <Heart className="w-10 h-10 mx-auto mb-4 opacity-80" />
-                        <h2 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight">
+                    <div className="relative z-10 max-w-2xl mx-auto">
+                        <div className="w-12 h-12 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-400 flex items-center justify-center mx-auto mb-4">
+                            <Heart className="w-6 h-6 fill-current" />
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 tracking-tight font-heading">
                             Ready to Meet Your New Best Friend?
                         </h2>
-                        <p className="text-rose-100 max-w-lg mx-auto mb-8 text-base md:text-lg">
-                            Join thousands of cat lovers in our community. Your
-                            purr-fect companion is just a click away.
+                        <p className="text-zinc-400 max-w-lg mx-auto mb-8 text-sm sm:text-base leading-relaxed">
+                            Join thousands of animal lovers in our community. Your purr-fect companion is just one conversation away.
                         </p>
 
                         <a
@@ -240,27 +216,13 @@ export function AdoptPageContent() {
                             rel="noopener noreferrer"
                             className="inline-block w-full sm:w-auto"
                         >
-                            <motion.div
-                                whileHover={{ scale: 1.04 }}
-                                whileTap={{ scale: 0.97 }}
-                                className="w-full sm:w-auto"
+                            <Button
+                                size="lg"
+                                className="w-full sm:w-auto bg-rose-600 hover:bg-rose-500 text-white rounded-2xl px-8 h-12 sm:h-14 text-sm sm:text-base font-bold shadow-lg shadow-rose-600/25 transition-transform hover:-translate-y-0.5 gap-2"
                             >
-                                <Button
-                                    size="lg"
-                                    className="w-full sm:w-auto bg-white text-rose-600 hover:bg-rose-50 rounded-2xl px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base font-bold shadow-xl shadow-black/10 gap-2.5"
-                                >
-                                    <svg
-                                        className="w-5 h-5"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24"
-                                        aria-hidden="true"
-                                    >
-                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                                    </svg>
-                                    Join Catwaala on Facebook
-                                    <ExternalLink className="w-4 h-4 opacity-70" />
-                                </Button>
-                            </motion.div>
+                                <span>Join the Group to Adopt</span>
+                                <ExternalLink className="w-4 h-4 opacity-70" />
+                            </Button>
                         </a>
                     </div>
                 </motion.div>

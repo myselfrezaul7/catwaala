@@ -1,27 +1,54 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, X, ArrowRight } from "lucide-react";
 
 export function PetBhaiBanner() {
+    const pathname = usePathname();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Check if user previously dismissed the banner
+        // Only show on the homepage
+        if (pathname !== "/") {
+            setIsVisible(false);
+            return;
+        }
+
+        // Check if user previously dismissed or already saw the banner
         const isDismissed = localStorage.getItem("petbhai-banner-dismissed");
         if (!isDismissed) {
             // Small delay for smooth entrance
-            const timer = setTimeout(() => setIsVisible(true), 500);
+            const timer = setTimeout(() => {
+                setIsVisible(true);
+                // Mark as shown once so it doesn't follow the user to other pages or reappear
+                localStorage.setItem("petbhai-banner-dismissed", "true");
+            }, 800);
             return () => clearTimeout(timer);
         }
-    }, []);
+    }, [pathname]);
+
+    // Auto-dismiss after 12 seconds so it doesn't permanently occupy screen space
+    useEffect(() => {
+        if (isVisible) {
+            const timer = setTimeout(() => {
+                setIsVisible(false);
+                window.dispatchEvent(new Event("petbhai-dismissed"));
+            }, 12000);
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible]);
 
     const handleDismiss = () => {
         setIsVisible(false);
         localStorage.setItem("petbhai-banner-dismissed", "true");
         window.dispatchEvent(new Event("petbhai-dismissed"));
     };
+
+    if (pathname !== "/") {
+        return null;
+    }
 
     return (
         <AnimatePresence>

@@ -62,40 +62,24 @@ export function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* Floating Companion Badge Redirect */}
+                    {/* Companion Platform Link */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                        className="mt-8 md:mt-12 flex justify-center lg:justify-start"
+                        transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                        className="mt-6 md:mt-8 flex justify-center lg:justify-start"
                     >
                         <a
                             href="https://www.kuttawaala.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative inline-flex items-center gap-2 sm:gap-4 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-border/50 dark:border-zinc-800 px-2 py-2 pr-4 sm:pr-6 rounded-full shadow-lg shadow-zinc-200/20 dark:shadow-none hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 overflow-hidden"
+                            className="group inline-flex items-center gap-2.5 bg-stone-100/80 dark:bg-zinc-900/80 hover:bg-stone-200/70 dark:hover:bg-zinc-800/80 border border-stone-200/80 dark:border-zinc-800 px-4 py-2 rounded-full transition-all duration-200 shadow-sm"
                         >
-                            {/* Hover Color Sweep */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-amber-500/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
-
-                            {/* Split Circle Icon */}
-                            <div className="relative w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:rotate-180 shrink-0 border border-zinc-200 dark:border-zinc-700">
-                                <div className="absolute inset-y-0 left-0 w-1/2 bg-teal-100 dark:bg-teal-900/40 flex justify-end items-center pr-1 transition-colors duration-300">
-                                    <span className="text-[12px] opacity-70 group-hover:rotate-180 transition-transform duration-500">🐈</span>
-                                </div>
-                                <div className="absolute inset-y-0 right-0 w-1/2 bg-amber-100 dark:bg-amber-900/40 flex justify-start items-center pl-1 transition-colors duration-300">
-                                    <span className="text-[12px] opacity-70 group-hover:-rotate-180 transition-transform duration-500">🐕</span>
-                                </div>
-                                <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-200 dark:border-zinc-700 z-10" />
-                            </div>
-
-                            <div className="relative z-10 flex flex-col justify-center">
-                                <span className="hidden sm:block text-[10px] sm:text-xs font-bold text-muted-foreground uppercase tracking-wider leading-none mb-1">Also love dogs?</span>
-                                <span className="text-sm font-bold text-foreground leading-none group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors flex items-center gap-1">
-                                    Visit Kuttawaala
-                                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-amber-500" />
-                                </span>
-                            </div>
+                            <span className="text-sm">🐕</span>
+                            <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors flex items-center gap-1.5">
+                                Also love dogs? <span className="font-semibold text-foreground underline decoration-amber-500/50 underline-offset-2">Visit Kuttawaala</span>
+                                <ArrowRight className="w-3.5 h-3.5 text-amber-500 transition-transform group-hover:translate-x-0.5" />
+                            </span>
                         </a>
                     </motion.div>
                 </motion.div>

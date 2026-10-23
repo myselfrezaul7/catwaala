@@ -96,8 +96,12 @@ export function SuccessStories() {
                 viewport={{ once: true }}
                 className="container mx-auto px-4 mb-12 text-center"
             >
+                <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100/80 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-xs font-bold uppercase tracking-wider mb-4 border border-rose-200/50 dark:border-rose-800/40">
+                    <Heart className="w-3.5 h-3.5 fill-current" />
+                    <span>Adoption Stories</span>
+                </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-stone-800 dark:text-stone-100 mb-4 tracking-tight">
-                    Happy Tails 🏠❤️
+                    Happy Tails, Forever Homes
                 </h2>
                 <p className="text-lg text-stone-500 dark:text-stone-400 max-w-2xl mx-auto">
                     Nothing makes us happier than seeing our rescues thrive in their forever homes.

@@ -3,7 +3,25 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Heart, User, LogIn, Cat, Search, MapPin, Users, HelpCircle, LayoutDashboard, Settings } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import {
+    Menu,
+    X,
+    Heart,
+    User,
+    LogIn,
+    Search,
+    MapPin,
+    Users,
+    HelpCircle,
+    LayoutDashboard,
+    Settings,
+    ArrowUpRight,
+    Cat,
+    HandHeart,
+    BookOpen,
+    HelpCircle as QuestionIcon
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/theme/mode-toggle";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
@@ -12,22 +30,21 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MobileBottomNav } from "./MobileBottomNav";
 
-import { useRouter } from "next/navigation";
-
 const SEARCH_ROUTES = [
-    { title: "Adopt a Cat", keywords: ["adopt", "foster", "get a cat", "kitten"], href: "/adopt" },
-    { title: "Find a Vet", keywords: ["vet", "doctor", "hospital", "clinic", "medical"], href: "/find-vet" },
-    { title: "Report a Stray", keywords: ["report", "injured", "stray", "found", "emergency"], href: "/report" },
-    { title: "Volunteer with Us", keywords: ["volunteer", "help", "join"], href: "/volunteer" },
-    { title: "Make a Donation", keywords: ["donate", "money", "bkash", "nagad", "payment"], href: "/donate" },
-    { title: "Cat Care Quiz", keywords: ["quiz", "match", "matchmaker", "personality", "test"], href: "/quiz" },
-    { title: "Community Resources", keywords: ["community", "resources", "events", "guide"], href: "/community" },
-    { title: "Cat Care FAQ", keywords: ["faq", "help", "questions", "answers"], href: "/faq" },
-    { title: "Memorial Wall", keywords: ["memorial", "rainbow bridge", "died", "passed"], href: "/memorial" },
+    { title: "Adopt a Cat", keywords: ["adopt", "foster", "get a cat", "kitten"], href: "/adopt", category: "Adoption", icon: Cat },
+    { title: "Find a Vet", keywords: ["vet", "doctor", "hospital", "clinic", "medical"], href: "/find-vet", category: "Medical", icon: MapPin },
+    { title: "Report a Stray", keywords: ["report", "injured", "stray", "found", "emergency"], href: "/report", category: "Rescue", icon: HandHeart },
+    { title: "Volunteer with Us", keywords: ["volunteer", "help", "join"], href: "/volunteer", category: "Community", icon: Users },
+    { title: "Make a Donation", keywords: ["donate", "money", "bkash", "nagad", "payment"], href: "/donate", category: "Support", icon: Heart },
+    { title: "Cat Care Quiz", keywords: ["quiz", "match", "matchmaker", "personality", "test"], href: "/quiz", category: "Resources", icon: QuestionIcon },
+    { title: "Community Resources", keywords: ["community", "resources", "events", "guide"], href: "/community", category: "Resources", icon: BookOpen },
+    { title: "Cat Care FAQ", keywords: ["faq", "help", "questions", "answers"], href: "/faq", category: "Resources", icon: HelpCircle },
+    { title: "Memorial Wall", keywords: ["memorial", "rainbow bridge", "died", "passed"], href: "/memorial", category: "Community", icon: Heart },
 ];
 
 export function Header() {
     const router = useRouter();
+    const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -35,6 +52,7 @@ export function Header() {
     const [navVisible, setNavVisible] = useState(true);
     const lastScrollY = useRef(0);
     const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+    const searchInputRef = useRef<HTMLInputElement | null>(null);
     const { user, userData, loading } = useAuth();
     const { t } = useLanguage();
 
@@ -45,14 +63,17 @@ export function Header() {
         return route.title.toLowerCase().includes(query) || route.keywords.some(k => k.includes(query));
     }).slice(0, 6);
 
+    const handleRouteSelection = (href: string) => {
+        setIsSearchOpen(false);
+        setSearchQuery("");
+        router.push(href);
+    };
+
     // Handle Enter Key
     const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             if (filteredRoutes.length > 0) {
                 handleRouteSelection(filteredRoutes[0].href);
-            } else {
-                // Default fallback if no match
-                handleRouteSelection(`/find-vet`);
             }
         }
         if (e.key === 'Escape') {
@@ -61,11 +82,26 @@ export function Header() {
         }
     };
 
-    const handleRouteSelection = (href: string) => {
-        setIsSearchOpen(false);
-        setSearchQuery("");
-        router.push(href);
-    };
+    // Global keyboard shortcut: Cmd+K / Ctrl+K
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+                e.preventDefault();
+                setIsSearchOpen(prev => !prev);
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
+    // Focus input on search modal open
+    useEffect(() => {
+        if (isSearchOpen) {
+            setTimeout(() => {
+                searchInputRef.current?.focus();
+            }, 100);
+        }
+    }, [isSearchOpen]);
 
     useEffect(() => {
         let ticking = false;
@@ -116,12 +152,11 @@ export function Header() {
         navLinks.push({ name: "Admin", href: "/admin" });
     }
 
-
     return (
         <>
             <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-300 ease-out print:hidden ${scrolled
-                ? "bg-white/70 dark:bg-zinc-900/70 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/40"
-                : "bg-white/60 dark:bg-zinc-900/60 border-white/20 dark:border-zinc-800/40 shadow-lg"
+                ? "bg-white/80 dark:bg-zinc-900/80 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/60"
+                : "bg-white/70 dark:bg-zinc-900/70 border-white/40 dark:border-zinc-800/60 shadow-lg"
                 } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-full`}>
                 <div className="px-4 md:px-5 lg:px-6 py-2 flex justify-between items-center gap-2">
                     {/* Logo */}
@@ -136,22 +171,32 @@ export function Header() {
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-0.5 lg:gap-1.5 shrink">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                                className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-3 py-1.5 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 shrink-0"
-                            >
-                                {link.name}
-                                {link.external && <span className="px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[9px] lg:text-[10px] font-bold">NEW</span>}
-                            </Link>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive = !link.external && (pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href)));
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                    className={`text-xs lg:text-sm px-2.5 lg:px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 shrink-0 ${
+                                        isActive
+                                            ? "font-semibold text-foreground bg-muted/80 shadow-sm"
+                                            : "font-medium text-muted-foreground hover:text-foreground hover:bg-muted/40"
+                                    }`}
+                                >
+                                    <span>{link.name}</span>
+                                    {link.external && <ArrowUpRight className="w-3.5 h-3.5 opacity-60 ml-0.5" />}
+                                </Link>
+                            );
+                        })}
                         <button
                             onClick={() => setIsSearchOpen(true)}
-                            className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-primary px-2 lg:px-3 py-1.5 rounded-xl hover:bg-muted/50 transition-colors flex items-center gap-1 shrink-0"
+                            className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-foreground px-2.5 lg:px-3 py-1.5 rounded-xl hover:bg-muted/40 transition-colors flex items-center gap-1.5 shrink-0"
+                            aria-label="Search pages"
                         >
-                            <Search className="w-4 h-4" /> Search
+                            <Search className="w-3.5 h-3.5" />
+                            <span>Search</span>
+                            <kbd className="hidden lg:inline-flex items-center text-[10px] text-muted-foreground/80 bg-muted/60 px-1.5 py-0.5 rounded border border-border/50">⌘K</kbd>
                         </button>
                     </nav>
 
@@ -170,7 +215,6 @@ export function Header() {
                                 <Link href="/profile" className="flex items-center">
                                     <Button variant="ghost" size="sm" className="gap-1.5 rounded-full text-foreground hover:bg-muted/50 h-9 px-3">
                                         {user.photoURL ? (
-                                            // eslint-disable-next-line @next/next/no-img-element
                                             <Image
                                                 src={user.photoURL}
                                                 alt="User"
@@ -208,7 +252,6 @@ export function Header() {
                         <ModeToggle />
                     </div>
                 </div>
-
             </header>
 
             <MobileBottomNav 
@@ -312,68 +355,92 @@ export function Header() {
                 )}
             </AnimatePresence>
 
-            {/* Full Screen Search Overlay */}
+            {/* Spotlight Command Modal */}
             <AnimatePresence>
                 {isSearchOpen && (
-                    <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-start pt-32"
-                    >
-                        <button
-                            onClick={() => { setIsSearchOpen(false); setSearchQuery("") }}
-                            aria-label="Close search"
-                            className="absolute top-6 right-6 p-2.5 rounded-xl hover:bg-muted transition-colors"
-                        >
-                            <X className="w-7 h-7 text-muted-foreground" />
-                        </button>
+                    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-16 md:pt-28 px-4 overflow-y-auto">
+                        {/* Backdrop with click to dismiss */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.15 }}
+                            onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                            className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md"
+                        />
 
-                        <div className="w-full max-w-2xl px-4 text-center space-y-8">
-                            <h2 className="text-3xl font-bold text-foreground">What are you looking for?</h2>
-                            <div className="relative">
-                                <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground w-6 h-6" />
+                        {/* Centered Modal Card */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.96, y: -8 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.96, y: -8 }}
+                            transition={{ duration: 0.18, ease: "easeOut" }}
+                            className="relative w-full max-w-xl bg-background/95 dark:bg-zinc-900/95 backdrop-blur-2xl border border-border shadow-2xl rounded-3xl p-5 md:p-6 z-10"
+                        >
+                            {/* Search Input Bar */}
+                            <div className="relative flex items-center">
+                                <Search className="absolute left-4 w-5 h-5 text-muted-foreground pointer-events-none" />
                                 <input
+                                    ref={searchInputRef}
                                     type="text"
-                                    placeholder="Search for cats, vets, or volunteer..."
-                                    autoFocus
-                                    className="w-full pl-16 pr-6 py-6 text-xl rounded-2xl bg-muted/30 border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm text-foreground placeholder:text-muted-foreground"
+                                    placeholder="Search pages, cats, vets, or volunteer..."
+                                    className="w-full pl-12 pr-20 py-3.5 text-base sm:text-lg rounded-2xl bg-muted/40 border border-border focus:border-primary/60 focus:bg-background outline-none transition-all shadow-inner text-foreground placeholder:text-muted-foreground"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     onKeyDown={handleSearchKeyDown}
                                 />
+                                <div className="absolute right-3 flex items-center gap-1.5">
+                                    <kbd className="hidden sm:inline-flex text-[10px] text-muted-foreground bg-muted px-2 py-1 rounded border border-border font-mono">ESC</kbd>
+                                    <button
+                                        onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                                        aria-label="Close search"
+                                        className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </button>
+                                </div>
                             </div>
 
-                            {/* Search Results / Suggestions */}
-                            <div className="mt-8">
-                                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
-                                    {searchQuery.trim() ? "Matching Pages" : "Quick Navigation"}
+                            {/* Results & Quick Actions */}
+                            <div className="mt-5">
+                                <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-3 px-1">
+                                    {searchQuery.trim() ? "Matching Results" : "Quick Navigation"}
                                 </p>
-                                <div className="flex flex-wrap justify-center gap-2">
-                                    {(searchQuery.trim() ? filteredRoutes : SEARCH_ROUTES).map((route) => (
-                                        <button
-                                            key={route.href}
-                                            type="button"
-                                            onClick={() => {
-                                                router.push(route.href);
-                                                setIsSearchOpen(false);
-                                                setSearchQuery("");
-                                            }}
-                                            className="px-4 py-2 rounded-full bg-secondary hover:bg-primary/10 hover:text-primary border border-border text-sm font-medium transition-colors cursor-pointer"
-                                        >
-                                            {route.title}
-                                        </button>
-                                    ))}
+
+                                <div className="space-y-1 max-h-[50vh] overflow-y-auto">
+                                    {(searchQuery.trim() ? filteredRoutes : SEARCH_ROUTES.slice(0, 5)).map((route) => {
+                                        const Icon = route.icon;
+                                        return (
+                                            <button
+                                                key={route.href}
+                                                type="button"
+                                                onClick={() => handleRouteSelection(route.href)}
+                                                className="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-muted/60 transition-colors flex items-center justify-between group cursor-pointer"
+                                            >
+                                                <div className="flex items-center gap-3 min-w-0">
+                                                    <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                                        <Icon className="w-4 h-4" />
+                                                    </div>
+                                                    <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                                                        {route.title}
+                                                    </span>
+                                                </div>
+                                                <span className="text-[11px] text-muted-foreground bg-muted/60 px-2 py-0.5 rounded-md shrink-0">
+                                                    {route.category}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+
                                     {searchQuery.trim() && filteredRoutes.length === 0 && (
-                                        <p className="text-sm text-muted-foreground">
-                                            No matching page found. Press Enter to browse our Vet Directory.
-                                        </p>
+                                        <div className="text-center py-8 text-sm text-muted-foreground">
+                                            No matching pages found for &ldquo;{searchQuery}&rdquo;.
+                                        </div>
                                     )}
                                 </div>
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
                 )}
             </AnimatePresence>
         </>

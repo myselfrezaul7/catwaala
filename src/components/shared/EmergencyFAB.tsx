@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Plus, AlertTriangle, MapPin, Heart, Cat } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function EmergencyFAB() {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+
+    // Hide on pages where report or auth is already the primary action
+    if (pathname === "/report" || pathname === "/login" || pathname === "/signup" || pathname?.startsWith("/admin")) {
+        return null;
+    }
 
     const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -35,7 +42,7 @@ export function EmergencyFAB() {
     ];
 
     return (
-        <div className="fixed bottom-24 md:bottom-6 right-6 z-50 flex flex-col items-end gap-3 print:hidden">
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 flex flex-col items-end gap-3 print:hidden">
             <AnimatePresence>
                 {isOpen && (
                     <>
@@ -59,11 +66,11 @@ export function EmergencyFAB() {
                                     transition={{ duration: 0.2, delay: item.delay }}
                                 >
                                     <Link href={item.href} onClick={() => setIsOpen(false)} className="flex items-center gap-3 group">
-                                        <span className="bg-white dark:bg-zinc-900 text-stone-700 dark:text-stone-200 text-sm font-bold px-3 py-1.5 rounded-lg shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        <span className="bg-white dark:bg-zinc-900 text-stone-700 dark:text-stone-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl shadow-lg opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity whitespace-nowrap border border-stone-200/50 dark:border-zinc-800">
                                             {item.label}
                                         </span>
-                                        <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${item.color} transform group-hover:scale-110 transition-transform`}>
-                                            <item.icon className="w-5 h-5" />
+                                        <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-md ${item.color} transform group-hover:scale-105 transition-transform`}>
+                                            <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                                         </div>
                                     </Link>
                                 </motion.div>
@@ -78,20 +85,18 @@ export function EmergencyFAB() {
                 onClick={toggleOpen}
                 aria-label={isOpen ? "Close emergency menu" : "Open emergency menu"}
                 aria-expanded={isOpen}
-                className={`relative z-50 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-colors duration-300 ${isOpen ? "bg-stone-800 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white"
+                className={`relative z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-xl shadow-rose-500/20 border border-white/20 flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-stone-800 dark:bg-stone-100 text-white dark:text-stone-900" : "bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white"
                     }`}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1, rotate: isOpen ? 45 : 0 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.94 }}
             >
                 {isOpen ? (
-                    <Plus className="w-8 h-8" />
+                    <Plus className="w-6 h-6 sm:w-7 sm:h-7" />
                 ) : (
-                    <Cat className="w-8 h-8" />
+                    <Cat className="w-6 h-6 sm:w-7 sm:h-7" />
                 )}
-
-
             </motion.button>
         </div>
     );

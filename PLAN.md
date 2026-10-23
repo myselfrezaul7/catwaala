@@ -768,3 +768,89 @@ Keep these files, configurations, and styles exactly as they are unless a specif
      - Add `pt-24` top padding to prevent floating header collision.
      - Adjust report cards in the reports tab to wrap cleanly on mobile.
 - **Done when**: On `360px` screens, ReCAPTCHA does not clip horizontally, all action buttons are aligned, and the floating header does not obscure card headers.
+
+---
+
+## Phase 3: Subtle, Modern & Intuitive UI/UX Polish
+
+### Task `UI-01` [DONE]: Restrict `PWAInstallPrompt` & Floating Banners to Appear Only Once on Homepage
+- **Category**: Floating Overlay Hygiene & UX
+- **Files**:
+  - `src/components/layout/PWAInstallPrompt.tsx`
+  - `src/components/layout/PetBhaiBanner.tsx`
+  - `src/components/shared/EmergencyFAB.tsx`
+- **What to change**:
+  1. In `src/components/layout/PWAInstallPrompt.tsx`:
+     - Import `usePathname` from `next/navigation`.
+     - Check `const pathname = usePathname();`. If `pathname !== "/"`, do not render the prompt (`if (pathname !== "/" || !isVisible) return null;`).
+     - Ensure the prompt only appears **once** on the homepage: when `isVisible` becomes `true` on `/`, immediately mark `localStorage.setItem("catwaala-pwa-dismissed", "true")` (or mark it on route change / after 12 seconds auto-hide) so navigating away from `/` or reloading never shows the prompt again on any page.
+  2. In `src/components/layout/PetBhaiBanner.tsx`:
+     - Import `usePathname` from `next/navigation` and only allow the floating pill on `"/"` so inner pages (`/adopt`, `/find-vet`, `/report`, etc.) are completely free of bottom-left promotional popups.
+     - Set `localStorage.setItem("petbhai-banner-dismissed", "true")` once shown on `/` or dismissed so it doesn't follow users across sessions/pages.
+  3. In `src/components/shared/EmergencyFAB.tsx`:
+     - Import `usePathname` from `next/navigation`. Hide the floating button when already on `/report`, `/login`, `/signup`, or `/admin`.
+     - Refine button size from oversized `w-16 h-16` to a sleeker, less intrusive `w-13 h-13 md:w-14 md:h-14` (`w-12 h-12 sm:w-14 sm:h-14`) with a subtle border (`border border-white/20`).
+- **Done when**: The "Install Catwaala App" notification preview only ever appears once on the homepage (`/`) and never appears on `/adopt`, `/find-vet`, `/report`, or any other route.
+
+---
+
+### Task `UI-02` [DONE]: Declutter Homepage Redundancies & Refine Section Visual Hierarchy
+- **Category**: Modern & Subtle Visual Design
+- **Files**:
+  - `src/app/page.tsx`
+  - `src/components/home/Hero.tsx`
+  - `src/components/home/PromoPetBhai.tsx`
+  - `src/components/home/SuccessStories.tsx`
+- **What to change**:
+  1. In `src/app/page.tsx`:
+     - Remove the duplicate middle `<section>` containing the second `"Also love dogs? Visit Kuttawaala"` banner (lines 19–39), since `Hero.tsx` and `Footer.tsx` already link to Kuttawaala.
+     - In the bottom CTA section (lines 78–83), replace the rainbow RGB blur glow (`from-rose-400 via-teal-400 to-amber-400 animate-gradient-xy`) with a clean, subtle architectural card (`bg-white/90 dark:bg-zinc-900/90 border border-stone-200/80 dark:border-zinc-800 shadow-[0_20px_50px_rgba(28,25,23,0.06)]`).
+  2. In `src/components/home/Hero.tsx`:
+     - Simplify the `"Also love dogs? Visit Kuttawaala"` companion link (lines 66–100) by replacing the spinning 180-degree split emoji circle with a clean, understated pill badge (`inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-stone-100/80 dark:bg-zinc-900/80 border border-stone-200/70 dark:border-zinc-800 text-xs font-medium text-muted-foreground hover:text-foreground`).
+  3. In `src/components/home/PromoPetBhai.tsx`:
+     - Remove the two bouncing floating decorative boxes (`ShoppingBag` and `Gift` with infinite `y`/`rotate` keyframe loops at the corners) that clutter the card edges.
+     - Refine the card into a clean, modern dark editorial partner banner with crisp typography and balanced spacing.
+  4. In `src/components/home/SuccessStories.tsx`:
+     - Replace `Happy Tails 🏠❤️` with a clean eyebrow badge (`ADOPTION STORIES`) and refined heading (`Happy Tails, Forever Homes`).
+- **Done when**: The homepage has no duplicate Kuttawaala banners, no infinitely bouncing corner icons, and no rainbow neon border glows.
+
+---
+
+### Task `UI-03` [DONE]: Make Header Navigation & Spotlight Search More Intuitive
+- **Category**: Intuitive Navigation & UX
+- **Files**:
+  - `src/components/layout/Header.tsx`
+- **What to change**:
+  1. In `src/components/layout/Header.tsx`:
+     - Import `usePathname` from `next/navigation`.
+     - Add active-route styling to desktop navigation links (`isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href))`) so the current page shows `text-foreground font-semibold bg-muted/60` instead of every link looking inactive.
+     - Replace the loud purple `NEW` pill on the `PetBhai Shop` nav item with a subtle external-link icon (`ArrowUpRight className="w-3.5 h-3.5 opacity-60"`).
+     - Upgrade the full-screen Search overlay into a centered, clean Spotlight-style command dialog (`max-w-xl mx-4 mt-24 bg-background border border-border rounded-3xl p-6 shadow-2xl`) with an `ESC` badge and click-outside backdrop dismissal, and remove the confusing fallback that redirects unmatched Enter keystrokes to `/find-vet`.
+- **Done when**: Desktop nav clearly highlights the active page, external links use a subtle arrow icon, and Search opens as an intuitive spotlight modal that closes on backdrop click or `ESC`.
+
+---
+
+### Task `UI-04` [DONE]: Harmonize `/adopt` Page Design with the Subtle Editorial Style
+- **Category**: Design Consistency
+- **Files**:
+  - `src/components/adopt/AdoptPageContent.tsx`
+- **What to change**:
+  1. In `src/components/adopt/AdoptPageContent.tsx`:
+     - Replace the harsh full-bleed solid red hero wall (`bg-gradient-to-br from-rose-500 to-rose-600 text-white`) with a subtle, warm editorial header matching the rest of the site (`bg-stone-50/70 dark:bg-zinc-950 border-b border-stone-200/60 dark:border-zinc-800/60`), clean typography, and a refined `"Adopt, Don't Shop — Zero buying or selling"` badge.
+     - Replace the raw `text-5xl` emojis (`🐾`, `💬`, `❤️`) in the 3 info cards with clean Lucide icon badges (`Sparkles`, `MessageCircle`, `Heart`) inside soft tinted containers.
+     - Soften the bottom CTA card so it uses a cohesive, calm card surface instead of a second loud red-orange gradient block.
+- **Done when**: `/adopt` matches the clean, warm, high-trust aesthetic of the homepage in both Light and Dark mode.
+
+---
+
+### Task `UI-05` [DONE]: Snappier Page Transitions & Subtle Micro-Interactions
+- **Category**: Performance & Feel
+- **Files**:
+  - `src/components/layout/PageTransition.tsx`
+  - `src/app/globals.css`
+- **What to change**:
+  1. In `src/components/layout/PageTransition.tsx`:
+     - Remove `AnimatePresence mode="wait"` exit delay and large `y: 12` vertical shift; use a crisp, fast `duration: 0.18` subtle fade (`initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}`) so route transitions feel instantaneous and don't delay page rendering by 300ms.
+  2. In `src/app/globals.css`:
+     - Refine `.glass-card-hover:hover` from `transform: translateY(-4px) scale(1.01)` to a subtler `transform: translateY(-2px)` with softer elevation shadows.
+- **Done when**: Navigating between pages feels instant and hover elevations across cards feel calm and understated.

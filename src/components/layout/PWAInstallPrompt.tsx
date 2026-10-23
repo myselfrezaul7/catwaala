@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, X } from "lucide-react";
@@ -15,12 +16,19 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export function PWAInstallPrompt() {
+    const pathname = usePathname();
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [hasPetBhai, setHasPetBhai] = useState(false);
 
     useEffect(() => {
-        // Check if banner or prompt already dismissed
+        // Only run on the home page
+        if (pathname !== "/") {
+            setIsVisible(false);
+            return;
+        }
+
+        // Check if banner or prompt already dismissed/shown previously
         const isDismissed = localStorage.getItem("catwaala-pwa-dismissed");
         if (isDismissed) return;
 
@@ -41,6 +49,8 @@ export function PWAInstallPrompt() {
             e.preventDefault();
             setDeferredPrompt(e as BeforeInstallPromptEvent);
             setIsVisible(true);
+            // Mark as shown once so it only appears once on the homepage and never on other pages
+            localStorage.setItem("catwaala-pwa-dismissed", "true");
         };
 
         const handleAppInstalled = () => {
@@ -57,7 +67,17 @@ export function PWAInstallPrompt() {
             window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
             window.removeEventListener("appinstalled", handleAppInstalled);
         };
-    }, []);
+    }, [pathname]);
+
+    // Auto-dismiss after 14 seconds if left unattended
+    useEffect(() => {
+        if (isVisible) {
+            const timer = setTimeout(() => {
+                setIsVisible(false);
+            }, 14000);
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible]);
 
     const handleInstallClick = async () => {
         if (!deferredPrompt) return;
@@ -68,6 +88,7 @@ export function PWAInstallPrompt() {
                 setIsVisible(false);
             }
             setDeferredPrompt(null);
+            localStorage.setItem("catwaala-pwa-dismissed", "true");
         } catch (err) {
             console.error("Error invoking PWA install prompt:", err);
         }
@@ -77,6 +98,10 @@ export function PWAInstallPrompt() {
         setIsVisible(false);
         localStorage.setItem("catwaala-pwa-dismissed", "true");
     };
+
+    if (pathname !== "/") {
+        return null;
+    }
 
     return (
         <AnimatePresence>
