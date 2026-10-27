@@ -854,3 +854,59 @@ Keep these files, configurations, and styles exactly as they are unless a specif
   2. In `src/app/globals.css`:
      - Refine `.glass-card-hover:hover` from `transform: translateY(-4px) scale(1.01)` to a subtler `transform: translateY(-2px)` with softer elevation shadows.
 - **Done when**: Navigating between pages feels instant and hover elevations across cards feel calm and understated.
+
+---
+
+## Phase 4: Veterinary Directory Data Verification, 64-District Expansion & UI/UX Modernization
+
+### Task `VET-01` [DONE]: Audit, Deduplicate, Verify Phone Numbers, and Expand `src/data/vets.ts` Across All 64 Districts
+- **Category**: Data Integrity & Bangladesh-Wide Coverage
+- **Files**: `src/data/vets.ts`
+- **What to change**:
+  1. Extend `VetClinic` type in `src/data/vets.ts` with optional metadata fields:
+     - `division?: 'Dhaka' | 'Chattogram' | 'Rajshahi' | 'Khulna' | 'Barishal' | 'Sylhet' | 'Rangpur' | 'Mymensingh'`
+     - `type?: 'Private' | 'Government' | 'University' | 'NGO'`
+     - `emergency24h?: boolean`
+  2. Ensure every single clinic has a unique `id` and remove any duplicate IDs.
+  3. Replace all fake/sequential placeholder phone numbers (`01855-123456` in Feni, `01733-445566` in Rajshahi, `01711-122334` in Khulna, `01712-111345` in Chuadanga, `01777-889900` in Barishal, `01744-556677` in Rangpur, `01766-778899` in Mymensingh) with verified local office numbers or the official Department of Livestock Services (DLS) national helpline `16358`.
+  4. Normalize all phone numbers into consistent, dialable Bangladesh format (`+880...` or `16358`).
+  5. Add missing well-known private clinics, university veterinary teaching hospitals, and all 9 missing Dhaka Division districts (`Tangail`, `Faridpur`, `Manikganj`, `Narsingdi`, `Kishoreganj`, `Gopalganj`, `Madaripur`, `Rajbari`, `Shariatpur`) so all 64 districts of Bangladesh are covered:
+     - **Dhaka**: Teaching & Training Pet Hospital and Research Center (CVASU Purbachal/Badda), Sher-e-Bangla Agricultural University (SAU) Veterinary Teaching Hospital (Agargaon), AniMedCare (Baridhara), Dhaka Pet Clinic (Tikatuli), PraniSheba Vet Clinic (Mohakhali), Pet Zone BD Vet Support (Gulshan-Badda Link Rd), Pets Care Clinic (Mirpur-1), Dhaka Pet Care (Pallabi, Mirpur), Bd Pet Care (Bashundhara R/A), Healthy Pet Care BD (Bashundhara R/A), Veterinary Specialized Hospital & Diagnostic Center (Dr. Mir Azhar Hossain, Uttara Sector 5), Pawsitive Veterinary Clinic / Care for Paws (Zigatola, Dhanmondi).
+     - **University Teaching Hospitals**: BAU Veterinary Teaching Hospital (Mymensingh), Sylhet Agricultural University (SAU) Veterinary Teaching Hospital (Tilagor, Sylhet), PSTU Veterinary Teaching Hospital (Babuganj, Barishal), HSTU Veterinary Teaching Hospital (Dinajpur), Rajshahi University Veterinary Clinic (Rajshahi).
+     - **Regional Verified Clinics**: Pet and Vet Care Sylhet, Sylhet Pet Care, Panacea Vet and Pet Care (Sylhet), Pet Care Point Cumilla, Lil-PAW Vet Care Cumilla, Vet Care Cumilla.
+- **Done when**: `MOCK_VET_CLINICS` covers all 64 districts across all 8 divisions of Bangladesh, has 0 duplicate IDs, 0 sequential placeholder phone numbers, and rich `division`/`type`/`emergency24h` metadata.
+
+---
+
+### Task `VET-02` [DONE]: Smart Merging & Deduplication in `src/services/VetService.ts`
+- **Category**: Data Service Layer
+- **Files**: `src/services/VetService.ts`
+- **What to change**:
+  1. Update `VetClinic` interface in `src/services/VetService.ts` to include `division?: string`, `type?: 'Private' | 'Government' | 'University' | 'NGO'`, and `emergency24h?: boolean`.
+  2. Update `VetService.getAll()` and `VetService.getByDistrict()` so that when Firestore `vets` documents exist, they are **merged** with `MOCK_VET_CLINICS` (deduplicating by normalized clinic name + district and filtering out invalid `"Available upon booking"` or `"01711-000000"` placeholder entries from older seeds) instead of discarding `MOCK_VET_CLINICS`.
+- **Done when**: `VetService.getAll()` always returns the complete Bangladesh-wide directory merged with any custom Firestore entries.
+
+---
+
+### Task `VET-03` [DONE]: Redesign `VetCard.tsx` with Editorial Hierarchy, Category Badges & One-Tap Copy Number
+- **Category**: UI/UX & Component Polish
+- **Files**: `src/components/vet/VetCard.tsx`
+- **What to change**:
+  1. Redesign `VetCard.tsx` with a clean `1px` border (`border-stone-200/80 dark:border-zinc-800/80`), calm surface elevation (`bg-white dark:bg-zinc-900/90 shadow-sm hover:shadow-md`), and equal-height flex layout (`h-full flex flex-col justify-between`).
+  2. Display clear category badges (`Private Clinic`, `University Hospital`, `Govt Hospital`, `NGO`) alongside the district badge and a subtle emerald/rose status dot for `24/7 Emergency`.
+  3. Format `16358` clearly as `"16358 (National Vet Helpline)"` and add a one-tap **Copy phone number** button (with `sonner` toast confirmation) right beside the phone number.
+  4. Provide clean bottom action buttons (`Call Now`, optional `Website`, and `Directions` on Google Maps) that align across all cards in a row.
+- **Done when**: Every `VetCard` displays clear category badges, supports one-tap phone copying + direct calling + Google Maps directions, and maintains equal height in grid rows.
+
+---
+
+### Task `VET-04` [DONE]: Modernize `VetFinder.tsx` with Division Tabs, Quick-Filter Segmented Toggles, Smart Sorting & Helpline Bar
+- **Category**: Intuitive Discovery & Search UX
+- **Files**: `src/components/vet/VetFinder.tsx`
+- **What to change**:
+  1. Replace the loud emerald gradient wall with a refined, modern editorial header matching the site's subtle aesthetic, featuring live counters for Total Verified Clinics, 64 Districts Covered, and 24/7 Emergency & University Centers.
+  2. Add a compact **National Livestock & Vet Helpline (`16358`)** banner with emergency guidance.
+  3. Add horizontal **Division selector pills** (`All Bangladesh`, `Dhaka`, `Chattogram`, `Sylhet`, `Rajshahi`, `Khulna`, `Barishal`, `Rangpur`, `Mymensingh`) that dynamically filter the available districts and clinics.
+  4. Add **Quick-Filter Segmented Toggles** (`All Clinics`, `24/7 Emergency`, `Private Clinics`, `University & NGO`, `Govt Hospitals`) alongside service filter chips (`Vaccination`, `Surgery`, `Spay/Neuter`, `Diagnostics`).
+  5. Implement **Smart Sorting**: sort results so `24/7 Emergency`, `University`, and high-rated `Private`/`NGO` clinics appear first, followed by District Government hospitals.
+- **Done when**: `/find-vet` allows filtering by Division, District, Clinic Type, Emergency status, and Service, sorts clinics intuitively, and passes `npx tsc --noEmit` and `npm run build` with 0 errors.
