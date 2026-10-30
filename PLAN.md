@@ -910,3 +910,66 @@ Keep these files, configurations, and styles exactly as they are unless a specif
   4. Add **Quick-Filter Segmented Toggles** (`All Clinics`, `24/7 Emergency`, `Private Clinics`, `University & NGO`, `Govt Hospitals`) alongside service filter chips (`Vaccination`, `Surgery`, `Spay/Neuter`, `Diagnostics`).
   5. Implement **Smart Sorting**: sort results so `24/7 Emergency`, `University`, and high-rated `Private`/`NGO` clinics appear first, followed by District Government hospitals.
 - **Done when**: `/find-vet` allows filtering by Division, District, Clinic Type, Emergency status, and Service, sorts clinics intuitively, and passes `npx tsc --noEmit` and `npm run build` with 0 errors.
+
+---
+
+## Phase 5: Official Catwaala Watermark Logo Integration & Light/Dark Theme Visibility
+
+### Task `LOGO-01` [DONE]: Extract and Generate High-Resolution Transparent Watermark Assets
+- **Category**: Brand Assets & Graphic Processing
+- **Input**: User-uploaded authentic watermark image (`media_1793403563525_f0ae8339.jpg`) featuring stylized Bengali calligraphy "বিলাইওয়ালা" (Catwaala) with cat ears, fish skeleton, paws, and hearts.
+- **Output Files**:
+  - `public/assets/catwaala-watermark-dark.png`: Anti-aliased, deep charcoal (`#18181b`) transparent PNG optimized for Light mode.
+  - `public/assets/catwaala-watermark-light.png`: Anti-aliased, pure white (`#ffffff`) transparent PNG optimized for Dark mode.
+  - `public/assets/catwaala-logo.png` & `public/logo.png`: Updated fallback assets for general compatibility.
+  - `public/assets/catwaala-watermark-square.png`: Balanced square icon variant for app icons and PWA.
+- **Execution**: Python script using Pillow to perform tight bounding box crop with optical padding, noise filtering, and luminance-to-alpha mapping so edges remain smooth on both white and black backgrounds.
+- **Done when**: Both light and dark transparent PNG files are generated with zero compression noise, sharp anti-aliasing, and correct aspect ratios.
+
+---
+
+### Task `LOGO-02` [DONE]: Update Navigation Header (`Header.tsx`)
+- **Category**: UI/UX & Brand Identity
+- **Files**: `src/components/layout/Header.tsx`
+- **What to change**:
+  - Replace the old letter "C" icon box (`<Image src="/logo.png" width={36} height={36} />`) and text with the responsive Catwaala watermark logo.
+  - Implement dual-theme rendering:
+    - Light mode: displays `catwaala-watermark-dark.png` (`h-8 sm:h-9 w-auto object-contain dark:hidden`).
+    - Dark mode: displays `catwaala-watermark-light.png` (`h-8 sm:h-9 w-auto object-contain hidden dark:block`).
+  - Maintain smooth scale hover effect and clean mobile navigation spacing.
+- **Done when**: The header displays the authentic Bengali watermark logo clearly in both Light and Dark modes.
+
+---
+
+### Task `LOGO-03` [DONE]: Update Footer Brand Section (`Footer.tsx`)
+- **Category**: UI/UX & Brand Identity
+- **Files**: `src/components/layout/Footer.tsx`
+- **What to change**:
+  - Replace the generic square `<Cat />` icon box and raw `CATWAALA` text with the watermark logo.
+  - Render `catwaala-watermark-dark.png` for Light mode and `catwaala-watermark-light.png` for Dark mode at `h-9 sm:h-10 w-auto`.
+- **Done when**: The footer brand block renders the watermark logo crisply in both themes.
+
+---
+
+### Task `LOGO-04` [DONE]: Update Login, Adoption Form Watermark & App Shell (`login/page.tsx`, `adoption-form/page.tsx`, `PWAInstallPrompt.tsx`)
+- **Category**: Multi-Page Consistency
+- **Files**:
+  - `src/app/login/page.tsx`
+  - `src/app/adoption-form/page.tsx`
+  - `src/components/layout/PWAInstallPrompt.tsx`
+- **What to change**:
+  - In `login/page.tsx`: Replace the square letter "C" logo with the watermark logo container visible in both Light and Dark mode.
+  - In `adoption-form/page.tsx`: Update the background watermark to use the new high-resolution watermark asset.
+  - In `PWAInstallPrompt.tsx`: Use the refined logo asset.
+- **Done when**: All secondary logo touchpoints use the authentic watermark logo with proper theme contrast.
+
+---
+
+### Task `LOGO-05` [DONE]: Type-Check, Build Verification & Git Commit/Push
+- **Category**: Verification & Delivery
+- **Actions**:
+  1. Run `npx tsc --noEmit` to verify 0 TypeScript errors.
+  2. Run `npm run build` to verify 34/34 Next.js routes compile successfully.
+  3. Mark `LOGO-01` through `LOGO-05` as `[DONE]` in `PLAN.md`.
+  4. Run `git status`, commit all changes with message `"[T3: integrate authentic watermark logo with light and dark mode visibility]"`, and push to `origin/main`.
+- **Done when**: Production build succeeds and changes are committed and pushed to GitHub.

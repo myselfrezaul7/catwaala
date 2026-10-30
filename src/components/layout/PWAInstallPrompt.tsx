@@ -117,7 +117,7 @@ export function PWAInstallPrompt() {
                     <div className="bg-zinc-900/90 dark:bg-zinc-800/90 backdrop-blur-xl border border-white/10 text-white rounded-full px-4 py-2.5 shadow-2xl flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full overflow-hidden bg-background/20 p-0.5 shrink-0 flex items-center justify-center shadow-md">
                             <Image
-                                src="/logo.png"
+                                src="/assets/catwaala-watermark-square-light.png"
                                 alt="Catwaala App"
                                 width={28}
                                 height={28}

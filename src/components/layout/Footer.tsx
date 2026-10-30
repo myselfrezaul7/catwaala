@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Mail, Cat, Heart, PawPrint, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Facebook, Instagram, Mail, Heart, PawPrint, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 function YoutubeIcon({ className }: { className?: string }) {
@@ -44,10 +45,25 @@ export function Footer() {
                         {/* Brand */}
                         <div className="col-span-1 md:col-span-1 space-y-4 flex flex-col items-center sm:items-start">
                             <div className="flex items-center gap-2.5">
-                                <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
-                                    <Cat className="w-5 h-5 text-primary-foreground" />
-                                </div>
-                                <h3 className="text-2xl font-bold text-foreground tracking-tight">CATWAALA</h3>
+                                <Link href="/" aria-label="Catwaala Home" className="inline-block">
+                                    <Image
+                                        src="/assets/catwaala-watermark-dark.png"
+                                        alt="Catwaala"
+                                        width={140}
+                                        height={48}
+                                        className="h-9 sm:h-10 w-auto object-contain dark:hidden"
+                                    />
+                                    <Image
+                                        src="/assets/catwaala-watermark-light.png"
+                                        alt="Catwaala"
+                                        width={140}
+                                        height={48}
+                                        className="h-9 sm:h-10 w-auto object-contain hidden dark:block"
+                                    />
+                                </Link>
+
+
+
                             </div>
                             <p className="text-xs font-semibold text-primary uppercase tracking-wider">
                                 {t.footer.about}

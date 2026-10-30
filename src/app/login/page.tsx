@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Cat, Shield, Mail, Lock, Loader2, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
+import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { friendlyAuthMessage } from "@/utils/friendlyErrors";
 
@@ -84,9 +85,24 @@ export default function LoginPage() {
             <div className="relative z-10 max-w-md w-full">
                 {/* Logo */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4 transform hover:scale-105 transition-transform duration-300 overflow-hidden bg-white dark:bg-stone-900 shadow-xl p-2">
-                        <Image src="/logo.png" alt="Catwaala Logo" width={64} height={64} className="w-full h-full object-contain" priority />
-                    </div>
+                    <Link href="/" aria-label="Catwaala Home" className="inline-block transform hover:scale-105 transition-transform duration-300">
+                        <Image
+                            src="/assets/catwaala-watermark-dark.png"
+                            alt="Catwaala"
+                            width={180}
+                            height={62}
+                            className="h-12 sm:h-14 w-auto object-contain dark:hidden mx-auto"
+                            priority
+                        />
+                        <Image
+                            src="/assets/catwaala-watermark-light.png"
+                            alt="Catwaala"
+                            width={180}
+                            height={62}
+                            className="h-12 sm:h-14 w-auto object-contain hidden dark:block mx-auto"
+                            priority
+                        />
+                    </Link>
                 </div>
 
 

@@ -160,13 +160,23 @@ export function Header() {
                 } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-full`}>
                 <div className="px-4 md:px-5 lg:px-6 py-2 flex justify-between items-center gap-2">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 overflow-hidden bg-background">
-                            <Image src="/logo.png" alt="Catwaala Logo" width={36} height={36} className="object-contain" />
-                        </div>
-                        <span className="text-lg lg:text-xl font-bold text-foreground tracking-tight">
-                            CATWAALA
-                        </span>
+                    <Link href="/" className="flex items-center gap-2 group shrink-0" aria-label="Catwaala Home">
+                        <Image
+                            src="/assets/catwaala-watermark-dark.png"
+                            alt="Catwaala"
+                            width={130}
+                            height={44}
+                            className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105 dark:hidden"
+                            priority
+                        />
+                        <Image
+                            src="/assets/catwaala-watermark-light.png"
+                            alt="Catwaala"
+                            width={130}
+                            height={44}
+                            className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105 hidden dark:block"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Nav */}
