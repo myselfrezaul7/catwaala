@@ -973,3 +973,69 @@ Keep these files, configurations, and styles exactly as they are unless a specif
   3. Mark `LOGO-01` through `LOGO-05` as `[DONE]` in `PLAN.md`.
   4. Run `git status`, commit all changes with message `"[T3: integrate authentic watermark logo with light and dark mode visibility]"`, and push to `origin/main`.
 - **Done when**: Production build succeeds and changes are committed and pushed to GitHub.
+
+---
+
+## Phase 6: Sleek 120Hz+ High-Refresh-Rate & Compositor Performance Optimization
+
+### Task `HZ-01` [DONE]: Global CSS Compositor & GPU Layer Promotion
+- **Category**: Performance & Compositor Pipeline
+- **Files**: `src/app/globals.css`
+- **What changed**:
+  - Scoped `scroll-behavior: smooth` strictly to `html:focus-within` wrapped in `@media (prefers-reduced-motion: no-preference)` to allow native hardware inertia scrolling on 120Hz/ProMotion displays.
+  - Refined `--glass-blur` from 24px/40px to 14px with `backdrop-filter: blur(14px) saturate(1.6);` and added `transform: translateZ(0); backface-visibility: hidden;`.
+  - Upgraded `.glass-card-hover` to composite-only transitions (`transform`, `box-shadow`, `border-color`) and `transform: translate3d(0, -2px, 0)`.
+  - Promoted fixed layers (`header[class*="fixed"]`, `.fixed`) to dedicated GPU compositing layers.
+  - Updated `@keyframes float` to use `translate3d` off-main-thread animations.
+- **Done when**: Scrolling and card hover triggers 0 layout/paint recalculations.
+
+---
+
+### Task `HZ-02` [DONE]: Header Scroll State Throttling & Compositor Transitions
+- **Category**: Main Thread & Scroll Jank
+- **Files**: `src/components/layout/Header.tsx`
+- **What changed**:
+  - Added boolean ref tracking (`prevScrolledRef`, `prevNavVisibleRef`) to only trigger React `setState` when the state actually flips, eliminating redundant re-renders on every scroll frame.
+  - Replaced `transition-all duration-300` with `transition-[transform,opacity] duration-250 ease-[cubic-bezier(0.16,1,0.3,1)]`.
+  - Reduced `backdrop-blur-2xl` to `backdrop-blur-md backdrop-saturate-150` with `will-change-[transform,opacity]`.
+- **Done when**: Header auto-hide/reveal and scrolling runs at 120 FPS without frame drops.
+
+---
+
+### Task `HZ-03` [DONE]: Mobile Navigation & Spring Physics Tuning
+- **Category**: Mobile 120Hz/ProMotion
+- **Files**: `src/components/layout/MobileBottomNav.tsx`
+- **What changed**:
+  - Switched fixed bottom bar to `backdrop-blur-md backdrop-saturate-150` with `will-change-[transform,opacity] backface-hidden`.
+  - Tuned active tab indicator spring physics to `{ type: "spring", stiffness: 450, damping: 35, mass: 0.5 }`.
+- **Done when**: Mobile bottom navigation tab switching snaps instantaneously without spring bounce jitter.
+
+---
+
+### Task `HZ-04` [DONE]: Card Hover, Layout Thrashing & Carousel Tuning
+- **Category**: Component Rendering
+- **Files**:
+  - `src/components/shared/PetCard.tsx`
+  - `src/components/vet/VetFinder.tsx`
+  - `src/components/home/PromoPetBhai.tsx`
+  - `src/components/home/SuccessStories.tsx`
+  - `src/components/home/Hero.tsx`
+- **What changed**:
+  - `PetCard.tsx`: Eliminated `transition-all duration-500` collision with Framer Motion `whileHover`.
+  - `VetFinder.tsx`: Removed `layout` prop on the 97-card grid to eliminate synchronous `getBoundingClientRect` batch measurements during typing/filtering.
+  - `PromoPetBhai.tsx`: Removed unused `motion` import.
+  - `SuccessStories.tsx`: Added `will-change-transform` on the carousel viewport and tuned Embla drag duration to 25.
+  - `Hero.tsx`: Tuned entrance animation durations to 350ms with `[0.16, 1, 0.3, 1]` ease.
+- **Done when**: Grid filtering and carousel gestures run fluidly at 120Hz.
+
+---
+
+### Task `HZ-05` [DONE]: Next.js Compiler & Page Route Compositor Tuning
+- **Category**: Engine Optimization & Route Switching
+- **Files**:
+  - `src/components/layout/PageTransition.tsx`
+  - `next.config.mjs`
+- **What changed**:
+  - `PageTransition.tsx`: Added `duration: 0.15, ease: [0.16, 1, 0.3, 1]` with `willChange: "opacity, transform", transform: "translateZ(0)"`.
+  - `next.config.mjs`: Added modern image formats (`avif`, `webp`), `optimizePackageImports`, `poweredByHeader: false`, and `compiler.removeConsole` in production.
+- **Done when**: Page switches execute on the compositor layer and build passes with 0 errors.

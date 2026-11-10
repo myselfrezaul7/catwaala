@@ -51,7 +51,7 @@ const successStories = [
 ];
 
 export function SuccessStories() {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", skipSnaps: false, duration: 25 }, [Autoplay({ delay: 5000, stopOnInteraction: true })]);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
     const [hasInteracted, setHasInteracted] = useState(false);
@@ -111,13 +111,13 @@ export function SuccessStories() {
             <div className="container mx-auto px-4 md:px-12 relative">
                 {/* Carousel Viewport */}
                 <div className="overflow-hidden cursor-grab active:cursor-grabbing rounded-3xl" ref={emblaRef}>
-                    <div className="flex touch-pan-y py-4 -ml-3 md:-ml-6 px-1">
+                    <div className="flex touch-pan-y py-4 -ml-3 md:-ml-6 px-1 will-change-transform">
                         {successStories.map((story) => (
                             <div
                                 key={story.id}
                                 className="flex-[0_0_88%] sm:flex-[0_0_70%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.33%] pl-3 md:pl-6"
                             >
-                                <div className="h-full glass-card dark:bg-zinc-900/80 rounded-[2rem] p-5 sm:p-6 md:p-8 border border-white/60 dark:border-white/10 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-900/20 transition-all duration-300 relative group flex flex-col">
+                                <div className="h-full glass-card dark:bg-zinc-900/80 rounded-[2rem] p-5 sm:p-6 md:p-8 border border-white/60 dark:border-white/10 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm hover:shadow-xl hover:shadow-rose-100 dark:hover:shadow-rose-900/20 transition-[border-color,box-shadow] duration-200 relative group flex flex-col">
                                     <div className="absolute top-5 right-5 sm:top-6 sm:right-6 flex text-amber-400">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
@@ -125,7 +125,7 @@ export function SuccessStories() {
                                     </div>
 
                                     <div className="flex items-center gap-3.5 sm:gap-5 mb-5 sm:mb-6 pr-16 sm:pr-20">
-                                        <div className="relative w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white dark:border-zinc-800 shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
+                                        <div className="relative w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white dark:border-zinc-800 shadow-lg group-hover:scale-105 transition-transform duration-200 shrink-0">
                                             <Image
                                                 src={story.image}
                                                 alt={story.cat}

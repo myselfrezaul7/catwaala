@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, ShoppingBag, Sparkles } from "lucide-react";
 
 export function PromoPetBhai() {

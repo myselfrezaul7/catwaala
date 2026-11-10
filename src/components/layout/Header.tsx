@@ -50,6 +50,8 @@ export function Header() {
     const [searchQuery, setSearchQuery] = useState("");
     const [scrolled, setScrolled] = useState(false);
     const [navVisible, setNavVisible] = useState(true);
+    const prevScrolledRef = useRef(false);
+    const prevNavVisibleRef = useRef(true);
     const lastScrollY = useRef(0);
     const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
     const searchInputRef = useRef<HTMLInputElement | null>(null);
@@ -109,22 +111,35 @@ export function Header() {
             if (!ticking) {
                 requestAnimationFrame(() => {
                     const currentScrollY = window.scrollY;
-                    setScrolled(currentScrollY > 10);
-        
-                    // Auto-hide logic
+                    const nextScrolled = currentScrollY > 10;
+                    if (prevScrolledRef.current !== nextScrolled) {
+                        prevScrolledRef.current = nextScrolled;
+                        setScrolled(nextScrolled);
+                    }
+
+                    // Auto-hide logic with state threshold guarding
+                    let nextNavVisible = prevNavVisibleRef.current;
                     if (currentScrollY <= 20) {
-                        setNavVisible(true);
+                        nextNavVisible = true;
                     } else if (currentScrollY > lastScrollY.current && currentScrollY > 60) {
-                        setNavVisible(false); // scrolling down
+                        nextNavVisible = false; // scrolling down
                     } else if (currentScrollY < lastScrollY.current) {
-                        setNavVisible(true); // scrolling up
+                        nextNavVisible = true; // scrolling up
+                    }
+
+                    if (prevNavVisibleRef.current !== nextNavVisible) {
+                        prevNavVisibleRef.current = nextNavVisible;
+                        setNavVisible(nextNavVisible);
                     }
                     lastScrollY.current = currentScrollY;
-        
+
                     // Show after scroll stops
                     if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                     scrollTimeout.current = setTimeout(() => {
-                        setNavVisible(true);
+                        if (!prevNavVisibleRef.current) {
+                            prevNavVisibleRef.current = true;
+                            setNavVisible(true);
+                        }
                     }, 150);
                     ticking = false;
                 });
@@ -154,10 +169,10 @@ export function Header() {
 
     return (
         <>
-            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] transition-all duration-300 ease-out print:hidden ${scrolled
-                ? "bg-white/80 dark:bg-zinc-900/80 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/60"
-                : "bg-white/70 dark:bg-zinc-900/70 border-white/40 dark:border-zinc-800/60 shadow-lg"
-                } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0"} backdrop-blur-2xl border rounded-full`}>
+            <header className={`fixed top-4 left-0 right-0 z-50 mx-auto max-w-6xl w-[calc(100%-2rem)] will-change-[transform,opacity] transition-[transform,opacity] duration-250 ease-fluid print:hidden ${scrolled
+                ? "bg-white/85 dark:bg-zinc-900/85 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border-border/60"
+                : "bg-white/75 dark:bg-zinc-900/75 border-white/40 dark:border-zinc-800/60 shadow-lg"
+                } ${navVisible ? "translate-y-0 opacity-100" : "-translate-y-[120%] opacity-0 pointer-events-none"} backdrop-blur-md backdrop-saturate-150 border rounded-full`}>
                 <div className="px-4 md:px-5 lg:px-6 py-2 flex justify-between items-center gap-2">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group shrink-0" aria-label="Catwaala Home">

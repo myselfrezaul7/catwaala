@@ -18,9 +18,9 @@ export function Hero() {
                     className="space-y-8 text-center lg:text-left order-2 lg:order-1"
                     initial="hidden"
                     animate="visible"
-                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
+                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } } }}
                 >
-                    <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } } }}>
                         {RemoteConfigService.isHeroAnnouncementEnabled ? (
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/30 text-sm font-semibold text-amber-700 dark:text-amber-400 mb-6 border border-amber-200 dark:border-amber-800/50">
                                 <AlertCircle className="w-4 h-4" />
@@ -33,28 +33,28 @@ export function Hero() {
                             </div>
                         )}
                     </motion.div>
-                    <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } } }}>
                         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-[1.1] mb-6 tracking-tight">
                             Every Cat Deserves a <span className="text-primary">Loving Home</span>
                         </h1>
                     </motion.div>
-                    <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } } }}>
                         <p className="text-xl text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
                             Join us in transforming the lives of street cats in Bangladesh through rescue, care, and adoption.
                         </p>
                     </motion.div>
-                    <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } } }}>
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4 w-full sm:w-auto">
                             <Link href="/adopt" className="w-full sm:w-auto">
-                                <motion.div whileTap={{ scale: 0.96 }} className="w-full">
-                                    <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg h-14 px-8 rounded-2xl shadow-xl shadow-rose-500/20 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 transition-transform hover:-translate-y-1 text-white font-bold">
+                                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="w-full">
+                                    <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg h-14 px-8 rounded-2xl shadow-xl shadow-rose-500/20 bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold">
                                         Adopt a Cat
                                     </Button>
                                 </motion.div>
                             </Link>
                             <Link href="/volunteer" className="w-full sm:w-auto text-center">
-                                <motion.div whileTap={{ scale: 0.96 }} className="w-full">
-                                    <Button size="lg" variant="outline" className="w-full sm:w-auto text-rose-600 dark:text-rose-400 text-base sm:text-lg h-14 px-8 rounded-2xl border-2 border-stone-200 dark:border-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-transform hover:-translate-y-1 bg-transparent hover:text-rose-700 dark:hover:text-rose-300 font-bold shadow-sm">
+                                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="w-full">
+                                    <Button size="lg" variant="outline" className="w-full sm:w-auto text-rose-600 dark:text-rose-400 text-base sm:text-lg h-14 px-8 rounded-2xl border-2 border-stone-200 dark:border-zinc-800 hover:bg-stone-100 dark:hover:bg-zinc-800 bg-transparent hover:text-rose-700 dark:hover:text-rose-300 font-bold shadow-sm">
                                         Become a Volunteer
                                     </Button>
                                 </motion.div>

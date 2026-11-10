@@ -10,7 +10,15 @@ const withPWA = withPWAInit({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     trailingSlash: false,
+    poweredByHeader: false,
+    compiler: {
+        removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false,
+    },
+    experimental: {
+        optimizePackageImports: ["lucide-react", "framer-motion", "date-fns", "embla-carousel-react"],
+    },
     images: {
+        formats: ["image/avif", "image/webp"],
         remotePatterns: [
             {
                 protocol: "https",

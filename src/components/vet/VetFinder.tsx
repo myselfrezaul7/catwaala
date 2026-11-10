@@ -543,16 +543,13 @@ export function VetFinder() {
                         <DataErrorState message={error} onRetry={fetchVets} />
                     </div>
                 ) : (
-                    <motion.div
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2 items-stretch"
-                    >
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2 items-stretch">
                         <AnimatePresence mode="popLayout">
                             {filteredVets.map((vet, index) => (
                                 <VetCard key={vet.id} vet={vet} index={index} />
                             ))}
                         </AnimatePresence>
-                    </motion.div>
+                    </div>
                 )}
 
                 {/* Empty State */}

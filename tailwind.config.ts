@@ -101,6 +101,9 @@ const config = {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			transitionTimingFunction: {
+				fluid: 'cubic-bezier(0.16, 1, 0.3, 1)',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
